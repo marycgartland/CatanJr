@@ -2,23 +2,36 @@ package player;
 
 // Import any packages needed
 import java.util.*;
+import gameplay.*;
 
 public class Player {
 	
-	// Variables 
+	//----------------------------------------------------------
+	//---------- Variables -------------------------------------
+	//----------------------------------------------------------
 	protected String name;
 	protected String colour;
 	
+	int diceValue;
+	
 	// Variable - this array/set, "pocket", stores the resources a player has
 	//protected Set<Resource> pocket = new HashSet<Resource>();
-		
-	// Constructor Method
+	
+	
+	//----------------------------------------------------------
+	//---------- Constructor Method ----------------------------
+	//----------------------------------------------------------
+	
 	public Player(String name, String colour){
 		this.name = name;
 		this.colour = colour;
 	}
 	
-	// Pocket - methods
+	
+	//----------------------------------------------------------
+	//---------- Pocket methods --------------------------------
+	//----------------------------------------------------------
+	
 	// Pocket (1) - add method
 		// In this method, we can add resources to the pocket
 	//public void addResource(Resource newResouce){
@@ -40,13 +53,22 @@ public class Player {
 	// Pocket (3) - remove items from pocket{
 	//}
 	
+	// Add a way to show where ships and Lairs are on board
 	
-	// "Your-turn" method
+	//----------------------------------------------------------
+	//---------- "Your-turn" method ----------------------------
+	//----------------------------------------------------------
+	
 	// Notes: This method gives the user a choice of what actions they want to take on their turn
 	// We will need to make something in the main class or something that loops through the players turns
 	public void yourTurn() {
 		System.out.println("It is your turn, " + name + ". Please roll the dice.");
-		// Call roll-dice method 
+		
+		// Call roll-dice method... will need to fix this because we can't keep creating a dice with the same name each time
+		Dice dice1 = new Dice();
+		diceValue = dice1.rollDice();
+		
+		System.out.println("You have a rolled a " + diceValue + "\n");
 		
 		System.out.print("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
 		// Take in the option the user wants. Will need to add in error checking later
@@ -73,15 +95,17 @@ public class Player {
 		
 		// To do: make sure that this loops, so the player can do multiple things in one turn
 	}
-	
-	// Roll Dice Method: This method lets your roll the dice
+
 	// Buy method: This method lets you buy cocotiles
 	// Build method: This method lets you build lairs/ships on the board
 	// Trade method
 	// We want methods to show people their resources at any time	protected Item [] itemArray;
 	
 	
-	// Get and Set methods to show items in a players pocket 
+	//----------------------------------------------------------
+	//---------- Get methods to count items in pocket ----------
+	//----------------------------------------------------------
+	
 	// public int getCocoTileCount(){
 	//		return Collections.frequency(pocket, CocoTiles); 
 	//}
