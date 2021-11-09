@@ -1,14 +1,38 @@
 package gameplay;
 
 import java.util.Scanner;
+import gameplay.Dice;
 
 public class PlayerTurn {
 // The example project also has all of the turn steps in this 
 	
 	// Variables
+	private int marketPlaceUse;	// Integer variable to keep track of how many times the marketplace has been used this turn 
+	//int diceValue;
+	// private Player player;
+	
 	// Constructor
-	// Indicate whose turn it is
+	//public PlayerTurn(Player thisPlayer)
+	public PlayerTurn() {
+		//this.player = thisPlayer;
+		this.marketPlaceUse = 0;	// Initialize the marketplace use at 0 for each new turn 
+		
+	}
+	
+	//-----------------------------------------------------------
+	//---------- Indicate whose turn it is & roll dice ----------
+	//-----------------------------------------------------------
+	//System.out.println("It is your turn, " + name + ". Please Enter 'r' to roll the dice.");
+	
 	// Let them roll the dice
+	//Scanner scan = new Scanner(System.in);
+	//String diceRoll = scan.next();
+	//if(diceRoll == "R" || diceRoll == "r"){
+	//	Dice dice1 = new Dice();
+	//	diceValue = dice1.rollDice();
+	//	System.out.print("You rolled a  " + diceValue);
+		
+	}
 	// When the players turn is not over (can have a while loop)...
 	// They can choose to build, buy or trade
 	// Buy method: This method lets you buy cocotiles
@@ -28,9 +52,8 @@ public class PlayerTurn {
 	//public void yourTurn() {
 	//	System.out.println("It is your turn, " + name + ". Please roll the dice.");
 		
-		// Call roll-dice method... will need to fix this because we can't keep creating a dice with the same name each time
-	//	Dice dice1 = new Dice();
-	//	diceValue = dice1.rollDice();
+	//Dice dice1 = new Dice();
+	//diceValue = dice1.rollDice();
 		
 	//	System.out.println("You have a rolled a " + diceValue + "\n");
 		
