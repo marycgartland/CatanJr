@@ -59,6 +59,11 @@ public class Player {
 	//---------- "Your-turn" method ----------------------------
 	//----------------------------------------------------------
 	
+	
+	// ----------------------------------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------------
+	// LEFT THIS SECTION IN FOR NOW, BUT IT IS BEING TRANSFERRED OVER TO "PLAYERTURN" CLASS
+	// ----------------------------------------------------------------------------------------------------------------------
 	// Notes: This method gives the user a choice of what actions they want to take on their turn
 	// We will need to make something in the main class or something that loops through the players turns
 	public void yourTurn() {
@@ -95,10 +100,11 @@ public class Player {
 		
 		// To do: make sure that this loops, so the player can do multiple things in one turn
 	}
+	// ----------------------------------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------------
 
-	// Buy method: This method lets you buy cocotiles
-	// Build method: This method lets you build lairs/ships on the board
-	// Trade method
+
 	// We want methods to show people their resources at any time	protected Item [] itemArray;
 	
 	
