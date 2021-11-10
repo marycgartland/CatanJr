@@ -6,40 +6,63 @@ import gameplay.Dice;
 public class PlayerTurn {
 // The example project also has all of the turn steps in this 
 	
-	// Variables
+	//-----------------------------------------------------------
+	//---------- Variables --------------------------------------
+	//-----------------------------------------------------------
 	private int marketPlaceUse;	// Integer variable to keep track of how many times the marketplace has been used this turn 
-	//int diceValue;
+	private boolean turn;		// turn = true if they are taking their turn, turns to false if they are finished their turn 
+	private int diceValue;		// Value rolled on the dice 
 	// private Player player;
 	
-	// Constructor
+	//-----------------------------------------------------------
+	//----------- Constructor -----------------------------------
+	//-----------------------------------------------------------
 	//public PlayerTurn(Player thisPlayer)
 	public PlayerTurn() {
 		//this.player = thisPlayer;
 		this.marketPlaceUse = 0;	// Initialize the marketplace use at 0 for each new turn 
+		this.turn = true;			// This person is currently taking their turn 
 		
 	}
 	
 	//-----------------------------------------------------------
-	//---------- Indicate whose turn it is & roll dice ----------
+	//---------- Method: takeTurn -------------------------------
 	//-----------------------------------------------------------
-	//System.out.println("It is your turn, " + name + ". Please Enter 'r' to roll the dice.");
+
+	Dice dice1 = new Dice(); // The dice needs to be created in game setup, not here. Just added here for now 
 	
-	// Let them roll the dice
-	//Scanner scan = new Scanner(System.in);
-	//String diceRoll = scan.next();
-	//if(diceRoll == "R" || diceRoll == "r"){
-	//	Dice dice1 = new Dice();
-	//	diceValue = dice1.rollDice();
-	//	System.out.print("You rolled a  " + diceValue);
-		
+	public void takeTurn() {
+		//----- Roll the dice ------
+		diceValue = dice1.rollDice();
+		System.out.println("It is your turn. You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
+
+		//----- While the players turn isn't over, they will be presented with all options -----
+		while (turn == true) {
+			//----- Let player choose if they wish to build, buy or trade -----
+			System.out.print("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
+			// Scan in their choice
+			Scanner scan = new Scanner(System.in);
+			String option = scan.next();
+			// Error Check 
+			if(option != "B" || option != "Bd" || option != "T" || option != "E") {
+				System.out.println("You did not select one of the available options. Please try again.\nWould you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
+				Scanner scan2 = new Scanner(System.in);
+				option = scan2.next();
+			}
+			System.out.print(option);
+			
+			
+			
+			// Buy method: This method lets you buy cocotiles
+			// Build method: This method lets you build lairs/ships on the board
+			// Trade method
+			// They can also choose to end turn 
+			// During turn, can be checking to see if they have won? Don't know where this happens 
+			
+			
+		}	
 	}
-	// When the players turn is not over (can have a while loop)...
-	// They can choose to build, buy or trade
-	// Buy method: This method lets you buy cocotiles
-	// Build method: This method lets you build lairs/ships on the board
-	// Trade method
-	// They can also choose to end turn 
-	// During turn, can be checking to see if they have won? Don't know where this happens 
+}
 	
 	
 	
@@ -49,13 +72,7 @@ public class PlayerTurn {
 	
 	// Notes: This method gives the user a choice of what actions they want to take on their turn
 	// We will need to make something in the main class or something that loops through the players turns
-	//public void yourTurn() {
-	//	System.out.println("It is your turn, " + name + ". Please roll the dice.");
-		
-	//Dice dice1 = new Dice();
-	//diceValue = dice1.rollDice();
-		
-	//	System.out.println("You have a rolled a " + diceValue + "\n");
+
 		
 	//	System.out.print("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
 		// Take in the option the user wants. Will need to add in error checking later
@@ -111,5 +128,3 @@ public class PlayerTurn {
 				// can trade 2 of the same pocket tiles of choice with 1 tile from the stockpile
 				// No limit on times, only limited by resources in pocket/stockpile
 			// Option 3: Trade with another player
-	
-}
