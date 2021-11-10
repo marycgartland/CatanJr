@@ -1,8 +1,10 @@
 package board;
 
+import resources.Resources;
+
 public class Marketplace {
 
-	protected Resources[] marketPlace = new Resources[5]; // marketplace will be made up of an array of resources (chose an array cause its a set length, arraylists can change in length)
+	protected Resources[] marketPlace; // marketplace will be made up of an array of resources (chose an array cause its a set length, arraylists can change in length)
 
 	// Variables
 	// Constructor
@@ -29,22 +31,19 @@ public class Marketplace {
 	}
 
 	public void SetupMarketplace() {
-		this.marketPlace = [Resources.Wood, Resources.Cutlasses, Resources.Goats, Resources.Gold, Resources.Molasses];
+		this.marketPlace = new Resources[] {Resources.Wood, Resources.Cutlasses, Resources.Goats, Resources.Gold, Resources.Molasses};
 		// this takes resources from the stockpile so need to update the stockpile
 	}
 
 	// Method to check and see if a specified resource is in the marketplace if the
 	// user wants to trade
-	public boolean CheckForResourceMarketplace(Resources resource) {
+	public void CheckForResourceMarketplace(Resources resource) {
 		for (int i = 0; i <= 4; i++) {
 			if (marketPlace[i] == resource) {
 				System.out.println("The Marketplace has this resource");
-				// ask the user if they want to swap with the marketplace, if yes then call
-				// SwapMethod
-				return true;
+				// ask the user if they want to swap with the marketplace, if yes then call SwapMethod				
 			} else {
 				System.out.println("The Marketplace does not have resource");
-				return false;
 			}
 		}
 	}
@@ -55,7 +54,6 @@ public class Marketplace {
 			if (marketPlace[i] == wantedResource) {
 				marketPlace[i] = toSwapResource; // this updates the marketplace resources, need to update users pocket to give them this variable
 				CheckMarketplace(); // now that user has swapped with the marketplace, need to check and make sure all marketplace resources are not the same type
-
 			}
 		}
 	}

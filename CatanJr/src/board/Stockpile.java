@@ -3,6 +3,8 @@ package board;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import resources.Resources;
+
 public class Stockpile {
 
 	// Variables
@@ -22,7 +24,7 @@ public class Stockpile {
 		// add 18 of each resource to stockpile
 		stockpile.put(Resources.Gold, 18);
 		stockpile.put(Resources.Wood, 18);
-		stockpile.put(Resources.Cutlasse, 18);
+		stockpile.put(Resources.Cutlasses, 18);
 		stockpile.put(Resources.Molasses, 18);
 		stockpile.put(Resources.Goats, 18);
 	}
@@ -39,21 +41,26 @@ public class Stockpile {
 		else {
 			CheckStockpile(); // need to call method to check if there is more than 0 of each resource, if not all of that resource must be returned
 		}
-
 	}
+
 	// method to check if resources need to be returned to stockpile
 	public void CheckStockpile() {
-		if(stockpile.get(Resources.Gold)==0) {
-			// make method to take back all of this resource
-		} else if (stockpile.get(Resources.Molasses)==0) {
-			// make method to take back all of this resource
-		} else if (stockpile.get(Resources.Wood)==0) {
-			// make method to take back all of this resource
-		}else if (stockpile.get(Resources.Cutlasses)==0) {
-			// make method to take back all of this resource
-		}else if (stockpile.get(Resources.Goats)==0) {
-			// make method to take back all of this resource
+		if (stockpile.get(Resources.Gold) == 0) {
+			restockResource(Resources.Gold); // take back all gold from every player
+		} else if (stockpile.get(Resources.Molasses) == 0) {
+			restockResource(Resources.Molasses); // take back all molasses from every player
+		} else if (stockpile.get(Resources.Wood) == 0) {
+			restockResource(Resources.Wood); // take back all wood from every player
+		} else if (stockpile.get(Resources.Cutlasses) == 0) {
+			restockResource(Resources.Cutlasses); // take back all cutlasses from every player
+		} else if (stockpile.get(Resources.Goats) == 0) {
+			restockResource(Resources.Goats); // take back all goats from every player
 		}
+	}
+	
+	// if a resource is zero that resource is returned to the stockpile,
+	public void restockResource(Resources resource) {
+		stockpile.put(resource, 18); // restock number of requested resource, need to remove this resource from everyones pocket aswell, but not the marketplace
 	}
 
 }
