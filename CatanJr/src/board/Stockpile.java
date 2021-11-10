@@ -1,6 +1,5 @@
 package board;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import resources.Resources;
@@ -16,7 +15,6 @@ public class Stockpile {
 
 	// EP: Stockpile needs to be called before the users are given their first pieces and before the marketplace is setup
 	// EP: Need method to assign resources to different users, for example when the dice is rolled, the stockpile needs to assign the resources to the players
-	// EP: make a method to setup marketplace?????????????????
 
 	protected HashMap<Resources, Integer> stockpile = new HashMap<Resources, Integer>();
 
@@ -62,6 +60,26 @@ public class Stockpile {
 	// if a resource is zero that resource is returned to the stockpile,
 	public void restockResource(Resources resource) {
 		stockpile.put(resource, 18); // restock number of requested resource, need to remove this resource from everyones pocket aswell, but not the marketplace
+	}
+	
+	// Give each player one wood resource tile and one molassess resource tile 
+	// This function removes 1 wood and 1 molasses per player from the stockpile, these then need to be added to the users pockets 
+	public void SetupPlayers(int numberPlayers) {
+		int numberofwoodresource = stockpile.get(Resources.Wood);
+		int numberofmolassesresource = stockpile.get(Resources.Molasses);
+
+		stockpile.put(Resources.Wood, numberofwoodresource - numberPlayers);
+		stockpile.put(Resources.Molasses, numberofmolassesresource - numberPlayers);
+
+	}
+	
+	// this is used by marketplace when marketplace is setup, it will remove one of each resource from the stockpile
+	public void SetupMarketplace() {
+		stockpile.put(Resources.Wood, stockpile.get(Resources.Wood)-1);
+		stockpile.put(Resources.Gold, stockpile.get(Resources.Gold)-1);
+		stockpile.put(Resources.Molasses, stockpile.get(Resources.Molasses)-1);
+		stockpile.put(Resources.Goats, stockpile.get(Resources.Goats)-1);
+		stockpile.put(Resources.Cutlasses, stockpile.get(Resources.Cutlasses)-1);
 	}
 
 }

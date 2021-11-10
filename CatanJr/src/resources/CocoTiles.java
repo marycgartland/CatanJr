@@ -2,12 +2,10 @@ package resources;
 
 // Import 
 import java.util.*;
-import player.Player;
 
 public class CocoTiles {
-	// Idea: we could enter all the cocotiles into an array, generate a random number between 1 and the number of tiles left, and select that element in the array to hand out as the next one
 	// Variables
-	// protected Player highestPlayer;// EP: not needed if Player is trackign this
+	// protected Player highestPlayer;// EP: not needed if Player is tracking this
 	
 	protected ArrayList<CocoTileTypes> CocoTiles = new ArrayList<CocoTileTypes>();
 	
@@ -39,14 +37,6 @@ public class CocoTiles {
 			return null;
 		}
 	}
-
-	// EP: completed using enum CocoTileTypes and Constructor above
-	// Method: Determine type of cocotiles
-		// Types available: 
-		//		Move the ghost captain (11)s
-		// 		Ship/Lair (3)
-		//		Goats and Cutlasses - 2 of each (3)
-		//		Molasses and Wood - 2 of each (3)
 		
 	// EP: we are going with option 2, so Player class will track this, we need to just compare them after every turn
 	// Keep track of which player has the most tiles (there should be a 'used' stockpile of cocotiles for each player)

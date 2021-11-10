@@ -5,6 +5,8 @@ import java.util.*;
 import gameplay.*;
 
 import player.Player;
+import setup.PlayerSetup;
+import setup.ResourceSetup;
 
 public class main {
 	
@@ -12,8 +14,12 @@ public class main {
 		
 		// ---------- TESTING: REMOVE ALL THIS LATER ----------//
 		// Create a Person and make sure it is taking in what move the player wants to take 
-		Player player1 = new Player("Emma", "blue");
-		player1.yourTurn();
+		//Player player1 = new Player("Emma", "blue");
+		//player1.yourTurn();
+		
+	
+		PlayerSetup playerSetup = new PlayerSetup(); //setup players
+		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); //setup resources
     }
 
 }

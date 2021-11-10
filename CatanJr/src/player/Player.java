@@ -3,6 +3,7 @@ package player;
 // Import any packages needed
 import java.util.*;
 import gameplay.*;
+import resources.Resources;
 
 public class Player {
 	
@@ -11,7 +12,8 @@ public class Player {
 	//----------------------------------------------------------
 	protected String name;
 	protected String colour;
-	
+	protected HashMap<Resources, Integer> pocket = new HashMap<Resources, Integer>();
+	protected int numberCocoTiles=0;	
 	int diceValue;
 	
 	// Variable - this array/set, "pocket", stores the resources a player has
@@ -27,31 +29,55 @@ public class Player {
 		this.colour = colour;
 	}
 	
+	public String toString() {
+		return "Player Name: " + this.name + "\nPlayer Colour: " + this.colour;
+	}
+	
+	public String PlayerName() {
+		return this.name;
+	}
 	
 	//----------------------------------------------------------
 	//---------- Pocket methods --------------------------------
 	//----------------------------------------------------------
 	
-	// Pocket (1) - add method
-		// In this method, we can add resources to the pocket
-	//public void addResource(Resource newResouce){
-	//	pocket.add(newResource);
-	//}
+		// In this method, we can add a certain number of resources to the pocket
+	public void addResource(Resources newResource, int numberNewResource) {
+		pocket.put(newResource, pocket.get(newResource) + numberNewResource);
+	}
+
+	// In this method, we can remove a certain number of resources to the pocket
+	public void removeResource(Resources removedResource, int numberRemovedResource) {
+		pocket.put(removedResource, pocket.get(removedResource) - numberRemovedResource);
+	}
 	
 	// Pocket (2) - view pocket
 	// Note: So far, this displays a count of each resource just that a person has
-	//public String viewPocket() {
-	//	cocoTileCount = Collections.frequency(pocket, CocoTiles); 
-	//	return "Cocotiles: " + getCocoTileCount() 
-	//			+ "\nCutlasses: " + getCutlassesCount()
-	//			+ "\nGoats: " + getGoatsCount()
-	//			+ "\nWood: " + getWoodCount()
-	//			+ "\nGold: " + getGoldCount()
-	//			+ "\Molasses: " + getMolassesCount()
-	//}
+	public String viewPocket() {
+		return this.name+"'s Pocket: \n"+
+				"Cocotiles: " + getCocoTileCount() 
+				+ "\nCutlasses: " + getCutlassesCount()
+				+ "\nGoats: " + getGoatsCount()
+				+ "\nWood: " + getWoodCount()
+				+ "\nGold: " + getGoldCount()
+				+ "\nMolasses: " + getMolassesCount() + "\n";
+	}
 	
-	// Pocket (3) - remove items from pocket{
-	//}
+	// method to setup the users pocket at the start of the game, they will have no resources
+	public void setupUserPocket() {
+		pocket.put(Resources.Gold, 0);
+		pocket.put(Resources.Wood, 0);
+		pocket.put(Resources.Cutlasses, 0);
+		pocket.put(Resources.Molasses, 0);
+		pocket.put(Resources.Goats, 0);
+	}
+	
+	// Method that can be called when user purchases a cocotile, this will increase there count by 1
+	public void addCocoTile() {
+		this.numberCocoTiles = this.numberCocoTiles +1;
+	}
+
+	
 	
 	// Add a way to show where ships and Lairs are on board
 	
@@ -60,49 +86,6 @@ public class Player {
 	//----------------------------------------------------------
 	
 	
-	// ----------------------------------------------------------------------------------------------------------------------
-	// ----------------------------------------------------------------------------------------------------------------------
-	// LEFT THIS SECTION IN FOR NOW, BUT IT IS BEING TRANSFERRED OVER TO "PLAYERTURN" CLASS
-	// ----------------------------------------------------------------------------------------------------------------------
-	// Notes: This method gives the user a choice of what actions they want to take on their turn
-	// We will need to make something in the main class or something that loops through the players turns
-	public void yourTurn() {
-		System.out.println("It is your turn, " + name + ". Please roll the dice.");
-		
-		// Call roll-dice method... will need to fix this because we can't keep creating a dice with the same name each time
-		Dice dice1 = new Dice();
-		diceValue = dice1.rollDice();
-		
-		System.out.println("You have a rolled a " + diceValue + "\n");
-		
-		System.out.print("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
-		// Take in the option the user wants. Will need to add in error checking later
-		Scanner scan = new Scanner(System.in);
-		String option = scan.next();
-		System.out.print(option);
-		
-		// Call the 'Buy' Method if the user enters 'B'
-		if(option == "B") {	
-		}
-		
-		// Call the 'Build' method if the user enters 'Bd'
-		else if(option == "Bd") {
-		}
-		
-		// Call the 'Trade' method if the user enters 'T'
-		else if(option == "T") {		
-		}
-		
-		// If the user wishes to end turn, leave this method
-		else {
-			return;
-		}
-		
-		// To do: make sure that this loops, so the player can do multiple things in one turn
-	}
-	// ----------------------------------------------------------------------------------------------------------------------
-	// ----------------------------------------------------------------------------------------------------------------------
-	// ----------------------------------------------------------------------------------------------------------------------
 
 
 	// We want methods to show people their resources at any time	protected Item [] itemArray;
@@ -112,28 +95,28 @@ public class Player {
 	//---------- Get methods to count items in pocket ----------
 	//----------------------------------------------------------
 	
-	// public int getCocoTileCount(){
-	//		return Collections.frequency(pocket, CocoTiles); 
-	//}
+	 public int getCocoTileCount(){
+			return this.numberCocoTiles; 
+	}
 	
-	// public int getCutlassesCount(){
-	//		return Collections.frequency(pocket, cutlasses); 
-	//}
+	 public int getCutlassesCount(){
+			return pocket.get(Resources.Cutlasses); 
+	}
 	
-	// public int getGoatsCount(){
-		//		return Collections.frequency(pocket, goats); 
-	//}
+	 public int getGoatsCount(){
+				return pocket.get(Resources.Goats); 
+	}
 	
-	// public int getWoodCount(){
-	//		return Collections.frequency(pocket, wood); 
-	//}
+	 public int getWoodCount(){
+			return pocket.get(Resources.Wood); 
+	}
 	
-	// public int getGoldCount(){
-		//		return Collections.frequency(pocket, gold); 
-		//}
+	 public int getGoldCount(){
+			return pocket.get(Resources.Gold); 
+		}
 	
-	// public int getMolassesCount(){
-	//		return Collections.frequency(pocket, molasses); 
-	//}
+	 public int getMolassesCount(){
+		return pocket.get(Resources.Molasses); 
+	}
 
 }
