@@ -81,6 +81,8 @@ public class Player {
 	
 	// Add a way to show where ships and Lairs are on board
 	
+	// Player has their own cocotile count 
+	
 	//----------------------------------------------------------
 	//---------- "Your-turn" method ----------------------------
 	//----------------------------------------------------------

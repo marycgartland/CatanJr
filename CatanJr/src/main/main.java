@@ -16,10 +16,12 @@ public class main {
 		// Create a Person and make sure it is taking in what move the player wants to take 
 		//Player player1 = new Player("Emma", "blue");
 		//player1.yourTurn();
-		
+
 	
 		PlayerSetup playerSetup = new PlayerSetup(); //setup players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); //setup resources
+		PlayerTurn turn1 = new PlayerTurn();
+		turn1.takeTurn();
     }
 
 }
