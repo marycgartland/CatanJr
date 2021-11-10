@@ -12,8 +12,10 @@ public class main {
 		
 		// ---------- TESTING: REMOVE ALL THIS LATER ----------//
 		// Create a Person and make sure it is taking in what move the player wants to take 
-		Player player1 = new Player("Emma", "blue");
-		player1.yourTurn();
+		//Player player1 = new Player("Emma", "blue");
+		//player1.yourTurn();
+		PlayerTurn turn1 = new PlayerTurn();
+		turn1.takeTurn();
     }
 
 }

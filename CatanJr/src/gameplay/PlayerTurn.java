@@ -39,29 +39,42 @@ public class PlayerTurn {
 		//----- While the players turn isn't over, they will be presented with all options -----
 		while (turn == true) {
 			//----- Let player choose if they wish to build, buy or trade -----
-			System.out.print("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
+			System.out.print("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]? ");
 			// Scan in their choice
 			Scanner scan = new Scanner(System.in);
 			String option = scan.next();
-			// Error Check 
-			if(option != "B" || option != "Bd" || option != "T" || option != "E") {
-				System.out.println("You did not select one of the available options. Please try again.\nWould you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
-				Scanner scan2 = new Scanner(System.in);
-				option = scan2.next();
+
+			//----- If the player wants to buy ----------------------------
+			if(option.equals("B")) {
+				System.out.print("You have chosen to buy.\n");
+			} 	
+			//----- If the player wants to build --------------------------
+			else if(option.equals("Bd")) {
+				System.out.print("You have chosen to build.\n");
 			}
-			System.out.print(option);
-			
-			
-			
-			// Buy method: This method lets you buy cocotiles
-			// Build method: This method lets you build lairs/ships on the board
-			// Trade method
-			// They can also choose to end turn 
-			// During turn, can be checking to see if they have won? Don't know where this happens 
-			
-			
+			//----- If the player wants to trade --------------------------
+			else if(option.equals("T")) {
+				System.out.print("You have chosen to Trade.\n");
+			}
+			//----- If the player wants to end their turn -----------------
+			else if(option.equals("E")) {
+				System.out.print("You have chosen to End your turn.\n");
+				turn = false;
+			}
+			//----- Error Check: If the player entered something else -----
+			else{
+				System.out.println("You did not select one of the available options. Please try again. ");
+			}
 		}	
 	}
+	
+	// Buy method: This method lets you buy cocotiles
+	// Build method: This method lets you build lairs/ships on the board
+	// Trade method
+	// They can also choose to end turn 
+	// During turn, can be checking to see if they have won? Don't know where this happens 
+	
+	
 }
 	
 	
@@ -73,34 +86,6 @@ public class PlayerTurn {
 	// Notes: This method gives the user a choice of what actions they want to take on their turn
 	// We will need to make something in the main class or something that loops through the players turns
 
-		
-	//	System.out.print("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]?");
-		// Take in the option the user wants. Will need to add in error checking later
-	//	Scanner scan = new Scanner(System.in);
-	//	String option = scan.next();
-	//	System.out.print(option);
-		
-		// Call the 'Buy' Method if the user enters 'B'
-	//	if(option == "B") {	
-	//	}
-	//	
-		// Call the 'Build' method if the user enters 'Bd'
-	//	else if(option == "Bd") {
-	//	}
-		
-		// Call the 'Trade' method if the user enters 'T'
-	//	else if(option == "T") {		
-	//	}
-		
-		// If the user wishes to end turn, leave this method
-	//	else {
-	//		return;
-	//	}
-		
-		// To do: make sure that this loops, so the player can do multiple things in one turn
-	//}
-	
-	
 	//----------------------------------
 	//---------- Build Method ----------
 	//----------------------------------
