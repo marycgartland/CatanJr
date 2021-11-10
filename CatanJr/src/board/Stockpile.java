@@ -16,6 +16,7 @@ public class Stockpile {
 
 	// EP: Stockpile needs to be called before the users are given their first pieces and before the marketplace is setup
 	// EP: Need method to assign resources to different users, for example when the dice is rolled, the stockpile needs to assign the resources to the players
+	// EP: make a method to setup marketplace?????????????????
 
 	protected HashMap<Resources, Integer> stockpile = new HashMap<Resources, Integer>();
 

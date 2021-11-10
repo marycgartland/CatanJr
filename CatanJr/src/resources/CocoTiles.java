@@ -7,8 +7,8 @@ import player.Player;
 public class CocoTiles {
 	// Idea: we could enter all the cocotiles into an array, generate a random number between 1 and the number of tiles left, and select that element in the array to hand out as the next one
 	// Variables
-//	enum CocoTileTypes {GhostCaptain, ShipCastle, GoatCutlasses, WoodMolasses};
-	protected Player highestPlayer;
+	// protected Player highestPlayer;// EP: not needed if Player is trackign this
+	
 	protected ArrayList<CocoTileTypes> CocoTiles = new ArrayList<CocoTileTypes>();
 	
 	// Method: Constructor 
@@ -23,7 +23,6 @@ public class CocoTiles {
 			this.CocoTiles.add(CocoTileTypes.GhostCaptain);
 		}
 		Collections.shuffle(CocoTiles); // this shuffles the cocotiles // need to check that these are actually shuffled
-
 	}
 	
 	// if a user buys a cocotile, give them the first element in the shuffled arraylist and then remove it 
@@ -44,7 +43,7 @@ public class CocoTiles {
 	// EP: completed using enum CocoTileTypes and Constructor above
 	// Method: Determine type of cocotiles
 		// Types available: 
-		//		Move the ghost captain (11)
+		//		Move the ghost captain (11)s
 		// 		Ship/Lair (3)
 		//		Goats and Cutlasses - 2 of each (3)
 		//		Molasses and Wood - 2 of each (3)
