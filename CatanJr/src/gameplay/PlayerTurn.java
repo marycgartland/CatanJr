@@ -10,7 +10,7 @@ package gameplay;
 import java.util.Scanner;
 import gameplay.Dice;
 import player.Player;
-import resources.Resources;
+import resources.*;
 
 public class PlayerTurn {
 // The example project also has all of the turn steps in this 
@@ -29,6 +29,7 @@ public class PlayerTurn {
 	private String tradeInItem;
 	private Player player;
 	private String toBuild;
+	private String toBuy;
 	
 	//-----------------------------------------------------------
 	//----------- Constructor -----------------------------------
@@ -62,13 +63,12 @@ public class PlayerTurn {
 			//----- If the player wants to buy ----------------------------
 			if(option.equals("B")) {
 				System.out.print("You have chosen to buy.\n");
-				// Call the buy method
+				buy(); // Call the buy method
 			} 	
 			//----- If the player wants to build --------------------------
 			else if(option.equals("Bd")) {
 				System.out.print("You have chosen to build.\n");
-				build();
-				// Call the build method 
+				build(); // Call the build method 
 			}
 			//----- If the player wants to trade --------------------------
 			else if(option.equals("T")) {
@@ -87,6 +87,31 @@ public class PlayerTurn {
 		}
 	}
 	
+	
+	//-----------------------------------------------------------
+	//---------- Buy Method -------------------------------------
+	//-----------------------------------------------------------
+	// This Method lets you buy cocotiles 
+	// If the player chooses a cocotile, give them a cocotile, and follow instructions on cocotile
+	public void buy() {
+		System.out.print("Cost of a Cocotile: 1 Cutlass, 1 Molasses, and 1 Gold\n");
+		if(player.getCutlassesCount()>=1 && player.getGoldCount()>=1 && player.getMolassesCount()>=1) {
+			System.out.print("Would you like to build a ship? [Y/N] ");
+			// Scan in user input
+			Scanner scanbuy = new Scanner(System.in);
+			toBuy = scanbuy.next();
+			// TO DO: Check for valid option
+			if(toBuy.equals("Y") || toBuy.equals("y")){
+				System.out.print("* Collecting Cocotile *\n");
+				// CocoTiles.buyCocoTile(); // Having trouble calling this for some reason still
+				player.addCocoTile();
+			}
+		} else {
+			System.out.print("You do not currently have the resources to buy a cocotile\n");
+		}
+	}
+	
+
 	
 	//-----------------------------------------------------------
 	//---------- Build Method -----------------------------------
@@ -278,11 +303,4 @@ public class PlayerTurn {
 	// Notes: This method gives the user a choice of what actions they want to take on their turn
 	// We will need to make something in the main class or something that loops through the players turns
 
-	
-	//----------------------------------
-	//---------- Buy Method ------------
-	//----------------------------------
-		// This Method lets you buy cocotiles 
-		// Cost: Cocotile = 1 cutlass, 1 molasses & 1 gold 
-		// If the player chooses a cocotile, give them a cocotile, and follow instructions on cocotile
 	
