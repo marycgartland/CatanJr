@@ -21,7 +21,6 @@ public class main {
 		PlayerSetup playerSetup = new PlayerSetup(); //setup players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); //setup resources
 		PlayerTurn turn1 = new PlayerTurn();
-		turn1.takeTurn();
-    }
+		turn1.takeTurn();    }
 
 }
