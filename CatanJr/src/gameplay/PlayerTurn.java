@@ -1,7 +1,16 @@
 package gameplay;
 
+
+// Some to do's (noting that this is very much not finished)
+// Combine all the valid option check methods into 1
+// Connect the build method to the board once that is set up
+// Buy method
+// Trade method 
+
 import java.util.Scanner;
 import gameplay.Dice;
+import player.Player;
+import resources.*;
 
 public class PlayerTurn {
 // The example project also has all of the turn steps in this 
@@ -18,15 +27,15 @@ public class PlayerTurn {
 	private String tradeOutResource;
 	private String tradeOutItem;
 	private String tradeInItem;
-
-	// private Player player;
+	private Player player;
+	private String toBuild;
+	private String toBuy;
 	
 	//-----------------------------------------------------------
 	//----------- Constructor -----------------------------------
 	//-----------------------------------------------------------
-	//public PlayerTurn(Player thisPlayer)
-	public PlayerTurn() {
-		//this.player = thisPlayer;
+	public PlayerTurn(Player thisPlayer){
+		this.player = thisPlayer;
 		this.marketPlaceUse = 0;	// Initialize the marketplace use at 0 for each new turn 
 		this.turn = true;			// This person is currently taking their turn 
 		
@@ -41,7 +50,7 @@ public class PlayerTurn {
 	public void takeTurn() {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
-		System.out.println("It is your turn. You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
+		System.out.println("It is your turn, "+ player.getName() + ". You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
 
 		//----- While the players turn isn't over, they will be presented with all options -----
 		while (turn == true) {
@@ -54,12 +63,12 @@ public class PlayerTurn {
 			//----- If the player wants to buy ----------------------------
 			if(option.equals("B")) {
 				System.out.print("You have chosen to buy.\n");
-				// Call the buy method
+				buy(); // Call the buy method
 			} 	
 			//----- If the player wants to build --------------------------
 			else if(option.equals("Bd")) {
 				System.out.print("You have chosen to build.\n");
-				// Call the build method 
+				build(); // Call the build method 
 			}
 			//----- If the player wants to trade --------------------------
 			else if(option.equals("T")) {
@@ -77,6 +86,100 @@ public class PlayerTurn {
 			}
 		}
 	}
+	
+	
+	//-----------------------------------------------------------
+	//---------- Buy Method -------------------------------------
+	//-----------------------------------------------------------
+	// This Method lets you buy cocotiles 
+	// If the player chooses a cocotile, give them a cocotile, and follow instructions on cocotile
+	public void buy() {
+		System.out.print("Cost of a Cocotile: 1 Cutlass, 1 Molasses, and 1 Gold\n");
+		if(player.getCutlassesCount()>=1 && player.getGoldCount()>=1 && player.getMolassesCount()>=1) {
+			System.out.print("Would you like to build a ship? [Y/N] ");
+			// Scan in user input
+			Scanner scanbuy = new Scanner(System.in);
+			toBuy = scanbuy.next();
+			// TO DO: Check for valid option
+			if(toBuy.equals("Y") || toBuy.equals("y")){
+				System.out.print("* Collecting Cocotile *\n");
+				// CocoTiles.buyCocoTile(); // Having trouble calling this for some reason still
+				player.addCocoTile();
+			}
+		} else {
+			System.out.print("You do not currently have the resources to buy a cocotile\n");
+		}
+	}
+	
+
+	
+	//-----------------------------------------------------------
+	//---------- Build Method -----------------------------------
+	//-----------------------------------------------------------
+	public void build() {
+		// TO DO: Check first if they are even able to build ships or layers with the board
+		// TO DO: Give them option of location to build on
+		// Pirates Lair = 1 cutlass, 1 molasses, 1 goat & 1 wood
+		System.out.print("Costs:\n	Ship: 1 Wood, 1 Goat\n	Lair: 1 Wood, 1 Goat, 1 Molasses, 1 Cutlass\n");
+		if(player.getCutlassesCount()>=1 && player.getWoodCount()>=1 && player.getGoatsCount()>=1 && player.getMolassesCount()>=1){
+			System.out.print("Would you like to build a ship [S] or a lair [L]? ");
+			// Scan in user response 
+			Scanner scanbuild = new Scanner(System.in);
+			toBuild = scanbuild.next();
+			// TO DO: Check for valid option
+			// Call buildShip or buildLair method based on user input
+			if(toBuild.equals("S") || toBuild.equals("s")) {
+				buildShip();
+			} else{
+				buildLair();
+			} 
+		}
+		// Ship = 1 goat & 1 wood
+		else if(player.getWoodCount()>=1 && player.getGoatsCount()>=1) {
+			System.out.print("Would you like to build a ship? [Y/N] ");
+			// Scan in user input
+			Scanner scanbuild = new Scanner(System.in);
+			toBuild = scanbuild.next();
+			// TO DO: Check for valid option
+			if(toBuild.equals("Y") || toBuild.equals("y")){
+				buildShip();
+			}
+		} 
+		
+		// If they don't have enough resources to build either
+		else {
+			System.out.print("You do not have enough resources to build either a ship or a lair.\n");
+		}
+		
+	}
+		// If they choose a pirates lair or ship, place these on the board 
+		// Should pirates lair and ships be their own classes and objects probably?
+		// Build must be alternating ship and Lair 
+	
+	//-----------------------------------------------------------
+	//---------- Build Ship Method ------------------------------
+	//-----------------------------------------------------------
+	public void buildShip() {
+		// TO DO: placement of the ship
+		System.out.print("* Building ship *\n");
+		// Take a goat and a wood out of the players pocket
+		player.removeResource(Resources.Wood, 1);
+		player.removeResource(Resources.Goats, 1);
+	}
+	
+	//-----------------------------------------------------------
+		//---------- Build Lair Method ------------------------------
+		//-----------------------------------------------------------
+		public void buildLair() {
+			// TO DO: placement of the ship
+			System.out.print("* Building lair *\n");
+			// Take a goat, a wood, a cutlass, and a molasses out of the players pocket
+			player.removeResource(Resources.Wood, 1);
+			player.removeResource(Resources.Goats, 1);
+			player.removeResource(Resources.Cutlasses, 1);
+			player.removeResource(Resources.Molasses, 1);
+		}
+	
 	
 	//-----------------------------------------------------------
 	//---------- Trade Method -----------------------------------
@@ -125,7 +228,6 @@ public class PlayerTurn {
 	//-----------------------------------------------------------
 	//---------- Method: TradeIn --------------------------------
 	//-----------------------------------------------------------
-	
 	public String tradeIn() {
 		tradeInValid = false;
 		while(tradeInValid == false) {
@@ -135,22 +237,11 @@ public class PlayerTurn {
 			tradeInValid = validResourceCheck(tradeInItem);
 		}
 		
-		// Assign the word value to the letter entered
-		if(tradeInItem.equals("W")) {
-			tradeInResource = "Wood";
-		} else if (tradeInItem.equals("M")) {
-			tradeInResource = "Molasses";
-		} else if(tradeInItem.equals("G")) {
-			tradeInResource = "Gold";
-		} else {
-			tradeInResource = "Cutlass";
-		}
-		
+		tradeInResource = assignResources(tradeInItem);	// Assign the word value to the letter entered
 		System.out.print("You have chosen to trade in " + tradeInResource + "\n");
-		
-		// Return the selected resource to the user
-		return tradeInResource;
+		return tradeInResource;	// Return the selected resource to the user
 	}
+	
 	
 	//-----------------------------------------------------------
 	//---------- Method: TradeOut --------------------------------
@@ -164,21 +255,24 @@ public class PlayerTurn {
 			tradeOutValid = validResourceCheck(tradeOutItem);
 		}
 		
-		// Assign the word value to the letter entered
-		if(tradeOutItem.equals("W")) {
-			tradeOutResource = "Wood";
-		} else if (tradeOutItem.equals("M")) {
-			tradeOutResource = "Molasses";
-		} else if(tradeOutItem.equals("G")) {
-			tradeOutResource = "Gold";
-		} else {
-			tradeOutResource = "Cutlass";
-		}
-		
+		tradeOutResource = assignResources(tradeOutItem);	// Assign the word value to the letter entered
 		System.out.print("You have chosen to obtain " + tradeOutResource + "\n");
-		
-		// Return the selected resource to the user
-		return tradeOutResource;
+		return tradeOutResource;	// Return the selected resource to the user
+	}
+	
+	//-----------------------------------------------------------
+	//---------- Method: assign resources to letters ------------
+	//-----------------------------------------------------------
+	public String assignResources(String resourceLetter) {
+		if(resourceLetter.equals("W")) {
+			return "Wood";
+		} else if (resourceLetter.equals("M")) {
+			return "Molasses";
+		} else if(resourceLetter.equals("G")) {
+			return "Gold";
+		} else {
+			return "Cutlass";
+		}
 	}
 	
 	
@@ -209,21 +303,4 @@ public class PlayerTurn {
 	// Notes: This method gives the user a choice of what actions they want to take on their turn
 	// We will need to make something in the main class or something that loops through the players turns
 
-	//----------------------------------
-	//---------- Build Method ----------
-	//----------------------------------
-		// This method lets you build lairs/ships on the board
-		// Costs:
-			// Pirates Lair = 1 cutlass, 1 molasses, 1 goat & 1 wood
-			// Ship = 1 goat & 1 wood
-		// If they choose a pirates lair or ship, place these on the board 
-			// Should pirates lair and ships be their own classes and objects probably?
-		// Build must be alternating ship and Lair 
-	
-	//----------------------------------
-	//---------- Buy Method ------------
-	//----------------------------------
-		// This Method lets you buy cocotiles 
-		// Cost: Cocotile = 1 cutlass, 1 molasses & 1 gold 
-		// If the player chooses a cocotile, give them a cocotile, and follow instructions on cocotile
 	

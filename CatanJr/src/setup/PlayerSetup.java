@@ -46,4 +46,18 @@ public class PlayerSetup {
 		return this.players;
 	}
 	
+	//
+	
+	//-----------------------------------------------------------
+	//---------- Method: validPlayerNumberCheck -----------------
+	//-----------------------------------------------------------
+	public boolean validPlayerNumberCHeck(String enteredValue){
+		// If entered resource is  avalide resource return true, otherwise return false
+		if (enteredValue.equals(1) || enteredValue.equals(2) || enteredValue.equals(3) || enteredValue.equals(4)) {
+			return true;
+		} else {
+			System.out.print("Entered value is invalid. Please enter a number between 1 and 4.\n");
+			return false;
+		}
+	}
 }

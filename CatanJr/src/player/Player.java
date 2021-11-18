@@ -46,7 +46,7 @@ public class Player {
 		pocket.put(newResource, pocket.get(newResource) + numberNewResource);
 	}
 
-	// In this method, we can remove a certain number of resources to the pocket
+	// In this method, we can remove a certain number of resources from the pocket
 	public void removeResource(Resources removedResource, int numberRemovedResource) {
 		pocket.put(removedResource, pocket.get(removedResource) - numberRemovedResource);
 	}
@@ -92,6 +92,12 @@ public class Player {
 
 	// We want methods to show people their resources at any time	protected Item [] itemArray;
 	
+	//----------------------------------------------------------
+	//---------- Get Method for player features ----------------
+	//----------------------------------------------------------
+	public String getName(){
+		return this.name; 
+	}
 	
 	//----------------------------------------------------------
 	//---------- Get methods to count items in pocket ----------
