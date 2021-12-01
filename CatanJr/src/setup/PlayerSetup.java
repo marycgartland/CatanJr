@@ -44,8 +44,6 @@ public class PlayerSetup {
 	//EP: this method will return the arraylist containing the players. By using the PlayerName method in the Player class we can determine which player is next
 	// should it be a queue, so everytime its a players go, they are removed from the front of the stack and added to the back, this way we will be able to keep the order
 	public ArrayList<Player> Players(){
-		System.out.print("returning player array \n");
-
 		return this.players;
 	}
 	

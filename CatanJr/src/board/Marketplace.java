@@ -43,14 +43,15 @@ public class Marketplace {
 	// Method to check and see if a specified resource is in the marketplace if the
 	// user wants to trade
 	public boolean CheckForResourceMarketplace(Resources resource) {
+		boolean resource_found = false;
 		for (int i = 0; i <= 4; i++) {
+			System.out.println("is "+resource + " in marketplace:  "+marketPlace[i]+"\n");
+
 			if (marketPlace[i] == resource) {
-				return true;
-			} else {
-				return false;
-			}
+				resource_found = true;
+			} 
 		}
-		return false; // not sure if this will override previous boolean values, need to check this
+		return resource_found; 
 	}
 
 	// method to check how many of a particular resource is in the marketplace when the stockpile needs to be restocked by that resource as there is 0 in the stockpile
@@ -76,22 +77,34 @@ public class Marketplace {
 				CheckMarketplace(); // now that user has swapped with the marketplace, need to check and make sure all marketplace resources are not the same type
 			}
 		}
+
 	}
 
 	// checks to see if there are 5 of the same element or not
+	// this only works if the loop goes to <=3 and the counter==4, but I would say that those values need to be increased by one but it won't run like that
 	public void CheckMarketplace() {
 		int counter = 0;
-		for (int i = 0; i <= 4; i++) {
+		for (int i = 0; i <= 3; i++) {
 			if (marketPlace[i] == marketPlace[i + 1]) {
 				counter = counter + 1;
 			}
 		}
-		if (counter == 5) { // all array elements are equal, need to send 5 of this matching resource back to stockpile
+		if (counter == 4) { // all array elements are equal, need to send 5 of this matching resource back to stockpile
 			stockpile.ReturnResource(marketPlace[1], 5); // need to return the resource back to the stockpile before market is setup again
 			SetupMarketplace(stockpile); // setup marketplace again with the 5 different elements
 		} else {
 			// all elements are not equal
 		}
+	}
+	
+	public void viewMarketplace() {
+		System.out.println("Marketplace: \n"+
+				"1: " + marketPlace[0] 
+				+ "\n2: " + marketPlace[1]
+				+ "\n3: " + marketPlace[2]
+				+ "\n4: " + marketPlace[3]
+				+ "\n5: " + marketPlace[4] + "\n"); 
+
 	}
 
 }

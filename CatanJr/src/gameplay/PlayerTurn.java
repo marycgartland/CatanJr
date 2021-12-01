@@ -86,6 +86,7 @@ public class PlayerTurn {
 			//----- If the player wants to trade --------------------------
 			else if(option.equals("T")) {
 				interactor.printMessage("turn: trade");
+				marketplace.viewMarketplace();
 				Trade();	// Call the trade method 
 			}
 			//----- If the player wants to end their turn -----------------
@@ -250,7 +251,7 @@ public class PlayerTurn {
 			// Can only trade with Marketplace once per turn 
 		if(option.equals("M") && marketPlaceUse == 0) {
 			interactor.printMessage("trade: M");
-			marketPlaceUse = 1;
+			marketplace.viewMarketplace();
 			tradeMarketplace(); 			// call method to trade with marketplace
 		}
 		
@@ -290,6 +291,7 @@ public class PlayerTurn {
 				String trade_in = interactor.takeInAnswer();
 				if (validResourceCheck(trade_in)) { // check if this trad_in answer is valid
 					if (player.checkPocketResourcesLetter(trade_in) > 0) { // check users pocket to see if they have the resources to swap
+						marketPlaceUse = 1; // successful trade with marketplace
 						marketplace.SwapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
 						System.out.println(player.viewPocket()); // show user their pocket
 					} else {

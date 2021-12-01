@@ -16,10 +16,10 @@ public class Interactor {
 	public void printMessage(String instruction, String value) {
 		switch(instruction) {
 		case "trade in resource":
-			System.out.print("You have chosen to trade in " + value + "\n"); 
+			System.out.println("You have chosen to trade in " + value + "\n"); 
 			break;
 		case "trade out resource":
-			System.out.print("You have chosen to obtain " + value + "\n"); 
+			System.out.println("You have chosen to obtain " + value + "\n"); 
 			break;
 		}
 	}
@@ -97,13 +97,13 @@ public class Interactor {
 		System.out.println("You have chosen to trade with the stockpile.\n");
 		break;
 	case "trade in":
-		System.out.print("What item would to trade in (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
+		System.out.println("What item would to trade in (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
 		break;
 	case "trade out":
-		System.out.print("What item would you like to obtain (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
+		System.out.println("What item would you like to obtain (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
 		break;
 	case "invalid resource":
-		System.out.print("Choice is invalid. Please enter a valid choice.\n");
+		System.out.println("Choice is invalid. Please enter a valid choice.\n");
 		break;
 	case "no cocotiles":
 		System.out.println("There are no Coco Tiles left to purchase");

@@ -36,10 +36,13 @@ public class GameManager {
 		this.marketPlace = resourceSetup.getMarketplace();
 		// while there is no winner declared, rotate players turns
 		int player_turn=0;
-		System.out.print(playerSetup.Players().get(player_turn).getName());
+		//System.out.print(playerSetup.Players().get(player_turn).getName());
+		//PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile, cocoTiles, board);
+		//playerTurn.takeTurn();
 
 		while(!checkWinner(playerSetup.Players())) {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile, cocoTiles, board);
+			playerTurn.takeTurn();
 			player_turn=(player_turn+1)% (playerSetup.Players().size() + 1); // this will loop through players 
 		}
 	}
