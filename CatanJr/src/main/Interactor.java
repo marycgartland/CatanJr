@@ -21,6 +21,8 @@ public class Interactor {
 		case "trade out resource":
 			System.out.println("You have chosen to obtain " + value + "\n"); 
 			break;
+		case "winner":
+			System.out.println("Congratulations "+ value + "! You're the Winner!\n");
 		}
 	}
 	
@@ -108,9 +110,6 @@ public class Interactor {
 	case "no cocotiles":
 		System.out.println("There are no Coco Tiles left to purchase");
 		break;
-	case "resources setup":
-		System.out.println("\nResources have been setup "); 
-		break;
 	case "marketplace: in-stock":
 		System.out.println("The Marketplace has this resource");
 		break;
@@ -122,11 +121,11 @@ public class Interactor {
 		break;
 	case "successful marketplace trade":
 		System.out.println("You successfully traded with the marketplace\n");
-
-
+		break;
+	}
+	}
 	
-	}
-	}
+	// Scan in users answer
 	public String takeInAnswer() {
 		Scanner scan = new Scanner(System.in);
 		return scan.next();

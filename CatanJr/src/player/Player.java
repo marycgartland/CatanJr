@@ -13,13 +13,12 @@ public class Player {
 	protected String name;
 	protected String colour;
 	protected HashMap<Resources, Integer> pocket = new HashMap<Resources, Integer>();
-	protected int numberCocoTiles=0;	
+	protected int numberCocoTiles = 0;
 	int diceValue;
-	protected int numberLairs=0; // this will keep track of how many lairs player has, which will determine the winner if lairs=7
-	
+	protected int numberLairs = 0; // this will keep track of how many lairs player has, which will determine the
+									// winner if lairs=7
+
 	// Variable - this array/set, "pocket", stores the resources a player has
-	//protected Set<Resource> pocket = new HashSet<Resource>();
-	
 	
 	//----------------------------------------------------------
 	//---------- Constructor Method ----------------------------
@@ -55,7 +54,7 @@ public class Player {
 	// Pocket (2) - view pocket
 	// Note: So far, this displays a count of each resource just that a person has
 	public String viewPocket() {
-		return this.name+"'s Pocket: \n"+
+		return "\n" + this.name+"'s Pocket: \n"+
 				"Cocotiles: " + getCocoTileCount() 
 				+ "\nCutlasses: " + getCutlassesCount()
 				+ "\nGoats: " + getGoatsCount()
@@ -85,15 +84,6 @@ public class Player {
 	
 	
 	// Add a way to show where ships and Lairs are on board
-	
-	// Player has their own cocotile count 
-	
-	//----------------------------------------------------------
-	//---------- "Your-turn" method ----------------------------
-	//----------------------------------------------------------
-	
-	
-
 
 	// We want methods to show people their resources at any time	protected Item [] itemArray;
 	

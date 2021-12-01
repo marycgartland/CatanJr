@@ -86,7 +86,6 @@ public class PlayerTurn {
 			//----- If the player wants to trade --------------------------
 			else if(option.equals("T")) {
 				interactor.printMessage("turn: trade");
-				marketplace.viewMarketplace();
 				Trade();	// Call the trade method 
 			}
 			//----- If the player wants to end their turn -----------------
@@ -188,8 +187,7 @@ public class PlayerTurn {
 		// Ship = 1 goat & 1 wood
 		else if(player.getWoodCount()>=1 && player.getGoatsCount()>=1) {
 			interactor.printMessage("build ship?");
-			// Scan in user input
-			toBuild = interactor.takeInAnswer();
+			toBuild = interactor.takeInAnswer(); 			// Scan in user input
 			// TO DO: Check for valid option
 			if(toBuild.equals("Y") || toBuild.equals("y")){
 				buildShip();
@@ -248,7 +246,6 @@ public class PlayerTurn {
 		
 		//----- Option 1: Trade with Marketplace --------------------------
 			// Trade one tile from a players pocket (of choice) with one tile from marketplace (of choice)
-			// Can only trade with Marketplace once per turn 
 		if(option.equals("M") && marketPlaceUse == 0) {
 			interactor.printMessage("trade: M");
 			marketplace.viewMarketplace();
@@ -261,11 +258,6 @@ public class PlayerTurn {
 		else if(option.equals("S")) {
 			interactor.printMessage("trade: S");
 			tradeStockpile(); // call method to trade with stockpile
-			// EP: I dont think these methods below are needed now because the tradeStockpile does what they are both doing 01/12/2021
-			// Show them which items they have 2 of that they can trade
-			//tradeOut();	// Let user select what Item they wish to obtain from the stockpile
-			//tradeIn();	// Let user select what item they wish to push into the stockpile in return 
-			
 		}
 
 		//----- Error check if the user selects an invalid option ---------
@@ -278,19 +270,18 @@ public class PlayerTurn {
 	// Method to trade with marketplace
 	// do i need to remove the resource from the users pocket
 	public void tradeMarketplace() {
-		interactor.printMessage("trade out"); // System.out.print("What item would you like to obtain (Wood [W],
-												// Molasses [M], Gold [G], or Cutlass [C])? ");
+		interactor.printMessage("trade out"); // what item does user want to obtain
 		String trade_out = interactor.takeInAnswer();
 		if (validResourceCheck(trade_out)) { // check if trade_out is vaild option
 			boolean in_stock = marketplace.CheckForResourceMarketplace(assignResourcesType(trade_out)); // check if has marketplace has this in stock
 																										
 			if (in_stock) {
 				interactor.printMessage("marketplace: in-stock");
-				interactor.printMessage("trade in"); // System.out.print("What item would you like to trade in (Wood [W],
-														// Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
+				interactor.printMessage("trade in"); // what item does user want to trade in
 				String trade_in = interactor.takeInAnswer();
-				if (validResourceCheck(trade_in)) { // check if this trad_in answer is valid
+				if (validResourceCheck(trade_in)) { // check if this trade_in answer is valid
 					if (player.checkPocketResourcesLetter(trade_in) > 0) { // check users pocket to see if they have the resources to swap
+						// Can only trade with Marketplace once per turn 
 						marketPlaceUse = 1; // successful trade with marketplace
 						marketplace.SwapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
 						System.out.println(player.viewPocket()); // show user their pocket
@@ -302,7 +293,6 @@ public class PlayerTurn {
 				interactor.printMessage("marketplace: out-of-stock");
 			}
 		}
-
 	}
 	
 	
@@ -393,39 +383,5 @@ public class PlayerTurn {
 //		return tradeOutResource;	// Return the selected resource to the user
 //	}
 	
-	//-----------------------------------------------------------
-	//---------- Method: assign resources to letters ------------
-	//-----------------------------------------------------------
-//	public String assignResources(String resourceLetter) {
-//		if(resourceLetter.equals("W")) {
-//			return "Wood";
-//		} else if (resourceLetter.equals("M")) {
-//			return "Molasses";
-//		} else if(resourceLetter.equals("G")) {
-//			return "Gold";
-//		} else if(resourceLetter.equals("GT")) {
-//			return "Goat";
-//		} else {
-//			return "Cutlass";
-//		}
-//	}
-	
-
-	
 }
-	
-	
-	
-
-
-
-	// During turn, can be checking to see if they have won? Don't know where this happens 
-	
-	//----------------------------------------------------------
-	//---------- "Your-turn" method ----------------------------
-	//----------------------------------------------------------
-	
-	// Notes: This method gives the user a choice of what actions they want to take on their turn
-	// We will need to make something in the main class or something that loops through the players turns
-
 	

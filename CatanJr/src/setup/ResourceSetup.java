@@ -21,19 +21,12 @@ public class ResourceSetup {
 	// Should this be its own setup?
 	
 	public ResourceSetup(ArrayList<Player> players) {
-		this.board = new Board();
 		this.stockPile = new Stockpile(players); // construct Stockpile
 		this.cocoTiles = new CocoTiles(); // construct Cocotiles
 		this.marketPlace = new Marketplace(); //construct marketplace
 		stockPile.SetupMarketplace(marketPlace); // remove one of each resource from the stockpile as its being added to the marketplace
 		marketPlace.SetupMarketplace(stockPile); // this adds one of each resource to the marketplace
 		stockPile.SetupPlayers(players.size()); // this removes 1 wood and 1 molasses from the stockpile and adds them to users pocket
-		board.setupBoard();
-		interactor.printMessage("resources setup");
-	}
-	
-	public Board getBoard() {
-		return this.board;
 	}
 	
 	public Stockpile getStockpile() {

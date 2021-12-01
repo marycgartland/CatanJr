@@ -45,8 +45,6 @@ public class Marketplace {
 	public boolean CheckForResourceMarketplace(Resources resource) {
 		boolean resource_found = false;
 		for (int i = 0; i <= 4; i++) {
-			System.out.println("is "+resource + " in marketplace:  "+marketPlace[i]+"\n");
-
 			if (marketPlace[i] == resource) {
 				resource_found = true;
 			} 
@@ -97,14 +95,11 @@ public class Marketplace {
 		}
 	}
 	
+	// Output marketplace contents
+	// should this be used in the interactor class?
 	public void viewMarketplace() {
-		System.out.println("Marketplace: \n"+
-				"1: " + marketPlace[0] 
-				+ "\n2: " + marketPlace[1]
-				+ "\n3: " + marketPlace[2]
-				+ "\n4: " + marketPlace[3]
-				+ "\n5: " + marketPlace[4] + "\n"); 
-
+		System.out.println("Marketplace Contents:"+ marketPlace[0] + ", " + marketPlace[1] +", " + marketPlace[2] + ", " + marketPlace[3] + ", " + marketPlace[4] + "\n");
+			
 	}
 
 }
