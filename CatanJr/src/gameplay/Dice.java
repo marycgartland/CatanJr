@@ -34,9 +34,15 @@ public class Dice {
 	//---------- Method: checkRoll -----------------------------------------------------------
 	// This method is to check what the next things to be done are depending on the dice value 
 	//----------------------------------------------------------------------------------------
-	// MG: All methods should be public, correct?
+	// MG: All methods should be public, correct? EP: Yas
 	public void checkRoll(int diceRollValue){
 		// If the user rolls 1-5...
+		
+		// roll 1:  cutlasses, wood, goat
+		// roll 2:  wood, molasses, goat
+		// roll 3:  wood, gold, 
+		// roll 4:  cutlasses, molasses
+		// roll 5:  goat, gold
 		if(diceRollValue <=5){
 			// check which islands are associated with that number
 			// Assign people touching the island with that given resource, UNLESS the ghost captain is on that island

@@ -3,11 +3,14 @@ package resources;
 // Import 
 import java.util.*;
 
+import main.Interactor;
+
 public class CocoTiles {
 	// Variables
 	// protected Player highestPlayer;// EP: not needed if Player is tracking this
 	
 	protected ArrayList<CocoTileTypes> CocoTiles = new ArrayList<CocoTileTypes>();
+	Interactor interactor = new Interactor();
 	
 	// Method: Constructor 
 	public CocoTiles() { // 20 cocotiles in total
@@ -31,9 +34,10 @@ public class CocoTiles {
 		if(CocoTiles.size()>0) {
 		CocoTileTypes cocoTileBought = CocoTiles.get(0);
 		CocoTiles.remove(0);
-		return cocoTileBought;}
+		return cocoTileBought;
+		}
 		else {
-			System.out.println("There are no Coco Tiles left to purchase");
+			interactor.printMessage("no cocotiles");
 			return null;
 		}
 	}

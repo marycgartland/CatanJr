@@ -13,6 +13,9 @@ public class main {
 	
 	public static void main(String[] args) {
 		
+		GameManager gameManager = new GameManager();
+		gameManager.StartGame();
+		
 		// ---------- TESTING: REMOVE ALL THIS LATER ----------//
 		// Create a Person and make sure it is taking in what move the player wants to take 
 		//Player player1 = new Player("Emma", "blue");
@@ -26,8 +29,8 @@ public class main {
 		// QUESTION FROM MARY TO EMMA: how do we select a player from the Players array for testing purposes?
 		// ANSWER: the Players() function in PlayerSetup() class will return an arraylist of players so then i think you 
 		// can use Players.get(0) to get the first player
-		PlayerSetup playerSetup = new PlayerSetup(); //setup players
-		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); //setup resources
+		//PlayerSetup playerSetup = new PlayerSetup(); //setup players
+		//ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); //setup resources
 
 		// EP: just commenting it out to make the merge work
 		//PlayerTurn turn1 = new PlayerTurn();

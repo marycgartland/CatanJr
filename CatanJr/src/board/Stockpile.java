@@ -1,7 +1,9 @@
 package board;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import player.Player;
 import resources.Resources;
 
 public class Stockpile {
@@ -17,27 +19,30 @@ public class Stockpile {
 	// EP: Need method to assign resources to different users, for example when the dice is rolled, the stockpile needs to assign the resources to the players
 
 	protected HashMap<Resources, Integer> stockpile = new HashMap<Resources, Integer>();
+	protected ArrayList<Player> players;
+	protected Marketplace marketplace;
 
 	// Constructor
-	public Stockpile() {
+	public Stockpile(ArrayList<Player> players) {
 		// add 18 of each resource to stockpile
 		stockpile.put(Resources.Gold, 18);
 		stockpile.put(Resources.Wood, 18);
 		stockpile.put(Resources.Cutlasses, 18);
 		stockpile.put(Resources.Molasses, 18);
 		stockpile.put(Resources.Goats, 18);
+		this.players = players;
 	}
 
 	// if this method is called 2 of the toSwapResource needs to be removed from the
 	// users pocket and 1 of the wantedResource needs to be added to their pocket
-	public void SwapStockpile(Resources wantedResource, Resources toSwapResource) {
+	public void SwapStockpile(Resources wantedResource, Resources toSwapResource, Player player) {
 		int numberofwantedresource = stockpile.get(wantedResource);
-
 		if (numberofwantedresource > 0) {
 			stockpile.put(wantedResource, numberofwantedresource - 1); // need to add 1 of this resource to users pocket
+			player.addResource(wantedResource, 1); // add one wanted resource to users pocket
+			player.removeResource(toSwapResource, 2); // remove 2 from users pocket
 			stockpile.put(toSwapResource, stockpile.get(toSwapResource) + 2); // need to remove 2 of this resource from users pocket
-		}
-		else {
+		} else {
 			CheckStockpile(); // need to call method to check if there is more than 0 of each resource, if not all of that resource must be returned
 		}
 	}
@@ -57,13 +62,23 @@ public class Stockpile {
 		}
 	}
 	
+	
 	// if a resource is zero that resource is returned to the stockpile,
 	public void restockResource(Resources resource) {
-		stockpile.put(resource, 18); // restock number of requested resource, need to remove this resource from everyones pocket aswell, but not the marketplace
+		// removes all of the defined resource from users pocket
+		for (int i = 0; i <= this.players.size() - 1; i++) {
+			int resource_pocket = players.get(i).checkPocketResourcesType(resource);
+			players.get(i).removeResource(resource, resource_pocket);
+		}
+		
+		// resource isn't restocked from marketplace: so need to check if resource is in marketplace and minus that number from number to restock by
+		int resource_marketplace = marketplace.CheckForResourceMarketplaceStockpileRestock(resource);
+		stockpile.put(resource, 18 - resource_marketplace); // restock number of requested resource
 	}
 	
-	// Give each player one wood resource tile and one molassess resource tile 
-	// This function removes 1 wood and 1 molasses per player from the stockpile, these then need to be added to the users pockets 
+	// Give each player one wood resource tile and one molassess resource tile
+	// This function removes 1 wood and 1 molasses per player from the stockpile,
+	// these then need to be added to the users pockets
 	public void SetupPlayers(int numberPlayers) {
 		int numberofwoodresource = stockpile.get(Resources.Wood);
 		int numberofmolassesresource = stockpile.get(Resources.Molasses);
@@ -71,15 +86,38 @@ public class Stockpile {
 		stockpile.put(Resources.Wood, numberofwoodresource - numberPlayers);
 		stockpile.put(Resources.Molasses, numberofmolassesresource - numberPlayers);
 
+		// need to add 1 wood and 1 molasses to each players pocket
+		for (int i = 0; i <= players.size() - 1; i++) {
+			players.get(i).addResource(Resources.Wood, 1);
+			players.get(i).addResource(Resources.Molasses, 1);
+			System.out.println(players.get(i).viewPocket()); // will take out, just tracking whats happening
+		}
+
 	}
 	
 	// this is used by marketplace when marketplace is setup, it will remove one of each resource from the stockpile
-	public void SetupMarketplace() {
+	public void SetupMarketplace(Marketplace marketplace) {
+		this.marketplace = marketplace;
 		stockpile.put(Resources.Wood, stockpile.get(Resources.Wood)-1);
 		stockpile.put(Resources.Gold, stockpile.get(Resources.Gold)-1);
 		stockpile.put(Resources.Molasses, stockpile.get(Resources.Molasses)-1);
 		stockpile.put(Resources.Goats, stockpile.get(Resources.Goats)-1);
 		stockpile.put(Resources.Cutlasses, stockpile.get(Resources.Cutlasses)-1);
+	}
+	
+	// method called to return resources to stockpile e.g. buying things, restocking marketplace
+	public void ReturnResource(Resources resource, int numberOfResource) {
+		stockpile.put(resource, stockpile.get(resource)+ numberOfResource);
+	}
+	
+	// distribute resources from stockpile to users
+	public void DistributeResource(Resources resource, int numberOfResource) {
+		int numberofResourceAvailable = stockpile.get(resource);
+		if (numberofResourceAvailable >= numberOfResource) { // if there are enough resources to be distributed
+			stockpile.put(resource, stockpile.get(resource) - numberOfResource);
+		} else { // restock stockpile with that resource if there arent enough to be given out (return all of that resource to stockpile, from users)
+			restockResource(resource);
+		}
 	}
 
 }
