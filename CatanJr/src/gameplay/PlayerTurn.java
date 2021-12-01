@@ -65,7 +65,7 @@ public class PlayerTurn {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
 		System.out.println("It is your turn, "+ player.getName() + ". You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
-		// should assign resources depending on the value rolled
+		// TODO: should assign resources depending on the value rolled
 
 		//----- While the players turn isn't over, they will be presented with all options -----
 		while (turn == true) {
