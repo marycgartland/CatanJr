@@ -57,5 +57,10 @@ public class Dice {
 		}
 	}
 	
+	// Get Method 
+	public int getDiceRollValue() {
+		return diceRollValue;
+	}
+	
 	
 }
