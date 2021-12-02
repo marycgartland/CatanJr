@@ -24,12 +24,14 @@ public class GameManager {
 
 	public GameManager() {
 		this.board = new Board();
-		this.board.setupBoard();
 	}
 	
 	public void StartGame() {
+		
 		PlayerSetup playerSetup = new PlayerSetup(); // setup players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // setup resources
+		board.setupBoard(playerSetup.Players().size());
+		board.showBoardLayout();
 		this.stockPile = resourceSetup.getStockpile();
 		this.cocoTiles = resourceSetup.getCocoTiles();
 		this.marketPlace = resourceSetup.getMarketplace();

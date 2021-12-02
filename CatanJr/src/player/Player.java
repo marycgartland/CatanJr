@@ -15,8 +15,9 @@ public class Player {
 	protected HashMap<Resources, Integer> pocket = new HashMap<Resources, Integer>();
 	protected int numberCocoTiles = 0;
 	int diceValue;
-	protected int numberLairs = 0; // this will keep track of how many lairs player has, which will determine the
+	protected int numberLairs = 2; // this will keep track of how many lairs player has, which will determine the
 									// winner if lairs=7
+	// set to 2 lairs when its setup beacuse each player can place 2 lairs on the board at the start
 
 	// Variable - this array/set, "pocket", stores the resources a player has
 	
