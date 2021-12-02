@@ -40,6 +40,8 @@ public class PlayerTurn {
 	protected Stockpile stockpile;
 	protected CocoTiles cocotiles;
 	protected Board board;
+	
+	// TODO need to make the next turn wait until user has chosen where to place lairs/ships
 
 	
 	//-----------------------------------------------------------
@@ -52,6 +54,7 @@ public class PlayerTurn {
 		this.marketplace = marketplace;
 		this.stockpile = stockpile;
 		this.cocotiles = cocotiles;
+		this.board = board;
 		
 	}
 	
@@ -160,8 +163,8 @@ public class PlayerTurn {
 
 		} else if (cocotile.equals(CocoTileTypes.ShipCastle)) {
 			// need to let user place ships and lairs on board
-			board.placeShip();
-			board.placeLair();
+			board.placeShip(player.getColour());
+			board.placeLair(player.getColour());
 		}
 	}
 	
@@ -213,7 +216,7 @@ public class PlayerTurn {
 		// Take a goat and a wood out of the players pocket
 		player.removeResource(Resources.Wood, 1);
 		player.removeResource(Resources.Goats, 1);
-		board.placeShip();
+		board.placeShip(player.getColour());
 	}
 	
 	//-----------------------------------------------------------
@@ -228,7 +231,9 @@ public class PlayerTurn {
 			player.removeResource(Resources.Cutlasses, 1);
 			player.removeResource(Resources.Molasses, 1);
 			player.addLair();
-			board.placeLair();
+			turn = false; // pause turn until lair has been placed
+			turn = board.placeLair(player.getColour());
+
 		}
 	
 	
