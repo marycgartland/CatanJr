@@ -4,12 +4,15 @@ import java.util.HashMap;
 
 import main.Interactor;
 import resources.Resources;
+import gameplay.Dice;
 
 public class Board {
 	protected char[][] design;
 	protected char[] options = {'1', '2', '3', '4', '5'};
 	Interactor interactor = new Interactor();
 
+	
+	protected int diceValue;
 	
 	// Lower case: Ship
 	// Upper case: Lair
@@ -181,5 +184,55 @@ public class Board {
 			setupOrangePlayerLocations(); // place orange players ships and lairs
 		}
 	}
+	
+	
+	// Check the dice roll values.... Might be better moving to GameManager later and just checking the board?
+	//----- Method: checkDiceRoll-----
+	public void checkDiceRoll(Dice dice) {
+		diceValue = dice.getDiceRollValue();
+		if(diceValue==1) {				// Roll a 1
+			// Check islands 1, 3 and 10
+			// Island 1: {Arrays 3, 5, 7}, Assign: Cutlass
+			// Island 3: {Arrays 1, 3, 5, 7}, Assign: goat
+			// Island 10: {Arrays 9, 11, 13, 15}, Assign: wood
+		}
+		else if(diceValue==2) {			// Roll a 2
+			// Check islands 2, 4, and 11
+			// Island 2: {Arrays 1, 3, 5, 7}, Assign: wood
+			// Island 4: {Arrays 3, 5, 7}, Assign: molasses
+			// Island 11: {Arrays 9, 11, 13, 15}, Assign: goat
+		}
+		else if(diceValue==3) {			// Roll a 3
+			// Check islands 5 and 7
+			// Island 5: {Arrays 5, 7, 9 , 11}, Assign: wood
+			// Island 7: {Arrays 5, 7, 9, 11}, Assign: gold
+		}
+		else if(diceValue==4) {			// Roll a 4
+			// Check island 9 and 12
+			// Island 9:  {Arrays 9, 11, 13}, Assign: Cutlass
+			// Island 12: {Arrays 9, 11, 13}, Assign: molasses
+		}
+		else if(diceValue==5) {			// Roll a 5
+			// Check islands 6 and 8
+			// Island 6: {Arrays 5, 7, 9, 11}, Assign: gold
+			// Island 8: {Arrays 5, 7, 9, 11}, Assign: goat
+
+		}
+		else {							// Roll a 6
+			// Ghost captain
+		}
+		
+	}
+	
+	// Make a separate function to check if the given position in the arrays has Each letter
+	// If the letter is there
+	
+	// Check the letter in a location
+	// if that letter exists, assign 1 of that resource to the player of that colour
+	// Method: check Array
+	public void checkArray(){
+		
+	}
+
 	
 }
