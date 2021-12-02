@@ -1,25 +1,20 @@
 package board;
 
+import java.util.HashMap;
+
+import main.Interactor;
+import resources.Resources;
+
 public class Board {
-	protected char[] Line1;
-	protected char[] Line2;
-	protected char[] Line3;
-	protected char[] Line4;
-	protected char[] Line5;
-	protected char[] Line6;
-	protected char[] Line7;
-	protected char[] Line8;
-	protected char[] Line9;
-	protected char[] Line10;
-	protected char[] Line11;
-	protected char[] Line12;
-	protected char[] Line13;
-	protected char[] Line14;
-	protected char[] Line15;
+	protected char[][] design;
+	protected char[] options = {'1', '2', '3', '4', '5'};
+	Interactor interactor = new Interactor();
+
 	
 	// Lower case: Ship
 	// Upper case: Lair
 
+	// TODO: maybe take out dashes
 
 	// Variables
 	// Constructor
@@ -34,72 +29,39 @@ public class Board {
 	
 	// Construct board layout
 	public Board() {
-		Line1 = new char[] { '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'X', '-','-', '-', '-', '-','X','\n' };
-		Line2 = new char[] { '-', '-', '-', '-', '-', '-','-','-','-', '/', '-', '-', '-', '\\', '-', '/', '-', '-', '-','\\','\n' };
-		Line3 = new char[] { '-', '-', '-', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','\n' };
-		Line4 = new char[] { '-', '-', '-', '-', '-', '-','-','-','|', '-', '-', '-', '-', '-', '|', '-', '-', '-', '-','-','|','\n' };
-		Line5 = new char[] { '-', '-', 'X', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-', '-', '-', '-','X','\n' };
-		Line6 = new char[] { '/', '-', '-', '-', '\\', '-','/','-','-', '-', '\\', '-', '/', '-', '-', '-', '\\', '-', '/','-','-','-', '\\', '-', '/', '-','-','-','\\','\n' };
-		Line7 = new char[] { 'X', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','\n' };
-		Line8 = new char[] { '|', '-', '-', '-', '-', '|','-','-','-','-', '-', '|', '-', '-', '-', '-', '-', '|', '-', '-','-','-','-', '|', '-', '-', '-','-','-','|','\n' };
-		Line9 = new char[] { 'X', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','\n' };
-		Line10 = new char[] { '\\', '-', '-', '-', '/', '-','\\','-','-', '-', '/', '-', '\\', '-', '-', '-', '/', '-', '\\','-','-','-', '/', '-', '\\', '-','-','-','/','\n' };
-		Line11 = new char[] { '-', '-', 'X', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-', '-', '-', '-','X','\n' };
-		Line12 = new char[] { '-', '-', '-', '-', '-', '-','-','-','|', '-', '-', '-', '-', '-', '|', '-', '-', '-', '-','-','|','\n' };
-		Line13 = new char[] { '-', '-', '-', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','\n' };
-		Line14 = new char[] { '-', '-', '-', '-', '-', '-','-','-','-', '\\', '-', '-', '-', '/', '-', '\\', '-', '-', '-','/','\n' };
-		Line15 = new char[] { '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'X', '-','-', '-', '-', '-','X','\n' };
-		
+
+		design = new char[][]{
+			{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-','-', '-', '-', '-','-','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'X', '-','-', '-', '-', '-','X','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','-', '/', '-', '-', '-', '\\', '-', '/', '-', '-', '-','\\', '-', '-','-','-','-', '-', '-','-','-','-','-','-','-', '-',  '\n' }, 
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-','-','-','-', '-', '-','-','-','-','-','-', '-',  '\n' }, 
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','|', '-', '-', '-', '-', '-', '|', '-', '-', '-', '-','-','|','-', '-','-','-','-', '-', '-','-','-','-','-','-', '-','\n' }, 
+				{ '-', '-', '-', '-','-', '-', 'X', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-', '-', '-', '-','X','-', '-','-', '-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','/', '-', '-', '-', '\\', '-','/','-','-', '-', '\\', '-', '/', '-', '-', '-', '\\', '-', '/','-','-','-', '\\', '-', '/', '-','-','-','\\','-','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','X', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','|', '-', '-', '-', '-', '|','-','-','-','-', '-', '|', '-', '-', '-', '-', '-', '|', '-', '-','-','-','-', '|', '-', '-', '-','-','-','|','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','X', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','\\', '-', '-', '-', '/', '-','\\','-','-', '-', '/', '-', '\\', '-', '-', '-', '/', '-', '\\','-','-','-', '/', '-', '\\', '-','-','-','/','-','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','-', '-', 'X', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-', '-', '-', '-','X','-','-','-','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','|', '-', '-', '-', '-', '-', '|', '-', '-', '-', '-','-','|','-', '-','-','-','-', '-', '-','-','-','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-','-','-','-', '-', '-','-','-','-','-','-', '-','\n' }, 
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','-', '\\', '-', '-', '-', '/', '-', '\\', '-', '-', '-','/', '-', '-','-','-','-', '-', '-','-','-','-','-','-','-', '-','\n' }, 
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'X', '-','-', '-', '-', '-','X','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
+				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-','-', '-', '-', '-','-','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' }
+		};
 	}
 	
+	// Method to display board layout
 	public void showBoardLayout() {
 		System.out.println("Board Layout:");
-		for (int i = 0; i <= Line1.length - 1; i++) {
-			System.out.print(Line1[i]);
+
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				System.out.print(design[i][j]);
+			}
+			System.out.print("\n");
 		}
-		for (int i = 0; i <= Line2.length - 1; i++) {
-			System.out.print(Line2[i]);
-		}
-		for (int i = 0; i <= Line3.length - 1; i++) {
-			System.out.print(Line3[i]);
-		}
-		for (int i = 0; i <= Line4.length - 1; i++) {
-			System.out.print(Line4[i]);
-		}
-		for (int i = 0; i <= Line5.length - 1; i++) {
-			System.out.print(Line5[i]);
-		}
-		for (int i = 0; i <= Line6.length - 1; i++) {
-			System.out.print(Line6[i]);
-		}
-		for (int i = 0; i <= Line7.length - 1; i++) {
-			System.out.print(Line7[i]);
-		}
-		for (int i = 0; i <= Line8.length - 1; i++) {
-			System.out.print(Line8[i]);
-		}
-		for (int i = 0; i <= Line9.length - 1; i++) {
-			System.out.print(Line9[i]);
-		}
-		for (int i = 0; i <= Line10.length - 1; i++) {
-			System.out.print(Line10[i]);
-		}
-		for (int i = 0; i <= Line11.length - 1; i++) {
-			System.out.print(Line11[i]);
-		}
-		for (int i = 0; i <= Line12.length - 1; i++) {
-			System.out.print(Line12[i]);
-		}
-		for (int i = 0; i <= Line13.length - 1; i++) {
-			System.out.print(Line13[i]);
-		}
-		for (int i = 0; i <= Line14.length - 1; i++) {
-			System.out.print(Line14[i]);
-		}
-		for (int i = 0; i <= Line15.length - 1; i++) {
-			System.out.print(Line15[i]);
-		}
-		System.out.println("\n");
+		System.out.print("\n");
 	}
 	
 	// place ghost captain on an island
@@ -109,45 +71,96 @@ public class Board {
 	}
 	
 	// place a users ship on the board
-	public void placeShip() {
+	// need to check for / \ and |
+	// search for upper case of colour to search for lairs to connect ships to.
+	public void placeShip(String colour) {
 		
 	}
 	
 	// place a users lair on the board
-	public void placeLair() {
-		
+	// TODO: what if there are no options to place a lair?
+	public boolean placeLair(String colour) {
+		boolean continue_turn = false;
+		int count = 0;
+
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				if (design[i][j] == colour.charAt(0)) {
+					// check row above for available lair place
+					for (int p = j - 3; p <= j + 3; p++) {
+						if (design[i - 1][p] == 'X') {
+							design[i - 1][p] = options[count];
+							count = count + 1;
+						}
+					}
+					// check row below for available lair place
+					for (int q = j - 3; q <= j + 3; q++) {
+						if (design[i + 1][q] == 'X') {
+							design[i + 1][q] = options[count];
+							count = count + 1;
+						}
+					}
+				}
+			}
+		}
+		showBoardLayout();
+		System.out.print("Which option would you like to build your lair at?: ");
+		String location_number = interactor.takeInAnswer();
+
+		// place lair at users choice of location
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				if (design[i][j] == location_number.charAt(0)) {
+					design[i][j] = Character.toUpperCase(colour.charAt(0));
+				}
+			}
+		}
+
+		// replace numbers with X's again
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+
+				if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
+						|| design[i][j] == '5') {
+					design[i][j] = 'X';
+				}
+			}
+		}
+
+		showBoardLayout();
+		return continue_turn = true;
 	}
 	
 	// Function to define starting positions of blue players ships and lairs
 	public void setupBluePlayerLocations() {
-		Line5[26] = 'B';
-		Line6[24] = 'b';
-		Line13[8] = 'B';
-		Line12[8] = 'b';
+		design[5][30] = 'B';
+		design[6][28] = 'b';
+		design[13][12] = 'B';
+		design[12][12] = 'b';
 	}
 
 	// Function to define starting positions of red players ships and lairs
 	public void setupRedPlayerLocations() {
-		Line3[8] = 'R';
-		Line4[8] = 'r';
-		Line10[24] = 'r';
-		Line11[26] = 'R';
+		design[3][12] = 'R';
+		design[4][12] = 'r';
+		design[10][28] = 'R';
+		design[11][30] = 'r';
 	}
 
 	// Function to define starting positions of white players ships and lairs
 	public void setupWhitePlayerLocations() {
-		Line5[2] = 'W';
-		Line6[4] = 'w';
-		Line12[20] = 'w';
-		Line13[20] = 'W';
+		design[5][6] = 'W';
+		design[6][8] = 'w';
+		design[12][24] = 'w';
+		design[13][24] = 'W';
 	}
 
 	// Function to define starting positions of orange players ships and lairs
 	public void setupOrangePlayerLocations() {
-		Line3[20] = 'O';
-		Line4[20] = 'o';
-		Line10[4] = 'O';
-		Line11[2] = 'o';
+		design[3][24] = 'O';
+		design[4][24] = 'o';
+		design[10][8] = 'O';
+		design[11][6] = 'o';
 	}
 
 	// Setup Board design, place users first ship and lairs on board

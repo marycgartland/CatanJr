@@ -65,6 +65,7 @@ public class Player {
 	}
 	
 	// method to setup the users pocket at the start of the game, they will have no resources
+	// need to all be zero, im just testing
 	public void setupUserPocket() {
 		pocket.put(Resources.Gold, 0);
 		pocket.put(Resources.Wood, 0);
@@ -93,6 +94,10 @@ public class Player {
 	//----------------------------------------------------------
 	public String getName(){
 		return this.name; 
+	}
+	
+	public String getColour() {
+		return this.colour;
 	}
 	
 	//----------------------------------------------------------
