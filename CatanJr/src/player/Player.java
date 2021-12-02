@@ -67,11 +67,11 @@ public class Player {
 	// method to setup the users pocket at the start of the game, they will have no resources
 	// need to all be zero, im just testing
 	public void setupUserPocket() {
-		pocket.put(Resources.Gold, 0);
-		pocket.put(Resources.Wood, 0);
-		pocket.put(Resources.Cutlasses, 0);
-		pocket.put(Resources.Molasses, 0);
-		pocket.put(Resources.Goats, 0);
+		pocket.put(Resources.Gold, 2);
+		pocket.put(Resources.Wood, 2);
+		pocket.put(Resources.Cutlasses, 2);
+		pocket.put(Resources.Molasses, 2);
+		pocket.put(Resources.Goats, 2);
 	}
 	
 	// Method that can be called when user purchases a cocotile, this will increase there count by 1

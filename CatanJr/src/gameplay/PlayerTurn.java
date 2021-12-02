@@ -216,7 +216,8 @@ public class PlayerTurn {
 		// Take a goat and a wood out of the players pocket
 		player.removeResource(Resources.Wood, 1);
 		player.removeResource(Resources.Goats, 1);
-		board.placeShip(player.getColour());
+		turn = false; // pause turn until lair has been placed
+		turn = board.placeShip(player.getColour());
 	}
 	
 	//-----------------------------------------------------------

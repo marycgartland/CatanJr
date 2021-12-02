@@ -9,6 +9,7 @@ import gameplay.Dice;
 public class Board {
 	protected char[][] design;
 	protected char[] options = {'1', '2', '3', '4', '5'};
+	protected char[] symbolHolder = {'x','x','x','x', 'x'};
 	Interactor interactor = new Interactor();
 
 	
@@ -74,11 +75,67 @@ public class Board {
 	}
 	
 	// place a users ship on the board
-	// need to check for / \ and |
 	// search for upper case of colour to search for lairs to connect ships to.
-	public void placeShip(String colour) {
+	// TODO: what happens when no ships are available
+	public boolean placeShip(String colour) {
+		boolean continue_turn = false;
+		int count = 0;
 		
+		
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				if (design[i][j] == Character.toUpperCase(colour.charAt(0))) {
+					// check row above for available ship place
+					for (int p = j - 3; p <= j + 3; p++) {
+						if (design[i - 1][p] == '\\' || design[i - 1][p] == '/' || design[i - 1][p] == '|' ) {
+							symbolHolder[count] = design[i - 1][p];
+							design[i - 1][p] = options[count];
+							count = count + 1;
+						}
+					}
+					// check row below for available ship place
+					for (int q = j - 3; q <= j + 3; q++) {
+						if (design[i + 1][q] == '\\' || design[i + 1][q] == '/' || design[i + 1][q] == '|') {
+							symbolHolder[count] = design[i+1][q];
+							design[i + 1][q] = options[count];
+							count = count + 1;
+						}
+					}
+				}
+			}
+		}
+		
+		showBoardLayout();
+		System.out.print("Which number option would you like to build your ship at?: ");
+		String location_number = interactor.takeInAnswer();
+		
+		
+		// place ship at users choice of location
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				if (design[i][j] == location_number.charAt(0)) {
+					design[i][j] = colour.charAt(0);
+				}
+			}
+		}
+
+		
+		// replace numbers with slash's or lines again
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+
+				if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'|| design[i][j] == '5') {
+					design[i][j] = symbolHolder[Character.getNumericValue(design[i][j])];
+				}
+			}
+		}
+		showBoardLayout();
+		return continue_turn = true;
 	}
+	
+	
+	
+	
 	
 	// place a users lair on the board
 	// TODO: what if there are no options to place a lair?
@@ -107,7 +164,7 @@ public class Board {
 			}
 		}
 		showBoardLayout();
-		System.out.print("Which option would you like to build your lair at?: ");
+		System.out.print("Which number option would you like to build your lair at?: ");
 		String location_number = interactor.takeInAnswer();
 
 		// place lair at users choice of location
@@ -167,6 +224,7 @@ public class Board {
 	}
 
 	// Setup Board design, place users first ship and lairs on board
+	// TODO: put this setup in BoardSetup class 
 	public void setupBoard(int numberplayers) {
 		if (numberplayers == 1) {
 			setupBluePlayerLocations(); // place blue players ships and lairs
