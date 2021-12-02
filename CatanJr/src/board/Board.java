@@ -11,7 +11,6 @@ public class Board {
 	protected char[] options = {'1', '2', '3', '4', '5'};
 	Interactor interactor = new Interactor();
 
-	
 	protected int diceValue;
 	
 	// Lower case: Ship
@@ -186,15 +185,30 @@ public class Board {
 	}
 	
 	
+	private int[] test = {1, 1};
+	
+	// Set up the islands
+	public void setUpIslands() {
+		//GameManager gameManager = new GameManager();
+		
+		Island island1 = new Island(test,test);
+	}
+	
 	// Check the dice roll values.... Might be better moving to GameManager later and just checking the board?
 	//----- Method: checkDiceRoll-----
 	public void checkDiceRoll(Dice dice) {
 		diceValue = dice.getDiceRollValue();
+		checkArray(Test1, 'X', Line1); // temp
 		if(diceValue==1) {				// Roll a 1
 			// Check islands 1, 3 and 10
 			// Island 1: {Arrays 3, 5, 7}, Assign: Cutlass
+			checkArray(Test1, 'B', Line1);
+			checkArray(Test1, 'R', Line1);
+			checkArray(Test1, 'W', Line1);
+			checkArray(Test1, 'O', Line1);
 			// Island 3: {Arrays 1, 3, 5, 7}, Assign: goat
 			// Island 10: {Arrays 9, 11, 13, 15}, Assign: wood
+			checkArray(Test1, 'X', Line1);
 		}
 		else if(diceValue==2) {			// Roll a 2
 			// Check islands 2, 4, and 11
@@ -230,9 +244,22 @@ public class Board {
 	// Check the letter in a location
 	// if that letter exists, assign 1 of that resource to the player of that colour
 	// Method: check Array
-	public void checkArray(){
+	
+	// Test location arrays
+	protected int[] Test1 = {11, 17};		// Lines: 0 and 14, Locations: 11 and 17
+	protected int[] Test2 = {8, 14, 20};	// Lines: 2 and 12, Locations: 8, 14, 20
+	protected int[] Test3 = {2, 8, 14, 20, 26};	// Lines: 4 and 10, Locations: 2, 8, 14, 20, 26
+	protected int[] Test4 = {0, 5, 11, 17, 23, 29};	// Lines: , Locations: 0, 5, 11, 17, 23, 29
+	protected int temp;
+	
+	public void checkArray(int[] testset, char playerColor, char[] lineArray){
 		
+		for (int i = 0; i <= testset.length - 1; i++) {
+			temp = testset[i];
+			if(lineArray[temp]==playerColor) {
+				System.out.println("Add a resource for " + playerColor);
+			}
+		}
 	}
-
 	
 }

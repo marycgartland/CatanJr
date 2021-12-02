@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 import java.util.*;
 import gameplay.*;
+import board.*;
 
 import player.Player;
 import resources.Resources;
@@ -19,6 +20,7 @@ public class main {
 		// QUESTION FROM MARY TO EMMA: how do we select a player from the Players array for testing purposes?
 		// ANSWER: the Players() function in PlayerSetup() class will return an arraylist of players so then i think you 
 		// can use Players.get(0) to get the first player
+
 
     }
 
