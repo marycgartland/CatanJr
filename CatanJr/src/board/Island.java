@@ -10,7 +10,7 @@ public class Island {
 	private int[] rows;
 	
 	// Island Constructor
-	public Island(int[] col_vals, int[] row_vals) {
+	public Island(int[] row_vals, int[] col_vals) {
 		this.columns = col_vals;
 		this.rows = row_vals;
 	}

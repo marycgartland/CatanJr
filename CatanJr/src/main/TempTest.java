@@ -20,6 +20,8 @@ public class TempTest {
 		//dice.rollDice();
 		//testboard.checkArray();
 		testboard.checkDiceRoll(dice);
+		testboard.setUpIslands();
+
     }
 
 }
