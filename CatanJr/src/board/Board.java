@@ -11,9 +11,12 @@ import player.Player;
 
 public class Board {
 	protected char[][] design;
-	protected char[] options = {'1', '2', '3', '4', '5'};
-	protected char[] symbolHolder = {'x','x','x','x', 'x'};
+	protected char[] options = {'1', '2', '3', '4', '5', '6', '7'};
+	protected char[] symbolHolder = {'x','x','x','x', 'x', 'x', 'x'}; // placeholder array
 	Interactor interactor = new Interactor();
+	protected GhostCaptain ghostCaptain;
+	protected char[] islandNumbers = {'1', '2', '3', '4', '5', '6', '7','8', '9', '0'};
+
 
 	protected int diceValue;
 	
@@ -35,7 +38,6 @@ public class Board {
 	
 	// Construct board layout
 	public Board() {
-
 		design = new char[][]{
 			{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-','-', '-', '-', '-','-','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
 				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'X', '-','-', '-', '-', '-','X','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
@@ -44,9 +46,9 @@ public class Board {
 				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','|', '-', '-', '-', '-', '-', '|', '-', '-', '-', '-','-','|','-', '-','-','-','-', '-', '-','-','-','-','-','-', '-','\n' }, 
 				{ '-', '-', '-', '-','-', '-', 'X', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-', '-', '-', '-','X','-', '-','-', '-','-','-', '-','\n' },
 				{ '-', '-', '-', '-','/', '-', '-', '-', '\\', '-','/','-','-', '-', '\\', '-', '/', '-', '-', '-', '\\', '-', '/','-','-','-', '\\', '-', '/', '-','-','-','\\','-','-','-','-', '-','\n' },
-				{ '-', '-', '-', '-','X', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','-','-','-', '-','\n' },
-				{ '-', '-', '-', '-','|', '-', '-', '-', '-', '|','-','-','-','-', '-', '|', '-', '-', '-', '-', '-', '|', '-', '-','-','-','-', '|', '-', '-', '-','-','-','|','-','-','-', '-','\n' },
-				{ '-', '-', '-', '-','X', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','-','-','-', '-','\n' },
+				{ '-', '-', '-', 'X','-', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','-','-','-', '-','\n' },
+				{ '-', '-', '-', '|','-', '-', '-', '-', '-', '|','-','-','-','-', '-', '|', '-', '-', '-', '-', '-', '|', '-', '-','-','-','-', '|', '-', '-', '-','-','-','|','-','-','-', '-','\n' },
+				{ '-', '-', '-', 'X','-', '-', '-', '-', '-', 'X','-','-','-','-', '-', 'X', '-', '-', '-', '-', '-', 'X', '-', '-','-','-','-', 'X', '-', '-', '-','-','-','X','-','-','-', '-','\n' },
 				{ '-', '-', '-', '-','\\', '-', '-', '-', '/', '-','\\','-','-', '-', '/', '-', '\\', '-', '-', '-', '/', '-', '\\','-','-','-', '/', '-', '\\', '-','-','-','/','-','-','-','-', '-','\n' },
 				{ '-', '-', '-', '-','-', '-', 'X', '-', '-', '-','-','-','X', '-', '-', '-', '-', '-', 'X', '-', '-', '-', '-','-','X','-', '-', '-', '-', '-','X','-','-','-','-','-','-', '-','\n' },
 				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-','-','-','|', '-', '-', '-', '-', '-', '|', '-', '-', '-', '-','-','|','-', '-','-','-','-', '-', '-','-','-','-','-','-', '-','\n' },
@@ -68,13 +70,136 @@ public class Board {
 			System.out.print("\n");
 		}
 		System.out.print("\n");
+	
 	}
 	
 	// place ghost captain on an island
 	// this will stop users from obtaining resources from this island
-	public void placeGhostCaptain() {
-		
+	// when game is setup the ghost captain is setup in centre of the board
+	public void setupGhostCaptain() {
+		ghostCaptain = new GhostCaptain(13); // setup ghost chaptain in spooky island (island = 13)
+		design[8][18] = 'G';
 	}
+	
+	
+	// Method to move ghost captain to another island
+	public void moveGhostCaptain() {
+		// ask user which island they want to move the ghost captain to.
+		interactor.printMessage("move ghost captain");
+		// replace centers of island with their island numbers
+		showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation());
+		String island_number = interactor.takeInAnswer();
+		ghostCaptain.updateLocationGC(Integer.parseInt(island_number)); // update location of GC
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				if (design[i][j] == 'G') {
+					design[i][j] = '-';
+					possibleLocationGhostCaptain(Integer.parseInt(island_number)); // Place 'G' to specificed location
+				}
+			}
+		}
+		interactor.printMessage("GC moved");
+		showBoardLayout();
+	}
+	
+	
+	// method that shows the user the board with the corresponding island numbers
+	public void showIslandNumberLayout(int current_GC_location) {
+		design[4][9] = '1'; // 1
+		design[4][15] = '2'; // 2
+		design[4][21] = '3'; // 3
+		design[4][27] = '4'; // 4
+		design[8][6] = '5'; // 5
+		design[8][12] = '6'; // 6
+		design[8][24] = '7'; // 7
+		design[8][30] = '8'; // 8
+		design[12][9] = '9'; // 9
+		// 10
+		design[12][15] = '1';
+		design[12][16] = '0'; // 10
+
+		// 11
+		design[12][21] = '1'; 
+		design[12][22] = '1'; 
+
+		// 12
+		design[12][27] = '1'; 
+		design[12][28] = '2'; 
+
+		// 13
+		design[8][18] = '1'; 
+		design[8][19] = '3'; 
+
+		System.out.println("Island Number Layout:");
+
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				System.out.print(design[i][j]);
+			}
+			System.out.print("\n");
+		}
+		System.out.print("\n");
+
+		// revert back to map without numbers once the numbered map has been shown
+		possibleLocationGhostCaptain(current_GC_location); // Place 'G' to specificed location
+		// replace numbers with dashs
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
+						|| design[i][j] == '5' || design[i][j] == '6' || design[i][j] == '7' || design[i][j] == '8'
+						|| design[i][j] == '9' || design[i][j] == '0') {
+					design[i][j] = '-';
+				}
+			}
+		}
+
+	}
+	
+	// method that outlines the possilbe locations of ghost captains ( the centre of each island)
+	public void possibleLocationGhostCaptain(int location) {
+		switch (location) {
+		case 1:
+			design[4][9] = 'G';
+			break;
+		case 2:
+			design[4][15] = 'G';
+			break;
+		case 3:
+			design[4][21] = 'G';
+			break;
+		case 4:
+			design[4][27] = 'G';
+			break;
+		case 5:
+			design[8][6] = 'G';
+			break;
+		case 6:
+			design[8][12] = 'G';
+			break;
+		case 7:
+			design[8][24] = 'G';
+			break;
+		case 8:
+			design[8][30] = 'G';
+			break;
+		case 9:
+			design[12][9] = 'G';
+			break;
+		case 10:
+			design[12][15] = 'G';
+			break;
+		case 11:
+			design[12][21] = 'G';
+			break;
+		case 12:
+			design[12][27] = 'G';
+			break;
+		case 13:
+			design[8][18] = 'G';
+			break;
+		}
+	}
+	
 	
 	// place a users ship on the board
 	// search for upper case of colour to search for lairs to connect ships to.

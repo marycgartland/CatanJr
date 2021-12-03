@@ -164,7 +164,7 @@ public class PlayerTurn {
 
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {
 			// need to access board in order to give user options to place the ghost captain
-			board.placeGhostCaptain();
+			board.moveGhostCaptain(); //uncomment this
 
 		} else if (cocotile.equals(CocoTileTypes.ShipCastle)) {
 			// need to let user place ships and lairs on board
@@ -246,6 +246,8 @@ public class PlayerTurn {
 	//-----------------------------------------------------------
 	//---------- Trade Method -----------------------------------
 	//-----------------------------------------------------------
+
+		
 	public void Trade() {
 		//----- Give the user options on what trade they wish to make -----
 		if(marketPlaceUse == 0) {	// You can only trade with the marketplace once per turn
