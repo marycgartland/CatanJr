@@ -16,7 +16,7 @@ public class TempTest {
 	
 	public static void main(String[] args) {
 		GameManager gameManager = new GameManager();
-		gameManager.StartGame();
+		gameManager.startGame();
 		Board testboard = new Board();
 		Dice dice = new Dice();
 		//dice.rollDice();
