@@ -15,13 +15,16 @@ import setup.PlayerSetup;
 import player.Player;
 
 public class Board {
+	// -------------------------------
+	// ---------- Variables ----------
+	// -------------------------------
 	protected char[][] design;
 	protected char[] options = {'1', '2', '3', '4', '5', '6', '7'};
 	protected char[] symbolHolder = {'x','x','x','x', 'x', 'x', 'x'}; // placeholder array
 	Interactor interactor = new Interactor();
 	protected GhostCaptain ghostCaptain;
 	protected char[] islandNumbers = {'1', '2', '3', '4', '5', '6', '7','8', '9', '0'};
-
+	
 	// Variables for dealing with islands and resource distribution 
 	private int[] rows1 = {3, 5, 7, 5}; 				// Set up row and column arrays for possible lair locations
 	private int[] rows2 = {3, 1, 3, 5, 7, 5};
@@ -43,25 +46,23 @@ public class Board {
 	protected char isGhost; 	// Character to see if the ghost captain is there
 	protected int temp_row;		// Selected row value
 	protected int temp_col;		// Selected column value
+	private String playerName;
 
 	
 	// Lower case: Ship
 	// Upper case: Lair
 
 	// TODO: maybe take out dashes
-
-	// Variables
-	// Constructor
-	// Track user locations
 	// Track ship and Lair placements
-	// Check the location of the ghost captain
 	// Track the number of lairs on the board: 7 lairs = winner
 	// Provide ship/lair placement options to user when building
 	// Needs to look after ships and lairs, keeping track of numbers and placements 
-	// assign resources to users based on their positions and dice value rolled
 	// check which user has the most cocotiles: whichever user has the most, they can place their lair on spooky island
 	
-	// Construct board layout
+	// -------------------------------
+	// ---------- Constructor --------
+	// Sets up the layout of the board
+	// -------------------------------
 	public Board() {
 		design = new char[][]{
 			{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-','-', '-', '-', '-','-','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
@@ -533,13 +534,14 @@ public class Board {
 					temp_col = island.getColumn()[i];
 					if(design[temp_row][temp_col]==playerColor) {
 						player.addResource(resource, 1);
-						System.out.println("Add a " + resource + " for player " + player + " with color " + playerColor);
+						playerName = player.getName();
+						interactor.printMessage("Island check: success", resource, playerName);
 						System.out.println(player.viewPocket());
 					}
 				}
 			}
 		} else {	// If the ghost captain is on an island, no resources are distributed from it
-			System.out.println("The ghost captain is on island " + island + ". Resources will  not be distributed from this island.");
+			interactor.printMessage("Island check: ghost captain");
 		}
 	}	
 }
