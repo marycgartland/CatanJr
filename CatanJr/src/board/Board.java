@@ -112,13 +112,6 @@ public class Board {
 		}
 		showBoardLayout();
 
-//		System.out.print("Lair count player 1:    "+ players.get(0).getLairCount()+"\n");
-//		System.out.print("Cocotile count player 1:"+ players.get(0).getCocoTileCount()+"\n");
-//		System.out.print("Lair count player 2:    "+ players.get(1).getLairCount()+"\n");
-//		System.out.print("Cocotile count player 2:"+ players.get(1).getCocoTileCount()+"\n");
-//		System.out.print("Lair count player 3:    "+ players.get(2).getLairCount()+"\n");
-//		System.out.print("Cocotile count player 3:"+ players.get(2).getCocoTileCount()+"\n");
-
 	}
 	
 	// find player and reduce their lair count by one
@@ -129,7 +122,6 @@ public class Board {
 				players.get(i).removeLair();
 			}
 		}
-		
 	}
 	
 	
@@ -169,30 +161,55 @@ public class Board {
 	
 	// method that shows the user the board with the corresponding island numbers
 	public void showIslandNumberLayout(int current_GC_location) {
-		design[4][9] = '1'; // 1
-		design[4][15] = '2'; // 2
-		design[4][21] = '3'; // 3
-		design[4][27] = '4'; // 4
-		design[8][6] = '5'; // 5
-		design[8][12] = '6'; // 6
-		design[8][24] = '7'; // 7
-		design[8][30] = '8'; // 8
-		design[12][9] = '9'; // 9
-		// 10
-		design[12][15] = '1';
-		design[12][16] = '0'; // 10
-
-		// 11
-		design[12][21] = '1'; 
-		design[12][22] = '1'; 
-
-		// 12
-		design[12][27] = '1'; 
-		design[12][28] = '2'; 
-
-		// 13
-		design[8][18] = '1'; 
-		design[8][19] = '3'; 
+		
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				// need to make sure that not trying to place ghost captain on top of someones existing lair on spooky island or ghost captain
+				if (design[i][j]!='B' && design[i][j] != 'R' && design[i][j] != 'W' && design[i][j] != 'O' && design[i][j] != 'G') {
+					switch (i) {
+					case 4:
+						if (j == 9) {
+							design[4][9] = '1'; // 1
+						} else if (j == 15) {
+							design[4][15] = '2'; // 2
+						} else if (j == 21) {
+							design[4][21] = '3'; // 3
+						} else if (j == 27) {
+							design[4][27] = '4'; // 4
+						}
+						break;
+					case 8:
+						if (j == 6) {
+							design[8][6] = '5'; // 5
+						} else if (j == 12) {
+							design[8][12] = '6'; // 6
+						} else if (j == 24) {
+							design[8][24] = '7'; // 7
+						} else if (j == 30) {
+							design[8][30] = '8'; // 8
+						} else if (j == 18) {
+							design[8][18] = '1'; //13
+							design[8][19] = '3'; //13
+						} 
+						break;
+					case 12:
+						if (j == 9) {
+							design[12][9] = '9'; // 9
+						} else if (j == 15) {
+							design[12][15] = '1'; //10
+							design[12][16] = '0'; // 10
+						} else if (j == 21) {
+							design[12][21] = '1'; //11
+							design[12][22] = '1'; //11
+						} else if (j == 27) {
+							design[12][27] = '1'; //12
+							design[12][28] = '2';//12
+						} 
+						break;
+					}
+				}
+			}
+		}
 
 		System.out.println("Island Number Layout:");
 

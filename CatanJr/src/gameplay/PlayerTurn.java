@@ -259,47 +259,52 @@ public class PlayerTurn {
 	//---------- Trade Method -----------------------------------
 	//-----------------------------------------------------------
 
-
 	private boolean onlyStockpile = false;
+
 	public void Trade() {
-		//----- Give the user options on what trade they wish to make -----
-		if(marketPlaceUse == 0) {	// You can only trade with the marketplace once per turn
+		// ----- Give the user options on what trade they wish to make -----
+		if (marketPlaceUse == 0) { // You can only trade with the marketplace once per turn
 			interactor.printMessage("trade M/S?");
 		} else {
 			interactor.printMessage("trade S?");
 			onlyStockpile = true;
 		}
 		String option = interactor.takeInAnswer();
-		
-		//----- Option 1: Trade with Marketplace ------------------------------------------
-			// Trade one tile from a players pocket (of choice) with one tile from marketplace (of choice)
-		if((option.equals("M") || option.equals("m")) && marketPlaceUse == 0) {
+
+		// ----- Option 1: Trade with Marketplace
+		// ------------------------------------------
+		// Trade one tile from a players pocket (of choice) with one tile from
+		// marketplace (of choice)
+		if ((option.equals("M") || option.equals("m")) && marketPlaceUse == 0) {
 			interactor.printMessage("trade: M");
 			marketplace.viewMarketplace();
-			tradeMarketplace(); 	// call method to trade with marketplace
+			tradeMarketplace(); // call method to trade with marketplace
 		}
-		
-		//----- Option 2: Trade with Stockpile --------------------------------------------
-			// can trade 2 of the same pocket tiles of choice with 1 tile from the stockpile
-			// No limit on times, only limited by resources in pocket/stockpile
-		else if(option.equals("S") || option.equals("s")) {
+
+		// ----- Option 2: Trade with Stockpile
+		// --------------------------------------------
+		// can trade 2 of the same pocket tiles of choice with 1 tile from the stockpile
+		// No limit on times, only limited by resources in pocket/stockpile
+		else if (option.equals("S") || option.equals("s")) {
 			interactor.printMessage("trade: S");
 			tradeStockpile(); // call method to trade with stockpile
 		}
-		
-		//----- Alternative option 2: Trade with Stockpile when it is the only choice -----
-		else if(onlyStockpile == true && (option.equals("Y") || option.equals("y"))) {
+
+		// ----- Alternative option 2: Trade with Stockpile when it is the only choice
+		// -----
+		else if (onlyStockpile == true && (option.equals("Y") || option.equals("y"))) {
 			interactor.printMessage("trade: S");
 			tradeStockpile(); // call method to trade with stockpile
 		}
-		
-		//----- Option 3: Choose not to trade ---------------------------------------------
-		else if(option.equals("N") || option.equals("n")) {
+
+		// ----- Option 3: Choose not to trade
+		// ---------------------------------------------
+		else if (option.equals("N") || option.equals("n")) {
 			interactor.printMessage("trade: N");
 		}
 
-		//----- Error check if the user selects an invalid option ---------
-		else{
+		// ----- Error check if the user selects an invalid option ---------
+		else {
 			interactor.printMessage("turn: null");
 		}
 
