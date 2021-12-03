@@ -43,36 +43,39 @@ public class GameManager {
 	public void startGame() {
 		PlayerSetup playerSetup = new PlayerSetup(); 							// Set up players 
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
-		board.setupBoard(playerSetup.Players().size());							//
-		board.setupGhostCaptain();												//
-		board.showBoardLayout();												//
-		board.setUpIslands();													//
-		this.stockPile = resourceSetup.getStockpile();							//
+		board.setupBoard(playerSetup.Players().size());							// Setup the board based on the number of players
+		board.setupGhostCaptain();												// Set up the ghost captain object
+		board.showBoardLayout();												// Show the layout of the board
+		board.setUpIslands();													// Set up the islands on the board
+		this.stockPile = resourceSetup.getStockpile();							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles();							// Set up cocotiles
-		this.marketPlace = resourceSetup.getMarketplace();						// Set up the resouces in the marketplace
+		this.marketPlace = resourceSetup.getMarketplace();						// Set up the resources in the marketplace
 		//board.mostCocotiles(playerSetup.Players());//remove: testing
-		// while there is no winner declared, rotate players turns
+		
+		// While there is no winner declared, rotate players turns
 		int player_turn = 0;
 		while (!checkWinner(playerSetup.Players())) {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile,
 					cocoTiles, board);
-			//playerTurn.takeTurn();
-			board.mostCocotiles(playerSetup.Players()); // check if player with most cocotiles can place their lair on spooky island
-			playerTurn.takeTurn(board.getIslands(),playerSetup.Players()); // TRYING TO TAKE IN THE ISLANDS AND THE ARRAY OF PLAYERS
-			//playerTurn.takeTurn();
-			player_turn = (player_turn + 1) % (playerSetup.Players().size() + 1); // this will loop through players
+			board.mostCocotiles(playerSetup.Players()); 							// Check if player with most cocotiles can place their lair on spooky island
+			playerTurn.takeTurn(board.getIslands(),playerSetup.Players()); 			// Player - take turn
+			player_turn = (player_turn + 1) % (playerSetup.Players().size() + 1); 	// Loop through the players
 		} 
-		interactor.printMessage("winner", winner);
+		interactor.printMessage("winner", winner);	// If there is a winner declared, announce the winner
 	}
 	
-	// method to check if a player has 7 or more lairs
 	// make sure that this count is including the lair on spooky island (it should be correct cause users keep track of their lair count)
 
+	// -------------------------------------------------------------
+	// ---------- Method: checkWinner ------------------------------
+	// This method checks players layers count to check for a winner
+	// It does this by checking if a player has 7 or more layers 
+	// -------------------------------------------------------------
 	public boolean checkWinner(ArrayList<Player> players) {
 		for (int i = 0; i <= players.size() - 1; i++) {
 			if(players.get(i).getLairCount()>=7) {
 				this.winner = players.get(i).getName();
-				return true; // there is a winner
+				return true; // There is a winner
 			} 
 		}
 		return false;
