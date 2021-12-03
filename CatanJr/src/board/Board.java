@@ -330,8 +330,8 @@ public class Board {
 	public void setupRedPlayerLocations() {
 		design[3][12] = 'R';
 		design[4][12] = 'r';
-		design[10][28] = 'R';
-		design[11][30] = 'r';
+		design[10][28] = 'r';
+		design[11][30] = 'R';
 	}
 
 	// Function to define starting positions of white players ships and lairs
@@ -346,8 +346,8 @@ public class Board {
 	public void setupOrangePlayerLocations() {
 		design[3][24] = 'O';
 		design[4][24] = 'o';
-		design[10][8] = 'O';
-		design[11][6] = 'o';
+		design[10][8] = 'o';
+		design[11][6] = 'O';
 	}
 
 	// Setup Board design, place users first ship and lairs on board
@@ -410,15 +410,15 @@ public class Board {
 		
 		//
 		// For testing 
-		//for (int i = 0; i <= rows4.length - 1; i++) {
-		//	temp_row = rows4[i];
-		//	temp_col = cols4[i];
-		//	if(design[temp_row][temp_col]=='X') {
-		//		System.out.println("OK. getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
-		//	}else {
-		//		System.out.println("Error... getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
-		//		}	
-		//}
+		for (int i = 0; i <= rows3.length - 1; i++) {
+			temp_row = rows3[i];
+			temp_col = cols8[i];
+			if(design[temp_row][temp_col]=='X') {
+				System.out.println("OK. getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
+			}else {
+				System.out.println("Error... getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
+				}	
+		}
 		
 	}
 	
@@ -475,8 +475,7 @@ public class Board {
 		
 	}
 	
-	
-	//protected int temp;
+
 	protected char[] playerColors = {'B','R', 'W', 'O'};
 	protected char playerColor;
 	protected Player player;
@@ -501,6 +500,5 @@ public class Board {
 				}
 			}
 		}
-	}
-	
+	}	
 }
