@@ -102,8 +102,7 @@ public class Interactor {
 					"What item would to trade in (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
 			break;
 		case "trade out":
-			System.out.println(
-					"What item would you like to obtain (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
+			System.out.println("What item would you like to obtain (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? ");
 			break;
 		case "invalid resource":
 			System.out.println("Choice is invalid. Please enter a valid choice.\n");
@@ -122,6 +121,12 @@ public class Interactor {
 			break;
 		case "successful marketplace trade":
 			System.out.println("You successfully traded with the marketplace\n");
+			break;
+		case "move ghost captain":
+			System.out.println("Where which island would you like to move the ghost captain to?:\n");
+			break;
+		case "GC moved":
+			System.out.println("Ghost Captain has been moved\n");
 			break;
 		}
 	}

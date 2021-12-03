@@ -31,6 +31,7 @@ public class GameManager {
 		PlayerSetup playerSetup = new PlayerSetup(); // setup players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // setup resources
 		board.setupBoard(playerSetup.Players().size());
+		board.setupGhostCaptain();
 		board.showBoardLayout();
 		this.stockPile = resourceSetup.getStockpile();
 		this.cocoTiles = resourceSetup.getCocoTiles();
@@ -47,6 +48,7 @@ public class GameManager {
 	}
 	
 	// method to check if a player has 7 or more lairs
+
 	public boolean checkWinner(ArrayList<Player> players) {
 		for (int i = 0; i <= players.size() - 1; i++) {
 			if(players.get(i).getLairCount()>=7) {
