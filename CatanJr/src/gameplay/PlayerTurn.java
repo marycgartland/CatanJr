@@ -260,7 +260,7 @@ public class PlayerTurn {
 		
 		//----- Option 1: Trade with Marketplace ------------------------------------------
 			// Trade one tile from a players pocket (of choice) with one tile from marketplace (of choice)
-		if(option.equals("M") && marketPlaceUse == 0) {
+		if((option.equals("M") || option.equals("m")) && marketPlaceUse == 0) {
 			interactor.printMessage("trade: M");
 			marketplace.viewMarketplace();
 			tradeMarketplace(); 			// call method to trade with marketplace
@@ -269,7 +269,7 @@ public class PlayerTurn {
 		//----- Option 2: Trade with Stockpile --------------------------------------------
 			// can trade 2 of the same pocket tiles of choice with 1 tile from the stockpile
 			// No limit on times, only limited by resources in pocket/stockpile
-		else if(option.equals("S")) {
+		else if(option.equals("S") || option.equals("s")) {
 			interactor.printMessage("trade: S");
 			tradeStockpile(); // call method to trade with stockpile
 		}
@@ -346,13 +346,13 @@ public class PlayerTurn {
 	//---------- Method: assign resources to Resource types------
 	//-----------------------------------------------------------
 	public Resources assignResourcesType(String resource_letter) {
-		if (resource_letter.equals("W")) {
+		if (resource_letter.equals("W") || resource_letter.equals("w")) {
 			return Resources.Wood;
-		} else if (resource_letter.equals("M")) {
+		} else if (resource_letter.equals("M") || resource_letter.equals("m")) {
 			return Resources.Molasses;
-		} else if (resource_letter.equals("GT")) {
+		} else if (resource_letter.equals("GT") || resource_letter.equals("gt")) {
 			return Resources.Goats;
-		} else if (resource_letter.equals("G")) {
+		} else if (resource_letter.equals("G") || resource_letter.equals("g")) {
 			return Resources.Gold;
 		} else {
 			return Resources.Cutlasses;
@@ -365,7 +365,7 @@ public class PlayerTurn {
 	//-----------------------------------------------------------
 	public boolean validResourceCheck(String enteredResource){
 		// If entered resource is  a valid resource return true, otherwise return false
-		if (enteredResource.equals("M") || enteredResource.equals("W") || enteredResource.equals("C") || enteredResource.equals("G") || enteredResource.equals("GT")) {
+		if (enteredResource.equals("M") || enteredResource.equals("m") || enteredResource.equals("W") || enteredResource.equals("w") || enteredResource.equals("C") || enteredResource.equals("c") || enteredResource.equals("G") || enteredResource.equals("g") || enteredResource.equals("gt")|| enteredResource.equals("GT")) {
 			return true;
 		} else {
 			interactor.printMessage("invalid resource");
