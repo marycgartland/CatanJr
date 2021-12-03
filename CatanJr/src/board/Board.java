@@ -297,40 +297,96 @@ public class Board {
 	
 	// Check the dice roll values.... Might be better moving to GameManager later and just checking the board?
 	//----- Method: checkDiceRoll-----
-	public void checkDiceRoll(Dice dice) {
+	// Notes: weird that I have to list them all out
+	// Will the islands update with the board?
+	// to do: assign resources
+	// Tidy up so its not so long
+	// add in the ghost captain part 
+	public void checkDiceRoll(Dice dice, Island island1, Island island2, Island island3, Island island4, Island island5, Island island6, Island island7, Island island8, Island island9, Island island10, Island island11, Island island12) {
 		diceValue = dice.getDiceRollValue();
 //		checkArray(Test1, 'X', Line1); // temp
 		if(diceValue==1) {				// Roll a 1
 			// Check islands 1, 3 and 10
 			// Island 1: {Arrays 3, 5, 7}, Assign: Cutlass
-//			checkArray(Test1, 'B', Line1);
-//			checkArray(Test1, 'R', Line1);
-//			checkArray(Test1, 'W', Line1);
-//			checkArray(Test1, 'O', Line1);
+			checkArray(island1, 'B');
+			checkArray(island1, 'R');
+			checkArray(island1, 'W');
+			checkArray(island1, 'O');
+
 			// Island 3: {Arrays 1, 3, 5, 7}, Assign: goat
+			checkArray(island3, 'B');
+			checkArray(island3, 'R');
+			checkArray(island3, 'W');
+			checkArray(island3, 'O');
+			
 			// Island 10: {Arrays 9, 11, 13, 15}, Assign: wood
-//			checkArray(Test1, 'X', Line1);
+			checkArray(island10, 'B');
+			checkArray(island10, 'R');
+			checkArray(island10, 'W');
+			checkArray(island10, 'O');
+
 		}
 		else if(diceValue==2) {			// Roll a 2
 			// Check islands 2, 4, and 11
 			// Island 2: {Arrays 1, 3, 5, 7}, Assign: wood
+			checkArray(island2, 'B');
+			checkArray(island2, 'R');
+			checkArray(island2, 'W');
+			checkArray(island2, 'O');
+			
 			// Island 4: {Arrays 3, 5, 7}, Assign: molasses
+			checkArray(island4, 'B');
+			checkArray(island4, 'R');
+			checkArray(island4, 'W');
+			checkArray(island4, 'O');
+			
 			// Island 11: {Arrays 9, 11, 13, 15}, Assign: goat
+			checkArray(island11, 'B');
+			checkArray(island11, 'R');
+			checkArray(island11, 'W');
+			checkArray(island11, 'O');
 		}
 		else if(diceValue==3) {			// Roll a 3
 			// Check islands 5 and 7
 			// Island 5: {Arrays 5, 7, 9 , 11}, Assign: wood
+			checkArray(island5, 'B');
+			checkArray(island5, 'R');
+			checkArray(island5, 'W');
+			checkArray(island5, 'O');
+			
 			// Island 7: {Arrays 5, 7, 9, 11}, Assign: gold
+			checkArray(island7, 'B');
+			checkArray(island7, 'R');
+			checkArray(island7, 'W');
+			checkArray(island7, 'O');
 		}
 		else if(diceValue==4) {			// Roll a 4
 			// Check island 9 and 12
 			// Island 9:  {Arrays 9, 11, 13}, Assign: Cutlass
+			checkArray(island9, 'B');
+			checkArray(island9, 'R');
+			checkArray(island9, 'W');
+			checkArray(island9, 'O');
+			
 			// Island 12: {Arrays 9, 11, 13}, Assign: molasses
+			checkArray(island12, 'B');
+			checkArray(island12, 'R');
+			checkArray(island12, 'W');
+			checkArray(island12, 'O');
 		}
 		else if(diceValue==5) {			// Roll a 5
 			// Check islands 6 and 8
 			// Island 6: {Arrays 5, 7, 9, 11}, Assign: gold
+			checkArray(island6, 'B');
+			checkArray(island6, 'R');
+			checkArray(island6, 'W');
+			checkArray(island6, 'O');
+			
 			// Island 8: {Arrays 5, 7, 9, 11}, Assign: goat
+			checkArray(island8, 'B');
+			checkArray(island8, 'R');
+			checkArray(island8, 'W');
+			checkArray(island8, 'O');
 
 		}
 		else {							// Roll a 6
@@ -348,11 +404,12 @@ public class Board {
 	
 	protected int temp;
 	
-	public void checkArray(int[] testset, char playerColor, char[] lineArray){
-		
-		for (int i = 0; i <= testset.length - 1; i++) {
-			temp = testset[i];
-			if(lineArray[temp]==playerColor) {
+	//public void checkArray(int[] testset, char playerColor, char[] lineArray){
+	public void checkArray(Island island, char playerColor){
+		for (int i = 0; i <= island.getColumn().length - 1; i++) {
+			temp_row = island.getRow()[i];
+			temp_col = island.getColumn()[i];
+			if(design[temp_row][temp_col]==playerColor) {
 				System.out.println("Add a resource for " + playerColor);
 			}
 		}
