@@ -22,8 +22,28 @@ public class Board {
 	protected GhostCaptain ghostCaptain;
 	protected char[] islandNumbers = {'1', '2', '3', '4', '5', '6', '7','8', '9', '0'};
 
+	// Variables for dealing with islands and resource distribution 
+	private int[] rows1 = {3, 5, 7, 5}; 				// Set up row and column arrays for possible lair locations
+	private int[] rows2 = {3, 1, 3, 5, 7, 5};
+	private int[] rows3 = {7, 5, 7, 9, 11, 9}; 
+	private int[] rows4 = {13, 11, 9, 11};
+	private int[] rows5 = {11, 9, 11, 13, 15, 13};
+	private int[] cols1 = {12, 12, 9, 6};
+	private int[] cols2 = {12, 15, 18, 18, 15, 12};
+	private int[] cols3 = {18, 21, 24, 24, 21, 18};
+	private int[] cols4 = {24, 24, 27, 30};
+	private int[] cols5 = {3, 6, 9, 9, 6, 3};
+	private int[] cols6 = {9, 12, 15, 15, 12, 9};
+	private int[] cols7 = {21, 24, 27, 27, 24, 21};
+	private int[] cols8 = {27, 30, 33, 33, 30, 27};
+	protected Island[] islands; // An array for the islands
+	protected char[] playerColors = {'B','R', 'W', 'O'}; // Array of player colors 
+	protected char playerColor;	// Players color
+	protected Player player;	// Selected player
+	protected char isGhost; 	// Character to see if the ghost captain is there
+	protected int temp_row;		// Selected row value
+	protected int temp_col;		// Selected column value
 
-	protected int diceValue;
 	
 	// Lower case: Ship
 	// Upper case: Lair
@@ -129,7 +149,6 @@ public class Board {
 				players.get(i).removeLair();
 			}
 		}
-		
 	}
 	
 	
@@ -216,7 +235,6 @@ public class Board {
 				}
 			}
 		}
-
 	}
 	
 	// method that outlines the possilbe locations of ghost captains ( the centre of each island)
@@ -432,27 +450,10 @@ public class Board {
 		}
 	}
 	
-	private int[] rows1 = {3, 5, 7, 5}; 	
-	private int[] rows2 = {3, 1, 3, 5, 7, 5};
-	private int[] rows3 = {7, 5, 7, 9, 11, 9}; 
-	private int[] rows4 = {13, 11, 9, 11};
-	private int[] rows5 = {11, 9, 11, 13, 15, 13};
-	
-	private int[] cols1 = {12, 12, 9, 6};
-	private int[] cols2 = {12, 15, 18, 18, 15, 12};
-	private int[] cols3 = {18, 21, 24, 24, 21, 18};
-	private int[] cols4 = {24, 24, 27, 30};
-	private int[] cols5 = {3, 6, 9, 9, 6, 3};	// the two 4's were changed to 3's - this hasn't been tested yet
-	private int[] cols6 = {9, 12, 15, 15, 12, 9};
-	private int[] cols7 = {21, 24, 27, 27, 24, 21};
-	private int[] cols8 = {27, 30, 33, 33, 30, 27};
-	
-	
-	// Set up the islands
-	protected int temp_row;
-	protected int temp_col;
-	protected Island[] islands; // An array for the islands
-	
+	//--------------------------------------------------------------------------------
+	//---------- Method: setUpIslands() ----------------------------------------------
+	// This method sets up the islands with the possible lair locations surrounding it 
+	//--------------------------------------------------------------------------------
 	public void setUpIslands() {
 		Island island1  = new Island(rows1,cols1);
 		Island island2  = new Island(rows2,cols2);
@@ -482,6 +483,10 @@ public class Board {
 		//}
 	}
 	
+	//-----------------------------------------------
+	//---------- Method: getIslands() ---------------
+	// This method returns an array of the 12 islands
+	//-----------------------------------------------
 	public Island[] getIslands() {
 		return islands;
 	}
@@ -512,14 +517,7 @@ public class Board {
 		} else {					//---------- Roll a 6 - ghost captain -----------------
 			moveGhostCaptain();
 		}
-		
 	}
-	
-
-	protected char[] playerColors = {'B','R', 'W', 'O'};
-	protected char playerColor;
-	protected Player player;
-	protected char isGhost; // character to see if the ghost captain is there
 	
 	//-----------------------------------------------------------------------------------------------
 	//---------- Method: checkArray() ---------------------------------------------------------------
@@ -543,7 +541,5 @@ public class Board {
 		} else {	// If the ghost captain is on an island, no resources are distributed from it
 			System.out.println("The ghost captain is on island " + island + ". Resources will  not be distributed from this island.");
 		}
-
-		
 	}	
 }
