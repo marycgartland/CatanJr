@@ -416,19 +416,19 @@ public class Board {
 	// TODO: put this setup in BoardSetup class 
 	public void setupBoard(int numberplayers) {
 		if (numberplayers == 1) {
-			setupBluePlayerLocations(); // place blue players ships and lairs
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
 		} else if (numberplayers == 2) {
-			setupBluePlayerLocations(); // place blue players ships and lairs
-			setupRedPlayerLocations(); // place red players ships and lairs
-		} else if (numberplayers == 3) { // blue, red, white
-			setupBluePlayerLocations(); // place blue players ships and lairs
-			setupRedPlayerLocations(); // place red players ships and lairs
-			setupWhitePlayerLocations(); // place white players ships and lairs
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
+			setupRedPlayerLocations(); 		// place red players ships and lairs
+		} else if (numberplayers == 3) { 	// blue, red, white
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
+			setupRedPlayerLocations(); 		// place red players ships and lairs
+			setupWhitePlayerLocations(); 	// place white players ships and lairs
 		} else { // 4 players
-			setupBluePlayerLocations(); // place blue players ships and lairs
-			setupRedPlayerLocations(); // place red players ships and lairs
-			setupWhitePlayerLocations(); // place white players ships and lairs
-			setupOrangePlayerLocations(); // place orange players ships and lairs
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
+			setupRedPlayerLocations();		// place red players ships and lairs
+			setupWhitePlayerLocations();	// place white players ships and lairs
+			setupOrangePlayerLocations();	// place orange players ships and lairs
 		}
 	}
 	
@@ -469,70 +469,48 @@ public class Board {
 		
 		// Add the islands to the island array
 		islands = new Island[] {island1, island2, island3, island4, island5, island6, island7, island8,island9, island10, island11, island12};
-		
-		//
+
 		// For testing 
-		for (int i = 0; i <= rows3.length - 1; i++) {
-			temp_row = rows3[i];
-			temp_col = cols8[i];
-			if(design[temp_row][temp_col]=='X') {
-				System.out.println("OK. getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
-			}else {
-				System.out.println("Error... getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
-				}	
-		}
-		
+		//for (int i = 0; i <= rows3.length - 1; i++) {
+		//	temp_row = rows3[i];
+		//	temp_col = cols8[i];
+		//	if(design[temp_row][temp_col]=='X') {
+		//		System.out.println("OK. getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
+		//	}else {
+		//		System.out.println("Error... getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
+		//		}	
+		//}
 	}
 	
 	public Island[] getIslands() {
 		return islands;
 	}
 	
-	
-	
-
-	
-	//-----------------------------------------------------
-	//---------- Method: checkDiceRoll() ------------------
-	// This method checks islands according to the value  
-	// of the dice roll, and calls the checkArray method
-	//-----------------------------------------------------
+	//----------------------------------------------------------------------------------------------------
+	//---------- Method: checkDiceRoll() -----------------------------------------------------------------
+	// This method checks islands according to the value of the dice roll, and calls the checkArray method
+	//----------------------------------------------------------------------------------------------------
 	// TODO: Might be better moving to GameManager later and just checking the board?
-	// TODO: add in the ghost captain part 
 	public void checkDiceRoll(int diceValue, Island[] islands, ArrayList<Player> players) {
-		//---------- Roll a 1 - Islands 1, 3 and 10 ----------
-		if(diceValue==1) {						
-			checkArray(islands[0], playerColors, players, Resources.Cutlasses);	// Island 1, Assign: Cutlass
-			checkArray(islands[2], playerColors, players, Resources.Goats);	// Island 3, Assign: goat
-			checkArray(islands[9], playerColors, players, Resources.Wood);	// Island 10, Assign: wood
-		}
-		
-		//---------- Roll a 2 - Islands 2, 4, and 11 ----------
-		else if(diceValue==2) {	
-			checkArray(islands[1], playerColors, players, Resources.Wood);	// Island 2, Assign: wood
-			checkArray(islands[3], playerColors, players, Resources.Molasses);	// Island 4, Assign: molasses
-			checkArray(islands[10], playerColors, players, Resources.Goats);	// Island 11, Assign: goat
-		}
-		
-		//---------- Roll a 3 - islands 5 and 7 ---------------
-		else if(diceValue==3) {			// Roll a 3 - islands 5 and 7
-			checkArray(islands[4], playerColors, players, Resources.Wood);	// Island 5, Assign: wood
-			checkArray(islands[6], playerColors, players, Resources.Gold);	// Island 7, Assign: gold
-		}
-		
-		//---------- Roll a 4 - islands 9 and 12 --------------
-		else if(diceValue==4) {	
-			checkArray(islands[8], playerColors, players, Resources.Cutlasses);	// Island 9, Assign: Cutlass
-			checkArray(islands[11], playerColors, players, Resources.Molasses);	// Island 12, Assign: molasses
-		}
-		
-		//---------- Roll a 5 - islands 6 and 8 ---------------
-		else if(diceValue==5) {	
-			checkArray(islands[5], playerColors, players, Resources.Gold);	// Island 6, Assign: gold
-			checkArray(islands[7], playerColors, players, Resources.Goats);	// Island 8, Assign: goat
-		}
-		else {							// Roll a 6
-			// Ghost captain
+		if(diceValue==1) {			//---------- Roll a 1 - Islands 1, 3 and 10 -----------					
+			checkArray(islands[0], playerColors, players, Resources.Cutlasses, design[4][9]);	// Island 1, Assign: Cutlasses
+			checkArray(islands[2], playerColors, players, Resources.Goats, design[4][21]);		// Island 3, Assign: goat
+			checkArray(islands[9], playerColors, players, Resources.Wood, design[12][15]);		// Island 10, Assign: wood
+		} else if(diceValue==2) {	//---------- Roll a 2 - Islands 2, 4, and 11 ----------
+			checkArray(islands[1], playerColors, players, Resources.Wood, design[4][15]);		// Island 2, Assign: wood
+			checkArray(islands[3], playerColors, players, Resources.Molasses, design[4][27]);	// Island 4, Assign: molasses
+			checkArray(islands[10], playerColors, players, Resources.Goats, design[12][21]);	// Island 11, Assign: goat
+		} else if(diceValue==3) {	//---------- Roll a 3 - islands 5 and 7 ---------------
+			checkArray(islands[4], playerColors, players, Resources.Wood, design[8][6]);		// Island 5, Assign: wood
+			checkArray(islands[6], playerColors, players, Resources.Gold, design[8][24]);		// Island 7, Assign: gold
+		} else if(diceValue==4) {	//---------- Roll a 4 - islands 9 and 12 --------------
+			checkArray(islands[8], playerColors, players, Resources.Cutlasses, design[12][9]);	// Island 9, Assign: Cutlass
+			checkArray(islands[11], playerColors, players, Resources.Molasses, design[12][27]);	// Island 12, Assign: molasses
+		} else if(diceValue==5) {	//---------- Roll a 5 - islands 6 and 8 ---------------
+			checkArray(islands[5], playerColors, players, Resources.Gold, design[8][12]);		// Island 6, Assign: gold
+			checkArray(islands[7], playerColors, players, Resources.Goats, design[8][30]);		// Island 8, Assign: goat
+		} else {					//---------- Roll a 6 - ghost captain -----------------
+			moveGhostCaptain();
 		}
 		
 	}
@@ -541,26 +519,31 @@ public class Board {
 	protected char[] playerColors = {'B','R', 'W', 'O'};
 	protected char playerColor;
 	protected Player player;
+	protected char isGhost; // character to see if the ghost captain is there
 	
-	//-----------------------------------------------------
-	//---------- Method: checkArray() ---------------------
-	// This method checks what players have a Lair touching 
-	// an island and assigns resources as needed
-	//-----------------------------------------------------
-	//public void checkArray(int[] testset, char playerColor, char[] lineArray){
-	public void checkArray(Island island, char[] playerColors, ArrayList<Player> players, Resources resource){
-		for (int j = 0; j <= players.size() - 1; j++) {
-			playerColor = playerColors[j];
-			player = players.get(j);
-			for (int i = 0; i <= island.getColumn().length - 1; i++) {
-				temp_row = island.getRow()[i];
-				temp_col = island.getColumn()[i];
-				if(design[temp_row][temp_col]==playerColor) {
-					player.addResource(resource, 1);
-					System.out.println("Add a " + resource + " for player " + player + " with color " + playerColor);
-					System.out.println(player.viewPocket());
+	//-----------------------------------------------------------------------------------------------
+	//---------- Method: checkArray() ---------------------------------------------------------------
+	// This method checks what players have a Lair touching an island and assigns resources as needed
+	//-----------------------------------------------------------------------------------------------
+	public void checkArray(Island island, char[] playerColors, ArrayList<Player> players, Resources resource, char isGhost){
+		if(isGhost != 'G') {
+			for (int j = 0; j <= players.size() - 1; j++) {
+				playerColor = playerColors[j];
+				player = players.get(j);
+				for (int i = 0; i <= island.getColumn().length - 1; i++) {
+					temp_row = island.getRow()[i];
+					temp_col = island.getColumn()[i];
+					if(design[temp_row][temp_col]==playerColor) {
+						player.addResource(resource, 1);
+						System.out.println("Add a " + resource + " for player " + player + " with color " + playerColor);
+						System.out.println(player.viewPocket());
+					}
 				}
 			}
+		} else {	// If the ghost captain is on an island, no resources are distributed from it
+			System.out.println("The ghost captain is on island " + island + ". Resources will  not be distributed from this island.");
 		}
+
+		
 	}	
 }
