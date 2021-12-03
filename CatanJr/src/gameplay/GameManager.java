@@ -3,6 +3,7 @@ package gameplay;
 import java.util.ArrayList;
 
 import board.Board;
+import board.Island;
 import board.Marketplace;
 import board.Stockpile;
 import main.Interactor;
@@ -32,6 +33,7 @@ public class GameManager {
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // setup resources
 		board.setupBoard(playerSetup.Players().size());
 		board.showBoardLayout();
+		board.setUpIslands();
 		this.stockPile = resourceSetup.getStockpile();
 		this.cocoTiles = resourceSetup.getCocoTiles();
 		this.marketPlace = resourceSetup.getMarketplace();
@@ -40,7 +42,8 @@ public class GameManager {
 		while (!checkWinner(playerSetup.Players())) {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile,
 					cocoTiles, board);
-			playerTurn.takeTurn();
+			playerTurn.takeTurn(board.getIslands(),playerSetup.Players()); // TRYING TO TAKE IN THE ISLANDS AND THE ARRAY OF PLAYERS
+			//playerTurn.takeTurn();
 			player_turn = (player_turn + 1) % (playerSetup.Players().size() + 1); // this will loop through players
 		} 
 		interactor.printMessage("winner", winner);

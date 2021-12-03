@@ -1,10 +1,13 @@
 package board;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import main.Interactor;
 import resources.Resources;
 import gameplay.Dice;
+import setup.PlayerSetup;
+import player.Player;
 
 public class Board {
 	protected char[][] design;
@@ -242,46 +245,45 @@ public class Board {
 		}
 	}
 	
-	
-	private int[] rows1  = {3, 5, 7, 5}; 	
-	private int[] rows2  = {3, 1, 3, 5, 7, 5};
-	private int[] rows3  = {7, 5, 7, 9, 11, 9}; 
-	private int[] rows4  = {13, 11, 9, 11};
+	private int[] rows1 = {3, 5, 7, 5}; 	
+	private int[] rows2 = {3, 1, 3, 5, 7, 5};
+	private int[] rows3 = {7, 5, 7, 9, 11, 9}; 
+	private int[] rows4 = {13, 11, 9, 11};
 	private int[] rows5 = {11, 9, 11, 13, 15, 13};
 	
 	private int[] cols1 = {12, 12, 9, 6};
 	private int[] cols2 = {12, 15, 18, 18, 15, 12};
-	private int[] cols3  = {18, 21, 24, 24, 21, 18};
-	private int[] cols4  = {24, 24, 27, 30};
-	private int[] cols5  = {4, 6, 9, 9, 6, 4};
-	private int[] cols6  = {9, 12, 15, 15, 12, 9};
+	private int[] cols3 = {18, 21, 24, 24, 21, 18};
+	private int[] cols4 = {24, 24, 27, 30};
+	private int[] cols5 = {3, 6, 9, 9, 6, 3};	// the two 4's were changed to 3's - this hasn't been tested yet
+	private int[] cols6 = {9, 12, 15, 15, 12, 9};
 	private int[] cols7 = {21, 24, 27, 27, 24, 21};
-	private int[] cols8  = {27, 30, 33, 33, 30, 27};
-	 		 // i9 has the same rows as i1
-	 // i10 has the same rows as i2
-	//private int[] i11rows = {11, 9, 11, 13, 15, 13}; // i11 has the same cols as i3
-	//private int[] i12rows = {13, 11, 9, 11}; 		 //i12 has the same cols as i4
+	private int[] cols8 = {27, 30, 33, 33, 30, 27};
 	
 	
 	// Set up the islands
 	protected int temp_row;
 	protected int temp_col;
+	protected Island[] islands; // An array for the islands
 	
 	public void setUpIslands() {
-		//GameManager gameManager = new GameManager();
-		Island island1 = new Island(rows1,cols1);
-		Island island2 = new Island(rows2,cols2);
-		Island island3 = new Island(rows2,cols3);
-		Island island4 = new Island(rows1,cols4);
-		Island island5 = new Island(rows3,cols5);
-		Island island6 = new Island(rows3,cols6);
-		Island island7 = new Island(rows3,cols7);
-		Island island8 = new Island(rows3,cols8);
-		Island island9 = new Island(rows4,cols1);
+		Island island1  = new Island(rows1,cols1);
+		Island island2  = new Island(rows2,cols2);
+		Island island3  = new Island(rows2,cols3);
+		Island island4  = new Island(rows1,cols4);
+		Island island5  = new Island(rows3,cols5);
+		Island island6  = new Island(rows3,cols6);
+		Island island7  = new Island(rows3,cols7);
+		Island island8  = new Island(rows3,cols8);
+		Island island9  = new Island(rows4,cols1);
 		Island island10 = new Island(rows5,cols2);
 		Island island11 = new Island(rows5,cols3);
 		Island island12 = new Island(rows4,cols4);
 		
+		// Add the islands to the island array
+		islands = new Island[] {island1, island2, island3, island4, island5, island6, island7, island8,island9, island10, island11, island12};
+		
+		//
 		// For testing 
 		//for (int i = 0; i <= rows4.length - 1; i++) {
 		//	temp_row = rows4[i];
@@ -295,6 +297,14 @@ public class Board {
 		
 	}
 	
+	public Island[] getIslands() {
+		return islands;
+	}
+	
+	
+	
+
+	
 	// Check the dice roll values.... Might be better moving to GameManager later and just checking the board?
 	//----- Method: checkDiceRoll-----
 	// Notes: weird that I have to list them all out
@@ -302,92 +312,41 @@ public class Board {
 	// to do: assign resources
 	// Tidy up so its not so long
 	// add in the ghost captain part 
-	public void checkDiceRoll(Dice dice, Island island1, Island island2, Island island3, Island island4, Island island5, Island island6, Island island7, Island island8, Island island9, Island island10, Island island11, Island island12) {
-		diceValue = dice.getDiceRollValue();
+	//ArrayList<Player>
+	public void checkDiceRoll(int diceValue, Island[] islands, ArrayList<Player> players) {
+		//diceValue = dice.getDiceRollValue();
 //		checkArray(Test1, 'X', Line1); // temp
-		if(diceValue==1) {				// Roll a 1
-			// Check islands 1, 3 and 10
-			// Island 1: {Arrays 3, 5, 7}, Assign: Cutlass
-			checkArray(island1, 'B');
-			checkArray(island1, 'R');
-			checkArray(island1, 'W');
-			checkArray(island1, 'O');
-
-			// Island 3: {Arrays 1, 3, 5, 7}, Assign: goat
-			checkArray(island3, 'B');
-			checkArray(island3, 'R');
-			checkArray(island3, 'W');
-			checkArray(island3, 'O');
-			
-			// Island 10: {Arrays 9, 11, 13, 15}, Assign: wood
-			checkArray(island10, 'B');
-			checkArray(island10, 'R');
-			checkArray(island10, 'W');
-			checkArray(island10, 'O');
-
+		
+		//---------- Roll a 1 - Islands 1, 3 and 10 ----------
+		if(diceValue==1) {						
+			checkArray(islands[0], playerColors, players, Resources.Cutlasses);	// Island 1, Assign: Cutlass
+			checkArray(islands[2], playerColors, players, Resources.Goats);	// Island 3, Assign: goat
+			checkArray(islands[9], playerColors, players, Resources.Wood);	// Island 10, Assign: wood
 		}
-		else if(diceValue==2) {			// Roll a 2
-			// Check islands 2, 4, and 11
-			// Island 2: {Arrays 1, 3, 5, 7}, Assign: wood
-			checkArray(island2, 'B');
-			checkArray(island2, 'R');
-			checkArray(island2, 'W');
-			checkArray(island2, 'O');
-			
-			// Island 4: {Arrays 3, 5, 7}, Assign: molasses
-			checkArray(island4, 'B');
-			checkArray(island4, 'R');
-			checkArray(island4, 'W');
-			checkArray(island4, 'O');
-			
-			// Island 11: {Arrays 9, 11, 13, 15}, Assign: goat
-			checkArray(island11, 'B');
-			checkArray(island11, 'R');
-			checkArray(island11, 'W');
-			checkArray(island11, 'O');
+		
+		//---------- Roll a 2 - Islands 2, 4, and 11 ----------
+		else if(diceValue==2) {	
+			checkArray(islands[1], playerColors, players, Resources.Wood);	// Island 2, Assign: wood
+			checkArray(islands[3], playerColors, players, Resources.Molasses);	// Island 4, Assign: molasses
+			checkArray(islands[10], playerColors, players, Resources.Goats);	// Island 11, Assign: goat
 		}
-		else if(diceValue==3) {			// Roll a 3
-			// Check islands 5 and 7
-			// Island 5: {Arrays 5, 7, 9 , 11}, Assign: wood
-			checkArray(island5, 'B');
-			checkArray(island5, 'R');
-			checkArray(island5, 'W');
-			checkArray(island5, 'O');
-			
-			// Island 7: {Arrays 5, 7, 9, 11}, Assign: gold
-			checkArray(island7, 'B');
-			checkArray(island7, 'R');
-			checkArray(island7, 'W');
-			checkArray(island7, 'O');
+		
+		//---------- Roll a 3 - islands 5 and 7 ---------------
+		else if(diceValue==3) {			// Roll a 3 - islands 5 and 7
+			checkArray(islands[4], playerColors, players, Resources.Wood);	// Island 5, Assign: wood
+			checkArray(islands[6], playerColors, players, Resources.Gold);	// Island 7, Assign: gold
 		}
-		else if(diceValue==4) {			// Roll a 4
-			// Check island 9 and 12
-			// Island 9:  {Arrays 9, 11, 13}, Assign: Cutlass
-			checkArray(island9, 'B');
-			checkArray(island9, 'R');
-			checkArray(island9, 'W');
-			checkArray(island9, 'O');
-			
-			// Island 12: {Arrays 9, 11, 13}, Assign: molasses
-			checkArray(island12, 'B');
-			checkArray(island12, 'R');
-			checkArray(island12, 'W');
-			checkArray(island12, 'O');
+		
+		//---------- Roll a 4 - islands 9 and 12 --------------
+		else if(diceValue==4) {	
+			checkArray(islands[8], playerColors, players, Resources.Cutlasses);	// Island 9, Assign: Cutlass
+			checkArray(islands[11], playerColors, players, Resources.Molasses);	// Island 12, Assign: molasses
 		}
-		else if(diceValue==5) {			// Roll a 5
-			// Check islands 6 and 8
-			// Island 6: {Arrays 5, 7, 9, 11}, Assign: gold
-			checkArray(island6, 'B');
-			checkArray(island6, 'R');
-			checkArray(island6, 'W');
-			checkArray(island6, 'O');
-			
-			// Island 8: {Arrays 5, 7, 9, 11}, Assign: goat
-			checkArray(island8, 'B');
-			checkArray(island8, 'R');
-			checkArray(island8, 'W');
-			checkArray(island8, 'O');
-
+		
+		//---------- Roll a 5 - islands 6 and 8 ---------------
+		else if(diceValue==5) {	
+			checkArray(islands[5], playerColors, players, Resources.Gold);	// Island 6, Assign: gold
+			checkArray(islands[7], playerColors, players, Resources.Goats);	// Island 8, Assign: goat
 		}
 		else {							// Roll a 6
 			// Ghost captain
@@ -403,14 +362,23 @@ public class Board {
 	// Method: check Array
 	
 	protected int temp;
+	protected char[] playerColors = {'B','R', 'W', 'O'};
+	protected char playerColor;
+	protected Player player;
 	
 	//public void checkArray(int[] testset, char playerColor, char[] lineArray){
-	public void checkArray(Island island, char playerColor){
-		for (int i = 0; i <= island.getColumn().length - 1; i++) {
-			temp_row = island.getRow()[i];
-			temp_col = island.getColumn()[i];
-			if(design[temp_row][temp_col]==playerColor) {
-				System.out.println("Add a resource for " + playerColor);
+	public void checkArray(Island island, char[] playerColors, ArrayList<Player> players, Resources resource){
+		for (int j = 0; j <= players.size() - 1; j++) {
+			playerColor = playerColors[j];
+			player = players.get(j);
+			for (int i = 0; i <= island.getColumn().length - 1; i++) {
+				temp_row = island.getRow()[i];
+				temp_col = island.getColumn()[i];
+				if(design[temp_row][temp_col]==playerColor) {
+					player.addResource(resource, 1);
+					System.out.println("Add a " + resource + " for player " + player + " with color " + playerColor);
+					System.out.println(player.viewPocket());
+				}
 			}
 		}
 	}

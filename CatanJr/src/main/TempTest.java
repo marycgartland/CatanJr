@@ -14,12 +14,15 @@ import setup.ResourceSetup;
 
 public class TempTest {
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
+		GameManager gameManager = new GameManager();
+		gameManager.StartGame();
 		Board testboard = new Board();
 		Dice dice = new Dice();
 		//dice.rollDice();
 		//testboard.checkArray();
-		testboard.checkDiceRoll(dice);
+		//(Dice dice, Island[] islands, Player[] players)
+		//testboard.checkDiceRoll(dice, islands, players);
 		testboard.setUpIslands();
 
     }

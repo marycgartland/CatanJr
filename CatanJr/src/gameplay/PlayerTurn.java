@@ -1,6 +1,8 @@
 package gameplay;
 
 
+import java.util.ArrayList;
+
 // Some to do's (noting that this is very much not finished)
 // Combine all the valid option check methods into 1
 // Connect the build method to the board once that is set up
@@ -10,6 +12,7 @@ package gameplay;
 import java.util.Scanner;
 
 import board.Board;
+import board.Island;
 import board.Marketplace;
 import board.Stockpile;
 import gameplay.Dice;
@@ -64,11 +67,13 @@ public class PlayerTurn {
 
 	Dice dice1 = new Dice(); // The dice needs to be created in game setup, not here. Just added here for now 
 	
-	public void takeTurn() {
+	public void takeTurn(Island[] islands, ArrayList<Player> players) {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
 		System.out.println("It is your turn, "+ player.getName() + ". You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
 		// TODO: should assign resources depending on the value rolled
+		//checkDiceRoll(Dice dice, Island[] islands, Player[] players) in Board
+		board.checkDiceRoll(diceValue, islands, players);
 
 		//----- While the players turn isn't over, they will be presented with all options -----
 		while (turn == true) {
