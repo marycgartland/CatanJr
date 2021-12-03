@@ -241,42 +241,39 @@ public class PlayerTurn {
 	//-----------------------------------------------------------
 	//---------- Trade Method -----------------------------------
 	//-----------------------------------------------------------
-		public void Trade() {
-			board.moveGhostCaptain();
+
+		
+	public void Trade() {
+		//----- Give the user options on what trade they wish to make -----
+		if(marketPlaceUse == 0) {	// You can only trade with the marketplace once per turn
+			interactor.printMessage("trade M/S?");
+		} else {
+			interactor.printMessage("trade S?");
+		}
+		String option = interactor.takeInAnswer();
+		
+		//----- Option 1: Trade with Marketplace --------------------------
+			// Trade one tile from a players pocket (of choice) with one tile from marketplace (of choice)
+		if(option.equals("M") && marketPlaceUse == 0) {
+			interactor.printMessage("trade: M");
+			marketplace.viewMarketplace();
+			tradeMarketplace(); 			// call method to trade with marketplace
 		}
 		
-		// uncomment this method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//	public void Trade() {
-//		//----- Give the user options on what trade they wish to make -----
-//		if(marketPlaceUse == 0) {	// You can only trade with the marketplace once per turn
-//			interactor.printMessage("trade M/S?");
-//		} else {
-//			interactor.printMessage("trade S?");
-//		}
-//		String option = interactor.takeInAnswer();
-//		
-//		//----- Option 1: Trade with Marketplace --------------------------
-//			// Trade one tile from a players pocket (of choice) with one tile from marketplace (of choice)
-//		if(option.equals("M") && marketPlaceUse == 0) {
-//			interactor.printMessage("trade: M");
-//			marketplace.viewMarketplace();
-//			tradeMarketplace(); 			// call method to trade with marketplace
-//		}
-//		
-//		//----- Option 2: Trade with Stockpile ----------------------------
-//			// can trade 2 of the same pocket tiles of choice with 1 tile from the stockpile
-//			// No limit on times, only limited by resources in pocket/stockpile
-//		else if(option.equals("S")) {
-//			interactor.printMessage("trade: S");
-//			tradeStockpile(); // call method to trade with stockpile
-//		}
-//
-//		//----- Error check if the user selects an invalid option ---------
-//		else{
-//			interactor.printMessage("turn: null");
-//		}
-//
-//	}
+		//----- Option 2: Trade with Stockpile ----------------------------
+			// can trade 2 of the same pocket tiles of choice with 1 tile from the stockpile
+			// No limit on times, only limited by resources in pocket/stockpile
+		else if(option.equals("S")) {
+			interactor.printMessage("trade: S");
+			tradeStockpile(); // call method to trade with stockpile
+		}
+
+		//----- Error check if the user selects an invalid option ---------
+		else{
+			interactor.printMessage("turn: null");
+		}
+
+	}
 
 	// Method to trade with marketplace
 	// do i need to remove the resource from the users pocket

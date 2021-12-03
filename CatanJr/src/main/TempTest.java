@@ -19,7 +19,7 @@ public class TempTest {
 		Dice dice = new Dice();
 		//dice.rollDice();
 		//testboard.checkArray();
-		testboard.checkDiceRoll(dice); // uncomment this mary is working on it, the arguments are wrong
+		//testboard.checkDiceRoll(dice); // uncomment this mary is working on it, the arguments are wrong
 		testboard.setUpIslands();
 
     }
