@@ -36,18 +36,21 @@ public class GameManager {
 		this.stockPile = resourceSetup.getStockpile();
 		this.cocoTiles = resourceSetup.getCocoTiles();
 		this.marketPlace = resourceSetup.getMarketplace();
+		//board.mostCocotiles(playerSetup.Players());//remove: testing
 		// while there is no winner declared, rotate players turns
 		int player_turn = 0;
 		while (!checkWinner(playerSetup.Players())) {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile,
 					cocoTiles, board);
 			playerTurn.takeTurn();
+			board.mostCocotiles(playerSetup.Players()); // check if player with most cocotiles can place their lair on spooky island
 			player_turn = (player_turn + 1) % (playerSetup.Players().size() + 1); // this will loop through players
 		} 
 		interactor.printMessage("winner", winner);
 	}
 	
 	// method to check if a player has 7 or more lairs
+	// make sure that this count is including the lair on spooky island (it should be correct cause users keep track of their lair count)
 
 	public boolean checkWinner(ArrayList<Player> players) {
 		for (int i = 0; i <= players.size() - 1; i++) {

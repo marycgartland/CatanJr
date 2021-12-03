@@ -67,11 +67,11 @@ public class Player {
 	// method to setup the users pocket at the start of the game, they will have no resources
 	// need to all be zero, im just testing
 	public void setupUserPocket() {
-		pocket.put(Resources.Gold, 2);
-		pocket.put(Resources.Wood, 2);
-		pocket.put(Resources.Cutlasses, 2);
-		pocket.put(Resources.Molasses, 2);
-		pocket.put(Resources.Goats, 2);
+		pocket.put(Resources.Gold, 20);
+		pocket.put(Resources.Wood, 20);
+		pocket.put(Resources.Cutlasses, 20);
+		pocket.put(Resources.Molasses, 20);
+		pocket.put(Resources.Goats, 20);
 	}
 	
 	// Method that can be called when user purchases a cocotile, this will increase there count by 1
@@ -82,6 +82,11 @@ public class Player {
 	// Method to increase number of lairs user has bought
 	public void addLair() {
 		this.numberLairs = this.numberLairs + 1;
+	}
+	
+	// Method to increase number of lairs user has bought
+	public void removeLair() {
+		this.numberLairs = this.numberLairs - 1;
 	}
 	
 	

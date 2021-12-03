@@ -130,6 +130,8 @@ public class PlayerTurn {
 
 				CocoTileTypes cocotile_bought = cocotiles.buyCocoTile(); // this tells which type of cocotile it is
 				player.addCocoTile(); // add cocotile to players count of cocotiles
+				System.out.println("Your cocotile is " + cocotile_bought + "\n");
+
 				cocotileAction(cocotile_bought); // follow instructions on cocotile
 			}
 		} else {
@@ -147,6 +149,8 @@ public class PlayerTurn {
 			// remove resources from stockpile
 			stockpile.DistributeResource(Resources.Goats, 2);
 			stockpile.DistributeResource(Resources.Cutlasses, 2);
+			
+			System.out.println(player.viewPocket()); // should make interactor method that prints out users pocket
 
 		} else if (cocotile.equals(CocoTileTypes.WoodMolasses)) {
 			// add resources to users pocket
@@ -156,15 +160,23 @@ public class PlayerTurn {
 			// remove resources from stockpile
 			stockpile.DistributeResource(Resources.Wood, 2);
 			stockpile.DistributeResource(Resources.Molasses, 2);
+			System.out.println(player.viewPocket()); // should make interactor method that prints out users pocket
 
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {
 			// need to access board in order to give user options to place the ghost captain
-			board.moveGhostCaptain(); //uncomment this
+			board.moveGhostCaptain();
 
 		} else if (cocotile.equals(CocoTileTypes.ShipCastle)) {
 			// need to let user place ships and lairs on board
-			board.placeShip(player.getColour());
-			board.placeLair(player.getColour());
+			// user can only build one
+			interactor.printMessage("cocotile ship/lair");
+			String build_option = interactor.takeInAnswer();
+			if(build_option.charAt(0)=='L') {
+				board.placeLair(player.getColour());
+			} else if(build_option.charAt(0) == 'S') {
+				board.placeShip(player.getColour());
+
+			}
 		}
 	}
 	
@@ -242,7 +254,6 @@ public class PlayerTurn {
 	//---------- Trade Method -----------------------------------
 	//-----------------------------------------------------------
 
-		
 	public void Trade() {
 		//----- Give the user options on what trade they wish to make -----
 		if(marketPlaceUse == 0) {	// You can only trade with the marketplace once per turn
@@ -257,7 +268,7 @@ public class PlayerTurn {
 		if(option.equals("M") && marketPlaceUse == 0) {
 			interactor.printMessage("trade: M");
 			marketplace.viewMarketplace();
-			tradeMarketplace(); 			// call method to trade with marketplace
+			tradeMarketplace(); 	// call method to trade with marketplace
 		}
 		
 		//----- Option 2: Trade with Stockpile ----------------------------

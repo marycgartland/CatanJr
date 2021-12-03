@@ -1,8 +1,14 @@
 package board;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+
 
 import main.Interactor;
+import player.Player;
 import resources.Resources;
 import gameplay.Dice;
 
@@ -79,7 +85,66 @@ public class Board {
 	}
 	
 	
+	// this needs to be checked every turn by game manager
+	// if G is no longer at design[8][18], then user with the most cocotiles can add a lair here
+	// this determines which player has the most cocotiles and places a lair of theres in the centre if the ghost captain is not there
+	public void mostCocotiles(ArrayList<Player> players) {
+
+		int max = 0;
+		char maxchar = '-';
+		if (design[8][18] != 'G') { // if the ghost captain isnt in the centre island there is potential for a player to place their lair their
+
+			for (int i = 0; i <= players.size() - 1; i++) {
+				if (players.get(i).getCocoTileCount() > max) {
+					reduceLairCount(maxchar, players); // if player has more cocotiles then another need to remove the
+														// previous players lair and reduce the number
+					max = players.get(i).getCocoTileCount();
+					maxchar = players.get(i).getColour().charAt(0);
+				} else if (players.get(i).getCocoTileCount() == max) {
+					reduceLairCount(maxchar, players); // if player has more cocotiles then another need to remove the
+														// previous players lair and reduce the number
+					maxchar = '-';
+				}
+			}
+			placeLairMostCocotile(maxchar, players);
+		}
+		showBoardLayout();
+
+//		System.out.print("Lair count player 1:    "+ players.get(0).getLairCount()+"\n");
+//		System.out.print("Cocotile count player 1:"+ players.get(0).getCocoTileCount()+"\n");
+//		System.out.print("Lair count player 2:    "+ players.get(1).getLairCount()+"\n");
+//		System.out.print("Cocotile count player 2:"+ players.get(1).getCocoTileCount()+"\n");
+//		System.out.print("Lair count player 3:    "+ players.get(2).getLairCount()+"\n");
+//		System.out.print("Cocotile count player 3:"+ players.get(2).getCocoTileCount()+"\n");
+
+	}
+	
+	// find player and reduce their lair count by one
+	 // if player has more cocotiles then another need to remove the previous players lair and reduce the number
+	public void reduceLairCount(char colour, ArrayList<Player> players ) {
+		for(int i=0;i<=players.size()-1;i++) {
+			if(players.get(i).getColour().charAt(0)==colour) {
+				players.get(i).removeLair();
+			}
+		}
+		
+	}
+	
+	
+	// method to place the lair on spooky island based on who has the most cocotiles
+	public void placeLairMostCocotile(char player_colour, ArrayList<Player> players) {
+		design[8][18] = Character.toUpperCase(player_colour);
+		for(int i=0;i<=players.size()-1;i++) {
+			if(players.get(i).getColour().charAt(0)== player_colour) {
+				players.get(i).addLair();
+			}
+		}
+	}
+	
+	
+	
 	// Method to move ghost captain to another island
+	// TODO: cannot move ghost captain to spooky island if a users lairs is there because they have the most cocotiles
 	public void moveGhostCaptain() {
 		// ask user which island they want to move the ghost captain to.
 		interactor.printMessage("move ghost captain");
@@ -259,8 +324,6 @@ public class Board {
 	
 	
 	
-	
-	
 	// place a users lair on the board
 	// TODO: what if there are no options to place a lair?
 	public boolean placeLair(String colour) {
@@ -327,8 +390,8 @@ public class Board {
 	public void setupRedPlayerLocations() {
 		design[3][12] = 'R';
 		design[4][12] = 'r';
-		design[10][28] = 'R';
-		design[11][30] = 'r';
+		design[10][28] = 'r';
+		design[11][30] = 'R';
 	}
 
 	// Function to define starting positions of white players ships and lairs
@@ -343,8 +406,8 @@ public class Board {
 	public void setupOrangePlayerLocations() {
 		design[3][24] = 'O';
 		design[4][24] = 'o';
-		design[10][8] = 'O';
-		design[11][6] = 'o';
+		design[10][8] = 'o';
+		design[11][6] = 'O';
 	}
 
 	// Setup Board design, place users first ship and lairs on board

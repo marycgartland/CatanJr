@@ -128,6 +128,9 @@ public class Interactor {
 		case "GC moved":
 			System.out.println("Ghost Captain has been moved\n");
 			break;
+		case "cocotile ship/lair":
+			System.out.println("Would you like to build a ship[S] or lair[L]:");
+			break;
 		}
 	}
 
