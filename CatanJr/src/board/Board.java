@@ -15,33 +15,54 @@ import setup.PlayerSetup;
 import player.Player;
 
 public class Board {
+	// -------------------------------
+	// ---------- Variables ----------
+	// -------------------------------
 	protected char[][] design;
 	protected char[] options = {'1', '2', '3', '4', '5', '6', '7'};
 	protected char[] symbolHolder = {'x','x','x','x', 'x', 'x', 'x'}; // placeholder array
 	Interactor interactor = new Interactor();
 	protected GhostCaptain ghostCaptain;
 	protected char[] islandNumbers = {'1', '2', '3', '4', '5', '6', '7','8', '9', '0'};
+	
+	// Variables for dealing with islands and resource distribution 
+	private int[] rows1 = {3, 5, 7, 5}; 				// Set up row and column arrays for possible lair locations
+	private int[] rows2 = {3, 1, 3, 5, 7, 5};
+	private int[] rows3 = {7, 5, 7, 9, 11, 9}; 
+	private int[] rows4 = {13, 11, 9, 11};
+	private int[] rows5 = {11, 9, 11, 13, 15, 13};
+	private int[] cols1 = {12, 12, 9, 6};
+	private int[] cols2 = {12, 15, 18, 18, 15, 12};
+	private int[] cols3 = {18, 21, 24, 24, 21, 18};
+	private int[] cols4 = {24, 24, 27, 30};
+	private int[] cols5 = {3, 6, 9, 9, 6, 3};
+	private int[] cols6 = {9, 12, 15, 15, 12, 9};
+	private int[] cols7 = {21, 24, 27, 27, 24, 21};
+	private int[] cols8 = {27, 30, 33, 33, 30, 27};
+	protected Island[] islands; // An array for the islands
+	protected char[] playerColors = {'B','R', 'W', 'O'}; // Array of player colors 
+	protected char playerColor;	// Players color
+	protected Player player;	// Selected player
+	protected char isGhost; 	// Character to see if the ghost captain is there
+	protected int temp_row;		// Selected row value
+	protected int temp_col;		// Selected column value
+	private String playerName;
 
-
-	protected int diceValue;
 	
 	// Lower case: Ship
 	// Upper case: Lair
 
 	// TODO: maybe take out dashes
-
-	// Variables
-	// Constructor
-	// Track user locations
 	// Track ship and Lair placements
-	// Check the location of the ghost captain
 	// Track the number of lairs on the board: 7 lairs = winner
 	// Provide ship/lair placement options to user when building
 	// Needs to look after ships and lairs, keeping track of numbers and placements 
-	// assign resources to users based on their positions and dice value rolled
 	// check which user has the most cocotiles: whichever user has the most, they can place their lair on spooky island
 	
-	// Construct board layout
+	// -------------------------------
+	// ---------- Constructor --------
+	// Sets up the layout of the board
+	// -------------------------------
 	public Board() {
 		design = new char[][]{
 			{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-','-', '-', '-', '-','-','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
@@ -233,7 +254,6 @@ public class Board {
 				}
 			}
 		}
-
 	}
 	
 	// method that outlines the possilbe locations of ghost captains ( the centre of each island)
@@ -433,43 +453,26 @@ public class Board {
 	// TODO: put this setup in BoardSetup class 
 	public void setupBoard(int numberplayers) {
 		if (numberplayers == 1) {
-			setupBluePlayerLocations(); // place blue players ships and lairs
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
 		} else if (numberplayers == 2) {
-			setupBluePlayerLocations(); // place blue players ships and lairs
-			setupRedPlayerLocations(); // place red players ships and lairs
-		} else if (numberplayers == 3) { // blue, red, white
-			setupBluePlayerLocations(); // place blue players ships and lairs
-			setupRedPlayerLocations(); // place red players ships and lairs
-			setupWhitePlayerLocations(); // place white players ships and lairs
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
+			setupRedPlayerLocations(); 		// place red players ships and lairs
+		} else if (numberplayers == 3) { 	// blue, red, white
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
+			setupRedPlayerLocations(); 		// place red players ships and lairs
+			setupWhitePlayerLocations(); 	// place white players ships and lairs
 		} else { // 4 players
-			setupBluePlayerLocations(); // place blue players ships and lairs
-			setupRedPlayerLocations(); // place red players ships and lairs
-			setupWhitePlayerLocations(); // place white players ships and lairs
-			setupOrangePlayerLocations(); // place orange players ships and lairs
+			setupBluePlayerLocations(); 	// place blue players ships and lairs
+			setupRedPlayerLocations();		// place red players ships and lairs
+			setupWhitePlayerLocations();	// place white players ships and lairs
+			setupOrangePlayerLocations();	// place orange players ships and lairs
 		}
 	}
 	
-	private int[] rows1 = {3, 5, 7, 5}; 	
-	private int[] rows2 = {3, 1, 3, 5, 7, 5};
-	private int[] rows3 = {7, 5, 7, 9, 11, 9}; 
-	private int[] rows4 = {13, 11, 9, 11};
-	private int[] rows5 = {11, 9, 11, 13, 15, 13};
-	
-	private int[] cols1 = {12, 12, 9, 6};
-	private int[] cols2 = {12, 15, 18, 18, 15, 12};
-	private int[] cols3 = {18, 21, 24, 24, 21, 18};
-	private int[] cols4 = {24, 24, 27, 30};
-	private int[] cols5 = {3, 6, 9, 9, 6, 3};	// the two 4's were changed to 3's - this hasn't been tested yet
-	private int[] cols6 = {9, 12, 15, 15, 12, 9};
-	private int[] cols7 = {21, 24, 27, 27, 24, 21};
-	private int[] cols8 = {27, 30, 33, 33, 30, 27};
-	
-	
-	// Set up the islands
-	protected int temp_row;
-	protected int temp_col;
-	protected Island[] islands; // An array for the islands
-	
+	//--------------------------------------------------------------------------------
+	//---------- Method: setUpIslands() ----------------------------------------------
+	// This method sets up the islands with the possible lair locations surrounding it 
+	//--------------------------------------------------------------------------------
 	public void setUpIslands() {
 		Island island1  = new Island(rows1,cols1);
 		Island island2  = new Island(rows2,cols2);
@@ -486,100 +489,77 @@ public class Board {
 		
 		// Add the islands to the island array
 		islands = new Island[] {island1, island2, island3, island4, island5, island6, island7, island8,island9, island10, island11, island12};
-		
-		//
+
 		// For testing 
-		//for (int i = 0; i <= rows4.length - 1; i++) {
-		//	temp_row = rows4[i];
-		//	temp_col = cols4[i];
+		//for (int i = 0; i <= rows3.length - 1; i++) {
+		//	temp_row = rows3[i];
+		//	temp_col = cols8[i];
 		//	if(design[temp_row][temp_col]=='X') {
 		//		System.out.println("OK. getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
 		//	}else {
 		//		System.out.println("Error... getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
 		//		}	
 		//}
-		
 	}
 	
+	//-----------------------------------------------
+	//---------- Method: getIslands() ---------------
+	// This method returns an array of the 12 islands
+	//-----------------------------------------------
 	public Island[] getIslands() {
 		return islands;
 	}
 	
-	
-	
-
-	
-	//-----------------------------------------------------
-	//---------- Method: checkDiceRoll() ------------------
-	// This method checks islands according to the value  
-	// of the dice roll, and calls the checkArray method
-	//-----------------------------------------------------
+	//----------------------------------------------------------------------------------------------------
+	//---------- Method: checkDiceRoll() -----------------------------------------------------------------
+	// This method checks islands according to the value of the dice roll, and calls the checkArray method
+	//----------------------------------------------------------------------------------------------------
 	// TODO: Might be better moving to GameManager later and just checking the board?
-	// TODO: add in the ghost captain part 
 	public void checkDiceRoll(int diceValue, Island[] islands, ArrayList<Player> players) {
-		//---------- Roll a 1 - Islands 1, 3 and 10 ----------
-		if(diceValue==1) {						
-			checkArray(islands[0], playerColors, players, Resources.Cutlasses);	// Island 1, Assign: Cutlass
-			checkArray(islands[2], playerColors, players, Resources.Goats);	// Island 3, Assign: goat
-			checkArray(islands[9], playerColors, players, Resources.Wood);	// Island 10, Assign: wood
+		if(diceValue==1) {			//---------- Roll a 1 - Islands 1, 3 and 10 -----------					
+			checkArray(islands[0], playerColors, players, Resources.Cutlasses, design[4][9]);	// Island 1, Assign: Cutlasses
+			checkArray(islands[2], playerColors, players, Resources.Goats, design[4][21]);		// Island 3, Assign: goat
+			checkArray(islands[9], playerColors, players, Resources.Wood, design[12][15]);		// Island 10, Assign: wood
+		} else if(diceValue==2) {	//---------- Roll a 2 - Islands 2, 4, and 11 ----------
+			checkArray(islands[1], playerColors, players, Resources.Wood, design[4][15]);		// Island 2, Assign: wood
+			checkArray(islands[3], playerColors, players, Resources.Molasses, design[4][27]);	// Island 4, Assign: molasses
+			checkArray(islands[10], playerColors, players, Resources.Goats, design[12][21]);	// Island 11, Assign: goat
+		} else if(diceValue==3) {	//---------- Roll a 3 - islands 5 and 7 ---------------
+			checkArray(islands[4], playerColors, players, Resources.Wood, design[8][6]);		// Island 5, Assign: wood
+			checkArray(islands[6], playerColors, players, Resources.Gold, design[8][24]);		// Island 7, Assign: gold
+		} else if(diceValue==4) {	//---------- Roll a 4 - islands 9 and 12 --------------
+			checkArray(islands[8], playerColors, players, Resources.Cutlasses, design[12][9]);	// Island 9, Assign: Cutlass
+			checkArray(islands[11], playerColors, players, Resources.Molasses, design[12][27]);	// Island 12, Assign: molasses
+		} else if(diceValue==5) {	//---------- Roll a 5 - islands 6 and 8 ---------------
+			checkArray(islands[5], playerColors, players, Resources.Gold, design[8][12]);		// Island 6, Assign: gold
+			checkArray(islands[7], playerColors, players, Resources.Goats, design[8][30]);		// Island 8, Assign: goat
+		} else {					//---------- Roll a 6 - ghost captain -----------------
+			moveGhostCaptain();
 		}
-		
-		//---------- Roll a 2 - Islands 2, 4, and 11 ----------
-		else if(diceValue==2) {	
-			checkArray(islands[1], playerColors, players, Resources.Wood);	// Island 2, Assign: wood
-			checkArray(islands[3], playerColors, players, Resources.Molasses);	// Island 4, Assign: molasses
-			checkArray(islands[10], playerColors, players, Resources.Goats);	// Island 11, Assign: goat
-		}
-		
-		//---------- Roll a 3 - islands 5 and 7 ---------------
-		else if(diceValue==3) {			// Roll a 3 - islands 5 and 7
-			checkArray(islands[4], playerColors, players, Resources.Wood);	// Island 5, Assign: wood
-			checkArray(islands[6], playerColors, players, Resources.Gold);	// Island 7, Assign: gold
-		}
-		
-		//---------- Roll a 4 - islands 9 and 12 --------------
-		else if(diceValue==4) {	
-			checkArray(islands[8], playerColors, players, Resources.Cutlasses);	// Island 9, Assign: Cutlass
-			checkArray(islands[11], playerColors, players, Resources.Molasses);	// Island 12, Assign: molasses
-		}
-		
-		//---------- Roll a 5 - islands 6 and 8 ---------------
-		else if(diceValue==5) {	
-			checkArray(islands[5], playerColors, players, Resources.Gold);	// Island 6, Assign: gold
-			checkArray(islands[7], playerColors, players, Resources.Goats);	// Island 8, Assign: goat
-		}
-		else {							// Roll a 6
-			// Ghost captain
-		}
-		
 	}
 	
-	
-	//protected int temp;
-	protected char[] playerColors = {'B','R', 'W', 'O'};
-	protected char playerColor;
-	protected Player player;
-	
-	//-----------------------------------------------------
-	//---------- Method: checkArray() ---------------------
-	// This method checks what players have a Lair touching 
-	// an island and assigns resources as needed
-	//-----------------------------------------------------
-	//public void checkArray(int[] testset, char playerColor, char[] lineArray){
-	public void checkArray(Island island, char[] playerColors, ArrayList<Player> players, Resources resource){
-		for (int j = 0; j <= players.size() - 1; j++) {
-			playerColor = playerColors[j];
-			player = players.get(j);
-			for (int i = 0; i <= island.getColumn().length - 1; i++) {
-				temp_row = island.getRow()[i];
-				temp_col = island.getColumn()[i];
-				if(design[temp_row][temp_col]==playerColor) {
-					player.addResource(resource, 1);
-					System.out.println("Add a " + resource + " for player " + player + " with color " + playerColor);
-					System.out.println(player.viewPocket());
+	//-----------------------------------------------------------------------------------------------
+	//---------- Method: checkArray() ---------------------------------------------------------------
+	// This method checks what players have a Lair touching an island and assigns resources as needed
+	//-----------------------------------------------------------------------------------------------
+	public void checkArray(Island island, char[] playerColors, ArrayList<Player> players, Resources resource, char isGhost){
+		if(isGhost != 'G') {
+			for (int j = 0; j <= players.size() - 1; j++) {
+				playerColor = playerColors[j];
+				player = players.get(j);
+				for (int i = 0; i <= island.getColumn().length - 1; i++) {
+					temp_row = island.getRow()[i];
+					temp_col = island.getColumn()[i];
+					if(design[temp_row][temp_col]==playerColor) {
+						player.addResource(resource, 1);
+						playerName = player.getName();
+						interactor.printMessage("Island check: success", resource, playerName);
+						System.out.println(player.viewPocket());
+					}
 				}
 			}
+		} else {	// If the ghost captain is on an island, no resources are distributed from it
+			interactor.printMessage("Island check: ghost captain");
 		}
-	}
-	
+	}	
 }

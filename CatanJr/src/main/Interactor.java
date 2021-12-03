@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 
 import player.Player;
+import resources.Resources;
 
 //this class is called to interact with user, taking in values, outputting to console etc
 public class Interactor {
@@ -24,6 +25,16 @@ public class Interactor {
 			System.out.println("Congratulations " + value + "! You're the Winner!\n");
 		}
 	}
+	
+	// Prints out message including two supplied values in the string
+		public void printMessage(String instruction, Resources value1, String value2) {
+			switch (instruction) {
+			case "Island check: success":
+				System.out.println("Add a " + value1 + " for player " + value2);
+				break;
+			}
+		}
+	
 
 	// Prints out message based on instruction given
 	public void printMessage(String instruction) {
@@ -133,6 +144,9 @@ public class Interactor {
 			break;
 		case "cocotile ship/lair":
 			System.out.println("Would you like to build a ship[S] or lair[L]:");
+			break;
+		case "Island check: ghost captain":
+			System.out.println("The ghost captain is on one island with this rolled value. Resources will  not be distributed from this island.");
 			break;
 		}
 	}
