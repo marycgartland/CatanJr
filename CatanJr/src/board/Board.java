@@ -430,18 +430,14 @@ public class Board {
 	
 
 	
-	// Check the dice roll values.... Might be better moving to GameManager later and just checking the board?
-	//----- Method: checkDiceRoll-----
-	// Notes: weird that I have to list them all out
-	// Will the islands update with the board?
-	// to do: assign resources
-	// Tidy up so its not so long
-	// add in the ghost captain part 
-	//ArrayList<Player>
+	//-----------------------------------------------------
+	//---------- Method: checkDiceRoll() ------------------
+	// This method checks islands according to the value  
+	// of the dice roll, and calls the checkArray method
+	//-----------------------------------------------------
+	// TODO: Might be better moving to GameManager later and just checking the board?
+	// TODO: add in the ghost captain part 
 	public void checkDiceRoll(int diceValue, Island[] islands, ArrayList<Player> players) {
-		//diceValue = dice.getDiceRollValue();
-//		checkArray(Test1, 'X', Line1); // temp
-		
 		//---------- Roll a 1 - Islands 1, 3 and 10 ----------
 		if(diceValue==1) {						
 			checkArray(islands[0], playerColors, players, Resources.Cutlasses);	// Island 1, Assign: Cutlass
@@ -479,18 +475,17 @@ public class Board {
 		
 	}
 	
-	// Make a separate function to check if the given position in the arrays has Each letter
-	// If the letter is there
 	
-	// Check the letter in a location
-	// if that letter exists, assign 1 of that resource to the player of that colour
-	// Method: check Array
-	
-	protected int temp;
+	//protected int temp;
 	protected char[] playerColors = {'B','R', 'W', 'O'};
 	protected char playerColor;
 	protected Player player;
 	
+	//-----------------------------------------------------
+	//---------- Method: checkArray() ---------------------
+	// This method checks what players have a Lair touching 
+	// an island and assigns resources as needed
+	//-----------------------------------------------------
 	//public void checkArray(int[] testset, char playerColor, char[] lineArray){
 	public void checkArray(Island island, char[] playerColors, ArrayList<Player> players, Resources resource){
 		for (int j = 0; j <= players.size() - 1; j++) {

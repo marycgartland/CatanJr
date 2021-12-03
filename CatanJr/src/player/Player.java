@@ -68,10 +68,10 @@ public class Player {
 	// need to all be zero, im just testing
 	public void setupUserPocket() {
 		pocket.put(Resources.Gold, 2);
-		pocket.put(Resources.Wood, 2);
+		pocket.put(Resources.Wood, 5); // change back to 2
 		pocket.put(Resources.Cutlasses, 2);
 		pocket.put(Resources.Molasses, 2);
-		pocket.put(Resources.Goats, 2);
+		pocket.put(Resources.Goats, 5); // change back to 2
 	}
 	
 	// Method that can be called when user purchases a cocotile, this will increase there count by 1

@@ -86,16 +86,19 @@ public class Interactor {
 			System.out.println("* Building lair *\n");
 			break;
 		case "trade M/S?":
-			System.out.println("Would you like to trade with the marketplace [M] or stockpile [S] ");
+			System.out.println("Would you like to trade with the marketplace [M], stockpile [S], or neither [N]?");
 			break;
 		case "trade S?":
-			System.out.println("Would you like to trade with the stockpile [S] ");
+			System.out.println("Would you like to trade with the stockpile? [Y/N] ");
 			break;
 		case "trade: M":
 			System.out.println("You have chosen to trade with the marketplace.\n");
 			break;
 		case "trade: S":
 			System.out.println("You have chosen to trade with the stockpile.\n");
+			break;
+		case "trade: N":
+			System.out.println("You have chosen not to trade. \n");
 			break;
 		case "trade in":
 			System.out.println(
