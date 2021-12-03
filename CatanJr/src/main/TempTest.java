@@ -14,11 +14,15 @@ import setup.ResourceSetup;
 
 public class TempTest {
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
+		GameManager gameManager = new GameManager();
+		gameManager.StartGame();
 		Board testboard = new Board();
 		Dice dice = new Dice();
 		//dice.rollDice();
 		//testboard.checkArray();
+		//(Dice dice, Island[] islands, Player[] players)
+		//testboard.checkDiceRoll(dice, islands, players);
 		//testboard.checkDiceRoll(dice); // uncomment this mary is working on it, the arguments are wrong
 		testboard.setUpIslands();
 

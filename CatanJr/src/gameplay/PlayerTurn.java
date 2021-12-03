@@ -1,6 +1,8 @@
 package gameplay;
 
 
+import java.util.ArrayList;
+
 // Some to do's (noting that this is very much not finished)
 // Combine all the valid option check methods into 1
 // Connect the build method to the board once that is set up
@@ -10,6 +12,7 @@ package gameplay;
 import java.util.Scanner;
 
 import board.Board;
+import board.Island;
 import board.Marketplace;
 import board.Stockpile;
 import gameplay.Dice;
@@ -64,11 +67,13 @@ public class PlayerTurn {
 
 	Dice dice1 = new Dice(); // The dice needs to be created in game setup, not here. Just added here for now 
 	
-	public void takeTurn() {
+	public void takeTurn(Island[] islands, ArrayList<Player> players) {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
 		System.out.println("It is your turn, "+ player.getName() + ". You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
 		// TODO: should assign resources depending on the value rolled
+		//checkDiceRoll(Dice dice, Island[] islands, Player[] players) in Board
+		board.checkDiceRoll(diceValue, islands, players);
 
 		//----- While the players turn isn't over, they will be presented with all options -----
 		while (turn == true) {
@@ -254,29 +259,43 @@ public class PlayerTurn {
 	//---------- Trade Method -----------------------------------
 	//-----------------------------------------------------------
 
+
+	private boolean onlyStockpile = false;
 	public void Trade() {
 		//----- Give the user options on what trade they wish to make -----
 		if(marketPlaceUse == 0) {	// You can only trade with the marketplace once per turn
 			interactor.printMessage("trade M/S?");
 		} else {
 			interactor.printMessage("trade S?");
+			onlyStockpile = true;
 		}
 		String option = interactor.takeInAnswer();
 		
-		//----- Option 1: Trade with Marketplace --------------------------
+		//----- Option 1: Trade with Marketplace ------------------------------------------
 			// Trade one tile from a players pocket (of choice) with one tile from marketplace (of choice)
-		if(option.equals("M") && marketPlaceUse == 0) {
+		if((option.equals("M") || option.equals("m")) && marketPlaceUse == 0) {
 			interactor.printMessage("trade: M");
 			marketplace.viewMarketplace();
 			tradeMarketplace(); 	// call method to trade with marketplace
 		}
 		
-		//----- Option 2: Trade with Stockpile ----------------------------
+		//----- Option 2: Trade with Stockpile --------------------------------------------
 			// can trade 2 of the same pocket tiles of choice with 1 tile from the stockpile
 			// No limit on times, only limited by resources in pocket/stockpile
-		else if(option.equals("S")) {
+		else if(option.equals("S") || option.equals("s")) {
 			interactor.printMessage("trade: S");
 			tradeStockpile(); // call method to trade with stockpile
+		}
+		
+		//----- Alternative option 2: Trade with Stockpile when it is the only choice -----
+		else if(onlyStockpile == true && (option.equals("Y") || option.equals("y"))) {
+			interactor.printMessage("trade: S");
+			tradeStockpile(); // call method to trade with stockpile
+		}
+		
+		//----- Option 3: Choose not to trade ---------------------------------------------
+		else if(option.equals("N") || option.equals("n")) {
+			interactor.printMessage("trade: N");
 		}
 
 		//----- Error check if the user selects an invalid option ---------
@@ -340,13 +359,13 @@ public class PlayerTurn {
 	//---------- Method: assign resources to Resource types------
 	//-----------------------------------------------------------
 	public Resources assignResourcesType(String resource_letter) {
-		if (resource_letter.equals("W")) {
+		if (resource_letter.equals("W") || resource_letter.equals("w")) {
 			return Resources.Wood;
-		} else if (resource_letter.equals("M")) {
+		} else if (resource_letter.equals("M") || resource_letter.equals("m")) {
 			return Resources.Molasses;
-		} else if (resource_letter.equals("GT")) {
+		} else if (resource_letter.equals("GT") || resource_letter.equals("gt")) {
 			return Resources.Goats;
-		} else if (resource_letter.equals("G")) {
+		} else if (resource_letter.equals("G") || resource_letter.equals("g")) {
 			return Resources.Gold;
 		} else {
 			return Resources.Cutlasses;
@@ -359,7 +378,7 @@ public class PlayerTurn {
 	//-----------------------------------------------------------
 	public boolean validResourceCheck(String enteredResource){
 		// If entered resource is  a valid resource return true, otherwise return false
-		if (enteredResource.equals("M") || enteredResource.equals("W") || enteredResource.equals("C") || enteredResource.equals("G") || enteredResource.equals("GT")) {
+		if (enteredResource.equals("M") || enteredResource.equals("m") || enteredResource.equals("W") || enteredResource.equals("w") || enteredResource.equals("C") || enteredResource.equals("c") || enteredResource.equals("G") || enteredResource.equals("g") || enteredResource.equals("gt")|| enteredResource.equals("GT")) {
 			return true;
 		} else {
 			interactor.printMessage("invalid resource");
