@@ -1,18 +1,9 @@
 package board;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
-
 import main.Interactor;
 import player.Player;
 import resources.Resources;
-import gameplay.Dice;
-import setup.PlayerSetup;
-import player.Player;
 
 public class Board {
 	// -------------------------------
@@ -38,10 +29,6 @@ public class Board {
 	// Upper case: Lair
 
 	// TODO: maybe take out dashes
-	// Track ship and Lair placements
-	// Provide ship/lair placement options to user when building
-	// Needs to look after ships and lairs, keeping track of placements 
-	// check which user has the most cocotiles: whichever user has the most, they can place their lair on spooky island
 	
 	
 	// -------------------------------
@@ -71,7 +58,10 @@ public class Board {
 		};
 	}
 	
-	//
+	// -----------------------------------------------
+	// ---------- Method: getBoardDesign() ----------
+	// This method returns the board design array
+	// -----------------------------------------------
 	public char[][] getBoardDesign() {
 		return design;
 	}
@@ -85,7 +75,10 @@ public class Board {
 		interactor.printBoard(this.design);
 	}
 		
-	// function that passes the created ghostcaptin created in boardsetup class and passes it to board class
+	// ------------------------------------------------------------
+	// ---------- Method: setGhostCaptain() -----------------------
+	// This method assgins the created ghostCaptain to its variable 
+	// ------------------------------------------------------------
 	public void setGhostCaptain(GhostCaptain ghostCaptain) {
 		this.ghostCaptain = ghostCaptain;
 	}
@@ -94,7 +87,6 @@ public class Board {
 	// ---------- Method: mostCocotiles() ---------------------------------------------------------------------
 	// This method determines which player has the most cocotiles. 
 	// If 'G' is no longer at the centre (design[8][18]), the user with the most cocotiles can add a lair here.
-	// This needs to be checked every turn by game manager. 
 	// --------------------------------------------------------------------------------------------------------
 	public void mostCocotiles(ArrayList<Player> players) {
 		int max = 0;
@@ -293,13 +285,12 @@ public class Board {
 	// Place a users ship on the board 
 	// Search for upper case of colour to search for lairs to connect ships to.
 	// ------------------------------------------------------------------------
-	// TODO: what happens when no ships are available
-	public boolean placeShip(String colour) {
+	public boolean placeShip(Player player) {
 		boolean continue_turn = false;
 		int count = 0;
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
-				if (design[i][j] == Character.toUpperCase(colour.charAt(0))) {
+				if (design[i][j] == Character.toUpperCase(player.getColour().charAt(0))) {
 					for (int p = j - 3; p <= j + 3; p++) { // Check row above for available ship place
 						if (design[i - 1][p] == '\\' || design[i - 1][p] == '/' || design[i - 1][p] == '|') {
 							symbolHolder[count] = design[i - 1][p];
@@ -309,30 +300,48 @@ public class Board {
 							symbolHolder[count] = design[i + 1][p];
 							design[i + 1][p] = options[count];
 							count = count + 1;
+						} else {
+
 						}
 					}
 				}
 			}
 		}
 		// Let user decide where they would like to build their ship
-		showBoardLayout();
-		interactor.printMessage("build ship option");
-		String location_number = interactor.takeInAnswer();
+		//showBoardLayout();
+		//interactor.printMessage("build ship option");
+		//String location_number = interactor.takeInAnswer();
 		// TODO: need to make sure players can only choose numbers and not letters,
 		// cause it will replace letters with lairs
+		// there are available options for the ship to be built
+		if (count > 0) {
 
-		// Place ship at users choice of location & replace
-		for (int i = 0; i <= 17 - 1; i++) {
-			for (int j = 0; j <= 38 - 1; j++) {
-				if (design[i][j] == location_number.charAt(0)) {
-					design[i][j] = colour.charAt(0);
-				} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
-						|| design[i][j] == '5') { // replace numbers with slashs
-					design[i][j] = symbolHolder[Character.getNumericValue(design[i][j]) - 1];
+			// Let user decide where they would like to build their ship
+			showBoardLayout();
+			System.out.print("Which number option would you like to build your ship at?: "); // TODO: move to interactor
+																								// class
+			String location_number = interactor.takeInAnswer();
+			// TODO: need to make sure players can only choose numbers and not letters,
+			// cause it will replace letters with lairs
+
+			// Place ship at users choice of location & replace
+			for (int i = 0; i <= 17 - 1; i++) {
+				for (int j = 0; j <= 38 - 1; j++) {
+					if (design[i][j] == location_number.charAt(0)) {
+						design[i][j] = player.getColour().charAt(0);
+						// Successfully placed a ship so take cost out of the players pocket
+						player.removeResource(Resources.Wood, 1);
+						player.removeResource(Resources.Goats, 1);
+					} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
+							|| design[i][j] == '5') { // replace numbers with slashs
+						design[i][j] = symbolHolder[Character.getNumericValue(design[i][j]) - 1];
+					}
 				}
 			}
+			showBoardLayout();
+		} else {
+			interactor.printMessage("no ships"); // no available space to place a ship
 		}
-		showBoardLayout();
 		return continue_turn = true;
 	}
 	
@@ -340,13 +349,12 @@ public class Board {
 	// ---------- Method: placeLair ----------
 	// Place a users lair on the board
 	// ---------------------------------------
-	// TODO: what if there are no options to place a lair?
-	public boolean placeLair(String colour) {
+	public boolean placeLair(Player player) {
 		boolean continue_turn = false;
 		int count = 0;
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
-				if (design[i][j] == colour.charAt(0)) {
+				if (design[i][j] == player.getColour().charAt(0)) {
 					for (int p = j - 3; p <= j + 3; p++) { // Check row above for available lair place
 						if (design[i - 1][p] == 'X') {
 							design[i - 1][p] = options[count];
@@ -354,6 +362,8 @@ public class Board {
 						} else if (design[i + 1][p] == 'X') {
 							design[i + 1][p] = options[count];
 							count = count + 1;
+						} else {
+							// no option to place a lair, must be placed with a ship
 						}
 					}
 				}
@@ -361,25 +371,39 @@ public class Board {
 		}
 
 		// Let user determine where they want to place their lair
-		showBoardLayout();
-		interactor.printMessage("build ship option");
-		String location_number = interactor.takeInAnswer();
+		//showBoardLayout();
+		//interactor.printMessage("build ship option");
+		//String location_number = interactor.takeInAnswer();
+		if (count > 0) {
+			// Let user determine where they want to place their lair
+			showBoardLayout();
+			System.out.print("Which number option would you like to build your lair at?: "); // add to interactor class
+			String location_number = interactor.takeInAnswer();
 
-		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
-		// place lair at users choice of location
-		// Place lair at users choice of location
-		for (int i = 0; i <= 17 - 1; i++) {
-			for (int j = 0; j <= 38 - 1; j++) {
-				if (design[i][j] == location_number.charAt(0)) {
-					design[i][j] = Character.toUpperCase(colour.charAt(0));
-				} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
-						|| design[i][j] == '5') { // replace numbers with X's again
-					design[i][j] = 'X';
+			// TODO: need to make sure players can only choose numbers and not letters,
+			// cause it will replace letters with lairs
+			// place lair at users choice of location
+			for (int i = 0; i <= 17 - 1; i++) {
+				for (int j = 0; j <= 38 - 1; j++) {
+					if (design[i][j] == location_number.charAt(0)) {
+						design[i][j] = Character.toUpperCase(player.getColour().charAt(0));
+						// successfully placed lair
+						// Take a goat, a wood, a cutlass, and a molasses out of the players pocket
+						player.removeResource(Resources.Wood, 1);
+						player.removeResource(Resources.Goats, 1);
+						player.removeResource(Resources.Cutlasses, 1);
+						player.removeResource(Resources.Molasses, 1);
+					} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
+							|| design[i][j] == '5') { // replace numbers with X's again
+						design[i][j] = 'X';
+					}
 				}
 			}
-		}
+			showBoardLayout();
 
-		showBoardLayout();
+		} else {
+			interactor.printMessage("no lairs");
+		}
 		return continue_turn = true;
 	}
 	

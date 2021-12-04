@@ -55,6 +55,7 @@ public class GameManager {
 					cocoTiles, board);
 			board.mostCocotiles(playerSetup.Players()); 							// Check if player with most cocotiles can place their lair on spooky island
 			playerTurn.takeTurn(board.getIslands(),playerSetup.Players()); 			// Player - take turn
+			interactor.printPocket(playerSetup.Players().get(player_turn)); // remove just for testing
 			player_turn = (player_turn + 1) % (playerSetup.Players().size()); 		// Loop through the players
 		} 
 		interactor.printMessage("winner", winner);	// If there is a winner declared, announce the winner

@@ -43,10 +43,7 @@ public class PlayerTurn {
 	protected Stockpile stockpile;
 	protected CocoTiles cocotiles;
 	protected Board board;
-	
-	// TODO need to make the next turn wait until user has chosen where to place lairs/ships
-
-	
+		
 	//-----------------------------------------------------------
 	//----------- Constructor -----------------------------------
 	//-----------------------------------------------------------
@@ -57,8 +54,7 @@ public class PlayerTurn {
 		this.marketplace = marketplace;
 		this.stockpile = stockpile;
 		this.cocotiles = cocotiles;
-		this.board = board;
-		
+		this.board = board;	
 	}
 	
 	//-----------------------------------------------------------
@@ -153,7 +149,7 @@ public class PlayerTurn {
 			stockpile.DistributeResource(Resources.Goats, 2);
 			stockpile.DistributeResource(Resources.Cutlasses, 2);
 			
-			System.out.println(player.viewPocket()); // should make interactor method that prints out users pocket
+			interactor.printPocket(player);
 
 		} else if (cocotile.equals(CocoTileTypes.WoodMolasses)) {
 			// add resources to users pocket
@@ -163,21 +159,20 @@ public class PlayerTurn {
 			// remove resources from stockpile
 			stockpile.DistributeResource(Resources.Wood, 2);
 			stockpile.DistributeResource(Resources.Molasses, 2);
-			System.out.println(player.viewPocket()); // should make interactor method that prints out users pocket
+			
+			interactor.printPocket(player);
 
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {
-			// need to access board in order to give user options to place the ghost captain
 			board.moveGhostCaptain();
 
 		} else if (cocotile.equals(CocoTileTypes.ShipCastle)) {
-			// need to let user place ships and lairs on board
-			// user can only build one
 			interactor.printMessage("cocotile ship/lair");
 			String build_option = interactor.takeInAnswer();
 			if(build_option.charAt(0)=='L') {
-				board.placeLair(player.getColour());
+				board.placeLair(player);
 			} else if(build_option.charAt(0) == 'S') {
-				board.placeShip(player.getColour());
+				board.placeShip(player);
+
 
 			}
 		}
@@ -198,7 +193,7 @@ public class PlayerTurn {
 			// Call buildShip or buildLair method based on user input
 			if(toBuild.equals("S") || toBuild.equals("s")) {
 				buildShip();
-			} else{
+			} else if (toBuild.equals("L") || toBuild.equals("l")){
 				buildLair();
 			} 
 		}
@@ -218,7 +213,6 @@ public class PlayerTurn {
 		}
 		
 	}
-		// If they choose a pirates lair or ship, place these on the board 
 		// Should pirates lair and ships be their own classes and objects probably?
 		// Build must be alternating ship and Lair 
 	
@@ -226,13 +220,10 @@ public class PlayerTurn {
 	//---------- Build Ship Method ------------------------------
 	//-----------------------------------------------------------
 	public void buildShip() {
-		// TO DO: placement of the ship
 		interactor.printMessage("build: ship");
-		// Take a goat and a wood out of the players pocket
-		player.removeResource(Resources.Wood, 1);
-		player.removeResource(Resources.Goats, 1);
 		turn = false; // pause turn until lair has been placed
-		turn = board.placeShip(player.getColour());
+		turn = board.placeShip(player);
+
 	}
 	
 	//-----------------------------------------------------------
@@ -241,14 +232,14 @@ public class PlayerTurn {
 		public void buildLair() {
 			// TO DO: placement of the ship
 			interactor.printMessage("build: lair");
-			// Take a goat, a wood, a cutlass, and a molasses out of the players pocket
-			player.removeResource(Resources.Wood, 1);
-			player.removeResource(Resources.Goats, 1);
-			player.removeResource(Resources.Cutlasses, 1);
-			player.removeResource(Resources.Molasses, 1);
+//			// Take a goat, a wood, a cutlass, and a molasses out of the players pocket
+//			player.removeResource(Resources.Wood, 1);
+//			player.removeResource(Resources.Goats, 1);
+//			player.removeResource(Resources.Cutlasses, 1);
+//			player.removeResource(Resources.Molasses, 1);
 			player.addLair();
 			turn = false; // pause turn until lair has been placed
-			turn = board.placeLair(player.getColour());
+			turn = board.placeLair(player);
 
 		}
 	
@@ -325,7 +316,7 @@ public class PlayerTurn {
 						// Can only trade with Marketplace once per turn 
 						marketPlaceUse = 1; // successful trade with marketplace
 						marketplace.SwapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
-						System.out.println(player.viewPocket()); // show user their pocket
+						interactor.printPocket(player);
 					} else {
 						interactor.printMessage("cannot trade");
 					}
@@ -348,7 +339,7 @@ public class PlayerTurn {
 			if(validResourceCheck(trade_in)) {
 				if (player.checkPocketResourcesLetter(trade_in) > 1) { // user needs to have more than 2 of the resource for a swap with stockpile
 					stockpile.SwapStockpile(assignResourcesType(trade_out), assignResourcesType(trade_in), player); // call stockpile swap method
-					System.out.println(player.viewPocket()); // show user their pocket
+					interactor.printPocket(player);
 				} else {
 					interactor.printMessage("cannot trade");
 				}
@@ -389,5 +380,5 @@ public class PlayerTurn {
 		}
 		
 	}	
-}
+	}
 	
