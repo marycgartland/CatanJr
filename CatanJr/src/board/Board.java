@@ -336,6 +336,8 @@ public class Board {
 		showBoardLayout();
 		System.out.print("Which number option would you like to build your ship at?: ");
 		String location_number = interactor.takeInAnswer();
+		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
+
 		
 		
 		// place ship at users choice of location
@@ -393,6 +395,7 @@ public class Board {
 		System.out.print("Which number option would you like to build your lair at?: ");
 		String location_number = interactor.takeInAnswer();
 
+		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
 		// place lair at users choice of location
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
@@ -405,7 +408,6 @@ public class Board {
 		// replace numbers with X's again
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
-
 				if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
 						|| design[i][j] == '5') {
 					design[i][j] = 'X';
