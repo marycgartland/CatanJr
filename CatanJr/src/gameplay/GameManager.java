@@ -69,10 +69,19 @@ public class GameManager {
 	public boolean checkWinner(ArrayList<Player> players) {
 		for (int i = 0; i <= players.size() - 1; i++) {
 			if(players.get(i).getLairCount()>=7) {
-				this.winner = players.get(i).getName();
+				this.winner = players.get(i).PlayerName();
 				return true; // There is a winner
 			} 
 		}
 		return false;
 	}
+	
+	// -------------------------------------------------------------
+		// ---------- Method: checkWinner ------------------------------
+		// This method checks players layers count to check for a winner
+		// It does this by checking if a player has 7 or more layers 
+		// -------------------------------------------------------------
+		public String getWinner() {
+			return winner;
+		}
 }

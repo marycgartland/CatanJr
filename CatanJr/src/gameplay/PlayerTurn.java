@@ -66,7 +66,7 @@ public class PlayerTurn {
 	public void takeTurn(Island[] islands, ArrayList<Player> players) {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
-		interactor.printMessage("Player roll", player.getName(), diceValue);
+		interactor.printMessage("Player roll", player.PlayerName(), diceValue);
 		board.islandResourceDistribution(diceValue, islands, players);
 
 		//----- While the players turn isn't over, they will be presented with all options -----
@@ -304,6 +304,7 @@ public class PlayerTurn {
 	public void tradeMarketplace() {
 		interactor.printMessage("trade out"); // what item does user want to obtain
 		String trade_out = interactor.takeInAnswer();
+		interactor.printMessage("trade out resource", trade_out);
 		if (validResourceCheck(trade_out)) { // check if trade_out is vaild option
 			boolean in_stock = marketplace.CheckForResourceMarketplace(assignResourcesType(trade_out)); // check if has marketplace has this in stock
 																										
@@ -311,6 +312,7 @@ public class PlayerTurn {
 				interactor.printMessage("marketplace: in-stock");
 				interactor.printMessage("trade in"); // what item does user want to trade in
 				String trade_in = interactor.takeInAnswer();
+				interactor.printMessage("trade in resource", trade_in);
 				if (validResourceCheck(trade_in)) { // check if this trade_in answer is valid
 					if (player.checkPocketResourcesLetter(trade_in) > 0) { // check users pocket to see if they have the resources to swap
 						// Can only trade with Marketplace once per turn 

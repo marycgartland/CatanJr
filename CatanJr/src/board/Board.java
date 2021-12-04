@@ -216,7 +216,8 @@ public class Board {
 				}
 			}
 		}
-		System.out.println("Island Number Layout:");
+		// Print out board with number layout
+		interactor.printMessage("Number layout");
 		showBoardLayout();	// Print out board
 
 		// revert back to map without numbers once the numbered map has been shown
@@ -380,7 +381,7 @@ public class Board {
 
 			while (!integer_given) {
 				showBoardLayout();
-				interactor.printMessage("build ship option");
+				interactor.printMessage("build lair option");
 				String location_number = interactor.takeInAnswer();
 
 				List<String> comparison_list = Arrays.asList(options_string);
@@ -396,7 +397,7 @@ public class Board {
 								player.removeResource(Resources.Goats, 1);
 								player.removeResource(Resources.Cutlasses, 1);
 								player.removeResource(Resources.Molasses, 1);
-								interactor.printMessage("liar built");
+								interactor.printMessage("lair built");
 							} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
 									|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with X's again
 								design[i][j] = 'X';

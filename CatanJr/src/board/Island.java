@@ -62,7 +62,7 @@ public class Island {
 					temp_col = columns[i];
 					if(design[temp_row][temp_col]==playerColor) {
 						player.addResource(resource, 1);
-						playerName = player.getName();
+						playerName = player.PlayerName();
 						interactor.printMessage("Island check: success", resource, playerName);
 						System.out.println(player.viewPocket());
 						}
