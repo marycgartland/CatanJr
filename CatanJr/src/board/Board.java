@@ -316,8 +316,7 @@ public class Board {
 		}
 		// Let user decide where they would like to build their ship
 		showBoardLayout();
-		System.out.print("Which number option would you like to build your ship at?: "); // TODO: move to interactor
-																							// class
+		interactor.printMessage("build ship option");
 		String location_number = interactor.takeInAnswer();
 		// TODO: need to make sure players can only choose numbers and not letters,
 		// cause it will replace letters with lairs
@@ -363,7 +362,7 @@ public class Board {
 
 		// Let user determine where they want to place their lair
 		showBoardLayout();
-		System.out.print("Which number option would you like to build your lair at?: "); // add to interactor class
+		interactor.printMessage("build ship option");
 		String location_number = interactor.takeInAnswer();
 
 		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
@@ -398,6 +397,8 @@ public class Board {
 	}
 
 	
+	
+	// TODO: might try move this into 'dice'
 	//----------------------------------------------------------------------------------------------------
 	//---------- Method: checkDiceRoll() -----------------------------------------------------------------
 	// This method checks islands according to the value of the dice roll, and calls the checkArray method

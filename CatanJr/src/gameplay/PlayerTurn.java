@@ -70,9 +70,7 @@ public class PlayerTurn {
 	public void takeTurn(Island[] islands, ArrayList<Player> players) {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
-		System.out.println("It is your turn, "+ player.getName() + ". You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
-		// TODO: should assign resources depending on the value rolled
-		//checkDiceRoll(Dice dice, Island[] islands, Player[] players) in Board
+		interactor.printMessage("Player roll", player.getName(), diceValue);
 		board.checkDiceRoll(diceValue, islands, players);
 
 		//----- While the players turn isn't over, they will be presented with all options -----
@@ -390,41 +388,6 @@ public class PlayerTurn {
 			return false;
 		}
 		
-	}
-	
-	// Methods not needed anymore:
-	//-----------------------------------------------------------
-	//---------- Method: TradeIn --------------------------------
-	//-----------------------------------------------------------
-//	public String tradeIn() {
-//		tradeInValid = false;
-//		while(tradeInValid == false) {
-//			interactor.printMessage("trade in");
-//			tradeInItem = interactor.takeInAnswer();
-//			tradeInValid = validResourceCheck(tradeInItem);
-//		}
-//		
-//		tradeInResource = assignResources(tradeInItem);	// Assign the word value to the letter entered
-//		interactor.printMessage("trade in resource", tradeInResource );
-//		return tradeInResource;	// Return the selected resource to the user
-//	}
-	
-	
-	//-----------------------------------------------------------
-	//---------- Method: TradeOut --------------------------------
-	//-----------------------------------------------------------
-//	public String tradeOut() {
-//		tradeOutValid = false;
-//		while(tradeOutValid == false) {
-//			interactor.printMessage("trade out");
-//			tradeOutItem = interactor.takeInAnswer();
-//			tradeOutValid = validResourceCheck(tradeOutItem);
-//		}
-//		
-//		tradeOutResource = assignResources(tradeOutItem);	// Assign the word value to the letter entered
-//		interactor.printMessage("trade out resource", tradeOutResource );
-//		return tradeOutResource;	// Return the selected resource to the user
-//	}
-	
+	}	
 }
 	
