@@ -138,7 +138,7 @@ public class Interactor {
 			System.out.println("You successfully traded with the marketplace\n");
 			break;
 		case "move ghost captain":
-			System.out.println("Where which island would you like to move the ghost captain to?:\n");
+			System.out.println("Which island would you like to move the ghost captain to?:\n");
 			break;
 		case "GC moved":
 			System.out.println("Ghost Captain has been moved\n");
@@ -154,6 +154,9 @@ public class Interactor {
 			break;
 		case "no lairs":
 			System.out.println("There are no available spaces to build your lair, lairs must be connected to a ship\n");
+			break;
+		case "invalid island":
+			System.out.println("This is not a valid island number, please choose again\n");
 			break;
 		}
 	}

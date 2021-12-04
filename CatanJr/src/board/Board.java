@@ -1,6 +1,9 @@
 package board;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import main.Interactor;
 import player.Player;
 import resources.Resources;
@@ -141,24 +144,41 @@ public class Board {
 	// ---------- moveGhostCaptain() -----------
 	// Moves the ghost captain to another island
 	// -----------------------------------------
-	// TODO: cannot move ghost captain to spooky island if a users lairs is there because they have the most cocotiles
+	// TODO: cannot move ghost captain to spooky island if a users lairs is there
+	// because they have the most cocotiles
 	public void moveGhostCaptain() {
-		interactor.printMessage("move ghost captain");					// Ask user which island they want to move the ghost captain to.
-		showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation());	// Replace centers of island with their island #'s
-		String island_number = interactor.takeInAnswer();				// Take in user's response
-		ghostCaptain.updateLocationGC(Integer.parseInt(island_number)); // update location of GC
-		for (int i = 0; i <= 17 - 1; i++) {
-			for (int j = 0; j <= 38 - 1; j++) {
-				if (design[i][j] == 'G') {
-					design[i][j] = '-';
-					possibleLocationGhostCaptain(Integer.parseInt(island_number)); // Place 'G' to specificed location
+		boolean integer_given = false;
+		String[] island_numbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" };
+
+		while (!integer_given) {
+
+			interactor.printMessage("move ghost captain"); // Ask user which island they want to move the ghost captain
+			showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); // Replace centers of island with their// island #'s
+			String number = interactor.takeInAnswer(); // Take in user's response
+
+			List<String> comparison_list = Arrays.asList(island_numbers);
+
+			if (comparison_list.contains(number)) { // determine if number is a valid island number
+				ghostCaptain.updateLocationGC(Integer.parseInt(number)); // update location of GC
+				for (int i = 0; i <= 17 - 1; i++) {
+					for (int j = 0; j <= 38 - 1; j++) {
+						if (design[i][j] == 'G') {
+							design[i][j] = '-';
+							possibleLocationGhostCaptain(Integer.parseInt(number)); // Place 'G' to specificed location
+						}
+					}
 				}
+				interactor.printMessage("GC moved"); // Confirm that the ghost captain has been moved
+				showBoardLayout();
+				integer_given = true; // end loop
+			} else {
+				interactor.printMessage("invalid island");
+				integer_given = false;
+
 			}
 		}
-		interactor.printMessage("GC moved");	// Confirm that the ghost captain has been moved
-		showBoardLayout();						// Show new layout of the board
+
 	}
-	
 	
 	// ------------------------------------------------------------
 	// ---------- Method: showIslandNumberLayout ------------------
