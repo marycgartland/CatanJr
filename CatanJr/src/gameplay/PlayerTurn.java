@@ -66,9 +66,7 @@ public class PlayerTurn {
 	public void takeTurn(Island[] islands, ArrayList<Player> players) {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
-		System.out.println("It is your turn, "+ player.getName() + ". You rolled a " + diceValue + ".\n"); // add in player.name once player is set up
-		// TODO: should assign resources depending on the value rolled
-		//checkDiceRoll(Dice dice, Island[] islands, Player[] players) in Board
+		interactor.printMessage("Player roll", player.getName(), diceValue);
 		board.checkDiceRoll(diceValue, islands, players);
 
 		//----- While the players turn isn't over, they will be presented with all options -----
@@ -381,7 +379,6 @@ public class PlayerTurn {
 			return false;
 		}
 		
+	}	
 	}
-	
-}
 	

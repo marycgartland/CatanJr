@@ -88,6 +88,12 @@ public class Interactor {
 		case "build ship?":
 			System.out.println("Would you like to build a ship? [Y/N] ");
 			break;
+		case "build ship option":
+			System.out.println("Which number option would you like to build your ship at?: ");
+			break;
+		case "build lair option":
+			System.out.println("Which number option would you like to build your lair at?: "); 
+			break;
 		case "cannot buy ship/lair":
 			System.out.println("You do not have enough resources to build either a ship or a lair.\n");
 			break;
@@ -176,6 +182,15 @@ public class Interactor {
 		System.out.print("\n");
 	}
 	
+	// Prints out message including two supplied values (one string, one int)
+	public void printMessage(String instruction, String value1, int value2) {
+		switch (instruction) {
+		case "Player roll":
+			System.out.println("It is your turn, "+ value1 + ". You rolled a " + value2);
+			break;
+			}
+		}
+			
 	// Method to print out users pocket
 	public void printPocket(Player player) {
 		System.out.println(player.viewPocket());		
