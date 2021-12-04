@@ -48,7 +48,6 @@ public class Board {
 	protected int temp_col;		// Selected column value
 	private String playerName;
 
-	
 	// Lower case: Ship
 	// Upper case: Lair
 
@@ -58,6 +57,7 @@ public class Board {
 	// Provide ship/lair placement options to user when building
 	// Needs to look after ships and lairs, keeping track of numbers and placements 
 	// check which user has the most cocotiles: whichever user has the most, they can place their lair on spooky island
+	
 	
 	// -------------------------------
 	// ---------- Constructor --------
@@ -85,58 +85,74 @@ public class Board {
 		};
 	}
 	
-	// Method to display board layout
+	
+	// NOTE FROM MG TO EP(4/12): I switched this to the interactor class, new method is right below this
+	// If you think that this isn't how it should be set up then feel free to uncomment this and delete interactor section
+	// Otherwise, we can delete the stuff below. Seems to be working fine to me but since you worked with it more you might spot erros
+	//public void showBoardLayout() {
+	//	System.out.println("Board Layout:");
+	//	for (int i = 0; i <= 17 - 1; i++) {
+	//		for (int j = 0; j <= 38 - 1; j++) {
+	//			System.out.print(design[i][j]);
+	//		}
+	//		System.out.print("\n");
+	//	}
+	//	System.out.print("\n");
+	//}
+	
+	
+	// -----------------------------------------------
+	// ---------- Method: showBoardLayout() ----------
+	// This method displays the layout of the board
+	// -----------------------------------------------
 	public void showBoardLayout() {
-		System.out.println("Board Layout:");
-
-		for (int i = 0; i <= 17 - 1; i++) {
-			for (int j = 0; j <= 38 - 1; j++) {
-				System.out.print(design[i][j]);
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n");
-	
-	}
-	
-	// place ghost captain on an island
-	// this will stop users from obtaining resources from this island
-	// when game is setup the ghost captain is setup in centre of the board
-	public void setupGhostCaptain() {
-		ghostCaptain = new GhostCaptain(13); // setup ghost chaptain in spooky island (island = 13)
-		design[8][18] = 'G';
+		interactor.printBoard(this.design);
 	}
 	
 	
-	// this needs to be checked every turn by game manager
-	// if G is no longer at design[8][18], then user with the most cocotiles can add a lair here
-	// this determines which player has the most cocotiles and places a lair of theres in the centre if the ghost captain is not there
+	// ----------------------------------------------------------------
+	// ---------- Method: setUpGhostCaptain() -------------------------
+	// This method sets up the ghost captain in the center of the board
+	// This stops the users obtaining resources from islands its on
+	//-----------------------------------------------------------------
+	public void setUpGhostCaptain() {
+		ghostCaptain = new GhostCaptain(13); 	// Setup ghost captain on spooky island (island = 13)
+		design[8][18] = 'G';					// 'G' represents location of ghost captain on board
+	}
+	
+	
+	// --------------------------------------------------------------------------------------------------------
+	// ---------- Method: mostCocotiles() ---------------------------------------------------------------------
+	// This method determines which player has the most cocotiles. 
+	// If 'G' is no longer at the centre (design[8][18]), the user with the most cocotiles can add a lair here.
+	// This needs to be checked every turn by game manager. 
+	// --------------------------------------------------------------------------------------------------------
 	public void mostCocotiles(ArrayList<Player> players) {
-
 		int max = 0;
 		char maxchar = '-';
-		if (design[8][18] != 'G') { // if the ghost captain isnt in the centre island there is potential for a player to place their lair their
-
+		if (design[8][18] != 'G') {	// Check that the Ghost captain isn't at the centre of the board
 			for (int i = 0; i <= players.size() - 1; i++) {
+				// If player has more cocotiles then another need to remove the previous players lair and reduce the number
 				if (players.get(i).getCocoTileCount() > max) {
-					reduceLairCount(maxchar, players); // if player has more cocotiles then another need to remove the
-														// previous players lair and reduce the number
+					reduceLairCount(maxchar, players);	
 					max = players.get(i).getCocoTileCount();
 					maxchar = players.get(i).getColour().charAt(0);
 				} else if (players.get(i).getCocoTileCount() == max) {
-					reduceLairCount(maxchar, players); // if player has more cocotiles then another need to remove the
-														// previous players lair and reduce the number
+					reduceLairCount(maxchar, players); 							
 					maxchar = '-';
 				}
 			}
 			placeLairMostCocotile(maxchar, players);
 		}
 		showBoardLayout();
-
 	}
 	
-	// find player and reduce their lair count by one
-	 // if player has more cocotiles then another need to remove the previous players lair and reduce the number
+	
+	// -----------------------------------------------------------------------------------------
+	// ---------- Method: reduceLairCount ------------------------------------------------------
+	// Finds player and reduces their lair count by 1
+	// If a new player has the most cocotiles, remove the previous players lair and reduce the #
+	// -----------------------------------------------------------------------------------------
 	public void reduceLairCount(char colour, ArrayList<Player> players ) {
 		for(int i=0;i<=players.size()-1;i++) {
 			if(players.get(i).getColour().charAt(0)==colour) {
@@ -146,7 +162,10 @@ public class Board {
 	}
 	
 	
-	// method to place the lair on spooky island based on who has the most cocotiles
+	// ----------------------------------------------------------------
+	// ---------- Method: placeLairMostCocotile -----------------------
+	// Places lair on spooky island based on who has the most cocotiles 
+	// ----------------------------------------------------------------
 	public void placeLairMostCocotile(char player_colour, ArrayList<Player> players) {
 		design[8][18] = Character.toUpperCase(player_colour);
 		for(int i=0;i<=players.size()-1;i++) {
@@ -157,15 +176,15 @@ public class Board {
 	}
 	
 	
-	
-	// Method to move ghost captain to another island
+	// -----------------------------------------
+	// ---------- moveGhostCaptain() -----------
+	// Moves the ghost captain to another island
+	// -----------------------------------------
 	// TODO: cannot move ghost captain to spooky island if a users lairs is there because they have the most cocotiles
 	public void moveGhostCaptain() {
-		// ask user which island they want to move the ghost captain to.
-		interactor.printMessage("move ghost captain");
-		// replace centers of island with their island numbers
-		showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation());
-		String island_number = interactor.takeInAnswer();
+		interactor.printMessage("move ghost captain");					// Ask user which island they want to move the ghost captain to.
+		showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation());	// Replace centers of island with their island #'s
+		String island_number = interactor.takeInAnswer();				// Take in user's response
 		ghostCaptain.updateLocationGC(Integer.parseInt(island_number)); // update location of GC
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
@@ -175,17 +194,19 @@ public class Board {
 				}
 			}
 		}
-		interactor.printMessage("GC moved");
-		showBoardLayout();
+		interactor.printMessage("GC moved");	// Confirm that the ghost captain has been moved
+		showBoardLayout();						// Show new layout of the board
 	}
 	
 	
-	// method that shows the user the board with the corresponding island numbers
+	// ------------------------------------------------------------
+	// ---------- Method: showIslandNumberLayout ------------------
+	// Displays board with the corresponding island numbers to user 
+	// ------------------------------------------------------------
 	public void showIslandNumberLayout(int current_GC_location) {
-		
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
-				// need to make sure that not trying to place ghost captain on top of someones existing lair on spooky island or ghost captain
+				// Make sure user isn't trying to place ghost captain on top of someone's existing lair on spooky island or ghost captain
 				if (design[i][j]!='B' && design[i][j] != 'R' && design[i][j] != 'W' && design[i][j] != 'O' && design[i][j] != 'G') {
 					switch (i) {
 					case 4:
@@ -231,16 +252,19 @@ public class Board {
 				}
 			}
 		}
-
 		System.out.println("Island Number Layout:");
+		showBoardLayout();	// Print out board
+		
+		// NOTE FROM MG TO EP (4/12): the line above should be able to print out instead of repeating all the lines below.
+		// I commented them out for now. If you agree you can delete them, otherwise just delete the 1 line above, and uncomment the lines below
 
-		for (int i = 0; i <= 17 - 1; i++) {
-			for (int j = 0; j <= 38 - 1; j++) {
-				System.out.print(design[i][j]);
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n");
+		//for (int i = 0; i <= 17 - 1; i++) {
+		//	for (int j = 0; j <= 38 - 1; j++) {
+		//		System.out.print(design[i][j]);
+		//	}
+		//	System.out.print("\n");
+		//}
+		//System.out.print("\n");
 
 		// revert back to map without numbers once the numbered map has been shown
 		possibleLocationGhostCaptain(current_GC_location); // Place 'G' to specificed location
@@ -256,7 +280,11 @@ public class Board {
 		}
 	}
 	
-	// method that outlines the possilbe locations of ghost captains ( the centre of each island)
+	
+	// ----------------------------------------------------------------------------
+	// ---------- Method: possibleLocationGhostCaptain ----------------------------
+	// Outline possible locations for the ghost captain (the centre of each island)
+	// ----------------------------------------------------------------------------
 	public void possibleLocationGhostCaptain(int location) {
 		switch (location) {
 		case 1:
@@ -302,27 +330,27 @@ public class Board {
 	}
 	
 	
-	// place a users ship on the board
-	// search for upper case of colour to search for lairs to connect ships to.
+	// ------------------------------------------------------------------------
+	// ---------- Method: placeShip -------------------------------------------
+	// Place a users ship on the board 
+	// Search for upper case of colour to search for lairs to connect ships to.
+	// ------------------------------------------------------------------------
 	// TODO: what happens when no ships are available
+	// NOTE FROM MG TO EP: could be being stupid cuz im tired, but the 2 for loops are the same. could you not just have 1 for loop with the 2 if statements in it?
 	public boolean placeShip(String colour) {
 		boolean continue_turn = false;
 		int count = 0;
-		
-		
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == Character.toUpperCase(colour.charAt(0))) {
-					// check row above for available ship place
-					for (int p = j - 3; p <= j + 3; p++) {
+					for (int p = j - 3; p <= j + 3; p++) {	// Check row above for available ship place
 						if (design[i - 1][p] == '\\' || design[i - 1][p] == '/' || design[i - 1][p] == '|' ) {
 							symbolHolder[count] = design[i - 1][p];
 							design[i - 1][p] = options[count];
 							count = count + 1;
 						}
 					}
-					// check row below for available ship place
-					for (int q = j - 3; q <= j + 3; q++) {
+					for (int q = j - 3; q <= j + 3; q++) {	// Check row below for available ship place
 						if (design[i + 1][q] == '\\' || design[i + 1][q] == '/' || design[i + 1][q] == '|') {
 							symbolHolder[count] = design[i+1][q];
 							design[i + 1][q] = options[count];
@@ -333,14 +361,15 @@ public class Board {
 			}
 		}
 		
+		// Let user decide where they would like to build their ship
 		showBoardLayout();
 		System.out.print("Which number option would you like to build your ship at?: ");
 		String location_number = interactor.takeInAnswer();
 		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
 
 		
-		
-		// place ship at users choice of location
+		// Place ship at users choice of location
+		// NOTE FROM MARY TO EMMA: once again, these 2 double 4 loops are the same - could we put the 2 double for loops, with 2 if statements in them?
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == location_number.charAt(0)) {
@@ -349,8 +378,7 @@ public class Board {
 			}
 		}
 
-		
-		// replace numbers with slash's or lines again
+		// Replace numbers with slash's or lines again
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 
@@ -363,26 +391,26 @@ public class Board {
 		return continue_turn = true;
 	}
 	
-	
-	
-	// place a users lair on the board
+
+	// ---------------------------------------
+	// ---------- Method: placeLair ----------
+	// Place a users lair on the board
+	// ---------------------------------------
+	// NOTE FROM MAZ TO EMA: Same comment as before with the for loops
 	// TODO: what if there are no options to place a lair?
 	public boolean placeLair(String colour) {
 		boolean continue_turn = false;
 		int count = 0;
-
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == colour.charAt(0)) {
-					// check row above for available lair place
-					for (int p = j - 3; p <= j + 3; p++) {
+					for (int p = j - 3; p <= j + 3; p++) { // Check row above for available lair place
 						if (design[i - 1][p] == 'X') {
 							design[i - 1][p] = options[count];
 							count = count + 1;
 						}
 					}
-					// check row below for available lair place
-					for (int q = j - 3; q <= j + 3; q++) {
+					for (int q = j - 3; q <= j + 3; q++) { // Check row below for available lair place
 						if (design[i + 1][q] == 'X') {
 							design[i + 1][q] = options[count];
 							count = count + 1;
@@ -391,12 +419,16 @@ public class Board {
 				}
 			}
 		}
+		
+		// Let user determine where they want to place their lair
 		showBoardLayout();
 		System.out.print("Which number option would you like to build your lair at?: ");
 		String location_number = interactor.takeInAnswer();
 
 		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
 		// place lair at users choice of location
+		// NOTE FROM MAZ: Same for loop situation. 
+		// Place lair at users choice of location
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == location_number.charAt(0)) {
@@ -405,7 +437,7 @@ public class Board {
 			}
 		}
 
-		// replace numbers with X's again
+		// Replace numbers with X's again
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
@@ -414,12 +446,14 @@ public class Board {
 				}
 			}
 		}
-
 		showBoardLayout();
 		return continue_turn = true;
 	}
 	
-	// Function to define starting positions of blue players ships and lairs
+	// ----------------------------------------------------------
+	// ---------- Method: setupBluePlayerLocations --------------
+	// Define starting positions of blue player's ships and lairs
+	// ----------------------------------------------------------
 	public void setupBluePlayerLocations() {
 		design[5][30] = 'B';
 		design[6][28] = 'b';
@@ -427,7 +461,10 @@ public class Board {
 		design[12][12] = 'b';
 	}
 
-	// Function to define starting positions of red players ships and lairs
+	// ---------------------------------------------------------
+	// ---------- Method: setupRedPlayerLocations --------------
+	// Define starting positions of Red player's ships and lairs
+	// ---------------------------------------------------------
 	public void setupRedPlayerLocations() {
 		design[3][12] = 'R';
 		design[4][12] = 'r';
@@ -435,7 +472,10 @@ public class Board {
 		design[11][30] = 'R';
 	}
 
-	// Function to define starting positions of white players ships and lairs
+	// -----------------------------------------------------------
+	// ---------- Method: setupWhitePlayerLocations --------------
+	// Define starting positions of White player's ships and lairs
+	// -----------------------------------------------------------
 	public void setupWhitePlayerLocations() {
 		design[5][6] = 'W';
 		design[6][8] = 'w';
@@ -443,7 +483,10 @@ public class Board {
 		design[13][24] = 'W';
 	}
 
-	// Function to define starting positions of orange players ships and lairs
+	// ------------------------------------------------------------
+	// ---------- Method: setupOrangePlayerLocations --------------
+	// Define starting positions of Orange player's ships and lairs
+	// ------------------------------------------------------------
 	public void setupOrangePlayerLocations() {
 		design[3][24] = 'O';
 		design[4][24] = 'o';
@@ -451,7 +494,10 @@ public class Board {
 		design[11][6] = 'O';
 	}
 
+	// -------------------------------------------------------------
+	// ---------- Method: setupBoard -------------------------------
 	// Setup Board design, place users first ship and lairs on board
+	// -------------------------------------------------------------
 	// TODO: put this setup in BoardSetup class 
 	public void setupBoard(int numberplayers) {
 		if (numberplayers == 1) {
@@ -475,6 +521,7 @@ public class Board {
 	//---------- Method: setUpIslands() ----------------------------------------------
 	// This method sets up the islands with the possible lair locations surrounding it 
 	//--------------------------------------------------------------------------------
+	// TODO: Move to board setup?
 	public void setUpIslands() {
 		Island island1  = new Island(rows1,cols1);
 		Island island2  = new Island(rows2,cols2);
@@ -504,6 +551,7 @@ public class Board {
 		//}
 	}
 	
+	
 	//-----------------------------------------------
 	//---------- Method: getIslands() ---------------
 	// This method returns an array of the 12 islands
@@ -511,6 +559,7 @@ public class Board {
 	public Island[] getIslands() {
 		return islands;
 	}
+	
 	
 	//----------------------------------------------------------------------------------------------------
 	//---------- Method: checkDiceRoll() -----------------------------------------------------------------
@@ -540,10 +589,12 @@ public class Board {
 		}
 	}
 	
+	
 	//-----------------------------------------------------------------------------------------------
 	//---------- Method: checkArray() ---------------------------------------------------------------
 	// This method checks what players have a Lair touching an island and assigns resources as needed
 	//-----------------------------------------------------------------------------------------------
+	// QUESTION FROM MARY TO EMMA: should this be in 'island' class or 'board' class do you think?
 	public void checkArray(Island island, char[] playerColors, ArrayList<Player> players, Resources resource, char isGhost){
 		if(isGhost != 'G') {
 			for (int j = 0; j <= players.size() - 1; j++) {
