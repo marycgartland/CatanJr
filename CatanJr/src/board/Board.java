@@ -337,12 +337,10 @@ public class Board {
 		return continue_turn = true;
 	}
 	
-
 	// ---------------------------------------
 	// ---------- Method: placeLair ----------
 	// Place a users lair on the board
 	// ---------------------------------------
-	// NOTE FROM MAZ TO EMA: Same comment as before with the for loops
 	// TODO: what if there are no options to place a lair?
 	public boolean placeLair(String colour) {
 		boolean continue_turn = false;
@@ -354,44 +352,34 @@ public class Board {
 						if (design[i - 1][p] == 'X') {
 							design[i - 1][p] = options[count];
 							count = count + 1;
-						}
-					}
-					for (int q = j - 3; q <= j + 3; q++) { // Check row below for available lair place
-						if (design[i + 1][q] == 'X') {
-							design[i + 1][q] = options[count];
+						} else if (design[i + 1][p] == 'X') {
+							design[i + 1][p] = options[count];
 							count = count + 1;
 						}
 					}
 				}
 			}
 		}
-		
+
 		// Let user determine where they want to place their lair
 		showBoardLayout();
-		System.out.print("Which number option would you like to build your lair at?: ");
+		System.out.print("Which number option would you like to build your lair at?: "); // add to interactor class
 		String location_number = interactor.takeInAnswer();
 
 		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
 		// place lair at users choice of location
-		// NOTE FROM MAZ: Same for loop situation. 
 		// Place lair at users choice of location
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == location_number.charAt(0)) {
 					design[i][j] = Character.toUpperCase(colour.charAt(0));
-				}
-			}
-		}
-
-		// Replace numbers with X's again
-		for (int i = 0; i <= 17 - 1; i++) {
-			for (int j = 0; j <= 38 - 1; j++) {
-				if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
-						|| design[i][j] == '5') {
+				} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
+						|| design[i][j] == '5') { // replace numbers with X's again
 					design[i][j] = 'X';
 				}
 			}
 		}
+
 		showBoardLayout();
 		return continue_turn = true;
 	}
