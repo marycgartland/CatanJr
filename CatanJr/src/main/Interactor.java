@@ -164,6 +164,15 @@ public class Interactor {
 		case "invalid island":
 			System.out.println("This is not a valid island number, please choose again\n");
 			break;
+		case "invalid option":
+			System.out.println("This is not a valid option number, please choose again\n");
+			break;
+		case "ship built":
+			System.out.println("Ship has been successfully built\n");
+			break;
+		case "liar built":
+			System.out.println("Lair has been successfully built\n");
+			break;
 		}
 	}
 	

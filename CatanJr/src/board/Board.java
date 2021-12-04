@@ -13,23 +13,12 @@ public class Board {
 	// ---------- Variables ----------
 	// -------------------------------
 	protected char[][] design;
-	protected char[] options = {'1', '2', '3', '4', '5', '6', '7'};
+	protected String[] options_string = {"1", "2", "3", "4", "5", "6", "7"};
 	protected char[] symbolHolder = {'x','x','x','x', 'x', 'x', 'x'}; // placeholder array
 	protected Interactor interactor;
 	protected GhostCaptain ghostCaptain;
 	protected Island[] islands; // An array for the islands
-
-
-	protected char[] playerColors = {'B','R', 'W', 'O'}; // Array of player colors 
-	protected char playerColor;	// Players color
-	protected Player player;	// Selected player
-	protected char isGhost; 	// Character to see if the ghost captain is there
-	protected int temp_row;		// Selected row value
-	protected int temp_col;		// Selected column value
-	private String playerName;
-
-	// Lower case: Ship
-	// Upper case: Lair
+	protected String[] island_numbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" };
 
 	// TODO: maybe take out dashes
 	
@@ -68,7 +57,6 @@ public class Board {
 	public char[][] getBoardDesign() {
 		return design;
 	}
-	
 	
 	// -----------------------------------------------
 	// ---------- Method: showBoardLayout() ----------
@@ -111,7 +99,6 @@ public class Board {
 		showBoardLayout();
 	}
 	
-	
 	// -----------------------------------------------------------------------------------------
 	// ---------- Method: reduceLairCount ------------------------------------------------------
 	// Finds player and reduces their lair count by 1
@@ -148,8 +135,6 @@ public class Board {
 	// because they have the most cocotiles
 	public void moveGhostCaptain() {
 		boolean integer_given = false;
-		String[] island_numbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" };
-
 		while (!integer_given) {
 
 			interactor.printMessage("move ghost captain"); // Ask user which island they want to move the ghost captain
@@ -307,6 +292,7 @@ public class Board {
 	// ------------------------------------------------------------------------
 	public boolean placeShip(Player player) {
 		boolean continue_turn = false;
+		boolean integer_given = false;
 		int count = 0;
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
@@ -314,11 +300,11 @@ public class Board {
 					for (int p = j - 3; p <= j + 3; p++) { // Check row above for available ship place
 						if (design[i - 1][p] == '\\' || design[i - 1][p] == '/' || design[i - 1][p] == '|') {
 							symbolHolder[count] = design[i - 1][p];
-							design[i - 1][p] = options[count];
+							design[i - 1][p] = options_string[count].charAt(0);
 							count = count + 1;
 						} else if (design[i + 1][p] == '\\' || design[i + 1][p] == '/' || design[i + 1][p] == '|') {
 							symbolHolder[count] = design[i + 1][p];
-							design[i + 1][p] = options[count];
+							design[i + 1][p] = options_string[count].charAt(0);
 							count = count + 1;
 						} else {
 
@@ -327,96 +313,106 @@ public class Board {
 				}
 			}
 		}
-		// Let user decide where they would like to build their ship
-		//showBoardLayout();
-		//interactor.printMessage("build ship option");
-		//String location_number = interactor.takeInAnswer();
-		// TODO: need to make sure players can only choose numbers and not letters,
-		// cause it will replace letters with lairs
-		// there are available options for the ship to be built
+		// if options are available, let user decide where they would like to build their ship
 		if (count > 0) {
 
-			// Let user decide where they would like to build their ship
-			showBoardLayout();
-			interactor.printMessage("build ship option"); // Gives user option of where to place ship
-			String location_number = interactor.takeInAnswer();
-			// TODO: need to make sure players can only choose numbers and not letters,
-			// cause it will replace letters with lairs
+			while (!integer_given) {
+				// Let user decide where they would like to build their ship
+				showBoardLayout();
+				interactor.printMessage("build ship option"); // Gives user option of where to place ship
+				String location_number = interactor.takeInAnswer();
 
-			// Place ship at users choice of location & replace
-			for (int i = 0; i <= 17 - 1; i++) {
-				for (int j = 0; j <= 38 - 1; j++) {
-					if (design[i][j] == location_number.charAt(0)) {
-						design[i][j] = player.getColour().charAt(0);
-						// Successfully placed a ship so take cost out of the players pocket
-						player.removeResource(Resources.Wood, 1);
-						player.removeResource(Resources.Goats, 1);
-					} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
-							|| design[i][j] == '5') { // replace numbers with slashs
-						design[i][j] = symbolHolder[Character.getNumericValue(design[i][j]) - 1];
+				List<String> comparison_list = Arrays.asList(options_string);
+				if (comparison_list.contains(location_number)) { // make sure player has provided a valid integer
+					// Place ship at users choice of location & replace
+					for (int i = 0; i <= 17 - 1; i++) {
+						for (int j = 0; j <= 38 - 1; j++) {
+							if (design[i][j] == location_number.charAt(0)) {
+								design[i][j] = player.getColour().charAt(0);
+								// Successfully placed a ship so take cost out of the players pocket
+								interactor.printMessage("ship built");
+								player.removeResource(Resources.Wood, 1);
+								player.removeResource(Resources.Goats, 1);
+							} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
+									|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with slashs
+								design[i][j] = symbolHolder[Character.getNumericValue(design[i][j]) - 1];
+							}
+						}
 					}
+					showBoardLayout();
+					integer_given = true;
+				} else {
+					interactor.printMessage("invalid option");
+					integer_given = false;
 				}
 			}
-			showBoardLayout();
 		} else {
 			interactor.printMessage("no ships"); // no available space to place a ship
 		}
 		return continue_turn = true;
 	}
-	
+
 	// ---------------------------------------
 	// ---------- Method: placeLair ----------
 	// Place a users lair on the board
 	// ---------------------------------------
 	public boolean placeLair(Player player) {
 		boolean continue_turn = false;
+		boolean integer_given = false;
 		int count = 0;
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == player.getColour().charAt(0)) {
 					for (int p = j - 3; p <= j + 3; p++) { // Check row above for available lair place
 						if (design[i - 1][p] == 'X') {
-							design[i - 1][p] = options[count];
+							design[i - 1][p] = options_string[count].charAt(0);
 							count = count + 1;
 						} else if (design[i + 1][p] == 'X') {
-							design[i + 1][p] = options[count];
+							design[i + 1][p] = options_string[count].charAt(0);
 							count = count + 1;
-						} else {
-							// no option to place a lair, must be placed with a ship
 						}
 					}
 				}
 			}
 		}
 
-
 		if (count > 0) {
 			// Let user determine where they want to place their lair
-			showBoardLayout();
-			interactor.printMessage("build ship option"); 
-			String location_number = interactor.takeInAnswer();
 
-			// TODO: need to make sure players can only choose numbers and not letters,
-			// cause it will replace letters with lairs
-			// place lair at users choice of location
-			for (int i = 0; i <= 17 - 1; i++) {
-				for (int j = 0; j <= 38 - 1; j++) {
-					if (design[i][j] == location_number.charAt(0)) {
-						design[i][j] = Character.toUpperCase(player.getColour().charAt(0));
-						// successfully placed lair
-						// Take a goat, a wood, a cutlass, and a molasses out of the players pocket
-						player.removeResource(Resources.Wood, 1);
-						player.removeResource(Resources.Goats, 1);
-						player.removeResource(Resources.Cutlasses, 1);
-						player.removeResource(Resources.Molasses, 1);
-					} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
-							|| design[i][j] == '5') { // replace numbers with X's again
-						design[i][j] = 'X';
+			while (!integer_given) {
+				showBoardLayout();
+				interactor.printMessage("build ship option");
+				String location_number = interactor.takeInAnswer();
+
+				List<String> comparison_list = Arrays.asList(options_string);
+				if (comparison_list.contains(location_number)) { // make sure player has provided a valid integer
+					// place lair at users choice of location
+					for (int i = 0; i <= 17 - 1; i++) {
+						for (int j = 0; j <= 38 - 1; j++) {
+							if (design[i][j] == location_number.charAt(0)) {
+								design[i][j] = Character.toUpperCase(player.getColour().charAt(0));
+								// successfully placed lair
+								// Take a goat, a wood, a cutlasses, and a molasses out of the players pocket
+								player.removeResource(Resources.Wood, 1);
+								player.removeResource(Resources.Goats, 1);
+								player.removeResource(Resources.Cutlasses, 1);
+								player.removeResource(Resources.Molasses, 1);
+								interactor.printMessage("liar built");
+							} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
+									|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with X's again
+								design[i][j] = 'X';
+							}
+						}
 					}
-				}
-			}
-			showBoardLayout();
+					showBoardLayout();
+					integer_given = true;
 
+				} else {
+					interactor.printMessage("invalid option");
+					integer_given = false;
+				}
+
+			}
 		} else {
 			interactor.printMessage("no lairs");
 		}
@@ -428,6 +424,7 @@ public class Board {
 	public void setIslands(Island[] islands) {
 		this.islands = islands;
 	}
+	
 	//-----------------------------------------------
 	//---------- Method: getIslands() ---------------
 	// This method returns an array of the 12 islands
