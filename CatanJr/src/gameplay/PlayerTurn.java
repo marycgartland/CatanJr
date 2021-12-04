@@ -249,7 +249,7 @@ public class PlayerTurn {
 	//-----------------------------------------------------------
 
 	private boolean onlyStockpile = false;
-
+	
 	public void Trade() {
 		// ----- Give the user options on what trade they wish to make -----
 		if (marketPlaceUse == 0) { // You can only trade with the marketplace once per turn
