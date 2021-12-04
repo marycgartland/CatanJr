@@ -9,6 +9,7 @@ import player.Player;
 import resources.Resources;
 import setup.PlayerSetup;
 import setup.ResourceSetup;
+import gameplay.GameManager;
 
 public class main {
 	
@@ -16,6 +17,64 @@ public class main {
 		
 		GameManager gameManager = new GameManager();
 		gameManager.startGame();
+		
+
+		// MG: Are these things done?
+		// place a lair and ship on the board for each player, by their color (is this
+		// under board setup or player setup?)
+		// Assign each player a building cost tile that matches his/her colour
+		// EP: need to add 1 wood and 1 molasses to users pocket
+		// Give each player one wood resource tile and one molassess resource tile (Is
+		// this under player setup or resource setup?)
+
+		// QUESTION (from MG to EP 3/12): Says on the assignment that players should
+		// range from 3-4 - is 2 not an option?
+		// Note that I left the error checking to be okay with 1-4 for now but that
+		// should be an easy switch
+		
+		// Assign each island needs to be associated with a dice number between 1 to 5,
+		// and a resource
+		// Assign each color to a location on the board
+		// Add a lair and ship for each player at their color location on the board (is
+		// this board setup or player setup? It's chosen by players...)
+		// Place ghost captain on the board
+		
+		// Check that cocotiles are actually shuffled 
+		
+		// FROM COCOTILES CLASS:
+		// EP: we are going with option 2, so Player class will track this, we need to
+		// just compare them after every turn
+		// Keep track of which player has the most tiles (there should be a 'used'
+		// stockpile of cocotiles for each player)
+		// Option 1: Keep track of who has each cocotile here with just adding 1 each
+		// time they get a new one
+		// Option 2: use a get method in class 'Player' to get and compare that way
+
+		// EP: I think this is relevant for the board/ YourTurn class
+		// If a player has the same number of tiles another, they should remove their
+		// pirates lair from spooky island
+		// If a player has the most cocotiles, they get to place an unused pirates lair
+		// on spooky island
+		// First player to buy a cocotile has the most at that moment
+		
+		// user needs to keep track the number of cocotiles they have and thats how we
+		// will determine who has the most in the game
+		// YourTurn needs to determine the action based on the cocotiletype outputted by
+		// this method, is user is given WoodMolasses/GoatCutlasses need to give out 2
+		// of each of that resource etc
+		// before a user buys a cocotile, their pocket should be checked to make sure
+		// they have sufficient funds
+		
+		// IN PLAYER CLASS
+			// TODO: Change these back to 0. they are just set to 20 for testing purposes at the moment
+			// TODO: We want methods to show people their resources at any time protected Item []
+		
+		// More things I have to do: 
+			// close scanner in interactor class
+			// Finish changing all user interactions to interactor class
+			// Abstract classes and interfaces?
+			// Limit any code repetition
+			// Player class 'toString' method i think is laready don ein player set up -no need to repeat
     }
 
 }
