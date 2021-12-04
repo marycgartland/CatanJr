@@ -120,11 +120,11 @@ setupBoard</panel_attributes>
     <coordinates>
       <x>350</x>
       <y>190</y>
-      <w>170</w>
+      <w>180</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setupBoard</panel_attributes>
+setupPlayers</panel_attributes>
     <additional_attributes>10.0;30.0;80.0;30.0;80.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
