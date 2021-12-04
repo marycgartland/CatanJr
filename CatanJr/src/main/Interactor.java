@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import player.Player;
 import resources.Resources;
+import resources.CocoTileTypes;
 
 // --------------------------------------------------------------------------------------- //
 // This class is called to interact with user, taking in values, outputting to console etc //
@@ -219,6 +220,15 @@ public class Interactor {
 		}
 	}
 	
+	// ----- Prints message with 1 CocoTyleTypes input value ---------------------------
+		public void printMessage(String instruction, CocoTileTypes value1) {
+			switch (instruction) {
+			// In 'PlayerTurn' class
+			case "Cocotile bought":
+				System.out.println("Your cocotile is " + value1 + "\n");
+				break;
+			}
+		}
 	
 	// ---------------------------------------------------------------------------------
 	// --------- Methods: printBoard ---------------------------------------------------
