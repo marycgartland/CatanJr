@@ -67,7 +67,7 @@ public class PlayerTurn {
 		//----- Roll the dice ------
 		diceValue = dice1.rollDice();
 		interactor.printMessage("Player roll", player.getName(), diceValue);
-		board.checkDiceRoll(diceValue, islands, players);
+		board.islandResourceDistribution(diceValue, islands, players);
 
 		//----- While the players turn isn't over, they will be presented with all options -----
 		while (turn == true) {

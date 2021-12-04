@@ -369,14 +369,11 @@ public class Board {
 			}
 		}
 
-		// Let user determine where they want to place their lair
-		//showBoardLayout();
-		//interactor.printMessage("build ship option");
-		//String location_number = interactor.takeInAnswer();
+
 		if (count > 0) {
 			// Let user determine where they want to place their lair
 			showBoardLayout();
-			interactor.printMessage("build ship option"); // give user options for placing ships 
+			interactor.printMessage("build ship option"); 
 			String location_number = interactor.takeInAnswer();
 
 			// TODO: need to make sure players can only choose numbers and not letters,
@@ -423,11 +420,10 @@ public class Board {
 	
 	// TODO: might try move this into 'dice'
 	//----------------------------------------------------------------------------------------------------
-	//---------- Method: checkDiceRoll() -----------------------------------------------------------------
+	//---------- Method: islandResourceDistribution() -----------------------------------------------------------------
 	// This method checks islands according to the value of the dice roll, and calls the checkArray method
 	//----------------------------------------------------------------------------------------------------	
-	public void checkDiceRoll(int diceValue, Island[] islands, ArrayList<Player> players) {
-		
+	public void islandResourceDistribution(int diceValue, Island[] islands, ArrayList<Player> players) {
 		if(diceValue==1) {			//---------- Roll a 1 - Islands 1, 3 and 10 -----------					
 			islands[0].checkArray(players, Resources.Cutlasses, design[4][9], design);	// Island 1, Assign: Cutlasses
 			islands[2].checkArray(players, Resources.Goats, design[4][21], design);		// Island 3, Assign: goat

@@ -164,9 +164,7 @@ public class Interactor {
 		}
 	}
 	
-	// Printing the layout of the board
-	//protected char[][] design;
-	//getDesign()
+	// Print board design 
 	public void printBoard(char[][] design) {
 		System.out.println("Board Layout:");
 		//design = board.getDesign();
@@ -179,7 +177,7 @@ public class Interactor {
 		System.out.print("\n");
 	}
 	
-	// Prints out message including two supplied values (one string, one int)
+	// Prints message including two supplied values (one string, one int)
 	public void printMessage(String instruction, String value1, int value2) {
 		switch (instruction) {
 		case "Player roll":

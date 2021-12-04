@@ -16,10 +16,6 @@ public class main {
 		
 		GameManager gameManager = new GameManager();
 		gameManager.startGame();
-		
-		// General Things to fix:
-		// Maybe not necesssary, but would be nice - now when you put in a wrong option, instead of letting you try again you go back to the start.
-		// need a valid number check for moving the ghost captain
     }
 
 }
