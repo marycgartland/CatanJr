@@ -58,7 +58,7 @@ public class GameManager {
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
 		BoardSetup boardSetup = new BoardSetup(playerSetup.Players());
 		board = boardSetup.getBoard();
-		board.showBoardLayout();												// Show the layout of the board
+		//board.showBoardLayout();												// Show the layout of the board
 		this.stockPile = resourceSetup.getStockpile();							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles();							// Set up cocotiles
 		this.marketPlace = resourceSetup.getMarketplace();						// Set up the resources in the marketplace
@@ -68,13 +68,12 @@ public class GameManager {
 		while (!checkWinner(playerSetup.Players())) {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile,
 					cocoTiles, board);
-			playerTurn.takeTurn(board.getIslands(),playerSetup.Players()); // TRYING TO TAKE IN THE ISLANDS AND THE ARRAY OF PLAYERS
-			board.mostCocotiles(playerSetup.Players()); // check if player with most cocotiles can place their lair on spooky island
 
-			player_turn = (player_turn + 1) % (playerSetup.Players().size() + 1); // this will loop through players
 			board.mostCocotiles(playerSetup.Players()); 							// Check if player with most cocotiles can place their lair on spooky island
 			playerTurn.takeTurn(board.getIslands(),playerSetup.Players()); 			// Player - take turn
-			player_turn = (player_turn + 1) % (playerSetup.Players().size() + 1); 	// Loop through the players
+			player_turn = (player_turn + 1) % (playerSetup.Players().size()); 		// Loop through the players
+			System.out.print("player_turn:"+ player_turn + "\n");
+
 		} 
 		interactor.printMessage("winner", winner);	// If there is a winner declared, announce the winner
 	}
