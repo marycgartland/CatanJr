@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import player.Player;
 import resources.Resources;
+import board.Board;
 
 //this class is called to interact with user, taking in values, outputting to console etc
 public class Interactor {
@@ -149,6 +150,21 @@ public class Interactor {
 			System.out.println("The ghost captain is on one island with this rolled value. Resources will  not be distributed from this island.");
 			break;
 		}
+	}
+	
+	// Printing the layout of the board
+	//protected char[][] design;
+	//getDesign()
+	public void printBoard(char[][] design) {
+		System.out.println("Board Layout:");
+		//design = board.getDesign();
+		for (int i = 0; i <= 17 - 1; i++) {
+			for (int j = 0; j <= 38 - 1; j++) {
+				System.out.print(design[i][j]);
+			}
+			System.out.print("\n");
+		}
+		System.out.print("\n");
 	}
 
 	// Scan in users answer
