@@ -21,25 +21,11 @@ public class Board {
 	protected char[][] design;
 	protected char[] options = {'1', '2', '3', '4', '5', '6', '7'};
 	protected char[] symbolHolder = {'x','x','x','x', 'x', 'x', 'x'}; // placeholder array
-	Interactor interactor = new Interactor();
+	protected Interactor interactor;
 	protected GhostCaptain ghostCaptain;
-	protected char[] islandNumbers = {'1', '2', '3', '4', '5', '6', '7','8', '9', '0'};
-	
-	// Variables for dealing with islands and resource distribution 
-	private int[] rows1 = {3, 5, 7, 5}; 				// Set up row and column arrays for possible lair locations
-	private int[] rows2 = {3, 1, 3, 5, 7, 5};
-	private int[] rows3 = {7, 5, 7, 9, 11, 9}; 
-	private int[] rows4 = {13, 11, 9, 11};
-	private int[] rows5 = {11, 9, 11, 13, 15, 13};
-	private int[] cols1 = {12, 12, 9, 6};
-	private int[] cols2 = {12, 15, 18, 18, 15, 12};
-	private int[] cols3 = {18, 21, 24, 24, 21, 18};
-	private int[] cols4 = {24, 24, 27, 30};
-	private int[] cols5 = {3, 6, 9, 9, 6, 3};
-	private int[] cols6 = {9, 12, 15, 15, 12, 9};
-	private int[] cols7 = {21, 24, 27, 27, 24, 21};
-	private int[] cols8 = {27, 30, 33, 33, 30, 27};
 	protected Island[] islands; // An array for the islands
+
+
 	protected char[] playerColors = {'B','R', 'W', 'O'}; // Array of player colors 
 	protected char playerColor;	// Players color
 	protected Player player;	// Selected player
@@ -53,9 +39,8 @@ public class Board {
 
 	// TODO: maybe take out dashes
 	// Track ship and Lair placements
-	// Track the number of lairs on the board: 7 lairs = winner
 	// Provide ship/lair placement options to user when building
-	// Needs to look after ships and lairs, keeping track of numbers and placements 
+	// Needs to look after ships and lairs, keeping track of placements 
 	// check which user has the most cocotiles: whichever user has the most, they can place their lair on spooky island
 	
 	
@@ -64,6 +49,7 @@ public class Board {
 	// Sets up the layout of the board
 	// -------------------------------
 	public Board() {
+		interactor = new Interactor();
 		design = new char[][]{
 			{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-','-', '-', '-', '-','-','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
 				{ '-', '-', '-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'X', '-','-', '-', '-', '-','X','-', '-','-','-','-','-', '-','-','-','-','-', '-','-','-','-', '-','\n' },
@@ -85,20 +71,10 @@ public class Board {
 		};
 	}
 	
-	
-	// NOTE FROM MG TO EP(4/12): I switched this to the interactor class, new method is right below this
-	// If you think that this isn't how it should be set up then feel free to uncomment this and delete interactor section
-	// Otherwise, we can delete the stuff below. Seems to be working fine to me but since you worked with it more you might spot erros
-	//public void showBoardLayout() {
-	//	System.out.println("Board Layout:");
-	//	for (int i = 0; i <= 17 - 1; i++) {
-	//		for (int j = 0; j <= 38 - 1; j++) {
-	//			System.out.print(design[i][j]);
-	//		}
-	//		System.out.print("\n");
-	//	}
-	//	System.out.print("\n");
-	//}
+	//
+	public char[][] getBoardDesign() {
+		return design;
+	}
 	
 	
 	// -----------------------------------------------
@@ -108,18 +84,11 @@ public class Board {
 	public void showBoardLayout() {
 		interactor.printBoard(this.design);
 	}
-	
-	
-	// ----------------------------------------------------------------
-	// ---------- Method: setUpGhostCaptain() -------------------------
-	// This method sets up the ghost captain in the center of the board
-	// This stops the users obtaining resources from islands its on
-	//-----------------------------------------------------------------
-	public void setUpGhostCaptain() {
-		ghostCaptain = new GhostCaptain(13); 	// Setup ghost captain on spooky island (island = 13)
-		design[8][18] = 'G';					// 'G' represents location of ghost captain on board
+		
+	// function that passes the created ghostcaptin created in boardsetup class and passes it to board class
+	public void setGhostCaptain(GhostCaptain ghostCaptain) {
+		this.ghostCaptain = ghostCaptain;
 	}
-	
 	
 	// --------------------------------------------------------------------------------------------------------
 	// ---------- Method: mostCocotiles() ---------------------------------------------------------------------
@@ -254,17 +223,6 @@ public class Board {
 		}
 		System.out.println("Island Number Layout:");
 		showBoardLayout();	// Print out board
-		
-		// NOTE FROM MG TO EP (4/12): the line above should be able to print out instead of repeating all the lines below.
-		// I commented them out for now. If you agree you can delete them, otherwise just delete the 1 line above, and uncomment the lines below
-
-		//for (int i = 0; i <= 17 - 1; i++) {
-		//	for (int j = 0; j <= 38 - 1; j++) {
-		//		System.out.print(design[i][j]);
-		//	}
-		//	System.out.print("\n");
-		//}
-		//System.out.print("\n");
 
 		// revert back to map without numbers once the numbered map has been shown
 		possibleLocationGhostCaptain(current_GC_location); // Place 'G' to specificed location
@@ -363,7 +321,7 @@ public class Board {
 		
 		// Let user decide where they would like to build their ship
 		showBoardLayout();
-		System.out.print("Which number option would you like to build your ship at?: ");
+		System.out.print("Which number option would you like to build your ship at?: "); // TODO: move to interactor class
 		String location_number = interactor.takeInAnswer();
 		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
 
@@ -450,108 +408,11 @@ public class Board {
 		return continue_turn = true;
 	}
 	
-	// ----------------------------------------------------------
-	// ---------- Method: setupBluePlayerLocations --------------
-	// Define starting positions of blue player's ships and lairs
-	// ----------------------------------------------------------
-	public void setupBluePlayerLocations() {
-		design[5][30] = 'B';
-		design[6][28] = 'b';
-		design[13][12] = 'B';
-		design[12][12] = 'b';
-	}
 
-	// ---------------------------------------------------------
-	// ---------- Method: setupRedPlayerLocations --------------
-	// Define starting positions of Red player's ships and lairs
-	// ---------------------------------------------------------
-	public void setupRedPlayerLocations() {
-		design[3][12] = 'R';
-		design[4][12] = 'r';
-		design[10][28] = 'r';
-		design[11][30] = 'R';
+	// method to set the islands created by the boardsetup class
+	public void setIslands(Island[] islands) {
+		this.islands = islands;
 	}
-
-	// -----------------------------------------------------------
-	// ---------- Method: setupWhitePlayerLocations --------------
-	// Define starting positions of White player's ships and lairs
-	// -----------------------------------------------------------
-	public void setupWhitePlayerLocations() {
-		design[5][6] = 'W';
-		design[6][8] = 'w';
-		design[12][24] = 'w';
-		design[13][24] = 'W';
-	}
-
-	// ------------------------------------------------------------
-	// ---------- Method: setupOrangePlayerLocations --------------
-	// Define starting positions of Orange player's ships and lairs
-	// ------------------------------------------------------------
-	public void setupOrangePlayerLocations() {
-		design[3][24] = 'O';
-		design[4][24] = 'o';
-		design[10][8] = 'o';
-		design[11][6] = 'O';
-	}
-
-	// -------------------------------------------------------------
-	// ---------- Method: setupBoard -------------------------------
-	// Setup Board design, place users first ship and lairs on board
-	// -------------------------------------------------------------
-	// TODO: put this setup in BoardSetup class 
-	public void setupBoard(int numberplayers) {
-		if (numberplayers == 1) {
-			setupBluePlayerLocations(); 	// place blue players ships and lairs
-		} else if (numberplayers == 2) {
-			setupBluePlayerLocations(); 	// place blue players ships and lairs
-			setupRedPlayerLocations(); 		// place red players ships and lairs
-		} else if (numberplayers == 3) { 	// blue, red, white
-			setupBluePlayerLocations(); 	// place blue players ships and lairs
-			setupRedPlayerLocations(); 		// place red players ships and lairs
-			setupWhitePlayerLocations(); 	// place white players ships and lairs
-		} else { // 4 players
-			setupBluePlayerLocations(); 	// place blue players ships and lairs
-			setupRedPlayerLocations();		// place red players ships and lairs
-			setupWhitePlayerLocations();	// place white players ships and lairs
-			setupOrangePlayerLocations();	// place orange players ships and lairs
-		}
-	}
-	
-	//--------------------------------------------------------------------------------
-	//---------- Method: setUpIslands() ----------------------------------------------
-	// This method sets up the islands with the possible lair locations surrounding it 
-	//--------------------------------------------------------------------------------
-	// TODO: Move to board setup?
-	public void setUpIslands() {
-		Island island1  = new Island(rows1,cols1);
-		Island island2  = new Island(rows2,cols2);
-		Island island3  = new Island(rows2,cols3);
-		Island island4  = new Island(rows1,cols4);
-		Island island5  = new Island(rows3,cols5);
-		Island island6  = new Island(rows3,cols6);
-		Island island7  = new Island(rows3,cols7);
-		Island island8  = new Island(rows3,cols8);
-		Island island9  = new Island(rows4,cols1);
-		Island island10 = new Island(rows5,cols2);
-		Island island11 = new Island(rows5,cols3);
-		Island island12 = new Island(rows4,cols4);
-		
-		// Add the islands to the island array
-		islands = new Island[] {island1, island2, island3, island4, island5, island6, island7, island8,island9, island10, island11, island12};
-
-		// For testing 
-		//for (int i = 0; i <= rows3.length - 1; i++) {
-		//	temp_row = rows3[i];
-		//	temp_col = cols8[i];
-		//	if(design[temp_row][temp_col]=='X') {
-		//		System.out.println("OK. getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
-		//	}else {
-		//		System.out.println("Error... getting " + design[temp_row][temp_col] + "for " + temp_row + " and " + temp_col);
-		//		}	
-		//}
-	}
-	
-	
 	//-----------------------------------------------
 	//---------- Method: getIslands() ---------------
 	// This method returns an array of the 12 islands

@@ -24,7 +24,7 @@ public class TempTest {
 		//(Dice dice, Island[] islands, Player[] players)
 		//testboard.checkDiceRoll(dice, islands, players);
 		//testboard.checkDiceRoll(dice); // uncomment this mary is working on it, the arguments are wrong
-		testboard.setUpIslands();
+		//testboard.setUpIslands();
 
     }
 

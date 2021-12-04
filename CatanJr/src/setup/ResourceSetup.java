@@ -12,7 +12,6 @@ import resources.Resources;
 
 public class ResourceSetup {
 	
-	protected Board board;
 	protected Stockpile stockPile;
 	protected CocoTiles cocoTiles;
 	protected Marketplace marketPlace;

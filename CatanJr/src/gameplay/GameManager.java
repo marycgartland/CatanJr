@@ -9,6 +9,7 @@ import board.Stockpile;
 import main.Interactor;
 import player.Player;
 import resources.CocoTiles;
+import setup.BoardSetup;
 import setup.PlayerSetup;
 import setup.ResourceSetup;
 
@@ -33,7 +34,7 @@ public class GameManager {
 	// ---------- Constructor ----------
 	// ---------------------------------
 	public GameManager() {
-		this.board = new Board();
+		//this.board = new Board();
 	}
 	
 //	public void StartGame() {
@@ -55,14 +56,12 @@ public class GameManager {
 	public void startGame() {
 		PlayerSetup playerSetup = new PlayerSetup(); 							// Set up players 
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
-		board.setupBoard(playerSetup.Players().size());							// Setup the board based on the number of players
-		board.setUpGhostCaptain();												// Set up the ghost captain object
+		BoardSetup boardSetup = new BoardSetup(playerSetup.Players());
+		board = boardSetup.getBoard();
 		board.showBoardLayout();												// Show the layout of the board
-		board.setUpIslands();													// Set up the islands on the board
 		this.stockPile = resourceSetup.getStockpile();							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles();							// Set up cocotiles
 		this.marketPlace = resourceSetup.getMarketplace();						// Set up the resources in the marketplace
-		//board.mostCocotiles(playerSetup.Players());//remove: testing
 		
 		// While there is no winner declared, rotate players turns
 		int player_turn = 0;
