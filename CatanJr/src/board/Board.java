@@ -294,54 +294,42 @@ public class Board {
 	// Search for upper case of colour to search for lairs to connect ships to.
 	// ------------------------------------------------------------------------
 	// TODO: what happens when no ships are available
-	// NOTE FROM MG TO EP: could be being stupid cuz im tired, but the 2 for loops are the same. could you not just have 1 for loop with the 2 if statements in it?
 	public boolean placeShip(String colour) {
 		boolean continue_turn = false;
 		int count = 0;
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == Character.toUpperCase(colour.charAt(0))) {
-					for (int p = j - 3; p <= j + 3; p++) {	// Check row above for available ship place
-						if (design[i - 1][p] == '\\' || design[i - 1][p] == '/' || design[i - 1][p] == '|' ) {
+					for (int p = j - 3; p <= j + 3; p++) { // Check row above for available ship place
+						if (design[i - 1][p] == '\\' || design[i - 1][p] == '/' || design[i - 1][p] == '|') {
 							symbolHolder[count] = design[i - 1][p];
 							design[i - 1][p] = options[count];
 							count = count + 1;
-						}
-					}
-					for (int q = j - 3; q <= j + 3; q++) {	// Check row below for available ship place
-						if (design[i + 1][q] == '\\' || design[i + 1][q] == '/' || design[i + 1][q] == '|') {
-							symbolHolder[count] = design[i+1][q];
-							design[i + 1][q] = options[count];
+						} else if (design[i + 1][p] == '\\' || design[i + 1][p] == '/' || design[i + 1][p] == '|') {
+							symbolHolder[count] = design[i + 1][p];
+							design[i + 1][p] = options[count];
 							count = count + 1;
 						}
 					}
 				}
 			}
 		}
-		
 		// Let user decide where they would like to build their ship
 		showBoardLayout();
-		System.out.print("Which number option would you like to build your ship at?: "); // TODO: move to interactor class
+		System.out.print("Which number option would you like to build your ship at?: "); // TODO: move to interactor
+																							// class
 		String location_number = interactor.takeInAnswer();
-		// TODO: need to make sure players can only choose numbers and not letters, cause it will replace letters with lairs
+		// TODO: need to make sure players can only choose numbers and not letters,
+		// cause it will replace letters with lairs
 
-		
-		// Place ship at users choice of location
-		// NOTE FROM MARY TO EMMA: once again, these 2 double 4 loops are the same - could we put the 2 double for loops, with 2 if statements in them?
+		// Place ship at users choice of location & replace
 		for (int i = 0; i <= 17 - 1; i++) {
 			for (int j = 0; j <= 38 - 1; j++) {
 				if (design[i][j] == location_number.charAt(0)) {
 					design[i][j] = colour.charAt(0);
-				}
-			}
-		}
-
-		// Replace numbers with slash's or lines again
-		for (int i = 0; i <= 17 - 1; i++) {
-			for (int j = 0; j <= 38 - 1; j++) {
-
-				if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'|| design[i][j] == '5') {
-					design[i][j] = symbolHolder[Character.getNumericValue(design[i][j])];
+				} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3' || design[i][j] == '4'
+						|| design[i][j] == '5') { // replace numbers with slashs
+					design[i][j] = symbolHolder[Character.getNumericValue(design[i][j]) - 1];
 				}
 			}
 		}

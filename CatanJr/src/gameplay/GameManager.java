@@ -3,7 +3,6 @@ package gameplay;
 import java.util.ArrayList;
 
 import board.Board;
-import board.Island;
 import board.Marketplace;
 import board.Stockpile;
 import main.Interactor;
@@ -34,21 +33,8 @@ public class GameManager {
 	// ---------- Constructor ----------
 	// ---------------------------------
 	public GameManager() {
-		//this.board = new Board();
 	}
 	
-//	public void StartGame() {
-//		
-//		PlayerSetup playerSetup = new PlayerSetup(); // setup players
-//		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // setup resources
-//		board.setupBoard(playerSetup.Players().size());
-//		board.setupGhostCaptain();
-//		board.showBoardLayout();
-//		board.setUpIslands();
-//		this.stockPile = resourceSetup.getStockpile();
-//		this.cocoTiles = resourceSetup.getCocoTiles();
-//		this.marketPlace = resourceSetup.getMarketplace();
-		// while there is no winner declared, rotate players turns
 	// -----------------------------------------
 	// ---------- Method: StartGame() ----------
 	// This method sets up the game to begin ---
@@ -58,7 +44,6 @@ public class GameManager {
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
 		BoardSetup boardSetup = new BoardSetup(playerSetup.Players());
 		board = boardSetup.getBoard();
-		//board.showBoardLayout();												// Show the layout of the board
 		this.stockPile = resourceSetup.getStockpile();							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles();							// Set up cocotiles
 		this.marketPlace = resourceSetup.getMarketplace();						// Set up the resources in the marketplace
@@ -68,7 +53,6 @@ public class GameManager {
 		while (!checkWinner(playerSetup.Players())) {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile,
 					cocoTiles, board);
-
 			board.mostCocotiles(playerSetup.Players()); 							// Check if player with most cocotiles can place their lair on spooky island
 			playerTurn.takeTurn(board.getIslands(),playerSetup.Players()); 			// Player - take turn
 			player_turn = (player_turn + 1) % (playerSetup.Players().size()); 		// Loop through the players
@@ -78,8 +62,6 @@ public class GameManager {
 		interactor.printMessage("winner", winner);	// If there is a winner declared, announce the winner
 	}
 	
-	// make sure that this count is including the lair on spooky island (it should be correct cause users keep track of their lair count)
-
 	// -------------------------------------------------------------
 	// ---------- Method: checkWinner ------------------------------
 	// This method checks players layers count to check for a winner
