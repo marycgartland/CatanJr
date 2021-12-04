@@ -40,7 +40,7 @@ public class Interactor {
 	public void printMessage(String instruction) {
 		switch (instruction) {
 		case "number of players":
-			System.out.println("Enter the number of players(1-4): ");
+			System.out.println("Enter the number of players(2-4): ");
 			break;
 		case "player name":
 			System.out.println("\nEnter a players name: ");
