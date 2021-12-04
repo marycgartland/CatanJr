@@ -149,6 +149,12 @@ public class Interactor {
 		case "Island check: ghost captain":
 			System.out.println("The ghost captain is on one island with this rolled value. Resources will  not be distributed from this island.");
 			break;
+		case "no ships":
+			System.out.println("There are no available spaces to build your ship, ships must be connected to a lair\n");
+			break;
+		case "no lairs":
+			System.out.println("There are no available spaces to build your lair, lairs must be connected to a ship\n");
+			break;
 		}
 	}
 	
@@ -165,6 +171,11 @@ public class Interactor {
 			System.out.print("\n");
 		}
 		System.out.print("\n");
+	}
+	
+	// Method to print out users pocket
+	public void printPocket(Player player) {
+		System.out.println(player.viewPocket());		
 	}
 
 	// Scan in users answer
