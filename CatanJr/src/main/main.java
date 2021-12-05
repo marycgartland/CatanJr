@@ -11,10 +11,6 @@ public class main {
 		
 			
 		// Need to write instruction manual
-		// update sequence diagram with new placeshiplair method
-		
-		// IN BOARD CLASS
-			// Can place ship and place lair search loops be made into a single method, used in both?
 		
 		// IN PLAYER CLASS
 			// TODO: Change these back to 0. they are just set to 20 for testing purposes at the moment
