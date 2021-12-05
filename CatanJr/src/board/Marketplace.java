@@ -35,7 +35,7 @@ public class Marketplace {
 	}
 
 	// this removes the 5 resources from the stockpile (the actual removal from stockpile is handled in ResourceSetup class)
-	public void SetupMarketplace(Stockpile stockpile) {
+	public void setupMarketplace(Stockpile stockpile) {
 		this.marketPlace = new Resources[] {Resources.Wood, Resources.Cutlasses, Resources.Goats, Resources.Gold, Resources.Molasses};
 		this.stockpile = stockpile;
 	}
@@ -88,8 +88,8 @@ public class Marketplace {
 			}
 		}
 		if (counter == 4) { // all array elements are equal, need to send 5 of this matching resource back to stockpile
-			stockpile.ReturnResource(marketPlace[1], 5); // need to return the resource back to the stockpile before market is setup again
-			SetupMarketplace(stockpile); // setup marketplace again with the 5 different elements
+			stockpile.returnResource(marketPlace[1], 5); // need to return the resource back to the stockpile before market is setup again
+			setupMarketplace(stockpile); // setup marketplace again with the 5 different elements
 		} else {
 			// all elements are not equal
 		}

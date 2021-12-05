@@ -75,6 +75,28 @@ public class main {
 			// Abstract classes and interfaces?
 			// Limit any code repetition
 			// Player class 'toString' method i think is laready don ein player set up -no need to repeat
+		
+		// move the creation of the dice object from playerTurn to Setup/gameplay
+		
+		// Error check for players buying cocotiles - entering incorrect options
+		
+		// Make sure user can't build 2 of the same ships/lairs side by side
+		// error checking if user doesn't choose ship/LAIR OPTION	
+		
+		// Do we want to remove the pocket printing in the GameManager take turn loop? it was set for testing
+		
+		
+		// STOCKPILE NOTES
+
+		// Keep track of the number of each resource
+		// Method to make sure there is at least 1 of each resource left, otherwise all
+		// of that resource are returned to the stockpile
+
+		// EP: Stockpile needs to be called before the users are given their first
+		// pieces and before the marketplace is setup
+		// EP: Need method to assign resources to different users, for example when the
+		// dice is rolled, the stockpile needs to assign the resources to the players
+		//stockpile - setupPlayers prints pocket - do we want to leave this in or take this out?
     }
 
 }
