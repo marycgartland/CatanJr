@@ -461,7 +461,6 @@ public class Board {
 		return islands;
 	}
 
-	// TODO: might try move this into 'dice'
 	// ---------------------------------------------------------------------------------------------------------
 	// ---------- Method: islandResourceDistribution() ---------------------------------------------------------
 	// This method checks islands according to the value of the dice roll, and calls the checkArray method

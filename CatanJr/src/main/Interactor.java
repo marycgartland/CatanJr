@@ -30,9 +30,14 @@ public class Interactor {
 			System.out.println("This is not a valid island number, please choose again\n");
 			break;
 		
-			// Cases from 'GameManager' class
+		// Cases from 'GameManager' class
 		case "winner":
 			System.out.println("Congratulations " + value + "! You're the Winner!\n");
+			break;
+		
+		// Cases from 'Marketplace' class
+		case "View Marketplace":
+			System.out.println("Marketplace Contents: " + value + "\n");
 			break;
 			
 		// Cases from 'PlayerSetup' class
@@ -114,7 +119,7 @@ public class Interactor {
 			
 		// Cases from 'PlayerSetup' class
 		case "number of players":
-			System.out.println("Enter the number of players(2-4): ");
+			System.out.println("Enter the number of players(3-4): ");
 			break;
 		case "player name":
 			System.out.println("\nEnter a players name: ");

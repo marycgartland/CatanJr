@@ -1,14 +1,14 @@
 package main;
 
-import java.util.Scanner;
-import java.util.*;
-import gameplay.*;
-import board.*;
+//import java.util.Scanner;
+//import java.util.*;
+//import gameplay.*;
+//import board.*;
 
-import player.Player;
-import resources.Resources;
-import setup.PlayerSetup;
-import setup.ResourceSetup;
+//import player.Player;
+//import resources.Resources;
+//import setup.PlayerSetup;
+//import setup.ResourceSetup;
 import gameplay.GameManager;
 
 public class main {
@@ -124,7 +124,6 @@ public class main {
 		// checks to see if there are 5 of the same element or not
 		// this only works if the loop goes to <=3 and the counter==4, but I would say
 		// that those values need to be increased by one but it won't run like that
-		//TODO: change viewMarketPlace() method in Marketplace class to interactor
 		
 		//GHOST CAPTAIN:
 		// Note: Don't even know if the Ghost Captain should be under board still or not

@@ -97,7 +97,9 @@ public class Marketplace {
 	// Output marketplace contents 
 	// -------------------------------------------------------------------------
 	public void viewMarketplace() {
-		System.out.println("Marketplace Contents:" + marketPlace[0] + ", " + marketPlace[1] + ", " + marketPlace[2]
-				+ ", " + marketPlace[3] + ", " + marketPlace[4] + "\n");
+		String toPrint = String.valueOf(marketPlace[0]) + ", " + String.valueOf(marketPlace[1]) + ", "
+						+ String.valueOf(marketPlace[2]) + ", " + String.valueOf(marketPlace[3]) + ", " 
+						+ String.valueOf(marketPlace[4]);
+		interactor.printMessage("View Marketplace", toPrint);
 	}
 }
