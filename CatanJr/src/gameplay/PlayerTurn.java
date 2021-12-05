@@ -42,14 +42,13 @@ public class PlayerTurn {
 	// ---------- Create objects ----------------------------------------------
 	// ------------------------------------------------------------------------
 	Interactor interactor = new Interactor(); 	// Create interactor object
-	Dice dice1 = new Dice(); 					// Create dice object
 
 	// ------------------------------------------------------------------------
 	// ---------- Method: takeTurn --------------------------------------------
 	// ------------------------------------------------------------------------
-	public void takeTurn(Island[] islands, ArrayList<Player> players) {
+	public void takeTurn(Island[] islands, ArrayList<Player> players, Dice dice) {
 		// ----- Roll the dice ----------------------------------------------
-		diceValue = dice1.rollDice();
+		diceValue = dice.rollDice();
 		interactor.printMessage("Player roll", player.PlayerName(), diceValue);
 		// ----- Resource distribution from islands based on dice roll ------
 		board.islandResourceDistribution(diceValue, islands, players);

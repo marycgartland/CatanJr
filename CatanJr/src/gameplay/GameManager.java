@@ -28,6 +28,7 @@ public class GameManager {
 	protected CocoTiles cocoTiles; 		// Create cocoTiles
 	protected Marketplace marketPlace;	// Create a marketPlace
 	protected String winner; 			// Create a string to hold the winner
+	protected Dice dice;				// Create a dice
 	
 	// ----- Create an interactor object --------------------------
 	Interactor interactor = new Interactor();
@@ -47,6 +48,7 @@ public class GameManager {
 		PlayerSetup playerSetup = new PlayerSetup(); 							// Set up players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
 		BoardSetup boardSetup = new BoardSetup(playerSetup.Players());			// Set up board
+		dice = new Dice(); 														// Create dice object
 		board = boardSetup.getBoard();
 		this.stockPile = resourceSetup.getStockpile(); 							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles(); 							// Set up cocotiles
@@ -56,7 +58,7 @@ public class GameManager {
 		while (!checkWinner(playerSetup.Players())) {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile, cocoTiles, board);
 			board.mostCocotiles(playerSetup.Players());		// Check if player w/ most cocotiles can place lair on spooky island
-			playerTurn.takeTurn(board.getIslands(), playerSetup.Players()); 	// Player - take turn
+			playerTurn.takeTurn(board.getIslands(), playerSetup.Players(), dice); 	// Player - take turn
 			interactor.printPocket(playerSetup.Players().get(player_turn)); 	// Display players pocket
 			player_turn = (player_turn + 1) % (playerSetup.Players().size());	// Loop through the players
 		}
