@@ -96,9 +96,9 @@ public class PlayerTurn {
 				player.removeResource(Resources.Gold, 1);
 				player.removeResource(Resources.Molasses, 1);
 				// ----- Return resources to stockpile when cocotile is bought --------
-				stockpile.ReturnResource(Resources.Cutlasses, 1);
-				stockpile.ReturnResource(Resources.Gold, 1);
-				stockpile.ReturnResource(Resources.Molasses, 1);
+				stockpile.returnResource(Resources.Cutlasses, 1);
+				stockpile.returnResource(Resources.Gold, 1);
+				stockpile.returnResource(Resources.Molasses, 1);
 				// ----- Cocotile bought ----------------------------------------------
 				CocoTileTypes cocotile_bought = cocotiles.buyCocoTile(); 	// Indicates type of cocotile
 				player.addCocoTile(); 										// Add cocotile to players cocotile count
@@ -122,8 +122,8 @@ public class PlayerTurn {
 			player.addResource(Resources.Goats, 2);
 			player.addResource(Resources.Cutlasses, 2);
 			// ----- Remove resources from stockpile -----
-			stockpile.DistributeResource(Resources.Goats, 2);
-			stockpile.DistributeResource(Resources.Cutlasses, 2);
+			stockpile.distributeResource(Resources.Goats, 2);
+			stockpile.distributeResource(Resources.Cutlasses, 2);
 			// ----- Display pocket to player ------------
 			interactor.printPocket(player);
 		} else if (cocotile.equals(CocoTileTypes.WoodMolasses)) {	// The wood and molasses cocotile
@@ -131,8 +131,8 @@ public class PlayerTurn {
 			player.addResource(Resources.Wood, 2);
 			player.addResource(Resources.Molasses, 2);
 			// ----- Remove resources from stockpile -----
-			stockpile.DistributeResource(Resources.Wood, 2);
-			stockpile.DistributeResource(Resources.Molasses, 2);
+			stockpile.distributeResource(Resources.Wood, 2);
+			stockpile.distributeResource(Resources.Molasses, 2);
 			// ----- Display pocket to player ------------
 			interactor.printPocket(player);
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {	// The ghost captain cocotile
@@ -288,7 +288,7 @@ public class PlayerTurn {
 			if (validResourceCheck(trade_in)) {			// Check that the user entered a valid resource
 				// ------ User needs 2+ of the resource to swap with stockpile ------
 				if (player.checkPocketResourcesLetter(trade_in) > 1) { 
-					stockpile.SwapStockpile(assignResourcesType(trade_out), assignResourcesType(trade_in), player); 
+					stockpile.swapStockpile(assignResourcesType(trade_out), assignResourcesType(trade_in), player); 
 					interactor.printPocket(player);
 				} else { // ----- Otherwise, cannot trade -----
 					interactor.printMessage("cannot trade");
