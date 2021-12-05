@@ -69,7 +69,11 @@ public class PlayerTurn {
 			} else if (option.equals("E")) {			// If player wishes to end turn
 				interactor.printMessage("turn: end");
 				turn = false;
-			} else {									// Error check - ensure choice entered is valid
+			} else if (option.equals("P")) {
+				interactor.printMessage("turn: view pocket");
+				viewPocket();							// If player wishes to view their pocket
+			}
+			else {									// Error check - ensure choice entered is valid
 				interactor.printMessage("turn: null");
 			}
 		}
@@ -332,4 +336,14 @@ public class PlayerTurn {
 			return false;
 		}
 	}
+	
+	// ------------------------------------------------------------------------
+	// ---------- Method: viewPocket ---------------------------------
+	// Method to allow player to view their pocket
+	// ------------------------------------------------------------------------
+	public void viewPocket() {
+		interactor.printPocket(player);
+	}
+	
+	
 }

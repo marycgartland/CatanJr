@@ -13,7 +13,7 @@ import gameplay.GameManager;
 
 public class Interactor {
 	
-	protected Scanner scan = new Scanner(System.in);
+	protected Scanner scan = new Scanner(System.in); // Create scanner to take in users inputs
 
 	// ---------------------------------------------------------------------------------
 	// ---------- Constructor ----------------------------------------------------------
@@ -134,7 +134,7 @@ public class Interactor {
 			
 		// Cases from 'PlayerTurn' class
 		case "your turn":
-			System.out.println("Would you like to Buy [B], Build [Bd], Trade [T], or End turn [E]? ");
+			System.out.println("Would you like to Buy [B], Build [Bd], Trade [T], View pocket[P] or End turn [E]? ");
 			break;
 		case "turn: buy":
 			System.out.println("You have chosen to buy.\n");
@@ -148,6 +148,9 @@ public class Interactor {
 		case "turn: end":
 			System.out.println("You have chosen to End your turn.\n");
 			break;
+		case "turn: view pocket":
+			System.out.println("You have chosen to view your pocket.\n");
+			break;			
 		case "turn: null":
 			System.out.println("You did not select one of the available options. Please try again. ");
 			break;
