@@ -82,6 +82,8 @@ public class main {
 		
 		// Make sure user can't build 2 of the same ships/lairs side by side
 		// error checking if user doesn't choose ship/LAIR OPTION	
+		
+		// Do we want to remove the pocket printing in the GameManager take turn loop? it was set for testing
     }
 
 }
