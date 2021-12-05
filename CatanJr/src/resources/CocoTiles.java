@@ -43,5 +43,5 @@ public class CocoTiles {
 			interactor.printMessage("no cocotiles");			// If there are no cocotiles left, the user cannot buy one
 			return null;
 		}
-	}
+	}	
 }

@@ -5,6 +5,7 @@ import java.util.Scanner;
 import player.Player;
 import resources.Resources;
 import resources.CocoTileTypes;
+import gameplay.GameManager;
 
 // --------------------------------------------------------------------------------------- //
 // This class is called to interact with user, taking in values, outputting to console etc //

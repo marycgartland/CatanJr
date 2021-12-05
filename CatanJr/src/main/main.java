@@ -14,14 +14,11 @@ public class main {
 			// Assign each player a building cost tile that matches his/her colour
 			// Add 1 wood and 1 molasses to users pocket
 		
-		
 		// FROM COCOTILES CLASS:
 			// Keep track of which player has the most tiles 
 		
-		
 		// GHOST CAPTAIN:
 			// Question: Don't even know if the Ghost Captain should be under board still or not (are we happy w it?)
-		
 		
 		// MARKETPLACE:
 			// If all 5 places are the same resource, then we need to reset the marketplace (need a reset method)
@@ -34,14 +31,8 @@ public class main {
 					// this only works if the loop goes to <=3 and the counter==4, but I would say that those values 
 					// need to be increased by one but it won't run like that
 		
-		
-
 		// Question: Add a lair and ship for each player at their color location on the board (is this board setup or player setup? It's chosen by players...)
 			// Think this is sorted?
-		
-		
-		// TODO: Check that cocotiles are actually shuffled 
-		
 		
 		// Keeping track of the most cocotiles:
 			// If a player has the same number of tiles another, they should remove their pirates lair from spooky island
@@ -49,17 +40,14 @@ public class main {
 			// First player to buy a cocotile has the most at that moment
 			// User keeps track the number of cocotiles they have - how we will determine who has the most in the game
 		
-		
 		// More cocotile stuff 
 			// YourTurn needs to determine the action based on the cocotiletype outputted by
 			// user is given WoodMolasses/GoatCutlasses need to give out 2 of each of that resource etc
 			// Check user pocker before they buy a cocotile to make sure they have sufficient funds
 		
-		
 		// IN PLAYER CLASS
 			// TODO: Change these back to 0. they are just set to 20 for testing purposes at the moment
 			// TODO: We want methods to show people their resources at any time protected Item []
-		
 		
 		// More things I have to do: 
 			// TODO: close scanner in interactor class
@@ -68,19 +56,12 @@ public class main {
 			// TODO: Limit any code repetition
 			// TODO: move the creation of the dice object from playerTurn to Setup/gameplay
 			// TODO: Error check for players buying cocotiles - entering incorrect options
-		
-		
+
 		// TODO: possibly have a command to user can view they pocket whenever they wish
-		
 		
 		// TODO: Make sure user can't build 2 of the same ships/lairs side by side
 		
-		
-		// TODO: error checking if user doesn't choose ship/LAIR OPTION	
-		
-		
 		// Question: Do we want to remove the pocket printing in the GameManager take turn loop? it was set for testing
-		
 		
 		// IN STOCKPILE CLASS	
 			// Keep track of the number of each resource
