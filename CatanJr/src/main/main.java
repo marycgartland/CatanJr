@@ -97,6 +97,34 @@ public class main {
 		// EP: Need method to assign resources to different users, for example when the
 		// dice is rolled, the stockpile needs to assign the resources to the players
 		//stockpile - setupPlayers prints pocket - do we want to leave this in or take this out?
+		
+		
+		
+		// MARKETPLACE
+		// Variables
+		// Constructor
+		// If all 5 places are the same resource, then we need to reset the marketplace
+		// - need a check and a reset method
+		// method to let the user trade
+
+		// SetupMethod which will be called by the setup class: this will restock the
+		// market place with one of each resource (1 x: cutlass, goat, wood, gold and
+		// molasses)
+
+		// CheckMethod to check that all resources in the marketplace are not the same,
+		// if it is the Setup Method is called and the all resources are returned to
+		// stockpile
+
+
+		// Swap method that can only be called once in a turn which tracks resources in
+		// marketplace
+		
+		// EP: YourTurn Class should keep track of how many times the marketplace is swapped with per users turn
+		// Problem with checkMarketPlace class 
+		// checks to see if there are 5 of the same element or not
+		// this only works if the loop goes to <=3 and the counter==4, but I would say
+		// that those values need to be increased by one but it won't run like that
+		//TODO: change viewMarketPlace() method in Marketplace class to interactor
     }
 
 }

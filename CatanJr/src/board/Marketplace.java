@@ -5,101 +5,99 @@ import player.Player;
 import resources.Resources;
 
 public class Marketplace {
-
-	protected Resources[] marketPlace; // marketplace will be made up of an array of resources (chose an array cause its a set length, arraylists can change in length)
-	Interactor interactor = new Interactor();
+	// -------------------------------------------------------------------------
+	// ---------- Variables ----------------------------------------------------
+	// -------------------------------------------------------------------------
+	protected Resources[] marketPlace; // Array containing marketplace resources
 	protected Stockpile stockpile;
-
-	// Variables
-	// Constructor
-	// If all 5 places are the same resource, then we need to reset the marketplace
-	// - need a check and a reset method
-	// method to let the user trade
-
-	// SetupMethod which will be called by the setup class: this will restock the
-	// market place with one of each resource (1 x: cutlass, goat, wood, gold and
-	// molasses)
-
-	// CheckMethod to check that all resources in the marketplace are not the same,
-	// if it is the Setup Method is called and the all resources are returned to
-	// stockpile
-
-
-	// Swap method that can only be called once in a turn which tracks resources in
-	// marketplace
 	
-	// EP: YourTurn Class should keep track of how many times the marketplace is swapped with per users turn
+	// ----- Create an interactor object ---------------------------------------
+	Interactor interactor = new Interactor();
 
-
+	// -------------------------------------------------------------------------
+	// ---------- Constructor --------------------------------------------------
+	// -------------------------------------------------------------------------
 	public Marketplace() {
 	}
 
-	// this removes the 5 resources from the stockpile (the actual removal from stockpile is handled in ResourceSetup class)
+	// -------------------------------------------------------------------------
+	// ---------- Method: setupMarketplace -------------------------------------
+	// Removes 5 resources from stockpile to add to marketplace
+	// -------------------------------------------------------------------------
 	public void setupMarketplace(Stockpile stockpile) {
-		this.marketPlace = new Resources[] {Resources.Wood, Resources.Cutlasses, Resources.Goats, Resources.Gold, Resources.Molasses};
+		this.marketPlace = new Resources[] { Resources.Wood, Resources.Cutlasses, Resources.Goats, Resources.Gold, Resources.Molasses };
 		this.stockpile = stockpile;
 	}
 
-	// Method to check and see if a specified resource is in the marketplace if the
-	// user wants to trade
-	public boolean CheckForResourceMarketplace(Resources resource) {
+	// -------------------------------------------------------------------------
+	// ---------- Method: checkForResourceMarketplace --------------------------
+	// Check if specified resource is in the marketplace
+	// -------------------------------------------------------------------------
+	public boolean checkForResourceMarketplace(Resources resource) {
 		boolean resource_found = false;
 		for (int i = 0; i <= 4; i++) {
 			if (marketPlace[i] == resource) {
 				resource_found = true;
-			} 
+			}
 		}
-		return resource_found; 
+		return resource_found;
 	}
 
-	// method to check how many of a particular resource is in the marketplace when the stockpile needs to be restocked by that resource as there is 0 in the stockpile
-	// this method will return the number of that resource in the marketplace so the stockpile restocks by 18-(no of resource in marketplace)
-	public int CheckForResourceMarketplaceStockpileRestock(Resources resource) {
+	// -------------------------------------------------------------------------
+	// ---------- Method: checkForResourceMarketplaceStockpileRestock ----------
+	// Check for resource in marketplace when stockpile needs to be restocked.
+	// This returns the number of the resource in the marketplace
+	// -------------------------------------------------------------------------
+	public int checkForResourceMarketplaceStockpileRestock(Resources resource) {
 		int counter = 0;
 		for (int i = 0; i <= 4; i++) {
-			if(marketPlace[i]==resource) {
-				counter=counter+1;
+			if (marketPlace[i] == resource) {
+				counter = counter + 1;
 			}
 		}
 		return counter;
 	}
 	
-	// Method to swap a resource for another
-	public void SwapMarketplace(Resources wantedResource, Resources toSwapResource, Player player) {
+	// -------------------------------------------------------------------------
+	// ---------- Method: swapMarketplace --------------------------------------
+	// Method to swap one resource for another
+	// -------------------------------------------------------------------------
+	public void swapMarketplace(Resources wantedResource, Resources toSwapResource, Player player) {
 		for (int i = 0; i <= 4; i++) {
 			if (marketPlace[i] == wantedResource) {
-				marketPlace[i] = toSwapResource; // this updates the marketplace resources, need to update users pocket to give them this variable
+				marketPlace[i] = toSwapResource; 			// Update the marketplace resources
 				interactor.printMessage("Successful marketplace trade");
-				player.addResource(wantedResource, 1); // add one of wanted resource to players pocket
-				player.removeResource(toSwapResource, 1); // remove one of resource to players pocket
-				CheckMarketplace(); // now that user has swapped with the marketplace, need to check and make sure all marketplace resources are not the same type
+				player.addResource(wantedResource, 1); 		// Add one of wanted resource to players pocket
+				player.removeResource(toSwapResource, 1); 	// Remove one of swapped resource to players pocket
+				checkMarketplace(); 						// Check that all marketplace resources are not the same type
 			}
 		}
-
 	}
 
-	// checks to see if there are 5 of the same element or not
-	// this only works if the loop goes to <=3 and the counter==4, but I would say that those values need to be increased by one but it won't run like that
-	public void CheckMarketplace() {
+	// -------------------------------------------------------------------------
+	// ---------- Method: checkMarketplace -------------------------------------
+	// Check marketplace to see if there are 5 of the same element or not. 
+	// -------------------------------------------------------------------------
+	public void checkMarketplace() {
 		int counter = 0;
 		for (int i = 0; i <= 3; i++) {
 			if (marketPlace[i] == marketPlace[i + 1]) {
 				counter = counter + 1;
 			}
 		}
-		if (counter == 4) { // all array elements are equal, need to send 5 of this matching resource back to stockpile
-			stockpile.returnResource(marketPlace[1], 5); // need to return the resource back to the stockpile before market is setup again
-			setupMarketplace(stockpile); // setup marketplace again with the 5 different elements
-		} else {
-			// all elements are not equal
-		}
-	}
-	
-	// Output marketplace contents
-	// should this be used in the interactor class?
-	public void viewMarketplace() {
-		System.out.println("Marketplace Contents:"+ marketPlace[0] + ", " + marketPlace[1] +", " + marketPlace[2] + ", " + marketPlace[3] + ", " + marketPlace[4] + "\n");
-			
+		// If all array elements are equal, send these back to stockpile, and reset marketplace
+		if (counter == 4) {
+			stockpile.returnResource(marketPlace[1], 5); 	// Return resources from marketplace to stockpile
+			setupMarketplace(stockpile); 					// Setup marketplace with the 5 different elements
+		} 
 	}
 
+	// -------------------------------------------------------------------------
+	// ---------- Method: viewMarketplace --------------------------------------
+	// Output marketplace contents 
+	// -------------------------------------------------------------------------
+	public void viewMarketplace() {
+		System.out.println("Marketplace Contents:" + marketPlace[0] + ", " + marketPlace[1] + ", " + marketPlace[2]
+				+ ", " + marketPlace[3] + ", " + marketPlace[4] + "\n");
+	}
 }

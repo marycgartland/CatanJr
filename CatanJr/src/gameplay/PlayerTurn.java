@@ -251,7 +251,7 @@ public class PlayerTurn {
 		String trade_out = interactor.takeInAnswer();
 		interactor.printMessage("trade out resource", trade_out);
 		if (validResourceCheck(trade_out)) { 															
-			boolean in_stock = marketplace.CheckForResourceMarketplace(assignResourcesType(trade_out)); 
+			boolean in_stock = marketplace.checkForResourceMarketplace(assignResourcesType(trade_out)); 
 			if (in_stock) {
 				interactor.printMessage("marketplace: in-stock");
 				// ----- Determine what resource user wishes to trade in  - check if they have resource in pocket -----
@@ -262,7 +262,7 @@ public class PlayerTurn {
 					if (player.checkPocketResourcesLetter(trade_in) > 0) { 
 						// ----- Make the swap, and increment marketPlaceUse variable to indicate the trade is used (1 per turn) ------
 						marketPlaceUse = 1; 
-						marketplace.SwapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
+						marketplace.swapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
 						interactor.printPocket(player);
 					} else {	// ----- Cannot trade if pocket doesn't have resource -----
 						interactor.printMessage("cannot trade");
