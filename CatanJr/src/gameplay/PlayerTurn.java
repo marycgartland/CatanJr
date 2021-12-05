@@ -128,7 +128,7 @@ public class PlayerTurn {
 			stockpile.distributeResource(Resources.Goats, 2);
 			stockpile.distributeResource(Resources.Cutlasses, 2);
 			// ----- Display pocket to player ------------
-			interactor.printPocket(player);
+			viewPocket();
 		} else if (cocotile.equals(CocoTileTypes.WoodMolasses)) {	// The wood and molasses cocotile
 			// ----- Add resources to users pocket -------
 			player.addResource(Resources.Wood, 2);
@@ -137,7 +137,7 @@ public class PlayerTurn {
 			stockpile.distributeResource(Resources.Wood, 2);
 			stockpile.distributeResource(Resources.Molasses, 2);
 			// ----- Display pocket to player ------------
-			interactor.printPocket(player);
+			viewPocket();
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {	// The ghost captain cocotile
 			board.moveGhostCaptain();	// Move the GC
 		} else if (cocotile.equals(CocoTileTypes.ShipCastle)) {		// The ship/lair cocotile
@@ -146,10 +146,9 @@ public class PlayerTurn {
 			String build_option = interactor.takeInAnswer();
 			// ----- Build lair or ship ------------------
 			if (build_option.charAt(0) == 'L') {
-				board.placeLair(player);	// Build Lair
+				board.placeLairShip(player,build_option); // Build Lair
 			} else if (build_option.charAt(0) == 'S') {
-				board.placeShip(player);	// Build ship
-
+				board.placeLairShip(player,build_option); // Build ship
 			}
 		}
 	}
@@ -157,7 +156,7 @@ public class PlayerTurn {
 	// ------------------------------------------------------------------------
 	// ---------- Build Method ------------------------------------------------
 	// The user can either build a ship or a lair.
-	// Cost of a Lair = 1 cutlass, 1 molasses, 1 goat & 1 wood
+	// Cost of a Lair = 1 cutlasses, 1 molasses, 1 goat & 1 wood
 	// Cost of a ship = 1 goat & 1 wood
 	// ------------------------------------------------------------------------
 	public void build() {
@@ -167,16 +166,16 @@ public class PlayerTurn {
 			interactor.printMessage("build ship/lair");				 // Give user option of building a ship or lair
 			toBuild = interactor.takeInAnswer(); 					 // Scan in user response
 			if (toBuild.equals("S") || toBuild.equals("s")) {		 // Build ship
-				buildShip();								
+				buildLairShip("S");								
 			} else if (toBuild.equals("L") || toBuild.equals("l")) { // Build Lair
-				buildLair();
+				buildLairShip("L");
 			}
 		} // ----- If the user only has the resources to build a ship --------------------
 		else if (player.getWoodCount() >= 1 && player.getGoatsCount() >= 1) {
 			interactor.printMessage("build ship?");					 // Ask user to confirm they wish to buy a ship
 			toBuild = interactor.takeInAnswer(); 					 // Scan in user input
 			if (toBuild.equals("Y") || toBuild.equals("y")) {		 // Build ship
-				buildShip();					
+				buildLairShip("S");					
 			}
 		} // ----- If they don't have enough resources to build either -------------------
 		else { 
@@ -185,22 +184,19 @@ public class PlayerTurn {
 	}
 
 	// ------------------------------------------------------------------------
-	// ---------- Build Ship Method -------------------------------------------
+	// ---------- Build LairShip Method -------------------------------------------
 	// ------------------------------------------------------------------------
-	public void buildShip() {
-		interactor.printMessage("build: ship");	// Indicate actions to user
-		turn = false; 							// Pause turn until lair is placed
-		turn = board.placeShip(player);			// place a ship for the user on the board
-	}
-
-	// ------------------------------------------------------------------------
-	// ---------- Build Lair Method -------------------------------------------
-	// ------------------------------------------------------------------------
-	public void buildLair() {
-		interactor.printMessage("build: lair");	// Indicate actions to user
-		player.addLair();						// Increment the players lair count
-		turn = false; 							// Pause turn until lair is placed
-		turn = board.placeLair(player);			// place a lair for the user on the board
+	public void buildLairShip(String toBuild) {
+		if (toBuild.equals("S")) {
+			interactor.printMessage("build: ship"); // Indicate actions to user
+			turn = false; // Pause turn until lair is placed
+			turn = board.placeLairShip(player, toBuild);
+		} else if (toBuild.equals("L")) {
+			interactor.printMessage("build: lair"); // Indicate actions to user
+			player.addLair(); // Increment the players lair count
+			turn = false; // Pause turn until lair is placed
+			turn = board.placeLairShip(player, toBuild);
+		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -266,7 +262,7 @@ public class PlayerTurn {
 						// ----- Make the swap, and increment marketPlaceUse variable to indicate the trade is used (1 per turn) ------
 						marketPlaceUse = 1; 
 						marketplace.swapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
-						interactor.printPocket(player);
+						viewPocket();
 					} else {	// ----- Cannot trade if pocket doesn't have resource -----
 						interactor.printMessage("cannot trade");
 					}
@@ -292,7 +288,7 @@ public class PlayerTurn {
 				// ------ User needs 2+ of the resource to swap with stockpile ------
 				if (player.checkPocketResourcesLetter(trade_in) > 1) { 
 					stockpile.swapStockpile(assignResourcesType(trade_out), assignResourcesType(trade_in), player); 
-					interactor.printPocket(player);
+					viewPocket();
 				} else { // ----- Otherwise, cannot trade -----
 					interactor.printMessage("cannot trade");
 				}
@@ -342,6 +338,7 @@ public class PlayerTurn {
 	// ------------------------------------------------------------------------
 	public void viewPocket() {
 		interactor.printPocket(player);
+		
 	}
 	
 	

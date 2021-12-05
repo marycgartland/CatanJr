@@ -95,7 +95,6 @@ public class Stockpile {
 		for (int i = 0; i <= players.size() - 1; i++) {
 			players.get(i).addResource(Resources.Wood, 1);
 			players.get(i).addResource(Resources.Molasses, 1);
-			interactor.printPocket(players.get(i));
 		}
 	}
 
