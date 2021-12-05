@@ -64,7 +64,7 @@ public class Island {
 						player.addResource(resource, 1);
 						playerName = player.PlayerName();
 						interactor.printMessage("Island check: success", resource, playerName);
-						System.out.println(player.viewPocket());
+						interactor.printPocket(player);
 						}
 					}
 				}

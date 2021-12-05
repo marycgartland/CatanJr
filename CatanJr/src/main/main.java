@@ -45,6 +45,10 @@ public class main {
 			// user is given WoodMolasses/GoatCutlasses need to give out 2 of each of that resource etc
 			// Check user pocker before they buy a cocotile to make sure they have sufficient funds
 		
+		// IN BOARD CLASS
+			// TODO: cannot move ghost captain to spooky island if a users lairs is there because they have the most cocotiles
+			// Can place ship and place lair search loops be made into a single method, used in both?
+		
 		// IN PLAYER CLASS
 			// TODO: Change these back to 0. they are just set to 20 for testing purposes at the moment
 			// TODO: We want methods to show people their resources at any time protected Item []
