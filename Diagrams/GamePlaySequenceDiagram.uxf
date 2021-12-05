@@ -52,7 +52,7 @@ startGame</panel_attributes>
       <x>170</x>
       <y>2010</y>
       <w>2580</w>
-      <h>4730</h>
+      <h>4840</h>
     </coordinates>
     <panel_attributes>loop</panel_attributes>
     <additional_attributes/>
@@ -733,7 +733,7 @@ printMessage</panel_attributes>
       <x>890</x>
       <y>3060</y>
       <w>1780</w>
-      <h>3670</h>
+      <h>3780</h>
     </coordinates>
     <panel_attributes>loop</panel_attributes>
     <additional_attributes/>
@@ -812,7 +812,7 @@ takeInAnswer</panel_attributes>
       <x>960</x>
       <y>2750</y>
       <w>20</w>
-      <h>3970</h>
+      <h>4070</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -3214,7 +3214,7 @@ printPocket</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>240</x>
-      <y>6700</y>
+      <y>6800</y>
       <w>740</w>
       <h>30</h>
     </coordinates>
@@ -4583,7 +4583,7 @@ setupMarketplace</panel_attributes>
       <x>40</x>
       <y>110</y>
       <w>20</w>
-      <h>6690</h>
+      <h>6720</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -4594,7 +4594,7 @@ setupMarketplace</panel_attributes>
       <x>230</x>
       <y>130</y>
       <w>20</w>
-      <h>6640</h>
+      <h>6700</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -5030,7 +5030,7 @@ checkForResourceMarketplace</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>50</x>
-      <y>6750</y>
+      <y>6810</y>
       <w>200</w>
       <h>30</h>
     </coordinates>
@@ -5230,10 +5230,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>430</x>
       <y>520</y>
       <w>40</w>
-      <h>6260</h>
+      <h>6360</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>20.0;10.0;10.0;6240.0</additional_attributes>
+    <additional_attributes>20.0;10.0;10.0;6340.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -5263,10 +5263,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>620</x>
       <y>1970</y>
       <w>30</w>
-      <h>4820</h>
+      <h>4910</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;4800.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;4890.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -5274,16 +5274,16 @@ checkForResourceMarketplace</panel_attributes>
       <x>800</x>
       <y>1840</y>
       <w>30</w>
-      <h>4950</h>
+      <h>5050</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;4930.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;5030.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>960</x>
-      <y>6710</y>
+      <y>6810</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -5326,13 +5326,13 @@ checkForResourceMarketplace</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1150</x>
+      <x>1140</x>
       <y>5270</y>
-      <w>30</w>
-      <h>1510</h>
+      <w>40</w>
+      <h>1620</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1490.0</additional_attributes>
+    <additional_attributes>20.0;10.0;10.0;1600.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6143,10 +6143,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>1560</x>
       <y>6630</y>
       <w>30</w>
-      <h>150</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6198,10 +6198,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>1350</x>
       <y>6540</y>
       <w>30</w>
-      <h>250</h>
+      <h>380</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;360.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6217,13 +6217,13 @@ checkForResourceMarketplace</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1790</x>
+      <x>1780</x>
       <y>2820</y>
-      <w>30</w>
-      <h>3960</h>
+      <w>40</w>
+      <h>4080</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;3940.0</additional_attributes>
+    <additional_attributes>20.0;10.0;10.0;4060.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6374,10 +6374,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>2000</x>
       <y>3040</y>
       <w>30</w>
-      <h>3740</h>
+      <h>3860</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;3720.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;3840.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6440,10 +6440,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>2180</x>
       <y>6600</y>
       <w>30</w>
-      <h>170</h>
+      <h>300</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6484,10 +6484,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>2360</x>
       <y>3970</y>
       <w>30</w>
-      <h>2800</h>
+      <h>2940</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;2780.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;2920.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6550,10 +6550,10 @@ checkForResourceMarketplace</panel_attributes>
       <x>2570</x>
       <y>6110</y>
       <w>30</w>
-      <h>660</h>
+      <h>800</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;640.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;780.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -6572,20 +6572,77 @@ checkForResourceMarketplace</panel_attributes>
       <x>2820</x>
       <y>620</y>
       <w>30</w>
-      <h>6150</h>
+      <h>6270</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;6130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;6250.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>6760</y>
+      <y>6820</y>
       <w>30</w>
-      <h>50</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>6700</y>
+      <w>110</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+viewPocket</panel_attributes>
+    <additional_attributes>10.0;100.0;20.0;100.0;20.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>6700</y>
+      <w>600</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+printPocket</panel_attributes>
+    <additional_attributes>580.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>6730</y>
+      <w>600</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;580.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1560</x>
+      <y>6720</y>
+      <w>20</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1560</x>
+      <y>6740</y>
+      <w>30</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
   </element>
 </diagram>
