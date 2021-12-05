@@ -88,7 +88,7 @@ public class PlayerTurn {
 		if (player.getCutlassesCount() >= 1 && player.getGoldCount() >= 1 && player.getMolassesCount() >= 1) {
 			// ----- Give player a chance to confirm they wish to buy a cocotile -----
 			interactor.printMessage("buy cocotile?");	
-			toBuy = interactor.takeInAnswer();			
+			toBuy = interactor.takeInAnswer();
 			if (toBuy.equals("Y") || toBuy.equals("y")) {	
 				interactor.printMessage("bought cocotile");	
 				// ----- Remove cost from users pocket --------------------------------
@@ -248,7 +248,7 @@ public class PlayerTurn {
 	public void tradeMarketplace() {
 		// ----- Determine what resource user wishes to obtain  - check if their request is in stock -----
 		interactor.printMessage("trade out"); 
-		String trade_out = interactor.takeInAnswer();
+	String trade_out = interactor.takeInAnswer();
 		interactor.printMessage("trade out resource", trade_out);
 		if (validResourceCheck(trade_out)) { 															
 			boolean in_stock = marketplace.checkForResourceMarketplace(assignResourcesType(trade_out)); 
