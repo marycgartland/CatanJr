@@ -369,43 +369,48 @@ public class Board {
 				showBoardLayout();
 				interactor.printMessage("build ship/lair option", shiplair_choice);
 				String location_number = interactor.takeInAnswer();
-				List<String> comparison_list = Arrays.asList(options_string);
 				// ----- If valid input, place ship, take out cost ----------------------
-				if (comparison_list.contains(location_number)) {
-					for (int i = 0; i <= 17 - 1; i++) {
-						for (int j = 0; j <= 38 - 1; j++) {
-							if (shiplair_choice.equals("S")) {
-								if (design[i][j] == location_number.charAt(0)) {
-									// ----- Place ship -------
-									design[i][j] = player.getColour().charAt(0);
-									interactor.printMessage("ship built");
-									// ----- Take out cost -----
-									player.removeResource(Resources.Wood, 1);
-									player.removeResource(Resources.Goats, 1);
-								} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
-										|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with slashs
-									design[i][j] = symbolHolder[Character.getNumericValue(design[i][j]) - 1];
-								}
-							} else if (shiplair_choice.equals("L")) {
-								if (design[i][j] == location_number.charAt(0)) {
-									// ----- Place lair -----------------------------------------
-									design[i][j] = Character.toUpperCase(player.getColour().charAt(0));
-									// ----- Take out cost (wood, custlass, molasses,goat) -------
-									player.removeResource(Resources.Wood, 1);
-									player.removeResource(Resources.Goats, 1);
-									player.removeResource(Resources.Cutlasses, 1);
-									player.removeResource(Resources.Molasses, 1);
-									interactor.printMessage("lair built");
-								} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
-										|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with X's
-																							// again
-									design[i][j] = 'X';
+				if (Character.isDigit(location_number.charAt(0))) {
+					if (Integer.parseInt(location_number) > 0 && Integer.parseInt(location_number) <= count) {
+						for (int i = 0; i <= 17 - 1; i++) {
+							for (int j = 0; j <= 38 - 1; j++) {
+								if (shiplair_choice.equals("S")) {
+									if (design[i][j] == location_number.charAt(0)) {
+										// ----- Place ship -------
+										design[i][j] = player.getColour().charAt(0);
+										interactor.printMessage("ship built");
+										// ----- Take out cost -----
+										player.removeResource(Resources.Wood, 1);
+										player.removeResource(Resources.Goats, 1);
+									} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
+											|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with
+																								// slashs
+										design[i][j] = symbolHolder[Character.getNumericValue(design[i][j]) - 1];
+									}
+								} else if (shiplair_choice.equals("L")) {
+									if (design[i][j] == location_number.charAt(0)) {
+										// ----- Place lair -----------------------------------------
+										design[i][j] = Character.toUpperCase(player.getColour().charAt(0));
+										// ----- Take out cost (wood, custlass, molasses,goat) -------
+										player.removeResource(Resources.Wood, 1);
+										player.removeResource(Resources.Goats, 1);
+										player.removeResource(Resources.Cutlasses, 1);
+										player.removeResource(Resources.Molasses, 1);
+										interactor.printMessage("lair built");
+									} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
+											|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with X's
+																								// again
+										design[i][j] = 'X';
+									}
 								}
 							}
 						}
+						showBoardLayout();
+						integer_given = true;
+					} else { // If user input is invalid, cannot place lair/ship
+						interactor.printMessage("invalid option");
+						integer_given = false;
 					}
-					showBoardLayout();
-					integer_given = true;
 				} else { // If user input is invalid, cannot place lair/ship
 					interactor.printMessage("invalid option");
 					integer_given = false;
