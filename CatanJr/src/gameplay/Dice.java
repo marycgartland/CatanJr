@@ -23,7 +23,6 @@ public class Dice {
 	//----------------------------------------------------------------------------------------
 	public int rollDice(){
 		diceRollValue = (int)Math.floor(Math.random()*(max-min+1)+min);
-		//System.out.println(diceRollValue);
 	    return diceRollValue;
 	}
 

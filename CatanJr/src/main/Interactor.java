@@ -98,27 +98,15 @@ public class Interactor {
 		case "Number layout":
 			System.out.println("Island Number Layout:");
 			break;
-//		case "build ship option":
-//			System.out.println("Which number option would you like to build your ship at?: ");
-//			break;
 		case "ship built":
 			System.out.println("Ship has been successfully built\n");
 			break;
 		case "invalid option":
 			System.out.println("This is not a valid option number, please choose again\n");
 			break;
-//		case "no ships":
-//			System.out.println("There are no available spaces to build your ship, ships must be connected to a lair\n");
-//			break;
-//		case "build lair option":
-//			System.out.println("Which number option would you like to build your lair at?: ");
-//			break;
 		case "lair built":
 			System.out.println("Lair has been successfully built\n");
 			break;
-//		case "no lairs":
-//			System.out.println("There are no available spaces to build your lair, lairs must be connected to a ship\n");
-//			break;
 			
 		// Cases from 'CocoTiles' class
 		case "no cocotiles":
