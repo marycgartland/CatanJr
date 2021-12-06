@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>228</x>
+      <y>0</y>
+      <w>132</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>main
+--
+ - gameManager: GameManager</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>0</y>
+      <w>198</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>GameManager
+--
+- board: Board
+- stockPile: Stockpile
+- marketplace: Marketplace
+- cocoTiles: CocoTiles
+- dice: Dice
+- winner: String
+--
++ startGame()
++ checkWinner(players: Arraylist&lt;Player&gt;): boolean
++ getWinner(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>354</x>
+      <y>12</y>
+      <w>42</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>222</x>
+      <y>132</y>
+      <w>246</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>PlayerTurn
+--
+- marketPlaceUse: int
+- turn: boolean
+- player: Player
+- toBuild: String
+- toBuy: String
+- marketplace: Marketplace
+- stockpile: Stockpile
+- cocotiles: CocoTiles
+- board: Board
+--
++ takeTurn(islands: Island[],players: ArrayList&lt;Player&gt;, dice Dice) 
++ buy)()
++ build()
++ Trade()
++ cocotileAction(cocotile CocoTileTypes)
++ buildLairShip(toBuild: String)
++ tradeMarketplace()
++ tradeStockpile()
++ assignResourcesType(resource_letter String): Resources
++ validResourceCheck(enteredResource: String): boolean
++ viewPocket()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>114</y>
+      <w>18</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>492</x>
+      <y>138</y>
+      <w>324</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>Board
+--
+- design: char[][]
+- options_string: String[]
+- symbolHolder: char[]
+- interactor: Interactor
+- ghostCaptain: GhostCaptain
+- islands: Island[]
+- island_numbers: String[]
+--
++ getBoardDesign(): char[][]
++ showBoardLayout()
++ setGhostCaptain(ghostCaptain: GhostCaptain)
++ mostCocotiles(players: ArrayList&lt;Player&gt;)
++ reduceLairCount(colour: char, players: ArrayList&lt;Player&gt;)
++ placeLairMostCocotile(player_colour: char, players: ArrayList&lt;Player&gt;)
++ moveGhostCaptain()
++ showIslandNumberLayout(current_GC_location: int)
++ possibleLocationGhostCaptain(location: int)
++ placeLairShip(player: Player, shiplair_choice: String): boolean
++ setIslands(islands: Island[])
++ getIslands(): Island[]
+islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList&lt;Player&gt;)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>114</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>834</x>
+      <y>126</y>
+      <w>162</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+- name: String
+- colour: String
+- pocket: HashMap&lt;Resources, Integer&gt;
+- numberCocoTiles: int
+- diceValue: int
+- numberLairs: int
+--
++ addResource(newResource: Resources, numberNewResource: int)
++ removeResources(removedResource: Resources, numberRemovedResource: int)
++ viewPocket(): String
++ setupUserPocket()
++ addCocoTile()
++ addLair()
++ removeLair()
++ checkPocketResourcesLetter(resourceLetter: String): int
++ PlayerName(): String
++ getColour(): String
++ toString(): String
++ getCocoTileCount(): int
++ getCutlassesCount(): int
++ getGoatsCount(): int
++ getWoodCount(): int
++ getGoldCount(): int
++ getMolassesCount(): int
++ getLairCount(): int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>72</y>
+      <w>288</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>460.0;90.0;460.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>318</x>
+      <y>462</y>
+      <w>294</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>Interactor
+--
+- scan: Scanner
+--
++ printMessage(instruction: String)
++ printMessage(instruction: String, value: String)
++ printMessage(instruction: String, value1: CocoTileTypes)
++ printMessage(instruction: String, value1: Resources, value2: String)
++ printMessage(instruction: String, value1: String, value2: String)
++ printBoard(design: char[][])
++ printPocket(player: Player)
++ takeInAnswer(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>342</y>
+      <w>18</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>174</x>
+      <y>390</y>
+      <w>126</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Dice
+--
+- min: int
+- max: int
+- diceRollValue: int
+--
++ rollDice(): int
++ getDiceRollValue(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>342</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>462</x>
+      <y>156</y>
+      <w>42</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
+      <y>342</y>
+      <w>468</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>760.0;60.0;760.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>678</x>
+      <y>402</y>
+      <w>360</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Marketplace
+--
+- marketPlace: Resources[]
+- stockpile: Stockpile
+--
++ setupMarketplace(stockpile: Stockpile)
++ checkForResourceMarketplace(resource: Resources): boolean
++ checkForResourceMarketplaceStockpileRestock(resource: Resources): int
++ swapMarketplace(wantedResource: Resources, toSwapResource: Resources, player: Player)
++ checkMarketplace()
++ viewMarketplace()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>522</y>
+      <w>360</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Stockpile
+--
+- stockpile: HashMap&lt;Resources, Integer&gt;
+- players: ArrayList&lt;Player&gt;
+- marketplace: Marketplace 
+--
++ swapStockpile(wantedResource: Resources, toSwapResource: Resources, player: Player)
++ checkStockpile()
++ restockResource(resource: Resources)
++ setupPlayers(numberPlayers: int)
++ setupMarketplace(marketplace: Marketplace)
++ returnResource(resource: Resources, numberOfResource: int)
++ distributeResource(resource: Resources, numberOfResource: int)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>366</x>
+      <y>342</y>
+      <w>300</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>480.0;300.0;480.0;160.0;10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>342</y>
+      <w>300</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>480.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
