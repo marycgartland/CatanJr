@@ -464,4 +464,15 @@ public class Board {
 			moveGhostCaptain();
 		}
 	}
+	
+	// -------------------------------------------------------------------------------------------------------
+	// ---------- Method for test purposes: Moving gc w/o needing inputs -------------------------------------
+	// -------------------------------------------------------------------------------------------------------
+	public void moveGC() {
+		design[8][18] = ' ';
+	}
+	
+	public GhostCaptain getGC() {
+		return ghostCaptain;
+	}
 }
