@@ -59,7 +59,8 @@ class TestBoard {
 		testBoard.mostCocotiles(testPlayerList);
 		// compare the letter expected at the center and the actual letter at the centre
 		char boardCentre = testBoard.getBoardDesign()[8][18];
-		assertEquals('B', boardCentre, "Most cocotiles, lair in centre"); // Expecting 'B'
+		assertEquals('B', boardCentre, "Most cocotiles, lair in centre - placement");	// Expecting 'B'
+		assertEquals(3, testPlayerList.get(0).getLairCount(), "Most cocotiles, lair in centre - count"); // Expecting 3 lairs
 	}
 	
 	// Test that if one player has the most cocotiles, their lair won't be placed in the center if the GC is there
@@ -81,6 +82,7 @@ class TestBoard {
 			// Compare the letter expected at the center and the actual letter at the centre
 			char boardCentre = testBoard.getBoardDesign()[8][18];
 			assertEquals('G', boardCentre, "Most cocotiles, but GC is in centre");
+			assertEquals(2, testPlayerList.get(0).getLairCount(), "Most cocotiles, lair in centre - count"); // Expecting 2 lairs
 		}
 		
 	// Test if the player with the most cocotiles changes, the lair in the center changes 
@@ -106,6 +108,8 @@ class TestBoard {
 			// compare the letter expected at the center and the actual letter at the centre
 			boardCentre = testBoard.getBoardDesign()[8][18];
 			assertEquals('R', boardCentre, "Most cocotiles, lair in centre"); // Expecting 'R'
+			assertEquals(2, testPlayerList.get(0).getLairCount(), "Most cocotiles, lair in centre - count"); // Expecting 2 lairs
+			assertEquals(3, testPlayerList.get(1).getLairCount(), "Most cocotiles, lair in centre - count"); // Expecting 3 lairs
 		}
 		
 	// If 2 players have the same number of cocotiles, no cocotiles in the middle
