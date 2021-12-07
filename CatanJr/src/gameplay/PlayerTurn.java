@@ -68,11 +68,11 @@ public class PlayerTurn {
 			} else if (option.equals("E")) {			// If player wishes to end turn
 				interactor.printMessage("turn: end");
 				turn = false;
-			} else if (option.equals("P")) {
+			} else if (option.equals("P")) {			// If player wishes to view their pocket
 				interactor.printMessage("turn: view pocket");
-				viewPocket();							// If player wishes to view their pocket
+				viewPocket();				
 			}
-			else {									// Error check - ensure choice entered is valid
+			else {										// Error check - ensure choice entered is valid
 				interactor.printMessage("turn: null");
 			}
 		}
