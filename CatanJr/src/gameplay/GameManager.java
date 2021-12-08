@@ -59,7 +59,7 @@ public class GameManager {
 			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile, cocoTiles, board);
 			board.mostCocotiles(playerSetup.Players());		// Check if player w/ most cocotiles can place lair on spooky island
 			playerTurn.takeTurn(board.getIslands(), playerSetup.Players(), dice); 	// Player - take turn
-			player_turn = (player_turn + 1) % (playerSetup.Players().size());	// Loop through the players
+			player_turn = (player_turn + 1) % (playerSetup.Players().size());		// Loop through the players
 		}
 		// ----- If there is a winner declared, announce the winner ----------
 		interactor.printMessage("winner", winner);

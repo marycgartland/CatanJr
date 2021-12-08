@@ -2,25 +2,13 @@ package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.After;
-import org.junit.Before;
 import board.*;
-import gameplay.*;
-import main.*;
 import player.*;
-import resources.*;
 import setup.*;
-
 
 class TestBoard {
 	
-
-
 	// TODO: Before and after
 	// ---------- 
 	//@Before
@@ -162,10 +150,6 @@ class TestBoard {
 		///	//assertEquals(1, testPlayerList.get(0).checkPocketResourcesLetter("C"), "Resource assignment - player 1, roll 4");
 		//	//assertEquals(1, testPlayerList.get(1).checkPocketResourcesLetter("M"), "Resource assignment - player 2, roll 4");
 		//}
-
 }
 
-
 // Note: We did not test methods requiring user interaction when using Junit tests.
-
-

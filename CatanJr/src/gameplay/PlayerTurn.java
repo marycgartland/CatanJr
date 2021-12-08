@@ -88,7 +88,7 @@ public class PlayerTurn {
 		// ----- Display cocotile price to user ---------------------------------
 		interactor.printMessage("cocotile price");
 		// ----- If the player has enough resources they can buy a cocotile -----
-		if (player.getCutlassesCount() >= 1 && player.getGoldCount() >= 1 && player.getMolassesCount() >= 1) {
+		if (player.checkPocketResources("C") >= 1 && player.checkPocketResources("G") >= 1 && player.checkPocketResources("M") >= 1) {
 			// ----- Give player a chance to confirm they wish to buy a cocotile -----
 			interactor.printMessage("buy cocotile?");	
 			toBuy = interactor.takeInAnswer();
@@ -162,7 +162,7 @@ public class PlayerTurn {
 	public void build() {
 		interactor.printMessage("ship/lair price");
 		// ----- If the user has the resources to build either, provide both options -----
-		if (player.getCutlassesCount() >= 1 && player.getWoodCount() >= 1 && player.getGoatsCount() >= 1 && player.getMolassesCount() >= 1) {
+		if (player.checkPocketResources("C") >= 1 && player.checkPocketResources("W") >= 1 && player.checkPocketResources("GT") >= 1 && player.checkPocketResources("M") >= 1) {
 			interactor.printMessage("build ship/lair");				 // Give user option of building a ship or lair
 			toBuild = interactor.takeInAnswer(); 					 // Scan in user response
 			if (toBuild.equals("S") || toBuild.equals("s")) {		 // Build ship
@@ -171,7 +171,7 @@ public class PlayerTurn {
 				buildLairShip("L");
 			}
 		} // ----- If the user only has the resources to build a ship --------------------
-		else if (player.getWoodCount() >= 1 && player.getGoatsCount() >= 1) {
+		else if (player.checkPocketResources("W") >= 1 && player.checkPocketResources("GT") >= 1) {
 			interactor.printMessage("build ship?");					 // Ask user to confirm they wish to buy a ship
 			toBuild = interactor.takeInAnswer(); 					 // Scan in user input
 			if (toBuild.equals("Y") || toBuild.equals("y")) {		 // Build ship
@@ -258,7 +258,7 @@ public class PlayerTurn {
 				String trade_in = interactor.takeInAnswer();
 				interactor.printMessage("trade in resource", trade_in);
 				if (validResourceCheck(trade_in)) { 
-					if (player.checkPocketResourcesLetter(trade_in) > 0) { 
+					if (player.checkPocketResources(trade_in) > 0) { 
 						// ----- Make the swap, and increment marketPlaceUse variable to indicate the trade is used (1 per turn) ------
 						marketPlaceUse = 1; 
 						marketplace.swapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
@@ -286,7 +286,7 @@ public class PlayerTurn {
 			String trade_in = interactor.takeInAnswer();// Take in user input 
 			if (validResourceCheck(trade_in)) {			// Check that the user entered a valid resource
 				// ------ User needs 2+ of the resource to swap with stockpile ------
-				if (player.checkPocketResourcesLetter(trade_in) > 1) { 
+				if (player.checkPocketResources(trade_in) > 1) { 
 					stockpile.swapStockpile(assignResourcesType(trade_out), assignResourcesType(trade_in), player); 
 					viewPocket();
 				} else { // ----- Otherwise, cannot trade -----

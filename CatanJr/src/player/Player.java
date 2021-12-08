@@ -41,12 +41,12 @@ public class Player {
 	// Method to view a count of all resources in the pocket
 	public String viewPocket() {
 		return "\n" + this.name + "'s Pocket: \n" + "Cocotiles: " + getCocoTileCount() + "\nCutlasses: "
-				+ getCutlassesCount() + "\nGoats: " + getGoatsCount() + "\nWood: " + getWoodCount() + "\nGold: "
-				+ getGoldCount() + "\nMolasses: " + getMolassesCount() + "\n";
+				+ checkPocketResources("C") + "\nGoats: " + checkPocketResources("GT") + "\nWood: " 
+				+ checkPocketResources("W") + "\nGold: " + checkPocketResources("G") + "\nMolasses: " 
+				+ checkPocketResources("M") + "\n";
 	}
 
 	// Method to set up the users pocket at the start of the game
-	// TODO: Change these back to 0. they are just set to 20 for testing purposes at the moment
 	public void setupUserPocket() {
 		pocket.put(Resources.Gold, 0);
 		pocket.put(Resources.Wood, 0);
@@ -71,7 +71,7 @@ public class Player {
 	}
 	
 	// Method to check how much of a user has in their pocket based on the resource letter
-	public int checkPocketResourcesLetter(String resourceLetter) {
+	public int checkPocketResources(String resourceLetter) {
 		if (resourceLetter.equals("W")) {
 			return pocket.get(Resources.Wood);
 		} else if (resourceLetter.equals("M")) {
@@ -90,8 +90,6 @@ public class Player {
 		return pocket.get(resource);
 	}
 
-	// TODO: We want methods to show people their resources at any time protected Item []
-
 	// ----------------------------------------------------------
 	// ---------- Methods to get player features ----------------
 	// ----------------------------------------------------------
@@ -108,30 +106,10 @@ public class Player {
 	}
 
 	// ----------------------------------------------------------
-	// ---------- Get methods to count items in pocket ----------
+	// ---------- Get methods to count other resources ----------
 	// ----------------------------------------------------------
 	public int getCocoTileCount() {
 		return this.numberCocoTiles;
-	}
-
-	public int getCutlassesCount() {
-		return pocket.get(Resources.Cutlasses);
-	}
-
-	public int getGoatsCount() {
-		return pocket.get(Resources.Goats);
-	}
-
-	public int getWoodCount() {
-		return pocket.get(Resources.Wood);
-	}
-
-	public int getGoldCount() {
-		return pocket.get(Resources.Gold);
-	}
-
-	public int getMolassesCount() {
-		return pocket.get(Resources.Molasses);
 	}
 
 	public int getLairCount() {
