@@ -35,7 +35,7 @@ public class BoardSetup {
 	// ---------- Constructor ------------------------------------------
 	// -----------------------------------------------------------------
 	public BoardSetup(ArrayList<Player> players) {
-		this.board = new Board();
+		this.board = Board.getInstance(); // get instance of board
 		this.design = board.getBoardDesign();
 		setupBoard(players.size());	// Place ships and lairs based on player #
 		setUpIslands();				// Set up the 12 islands
