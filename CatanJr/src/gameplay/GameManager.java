@@ -30,19 +30,25 @@ public class GameManager {
 	protected Dice dice;				// Create a dice
 	protected PlayerTurn playerTurn;	// Create player turn
 	protected boolean playGame = true; 	// Variable to control game play
+	private static GameManager instance = new GameManager(); // Create instance of GameManager
+    protected Player subject;
+
+
 
 	// ----- Create an interactor object --------------------------
 	Interactor interactor = new Interactor();
 
 	// -------------------------------------------------------------
 	// ---------- Constructor --------------------------------------
+	// -----private constructor so that it cannot be instantiated---
 	// -------------------------------------------------------------
-	
-	   protected Player subject;
- 
-	public GameManager() {
+	private GameManager() {
 	}
 
+	// Get the only object available
+	public static GameManager getInstance() {
+		return instance;
+	}
 	// -------------------------------------------------------------
 	// ---------- Method: StartGame() ------------------------------
 	// This method sets up the game to begin 
