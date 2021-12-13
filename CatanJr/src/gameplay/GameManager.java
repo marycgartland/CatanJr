@@ -55,7 +55,7 @@ public class GameManager {
 		PlayerSetup playerSetup = new PlayerSetup(); 							// Set up players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
 		BoardSetup boardSetup = new BoardSetup(playerSetup.Players());			// Set up board
-		dice = new Dice(); 														// Create dice object
+		dice = Dice.getInstance(); 														// Create dice object
 		board = boardSetup.getBoard();
 		this.stockPile = resourceSetup.getStockpile(); 							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles(); 							// Set up cocotiles

@@ -34,6 +34,8 @@ public class main {
 		// need to update sequence diagram now that I have an observer method to check if theres a winner, it affects GameManager class, PlayerTurn(end game method) and Player (attach and notify methods)
 		
 		
+		// problem with trying to buy cocotile when you dont have enough resources, it just skips to your next turn
+		
 		
     }
 }
