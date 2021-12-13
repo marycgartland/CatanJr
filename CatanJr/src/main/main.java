@@ -7,7 +7,7 @@ public class main {
 	public static void main(String[] args) {
 		
 		
-		GameManager gameManager = GameManager.getInstance();
+		GameManager gameManager = GameManager.getInstance(); 
 		gameManager.startGame();
 		
 		// Need to write instruction manual

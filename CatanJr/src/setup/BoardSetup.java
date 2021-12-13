@@ -130,7 +130,7 @@ public class BoardSetup {
 	// This stops the users obtaining resources from islands it's on
 	// -----------------------------------------------------------------
 	public void setUpGhostCaptain() {
-		ghostCaptain = new GhostCaptain(13); 	// Setup ghost captain on spooky island (island = 13)
+		GhostCaptain ghostCaptain = GhostCaptain.getInstance(); 	// get instance of ghost captain
 		design[8][18] = 'G'; 					// 'G' represents location of ghost captain on board
 		board.setGhostCaptain(ghostCaptain); 	// Set ghost captain on board
 	}
