@@ -396,6 +396,7 @@ public class Board {
 										player.removeResource(Resources.Goats, 1);
 										player.removeResource(Resources.Cutlasses, 1);
 										player.removeResource(Resources.Molasses, 1);
+										player.addLair(); // Increment the players lair count
 										interactor.printMessage("lair built");
 									} else if (design[i][j] == '1' || design[i][j] == '2' || design[i][j] == '3'
 											|| design[i][j] == '4' || design[i][j] == '5') { // replace numbers with X's

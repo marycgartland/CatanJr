@@ -2,6 +2,8 @@ package player;
 
 // Import any packages needed
 import java.util.*;
+
+import gameplay.GameManager;
 import resources.Resources;
 
 public class Player {
@@ -14,8 +16,8 @@ public class Player {
 	protected int numberCocoTiles = 0;	// Number of cocotiles a player has
 	int diceValue;						// Dice roll of a player
 	protected int numberLairs = 2; 		// Keeps track of # of lairs of a player. 2 lairs/player on board to begin. Need 7 to win
-
-
+	protected List<GameManager> observers = new ArrayList<GameManager>(); // Declaring observers to check winner
+	   
 	// ----------------------------------------------------------
 	// ---------- Constructor Method ----------------------------
 	// ----------------------------------------------------------
@@ -63,11 +65,13 @@ public class Player {
 	// Method to increase number of lairs user has bought
 	public void addLair() {
 		this.numberLairs = this.numberLairs + 1;
+		notifyAllObservers();
 	}
 
 	// Method to decrease number of lairs a user has on the board
 	public void removeLair() {
 		this.numberLairs = this.numberLairs - 1;
+		notifyAllObservers();
 	}
 	
 	// Method to check how much of a user has in their pocket based on the resource letter
@@ -88,6 +92,25 @@ public class Player {
 	// Method to check how many of specified resource type is in users pocket
 	public int checkPocketResourcesType(Resources resource) {
 		return pocket.get(resource);
+	}
+	
+	
+	// ----------------------------------------------------------
+	// ---------- Method: attach --------------------------------
+	// ---------Add GameManager as observer to the subject-------
+	// ----------------------------------------------------------
+	public void attach(GameManager GameManager) {
+		observers.add(GameManager);
+	}
+
+	// -----------------------------------------------------------
+	// ---------- Method: notify ---------------------------------
+	// Notify the observer that the players lair count has changed
+	// -----------------------------------------------------------
+	public void notifyAllObservers() {
+		for (GameManager observer : observers) {
+			observer.checkWinner(Player.this);
+		}
 	}
 
 	// ----------------------------------------------------------

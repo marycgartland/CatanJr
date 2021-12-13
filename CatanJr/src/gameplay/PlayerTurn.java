@@ -193,7 +193,6 @@ public class PlayerTurn {
 			turn = board.placeLairShip(player, toBuild);
 		} else if (toBuild.equals("L")) {
 			interactor.printMessage("build: lair"); // Indicate actions to user
-			player.addLair(); // Increment the players lair count
 			turn = false; // Pause turn until lair is placed
 			turn = board.placeLairShip(player, toBuild);
 		}
@@ -339,6 +338,14 @@ public class PlayerTurn {
 	public void viewPocket() {
 		interactor.printPocket(player);
 		
+	}
+	
+	// ------------------------------------------------------------------------
+	// ---------- Method: endGame ---------------------------------------------
+	// ---- This ends game if winner has been found
+	// ------------------------------------------------------------------------
+	public void endGame() {
+		System.exit(0); 
 	}
 	
 	

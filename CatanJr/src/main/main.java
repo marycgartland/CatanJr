@@ -10,6 +10,7 @@ public class main {
 		gameManager.startGame();
 		
 		// Need to write instruction manual
+		// change players pocket back to 0
 		
 		// IN PLAYER CLASS
 			// TODO: Change these back to 0. they are just set to 20 for testing purposes at the moment
@@ -29,6 +30,7 @@ public class main {
 		// the observer is the GameManager class, so code should only ne notified if the condition is satisfied (lairs=7)
 		// Class diagrams: show cardinality
 		// Sequence diagrams: include parameters to methods
+		// need to update sequence diagram now that I have an observer method to check if theres a winner, it affects GameManager class, PlayerTurn(end game method) and Player (attach and notify methods)
 		
 		
 		

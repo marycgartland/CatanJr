@@ -27,15 +27,19 @@ public class GameManager {
 	protected Stockpile stockPile; 		// Create a stockpile
 	protected CocoTiles cocoTiles; 		// Create cocoTiles
 	protected Marketplace marketPlace;	// Create a marketPlace
-	protected String winner; 			// Create a string to hold the winner
 	protected Dice dice;				// Create a dice
-	
+	protected PlayerTurn playerTurn;	// Create player turn
+	protected boolean playGame = true; 	// Variable to control game play
+
 	// ----- Create an interactor object --------------------------
 	Interactor interactor = new Interactor();
 
 	// -------------------------------------------------------------
 	// ---------- Constructor --------------------------------------
 	// -------------------------------------------------------------
+	
+	   protected Player subject;
+ 
 	public GameManager() {
 	}
 
@@ -44,6 +48,7 @@ public class GameManager {
 	// This method sets up the game to begin 
 	// -------------------------------------------------------------
 	public void startGame() {
+
 		// ----- Game setup --------------------------------------------------
 		PlayerSetup playerSetup = new PlayerSetup(); 							// Set up players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
@@ -55,37 +60,27 @@ public class GameManager {
 		this.marketPlace = resourceSetup.getMarketplace(); 						// Set up the resources in the marketplace
 		// ----- While there is no winner declared, rotate players turns -----
 		int player_turn = 0;
-		while (!checkWinner(playerSetup.Players())) {
-			PlayerTurn playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile, cocoTiles, board);
-			board.mostCocotiles(playerSetup.Players());		// Check if player w/ most cocotiles can place lair on spooky island
+		while (playGame) {
+			this.playerTurn = new PlayerTurn(playerSetup.Players().get(player_turn), marketPlace, stockPile, cocoTiles, board);
+			board.mostCocotiles(playerSetup.Players());				// Check if player w/ most cocotiles can place lair on spooky island
+			this.subject = playerSetup.Players().get(player_turn); 	// Assign the player as the subject for the observer
+			subject.attach(GameManager.this); 						// Attach observer to subject
 			playerTurn.takeTurn(board.getIslands(), playerSetup.Players(), dice); 	// Player - take turn
 			player_turn = (player_turn + 1) % (playerSetup.Players().size());		// Loop through the players
 		}
-		// ----- If there is a winner declared, announce the winner ----------
-		interactor.printMessage("winner", winner);
 	}
-
-	// -------------------------------------------------------------
-	// ---------- Method: checkWinner ------------------------------
-	// This method checks players layers count to check for a winner
-	// It does this by checking if a player has 7 or more layers
-	// -------------------------------------------------------------
-	public boolean checkWinner(ArrayList<Player> players) {
-		for (int i = 0; i <= players.size() - 1; i++) {
-			if (players.get(i).getLairCount() >= 7) {
-				this.winner = players.get(i).PlayerName();
-				return true; 
+	
+	
+		// -------------------------------------------------------------
+		// ---------- Method: checkWinner ------------------------------
+		// observer method to check if players lair count is equal to 7
+		// -------------------------------------------------------------
+		public void checkWinner(Player player) {
+			if (player.getLairCount() >= 7) { 
+				// ----- If there is a winner declared, announce the winner ----------
+				interactor.printMessage("winner", player.PlayerName());
+				this.playGame = false;		// end game play loop
+				this.playerTurn.endGame();  // end players turn
 			}
 		}
-		return false;
-	}
-
-	// -------------------------------------------------------------
-	// ---------- Method: checkWinner ------------------------------
-	// This method checks players layers count to check for a winner
-	// It does this by checking if a player has 7 or more layers
-	// -------------------------------------------------------------
-	public String getWinner() {
-		return winner;
-	}
 }
