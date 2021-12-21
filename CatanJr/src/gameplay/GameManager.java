@@ -14,7 +14,7 @@ import setup.ResourceSetup;
 
 public class GameManager {
 	// -------------------------------------------------------------------------------------------------------
-	// This class controls/runs the game
+	// This singleton class controls/runs the game
 	// It controls the turns, it determines the winner
 	// How it determines a winner: when a user has placed 7 lairs (including if they
 	// have on on spooky island)
@@ -45,10 +45,6 @@ public class GameManager {
 	private GameManager() {
 	}
 
-	// Get the only object available
-	public static GameManager getInstance() {
-		return instance;
-	}
 	// -------------------------------------------------------------
 	// ---------- Method: StartGame() ------------------------------
 	// This method sets up the game to begin 
@@ -59,7 +55,7 @@ public class GameManager {
 		PlayerSetup playerSetup = new PlayerSetup(); 							// Set up players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
 		BoardSetup boardSetup = new BoardSetup(playerSetup.Players());			// Set up board
-		dice = new Dice(); 														// Create dice object
+		dice = Dice.getInstance(); 														// Create dice object
 		board = boardSetup.getBoard();
 		this.stockPile = resourceSetup.getStockpile(); 							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles(); 							// Set up cocotiles
@@ -88,5 +84,13 @@ public class GameManager {
 				this.playGame = false;		// end game play loop
 				this.playerTurn.endGame();  // end players turn
 			}
+		}
+		
+		// -------------------------------------------------------------
+		// ---------- Method: getInstance ------------------------------
+		// -- method for getting the instance of GameManager----------------
+		// -------------------------------------------------------------
+		public static GameManager getInstance() {
+			return instance;
 		}
 }

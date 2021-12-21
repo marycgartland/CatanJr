@@ -111,7 +111,7 @@ public class PlayerTurn {
 		} 
 		// ----- Error message if the user does not have resources needed -------
 		else { 
-			interactor.printMessage("cannot buy: cocotile");
+			interactor.printMessage("cannot buy cocotile");
 		}
 	}
 

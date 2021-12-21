@@ -1,16 +1,19 @@
 package board;
 
+//-----------------------------------------------------
+// ------ A Singleton class for the Ghost Captain -----
+// -----------------------------------------------------
+
 public class GhostCaptain {
-	// -----------------------------------------------------
-	// ---------- Variables --------------------------------
-	// -----------------------------------------------------
+	
 	protected int location; // location of Ghost captain
+	private static GhostCaptain instance = new GhostCaptain(13); // create instance of ghost captain
 	
 	// -----------------------------------------------------
 	// ---------- Constructor ------------------------------
 	// Ghost captain will be placed on spooky island to start
 	// -----------------------------------------------------
-	public GhostCaptain(int island_number) {
+	private GhostCaptain(int island_number) {
 		this.location = island_number;
 	}
 	
@@ -27,5 +30,12 @@ public class GhostCaptain {
 	// -----------------------------------------------------
 	public int getGhostCaptainLocation() {
 		return this.location;
+	}
+	
+	// ----------------------------------------------------
+	// ---------- Method: getInstance ---------------------
+	// ----------------------------------------------------
+	public static GhostCaptain getInstance() {
+		return instance;
 	}
 }

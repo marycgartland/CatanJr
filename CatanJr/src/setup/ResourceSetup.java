@@ -20,7 +20,7 @@ public class ResourceSetup {
 	public ResourceSetup(ArrayList<Player> players) {
 		this.stockPile = new Stockpile(players);	// Construct the stockpile
 		this.cocoTiles = new CocoTiles(); 			// Construct the Cocotiles
-		this.marketPlace = new Marketplace(); 		// Construct the marketplace
+		this.marketPlace = Marketplace.getInstance(); // Get instance of the marketplace
 		stockPile.setupMarketplace(marketPlace); 	// Take one of each resource from the stockpile and add it to the marketplace
 		marketPlace.setupMarketplace(stockPile); 	// Add one of each resource to the marketplace
 		stockPile.setupPlayers(players.size()); 	// Add 1 wood and 1 molasses from the stockpile to each players pocket

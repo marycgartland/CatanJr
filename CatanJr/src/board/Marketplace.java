@@ -3,13 +3,17 @@ package board;
 import main.Interactor;
 import player.Player;
 import resources.Resources;
-
+	//--------------------------------------------------------------------------
+	// ---------- A Singleton class for the Marketplace ------------------------
+	// -------------------------------------------------------------------------
 public class Marketplace {
 	// -------------------------------------------------------------------------
 	// ---------- Variables ----------------------------------------------------
 	// -------------------------------------------------------------------------
 	protected Resources[] marketPlace; // Array containing marketplace resources
 	protected Stockpile stockpile;
+	private static Marketplace instance = new Marketplace();
+
 	
 	// ----- Create an interactor object ---------------------------------------
 	Interactor interactor = new Interactor();
@@ -17,7 +21,7 @@ public class Marketplace {
 	// -------------------------------------------------------------------------
 	// ---------- Constructor --------------------------------------------------
 	// -------------------------------------------------------------------------
-	public Marketplace() {
+	private Marketplace() {
 	}
 
 	// -------------------------------------------------------------------------
@@ -101,5 +105,12 @@ public class Marketplace {
 						+ String.valueOf(marketPlace[2]) + ", " + String.valueOf(marketPlace[3]) + ", " 
 						+ String.valueOf(marketPlace[4]);
 		interactor.printMessage("View Marketplace", toPrint);
+	}
+	
+	// ------------------------------------------------------------------------
+	// ---------- Method: getInstance -----------------------------------------
+	// ------------------------------------------------------------------------
+	public static Marketplace getInstance() {
+		return instance;
 	}
 }

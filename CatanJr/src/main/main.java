@@ -7,7 +7,7 @@ public class main {
 	public static void main(String[] args) {
 		
 		
-		GameManager gameManager = GameManager.getInstance();
+		GameManager gameManager = GameManager.getInstance(); 
 		gameManager.startGame();
 		
 		// Need to write instruction manual
@@ -25,15 +25,9 @@ public class main {
 		// place ship/lair still looks very long and loopy - def could be simplified/tidier if we have time. (not necessary but a would-be-nice)
 		
 		// EP: Notes from meeting:
-		// GameManager should be singleton design pattern: one instance of one class only, maybe use for other classes where we only need one instance
 		// if more than 2/3 classes have rference to the view(interactor class) then there may be a problem, need unified reference to the view through the controller class
-		// implement observer design pattern to checkWinner mehtod, should be seperate method, not in the loop, the subject is the Player beacuse they keep track of the number of lairs,
-		// the observer is the GameManager class, so code should only ne notified if the condition is satisfied (lairs=7)
-		// Class diagrams: show cardinality
-		// Sequence diagrams: include parameters to methods
-		// need to update sequence diagram now that I have an observer method to check if theres a winner, it affects GameManager class, PlayerTurn(end game method) and Player (attach and notify methods)
-		
-		
+		// Class diagrams: show cardinality -  I updated this but run through it with mary and make sure it makes sense
+		// need to update sequence diagram now that I have an observer method to check if theres a winner, it affects GameManager class, PlayerTurn(end game method) and Player (attach and notify methods)		
 		
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>6</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>228</x>
+      <x>72</x>
       <y>0</y>
-      <w>132</w>
-      <h>30</h>
+      <w>176</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>main
 --
@@ -17,10 +17,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>384</x>
+      <x>344</x>
       <y>0</y>
-      <w>198</w>
-      <h>120</h>
+      <w>264</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>GameManager
 --
@@ -39,21 +39,23 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>354</x>
-      <y>12</y>
-      <w>42</w>
-      <h>18</h>
+      <x>240</x>
+      <y>16</y>
+      <w>120</w>
+      <h>32</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>222</x>
-      <y>132</y>
-      <w>246</w>
-      <h>216</h>
+      <x>128</x>
+      <y>216</y>
+      <w>328</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes>PlayerTurn
 --
@@ -84,21 +86,23 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>114</y>
-      <w>18</w>
-      <h>30</h>
+      <x>392</x>
+      <y>152</y>
+      <w>40</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=1..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>492</x>
-      <y>138</y>
-      <w>324</w>
-      <h>234</h>
+      <x>488</x>
+      <y>224</y>
+      <w>432</w>
+      <h>312</h>
     </coordinates>
     <panel_attributes>Board
 --
@@ -130,21 +134,23 @@ islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>516</x>
-      <y>114</y>
-      <w>18</w>
-      <h>36</h>
+      <x>520</x>
+      <y>152</y>
+      <w>32</w>
+      <h>88</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>834</x>
-      <y>126</y>
-      <w>162</w>
-      <h>252</h>
+      <x>944</x>
+      <y>208</y>
+      <w>216</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>Player
 --
@@ -180,21 +186,23 @@ islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>72</y>
-      <w>288</w>
-      <h>66</h>
+      <x>600</x>
+      <y>96</y>
+      <w>408</w>
+      <h>128</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>460.0;90.0;460.0;10.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=3...4
+m2=1</panel_attributes>
+    <additional_attributes>460.0;140.0;460.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>318</x>
-      <y>462</y>
-      <w>294</w>
-      <h>108</h>
+      <x>256</x>
+      <y>656</y>
+      <w>392</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>Interactor
 --
@@ -213,21 +221,23 @@ islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>342</y>
-      <w>18</w>
-      <h>132</h>
+      <x>288</x>
+      <y>496</y>
+      <w>32</w>
+      <h>176</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
     <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>174</x>
-      <y>390</y>
-      <w>126</w>
-      <h>72</h>
+      <x>64</x>
+      <y>560</y>
+      <w>168</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>Dice
 --
@@ -242,21 +252,23 @@ islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>270</x>
-      <y>342</y>
-      <w>18</w>
-      <h>60</h>
+      <x>192</x>
+      <y>496</y>
+      <w>32</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
     <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>462</x>
-      <y>156</y>
-      <w>42</w>
-      <h>18</h>
+      <x>448</x>
+      <y>248</y>
+      <w>56</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
@@ -264,21 +276,23 @@ islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>414</x>
-      <y>342</y>
-      <w>468</w>
-      <h>60</h>
+      <x>384</x>
+      <y>496</y>
+      <w>648</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;-
+m1=3...4
+m2=1</panel_attributes>
     <additional_attributes>760.0;60.0;760.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>678</x>
-      <y>402</y>
-      <w>360</w>
-      <h>102</h>
+      <x>736</x>
+      <y>576</y>
+      <w>480</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>Marketplace
 --
@@ -296,10 +310,10 @@ islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>522</y>
-      <w>360</w>
-      <h>120</h>
+      <x>672</x>
+      <y>736</y>
+      <w>480</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Stockpile
 --
@@ -319,23 +333,27 @@ islandResourceDistribution(diceValue: int, islands: Island[], players: ArrayList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>366</x>
-      <y>342</y>
-      <w>300</w>
-      <h>192</h>
+      <x>320</x>
+      <y>496</y>
+      <w>408</w>
+      <h>256</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
     <additional_attributes>480.0;300.0;480.0;160.0;10.0;160.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>342</y>
-      <w>300</w>
-      <h>84</h>
+      <x>352</x>
+      <y>496</y>
+      <w>400</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
     <additional_attributes>480.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

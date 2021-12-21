@@ -48,7 +48,7 @@ class TestBoard {
 		testPlayerList.add(new Player("testPlayer2", "Red"));
 		testPlayerList.add(new Player("testPlayer3", "White"));
 		BoardSetup testboardSetup = new BoardSetup(testPlayerList);	// Set up a test board
-		Board testBoard = new Board();
+		Board testBoard = Board.getInstance();
 		testBoard = testboardSetup.getBoard();
 		testBoard.moveGC(); 										// Remove GC from centre
 		testPlayerList.get(0).addCocoTile();						// Add cocotiles to players
@@ -70,7 +70,7 @@ class TestBoard {
 			testPlayerList.add(new Player("testPlayer2", "Red"));
 			testPlayerList.add(new Player("testPlayer3", "White"));
 			BoardSetup testboardSetup = new BoardSetup(testPlayerList);	// Set up a test board
-			Board testBoard = new Board();
+			Board testBoard = Board.getInstance();
 			testBoard = testboardSetup.getBoard();
 			testPlayerList.get(0).addCocoTile();						// Add cocotiles to players 
 			testPlayerList.get(0).addCocoTile();
@@ -91,7 +91,7 @@ class TestBoard {
 			testPlayerList.add(new Player("testPlayer2", "Red"));
 			testPlayerList.add(new Player("testPlayer3", "White"));
 			BoardSetup testboardSetup = new BoardSetup(testPlayerList);		// Set up a test board
-			Board testBoard = new Board();
+			Board testBoard = Board.getInstance();
 			testBoard = testboardSetup.getBoard();
 			testBoard.moveGC(); 											// Remove GC from centre
 			testPlayerList.get(0).addCocoTile();							// Add cocotiles to players
@@ -117,7 +117,7 @@ class TestBoard {
 			testPlayerList.add(new Player("testPlayer2", "Red"));
 			testPlayerList.add(new Player("testPlayer3", "White"));
 			BoardSetup testboardSetup = new BoardSetup(testPlayerList);	// Set up a test board
-			Board testBoard = new Board();
+			Board testBoard = Board.getInstance();
 			testBoard = testboardSetup.getBoard();
 			testBoard.moveGC(); 
 			testPlayerList.get(0).addCocoTile();						// Add cocotiles to players 
