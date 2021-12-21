@@ -12,7 +12,6 @@ public class GhostCaptain {
 	// -----------------------------------------------------
 	public GhostCaptain(int island_number) {
 		this.location = island_number;
-
 	}
 	
 	// -----------------------------------------------------

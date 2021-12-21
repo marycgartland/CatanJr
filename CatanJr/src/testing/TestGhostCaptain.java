@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import board.GhostCaptain;
 
 class TestGhostCaptain {
-
 	@Test
 	// --------------- Testing Changing Ghost Captain Location ---------------
 	void testGhostCaptain() {
@@ -14,5 +13,4 @@ class TestGhostCaptain {
 		testGC.updateLocationGC(8);														// Change
 		assertEquals(8, testGC.getGhostCaptainLocation(), "Testing Ghost Captain");		// Test
 	}
-
 }
