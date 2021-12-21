@@ -43,7 +43,7 @@
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-startGame</panel_attributes>
+startGame()</panel_attributes>
     <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -113,7 +113,7 @@ fg=red</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-mostCocotiles</panel_attributes>
+mostCocotiles(ArrayList&lt;Player&gt; players)</panel_attributes>
     <additional_attributes>910.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -147,7 +147,7 @@ mostCocotiles</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getCocoTileCount</panel_attributes>
+getCocoTileCount()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -181,7 +181,7 @@ getCocoTileCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getColour</panel_attributes>
+getColour()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -215,7 +215,7 @@ getColour</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getColour</panel_attributes>
+getColour()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -249,7 +249,7 @@ getColour</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-removeLair</panel_attributes>
+removeLair()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -283,7 +283,7 @@ removeLair</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getColour</panel_attributes>
+getColour()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -317,7 +317,7 @@ getColour</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addLair</panel_attributes>
+addLair()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -362,7 +362,7 @@ addLair</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printBoard</panel_attributes>
+printBoard(char[][] design)</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -418,7 +418,7 @@ printBoard</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeTurn</panel_attributes>
+takeTurn(Island[] islands, ArrayList&lt;Player&gt; players, Dice dice) </panel_attributes>
     <additional_attributes>720.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -475,7 +475,7 @@ takeTurn</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-rollDice</panel_attributes>
+rollDice()</panel_attributes>
     <additional_attributes>820.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -520,7 +520,7 @@ rollDice</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -548,14 +548,14 @@ printMessage</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>640</x>
       <y>2312</y>
-      <w>160</w>
+      <w>432</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-islandResourceDistribution</panel_attributes>
-    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+islandResourceDistribution(int diceValue, Island[] islands, ArrayList&lt;Player&gt; players)</panel_attributes>
+    <additional_attributes>350.0;20.0;180.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -577,7 +577,7 @@ islandResourceDistribution</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-checkArray</panel_attributes>
+checkArray(ArrayList&lt;Player&gt; players, Resources resource, char isGhost, char[][] design)</panel_attributes>
     <additional_attributes>840.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -589,7 +589,7 @@ checkArray</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addResource</panel_attributes>
+addResource(Resources newResource, int numberNewResource)</panel_attributes>
     <additional_attributes>10.0;20.0;640.0;20.0</additional_attributes>
   </element>
   <element>
@@ -623,7 +623,7 @@ addResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>10.0;20.0;430.0;20.0</additional_attributes>
   </element>
   <element>
@@ -712,7 +712,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -746,7 +746,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -791,7 +791,7 @@ takeInAnswer</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -825,7 +825,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -853,14 +853,14 @@ takeInAnswer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>728</x>
       <y>2712</y>
-      <w>320</w>
+      <w>416</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-removeResource</panel_attributes>
-    <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
+removeResource(Resources removedResource, int numberRemovedResource)</panel_attributes>
+    <additional_attributes>440.0;20.0;70.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -904,7 +904,7 @@ removeResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-returnResource</panel_attributes>
+returnResource(Resources resource, int numberOfResource)</panel_attributes>
     <additional_attributes>1210.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -938,7 +938,7 @@ returnResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addCocoTile</panel_attributes>
+addCocoTile()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -966,14 +966,14 @@ addCocoTile</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>768</x>
       <y>2840</y>
-      <w>320</w>
+      <w>344</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addResource</panel_attributes>
-    <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
+addResource(Resources newResource, int numberNewResource)</panel_attributes>
+    <additional_attributes>390.0;20.0;20.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -1006,7 +1006,7 @@ addResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-distributeResource</panel_attributes>
+distributeResource(Resources resource, int numberOfResource)</panel_attributes>
     <additional_attributes>1210.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1040,7 +1040,7 @@ distributeResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printPocket</panel_attributes>
+printPocket(Player player)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1074,7 +1074,7 @@ printPocket</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-moveGhostCaptain</panel_attributes>
+moveGhostCaptain()</panel_attributes>
     <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1097,7 +1097,7 @@ moveGhostCaptain</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1142,7 +1142,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getGhostCaptainLocation</panel_attributes>
+getGhostCaptainLocation()</panel_attributes>
     <additional_attributes>1200.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1176,7 +1176,7 @@ getGhostCaptainLocation</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1206,11 +1206,11 @@ takeInAnswer</panel_attributes>
     <coordinates>
       <x>928</x>
       <y>3024</y>
-      <w>216</w>
+      <w>272</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-possibleGhostCaptainLocation</panel_attributes>
+possibleGhostCaptainLocation(int location)</panel_attributes>
     <additional_attributes>10.0;40.0;60.0;40.0;60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -1222,7 +1222,7 @@ possibleGhostCaptainLocation</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-updateGCLocation</panel_attributes>
+updateLocationGC(int island_update) </panel_attributes>
     <additional_attributes>1200.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1267,7 +1267,7 @@ updateGCLocation</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getColour</panel_attributes>
+getColour()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1301,7 +1301,7 @@ getColour</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1335,7 +1335,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1363,14 +1363,14 @@ takeInAnswer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
+      <x>808</x>
       <y>3520</y>
-      <w>168</w>
+      <w>408</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-removeResource</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+removeResource(Resources removedResource, int numberRemovedResource)</panel_attributes>
+    <additional_attributes>340.0;20.0;160.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -1403,7 +1403,7 @@ removeResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1437,7 +1437,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getCutlassesCount</panel_attributes>
+getCutlassesCount()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1471,7 +1471,7 @@ getCutlassesCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getWoodCount</panel_attributes>
+getWoodCount()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1483,7 +1483,7 @@ getWoodCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getMolassesCount</panel_attributes>
+getMolassesCount()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1495,7 +1495,7 @@ getMolassesCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getGoatCount</panel_attributes>
+getGoatCount()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1573,7 +1573,7 @@ getGoatCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1607,7 +1607,7 @@ takeInAnswer</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1635,26 +1635,26 @@ printMessage</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>720</x>
       <y>3920</y>
-      <w>160</w>
+      <w>272</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-placeLairShip</panel_attributes>
-    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+placeLairShip(Player player, String shiplair_choice)</panel_attributes>
+    <additional_attributes>250.0;20.0;80.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>720</x>
       <y>3224</y>
-      <w>160</w>
+      <w>272</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-placeLairShip</panel_attributes>
-    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+placeLairShip(Player player, String shiplair_choice)</panel_attributes>
+    <additional_attributes>250.0;20.0;80.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -1698,7 +1698,7 @@ placeLairShip</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getColour</panel_attributes>
+getColour()</panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1732,7 +1732,7 @@ getColour</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1766,7 +1766,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1794,14 +1794,14 @@ takeInAnswer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
+      <x>808</x>
       <y>4120</y>
-      <w>168</w>
+      <w>408</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-removeResource</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+removeResource(Resources removedResource, int numberRemovedResource)</panel_attributes>
+    <additional_attributes>340.0;20.0;160.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -1845,7 +1845,7 @@ removeResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addLair</panel_attributes>
+addLair()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1879,7 +1879,7 @@ addLair</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1913,7 +1913,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1958,7 +1958,7 @@ takeInAnswer</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-viewMarketplace</panel_attributes>
+viewMarketplace()</panel_attributes>
     <additional_attributes>1600.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -1992,7 +1992,7 @@ viewMarketplace</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2026,7 +2026,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2056,11 +2056,11 @@ takeInAnswer</panel_attributes>
     <coordinates>
       <x>776</x>
       <y>4512</y>
-      <w>152</w>
+      <w>272</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-validResourceCheck</panel_attributes>
+validResourceCheck(String enteredResource)</panel_attributes>
     <additional_attributes>10.0;40.0;40.0;40.0;40.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -2079,11 +2079,11 @@ validResourceCheck</panel_attributes>
     <coordinates>
       <x>776</x>
       <y>4576</y>
-      <w>160</w>
+      <w>272</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-assignResourcesType</panel_attributes>
+assignResourcesType(String resource_letter)</panel_attributes>
     <additional_attributes>10.0;40.0;40.0;40.0;40.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -2095,7 +2095,7 @@ assignResourcesType</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-checkPocketResourcesLetter</panel_attributes>
+checkPocketResourcesLetter(String resourceLetter)</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2129,7 +2129,7 @@ checkPocketResourcesLetter</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-swapMarketplace</panel_attributes>
+swapMarketplace(Resources wantedResource, Resources toSwapResource, Player player)</panel_attributes>
     <additional_attributes>1600.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2152,7 +2152,7 @@ swapMarketplace</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>10.0;20.0;1000.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2186,7 +2186,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addResource</panel_attributes>
+addResource(Resources newResource, int numberNewResource)</panel_attributes>
     <additional_attributes>10.0;20.0;1210.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2198,7 +2198,7 @@ addResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-removeResource</panel_attributes>
+removeResource(Resources removedResource, int numberRemovedResource)</panel_attributes>
     <additional_attributes>10.0;20.0;1210.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2254,7 +2254,7 @@ removeResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-returnResource</panel_attributes>
+returnResource(Resources resource, int numberOfResource)</panel_attributes>
     <additional_attributes>10.0;20.0;380.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2282,14 +2282,14 @@ returnResource</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1944</x>
+      <x>1840</x>
       <y>4848</y>
-      <w>128</w>
+      <w>232</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setupMarketplace</panel_attributes>
-    <additional_attributes>140.0;40.0;10.0;40.0;10.0;10.0;140.0;10.0</additional_attributes>
+setupMarketplace(Stockpile stockpile)</panel_attributes>
+    <additional_attributes>270.0;40.0;10.0;40.0;10.0;10.0;270.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -2311,7 +2311,7 @@ setupMarketplace</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2345,7 +2345,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2375,11 +2375,11 @@ takeInAnswer</panel_attributes>
     <coordinates>
       <x>776</x>
       <y>4992</y>
-      <w>176</w>
+      <w>296</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-validResourceCheck</panel_attributes>
+validResourceCheck(String enteredResource)</panel_attributes>
     <additional_attributes>10.0;40.0;70.0;40.0;70.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -2391,7 +2391,7 @@ validResourceCheck</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-checkPocketResourcesLetter</panel_attributes>
+checkPocketResourcesLetter(String resourceLetter)</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2425,7 +2425,7 @@ checkPocketResourcesLetter</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-swapStockpile</panel_attributes>
+swapStockpile(Resources wantedResource, Resources toSwapResource, Player player)</panel_attributes>
     <additional_attributes>1210.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2448,7 +2448,7 @@ swapStockpile</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addResource</panel_attributes>
+addResource(Resources newResource, int numberNewResource)</panel_attributes>
     <additional_attributes>10.0;20.0;820.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2482,7 +2482,7 @@ addResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-removeResource</panel_attributes>
+removeResource(Resources removedResource, int numberRemovedResource)</panel_attributes>
     <additional_attributes>10.0;20.0;820.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2516,7 +2516,7 @@ removeResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-checkPocketResourceType</panel_attributes>
+checkPocketResourceType(String resourceLetter)</panel_attributes>
     <additional_attributes>10.0;20.0;820.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2550,7 +2550,7 @@ checkPocketResourceType</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-removeResource</panel_attributes>
+removeResource(Resources removedResource, int numberRemovedResource)</panel_attributes>
     <additional_attributes>10.0;20.0;820.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2595,7 +2595,7 @@ removeResource</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printPocket</panel_attributes>
+printPocket(Player player)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2640,7 +2640,7 @@ printPocket</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getLairCount</panel_attributes>
+getLairCount()</panel_attributes>
     <additional_attributes>1040.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2674,7 +2674,7 @@ getLairCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getPlayerName</panel_attributes>
+getPlayerName()</panel_attributes>
     <additional_attributes>1040.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2753,7 +2753,7 @@ getPlayerName</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>1110.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2810,7 +2810,7 @@ validPlayerNumberCheck</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>1110.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2833,7 +2833,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInMessage</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>1110.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2912,7 +2912,7 @@ takeInMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setupUserPocket</panel_attributes>
+setupUserPocket()</panel_attributes>
     <additional_attributes>900.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2946,7 +2946,7 @@ setupUserPocket</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printMessage</panel_attributes>
+printMessage(String instruction)</panel_attributes>
     <additional_attributes>1110.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -2991,7 +2991,7 @@ printMessage</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-takeInAnswer</panel_attributes>
+takeInAnswer()</panel_attributes>
     <additional_attributes>1110.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3036,7 +3036,7 @@ takeInAnswer</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getMarketplace</panel_attributes>
+getMarketplace()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3070,7 +3070,7 @@ getMarketplace</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getCocotiles</panel_attributes>
+getCocotiles()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3126,7 +3126,7 @@ getCocotiles</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getStockpile</panel_attributes>
+getStockpile()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3160,7 +3160,7 @@ getStockpile</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getBoard</panel_attributes>
+getBoard()</panel_attributes>
     <additional_attributes>560.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3172,7 +3172,7 @@ getBoard</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setGhostCapatin</panel_attributes>
+setGhostCapatin(GhostCaptain ghostCaptain)</panel_attributes>
     <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3251,7 +3251,7 @@ setGhostCapatin</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setIslands</panel_attributes>
+setIslands(Island[] islands)</panel_attributes>
     <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3620,7 +3620,7 @@ setupWhitePlayerLocations</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getBoardDesign</panel_attributes>
+getBoardDesign()</panel_attributes>
     <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3745,7 +3745,7 @@ getBoardDesign</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setupMarketplace</panel_attributes>
+setupMarketplace(Stockpile stockpile)</panel_attributes>
     <additional_attributes>1940.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3779,7 +3779,7 @@ setupMarketplace</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setupPlayers</panel_attributes>
+setupPlayers(int numberPlayers)</panel_attributes>
     <additional_attributes>1550.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -3813,7 +3813,7 @@ setupPlayers</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-setupMarketplace</panel_attributes>
+setupMarketplace(Marketplace marketplace)</panel_attributes>
     <additional_attributes>1550.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -4114,7 +4114,7 @@ setupMarketplace</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getCutlassesCount</panel_attributes>
+getCutlassesCount()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -4148,7 +4148,7 @@ getCutlassesCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getMolassesCount</panel_attributes>
+getMolassesCount()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -4160,7 +4160,7 @@ getMolassesCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getGoatCount</panel_attributes>
+getGoatCount()</panel_attributes>
     <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -4216,7 +4216,7 @@ getGoatCount</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printBoard</panel_attributes>
+printBoard(char[][] design)</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -4250,7 +4250,7 @@ printBoard</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printBoard</panel_attributes>
+printBoard(char[][] design)</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -4284,7 +4284,7 @@ printBoard</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printBoard</panel_attributes>
+printBoard(char[][] design)</panel_attributes>
     <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -4329,7 +4329,7 @@ printBoard</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-checkForResourceMarketplace</panel_attributes>
+checkForResourceMarketplace(Resources resource)</panel_attributes>
     <additional_attributes>1600.0;20.0;10.0;30.0</additional_attributes>
   </element>
   <element>
@@ -5760,7 +5760,7 @@ checkForResourceMarketplace</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-printPocket</panel_attributes>
+printPocket(Player player)</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
