@@ -55,7 +55,7 @@ class TestBoard {
 		testPlayerList.get(0).addCocoTile();
 		testPlayerList.get(1).addCocoTile();
 		testBoard.mostCocotiles(testPlayerList);
-		// compare the letter expected at the center and the actual letter at the centre
+		// Compare the letter expected at the center and the actual letter at the centre
 		char boardCentre = testBoard.getBoardDesign()[8][18];
 		assertEquals('B', boardCentre, "Most cocotiles, lair in centre - placement");	// Expecting 'B'
 		assertEquals(3, testPlayerList.get(0).getLairCount(), "Most cocotiles, lair in centre - count"); // Expecting 3 lairs
