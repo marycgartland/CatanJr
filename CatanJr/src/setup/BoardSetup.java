@@ -47,12 +47,7 @@ public class BoardSetup {
 	// Setup Board design, place users first ship and lairs on board
 	// -----------------------------------------------------------------
 	public void setupBoard(int numberplayers) {
-		if (numberplayers == 1) {			// 1 player = blue
-			setupBluePlayerLocations();			// Place blue players ships and lairs
-		} else if (numberplayers == 2) {	// 2 players = blue, red
-			setupBluePlayerLocations(); 		// Place blue players ships and lairs
-			setupRedPlayerLocations(); 			// Place red players ships and lairs
-		} else if (numberplayers == 3) { 	// 3 players = blue, red, white
+		if (numberplayers == 3) { 			// 3 players = blue, red, white
 			setupBluePlayerLocations(); 		// Place blue players ships and lairs
 			setupRedPlayerLocations(); 			// Place red players ships and lairs
 			setupWhitePlayerLocations(); 		// Place white players ships and lairs
@@ -102,25 +97,13 @@ public class BoardSetup {
 	// Sets up islands with the possible lair locations surrounding them
 	// -----------------------------------------------------------------
 	public void setUpIslands() {
-		// Assign the row and column values for the possible lair locations surround each island
-		Island island1 = new Island(rows1, cols1);
-		Island island2 = new Island(rows2, cols2);
-		Island island3 = new Island(rows2, cols3);
-		Island island4 = new Island(rows1, cols4);
-		Island island5 = new Island(rows3, cols5);
-		Island island6 = new Island(rows3, cols6);
-		Island island7 = new Island(rows3, cols7);
-		Island island8 = new Island(rows3, cols8);
-		Island island9 = new Island(rows4, cols1);
-		Island island10 = new Island(rows5, cols2);
-		Island island11 = new Island(rows5, cols3);
-		Island island12 = new Island(rows4, cols4);
-
-		// Add the islands to the island array
-		islands = new Island[] { island1, island2, island3, island4, island5, island6, island7, island8, island9,
-				island10, island11, island12 };
+		// Create an array for the 12 islands, created by their row and column locations for lair possibilities
+		islands = new Island[] {new Island(rows1, cols1), new Island(rows2, cols2), new Island(rows2, cols3), 
+				new Island(rows1, cols4), new Island(rows3, cols5), new Island(rows3, cols6), 
+				new Island(rows3, cols7), new Island(rows3, cols8), new Island(rows4, cols1), 
+				new Island(rows5, cols2), new Island(rows5, cols3), new Island(rows4, cols4)};
 		
-		// set island locations on board
+		// Set island locations on board
 		board.setIslands(islands); 
 	}
 
@@ -130,9 +113,9 @@ public class BoardSetup {
 	// This stops the users obtaining resources from islands it's on
 	// -----------------------------------------------------------------
 	public void setUpGhostCaptain() {
-		GhostCaptain ghostCaptain = GhostCaptain.getInstance(); 	// get instance of ghost captain
-		design[8][18] = 'G'; 					// 'G' represents location of ghost captain on board
-		board.setGhostCaptain(ghostCaptain); 	// Set ghost captain on board
+		GhostCaptain ghostCaptain = GhostCaptain.getInstance(); 	// Get instance of ghost captain
+		design[8][18] = 'G'; 										// 'G' represents location of ghost captain on board
+		board.setGhostCaptain(ghostCaptain); 						// Set ghost captain on board
 	}
 	
 	// -----------------------------------------------------------------

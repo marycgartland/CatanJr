@@ -1,12 +1,19 @@
 package board;
 
+//----------------------------------------------------------------------------------------
+// This is a Singleton class to represent the board for the game. It sets up the board 
+// design, and provides methods to view and change the board. It also involves methods that 
+// deal with interactions with the board such as dealing with the movement of the ghost
+// captain, the placement of lairs and ships, and resource distribution.
+//----------------------------------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import main.Interactor;
 import player.Player;
 import resources.Resources;
+
 // -------------------------------------------------------------------------------------------------------
 // ---------- A Singleton class for the Board ------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------
@@ -160,7 +167,7 @@ public class Board {
 	}
 
 	// -------------------------------------------------------------------------------------------------------
-	// ---------- moveGhostCaptain() -------------------------------------------------------------------------
+	// ---------- Method: moveGhostCaptain() -----------------------------------------------------------------
 	// Moves the ghost captain to another island
 	// -------------------------------------------------------------------------------------------------------
 	public void moveGhostCaptain() {
@@ -365,8 +372,7 @@ public class Board {
 				}
 			}
 		}
-		// ----- If options available, let user decide where to build their lair/ship
-		// --------
+		// ----- If options available, let user decide where to build their lair/ship --------
 		if (count > 0) {
 			while (!integer_given) {
 				// ----- Interact with user to determine lair/ship placement -----------------
