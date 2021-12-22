@@ -1,5 +1,11 @@
 package board;
 
+//----------------------------------------------------------------------------------------
+// This class represents the stockpile. It sets up the stockpile with the resources for 
+// the game, and has methods to deal with resources coming in and out of the stockpile,
+// as well as providing setup of the players and marketplace with its resources.
+//----------------------------------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

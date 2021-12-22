@@ -1,6 +1,10 @@
 package gameplay;
 
-import java.util.ArrayList;
+//----------------------------------------------------------------------------------------
+// This is a Singleton class controls/runs the game. It controls the turns, it determines 
+// the winner. How it determines a winner: when a user has placed 7 lairs (including if 
+// they have one on spooky island)
+//----------------------------------------------------------------------------------------
 
 import board.Board;
 import board.Marketplace;
@@ -13,13 +17,6 @@ import setup.PlayerSetup;
 import setup.ResourceSetup;
 
 public class GameManager {
-	// -------------------------------------------------------------------------------------------------------
-	// This singleton class controls/runs the game
-	// It controls the turns, it determines the winner
-	// How it determines a winner: when a user has placed 7 lairs (including if they
-	// have on on spooky island)
-	// -------------------------------------------------------------------------------------------------------
-
 	// -------------------------------------------------------------
 	// ---------- Variables ----------------------------------------
 	// -------------------------------------------------------------
@@ -33,14 +30,12 @@ public class GameManager {
 	private static GameManager instance = new GameManager(); // Create instance of GameManager
     protected Player subject;
 
-
-
 	// ----- Create an interactor object --------------------------
 	Interactor interactor = new Interactor();
 
 	// -------------------------------------------------------------
 	// ---------- Constructor --------------------------------------
-	// -----private constructor so that it cannot be instantiated---
+	// Use a private constructor so that it cannot be instantiated
 	// -------------------------------------------------------------
 	private GameManager() {
 	}
@@ -50,12 +45,11 @@ public class GameManager {
 	// This method sets up the game to begin 
 	// -------------------------------------------------------------
 	public void startGame() {
-
 		// ----- Game setup --------------------------------------------------
 		PlayerSetup playerSetup = new PlayerSetup(); 							// Set up players
 		ResourceSetup resourceSetup = new ResourceSetup(playerSetup.Players()); // Set up resources
 		BoardSetup boardSetup = new BoardSetup(playerSetup.Players());			// Set up board
-		dice = Dice.getInstance(); 														// Create dice object
+		dice = Dice.getInstance(); 												// Create dice object
 		board = boardSetup.getBoard();
 		this.stockPile = resourceSetup.getStockpile(); 							// Set up the games stockpile
 		this.cocoTiles = resourceSetup.getCocoTiles(); 							// Set up cocotiles
@@ -72,14 +66,13 @@ public class GameManager {
 		}
 	}
 	
-	
 		// -------------------------------------------------------------
 		// ---------- Method: checkWinner ------------------------------
 		// observer method to check if players lair count is equal to 7
 		// -------------------------------------------------------------
 		public void checkWinner(Player player) {
 			if (player.getLairCount() >= 7) { 
-				// ----- If there is a winner declared, announce the winner ----------
+				// If there is a winner declared, announce the winner 
 				interactor.printMessage("winner", player.PlayerName());
 				this.playGame = false;		// end game play loop
 				this.playerTurn.endGame();  // end players turn
@@ -88,7 +81,7 @@ public class GameManager {
 		
 		// -------------------------------------------------------------
 		// ---------- Method: getInstance ------------------------------
-		// -- method for getting the instance of GameManager----------------
+		// This is a method for getting the instance of GameManager
 		// -------------------------------------------------------------
 		public static GameManager getInstance() {
 			return instance;

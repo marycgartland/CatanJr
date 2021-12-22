@@ -1,5 +1,12 @@
 package gameplay;
 
+//----------------------------------------------------------------------------------------
+// This class deals with the turns of players. It gives them options to take on each turn,
+// and calls the methods required for their chosen action to be taken. It also gives
+// players a chance to view what resources/cocotiles etc. they have. Finally, it also 
+// can end the game if a player has won. 
+//----------------------------------------------------------------------------------------
+
 import java.util.ArrayList;
 
 import board.Board;
@@ -79,7 +86,7 @@ public class PlayerTurn {
 	}
 
 	// ------------------------------------------------------------------------
-	// ---------- Buy Method --------------------------------------------------
+	// ---------- Method: buy() -----------------------------------------------
 	// This method allows players buy cocotiles. If a player wishes to take
 	// this option, they get a cocotile and the instructions on the tile are 
 	// followed.
@@ -120,8 +127,8 @@ public class PlayerTurn {
 	}
 
 	// ------------------------------------------------------------------------
-	// ---------- Buy cocotileAction ------------------------------------------
-	// This completes actions based on cocotile bought by player
+	// ---------- Method: cocotileAction() ------------------------------------
+	// This method completes actions based on cocotile bought by player
 	// ------------------------------------------------------------------------
 	public void cocotileAction(CocoTileTypes cocotile) {
 		if (cocotile.equals(CocoTileTypes.GoatCutlasses)) {			// The goat and cutlass cocotile
@@ -150,9 +157,9 @@ public class PlayerTurn {
 			String build_option = interactor.takeInAnswer();
 			// ----- Build lair or ship ------------------
 			if (build_option.charAt(0) == 'L') {
-				board.placeLairShip(player,build_option); // Build Lair
+				board.placeLairShip(player,build_option); 			// Build Lair
 			} else if (build_option.charAt(0) == 'S') {
-				board.placeLairShip(player,build_option); // Build ship
+				board.placeLairShip(player,build_option); 			// Build ship
 			}
 		}
 	}
@@ -188,7 +195,7 @@ public class PlayerTurn {
 	}
 
 	// ------------------------------------------------------------------------
-	// ---------- Build LairShip Method -------------------------------------------
+	// ---------- Method: buildLairShip() -------------------------------------
 	// ------------------------------------------------------------------------
 	public void buildLairShip(String toBuild) {
 		if (toBuild.equals("S")) {
@@ -296,7 +303,6 @@ public class PlayerTurn {
 				} else { // ----- Otherwise, cannot trade -----
 					interactor.printMessage("cannot trade");
 				}
-
 			}
 		}
 	}
@@ -337,12 +343,11 @@ public class PlayerTurn {
 	}
 	
 	// ------------------------------------------------------------------------
-	// ---------- Method: viewPocket ---------------------------------
+	// ---------- Method: viewPocket ------------------------------------------
 	// Method to allow player to view their pocket
 	// ------------------------------------------------------------------------
 	public void viewPocket() {
 		interactor.printPocket(player);
-		
 	}
 	
 	// ------------------------------------------------------------------------
@@ -352,6 +357,4 @@ public class PlayerTurn {
 	public void endGame() {
 		System.exit(0); 
 	}
-	
-	
 }
