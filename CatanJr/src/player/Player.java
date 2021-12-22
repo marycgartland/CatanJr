@@ -58,11 +58,11 @@ public class Player {
 
 	// Method to set up the users pocket at the start of the game
 	public void setupUserPocket() {
-		pocket.put(Resources.Gold, 20);
-		pocket.put(Resources.Wood, 20);
-		pocket.put(Resources.Cutlasses, 20);
-		pocket.put(Resources.Molasses, 20);
-		pocket.put(Resources.Goats, 20);
+		pocket.put(Resources.Gold, 0);
+		pocket.put(Resources.Wood, 0);
+		pocket.put(Resources.Cutlasses, 0);
+		pocket.put(Resources.Molasses, 0);
+		pocket.put(Resources.Goats, 0);
 	}
 
 	// Method to add a cocotile to a players cocotile count when they buy one

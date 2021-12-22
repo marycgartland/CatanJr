@@ -1,5 +1,11 @@
 package testing;
 
+//----------------------------------------------------------------------------------------
+// This JUnit test tests methods form the CocoTiles class (in the resources package. It
+// runs 2 tests, including ensuring the cocotiles are actually shuffled, and also that 
+// when a player buys a cocotiles, it is properly removed from the cocotiles pile.
+//----------------------------------------------------------------------------------------
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
