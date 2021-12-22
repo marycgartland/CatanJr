@@ -67,7 +67,8 @@ startGame()</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;-
 checkWinner
-fg=red</panel_attributes>
+bg=black
+fg=black</panel_attributes>
     <additional_attributes>10.0;90.0;80.0;90.0;80.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -1854,7 +1855,7 @@ addLair()</panel_attributes>
       <x>1080</x>
       <y>4208</y>
       <w>16</w>
-      <h>16</h>
+      <h>64</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1863,7 +1864,7 @@ addLair()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>776</x>
-      <y>4216</y>
+      <y>4256</y>
       <w>320</w>
       <h>24</h>
     </coordinates>
@@ -4577,12 +4578,12 @@ checkForResourceMarketplace(Resources resource)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>912</x>
-      <y>4216</y>
+      <y>4184</y>
       <w>32</w>
-      <h>1296</h>
+      <h>1328</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>20.0;10.0;10.0;1600.0</additional_attributes>
+    <additional_attributes>20.0;10.0;10.0;1640.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -4874,12 +4875,12 @@ checkForResourceMarketplace(Resources resource)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1080</x>
-      <y>4216</y>
+      <y>4264</y>
       <w>24</w>
-      <h>424</h>
+      <h>376</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;510.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;450.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -5762,5 +5763,41 @@ printPocket(Player player)</panel_attributes>
     <panel_attributes>[number of players]
 style=wordwrap</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1088</x>
+      <y>1968</y>
+      <w>168</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+notifyAllObservers()</panel_attributes>
+    <additional_attributes>10.0;40.0;70.0;40.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1088</x>
+      <y>2088</y>
+      <w>168</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+notifyAllObservers()</panel_attributes>
+    <additional_attributes>10.0;40.0;70.0;40.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1088</x>
+      <y>4224</y>
+      <w>168</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+notifyAllObservers()</panel_attributes>
+    <additional_attributes>10.0;40.0;70.0;40.0;70.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

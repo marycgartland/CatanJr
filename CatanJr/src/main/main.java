@@ -20,8 +20,7 @@ public class main {
 			// TODO: Abstract classes and interfaces?
 			// TODO: Limit any code repetition
 			// TODO: Error check for players buying cocotiles - entering incorrect options
-			// TODO: Delete options for 1 player and 0 player from "BoardSetup" as these options won't make it that far 
-					// @EP: Do you agree w this? - EP: Yes
+
 		// place ship/lair still looks very long and loopy - def could be simplified/tidier if we have time. (not necessary but a would-be-nice)
 		
 		// EP: Notes from meeting:

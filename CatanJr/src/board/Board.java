@@ -170,12 +170,10 @@ public class Board {
 	// ---------- Method: moveGhostCaptain() -----------------------------------------------------------------
 	// Moves the ghost captain to another island
 	// -------------------------------------------------------------------------------------------------------
-	public void moveGhostCaptain() {
+	public String moveGhostCaptain(String number) {
+		String message = null;
 		boolean integer_given = false;
 		while (!integer_given) {
-			interactor.printMessage("move ghost captain"); 							// Ask user which island to move GC to
-			showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 		// Replace island centers with their #'s
-			String number = interactor.takeInAnswer(); 								// Take in user input
 			List<String> comparison_list = Arrays.asList(island_numbers);
 			if (comparison_list.contains(number)) {									// If input is a valid island # ...
 				ghostCaptain.updateLocationGC(Integer.parseInt(number)); 			// Update GC location
@@ -187,14 +185,17 @@ public class Board {
 						}
 					}
 				}
-				interactor.printMessage("GC moved"); 								// Confirm GC has been moved
+				message="GC moved";													// Confirm GC has been moved
 				showBoardLayout();													// Display new board layout
 				integer_given = true; 												// End loop	
-			} else {																// If island is invalid ...
-				interactor.printMessage("invalid island");
+			} 
+			else {																// If island is invalid ...
+				message = "invalid island";
 				integer_given = false;
+				break;
 			}
 		}
+		return message;
 	}
 
 	// -------------------------------------------------------------------------------------------------------
@@ -471,9 +472,10 @@ public class Board {
 		} else if (diceValue == 5) { // ---------- Roll a 5 - islands 6 and 8 ---------------
 			islands[5].checkArray(players, Resources.Gold, design[8][12], design); 		// Island 6, Assign: gold
 			islands[7].checkArray(players, Resources.Goats, design[8][30], design); 	// Island 8, Assign: goat
-		} else { // ---------- Roll a 6 - ghost captain -----------------
-			moveGhostCaptain(); // ERRORS WHEN THIS IS CALLED
-		}
+		} 
+//		else { // ---------- Roll a 6 - ghost captain -----------------
+//			moveGhostCaptain(); 
+//		}
 	}
 	
 	

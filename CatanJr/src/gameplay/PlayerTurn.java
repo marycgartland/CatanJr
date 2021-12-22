@@ -10,6 +10,7 @@ package gameplay;
 import java.util.ArrayList;
 
 import board.Board;
+import board.GhostCaptain;
 import board.Island;
 import board.Marketplace;
 import board.Stockpile;
@@ -31,6 +32,7 @@ public class PlayerTurn {
 	protected Stockpile stockpile; 		// Take in stockpile that has been created
 	protected CocoTiles cocotiles; 		// Take in cocotiles that have been created
 	protected Board board; 				// Take in board that has been created
+	protected GhostCaptain ghostCaptain = GhostCaptain.getInstance();
 
 	// ------------------------------------------------------------------------
 	// ----------- Constructor ------------------------------------------------
@@ -58,7 +60,17 @@ public class PlayerTurn {
 		diceValue = dice.rollDice();
 		interactor.printMessage("Player roll", player.PlayerName(), diceValue);
 		// ----- Resource distribution from islands based on dice roll ------
-		board.islandResourceDistribution(diceValue, islands, players);
+		//board.islandResourceDistribution(diceValue, islands, players);
+		if(diceValue!=6) {
+			board.islandResourceDistribution(diceValue, islands, players);
+		} else {
+			board.showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 		// Replace island centers with their #'s
+			interactor.printMessage("move ghost captain"); 							// Ask user which island to move GC to
+			String number = interactor.takeInAnswer(); 								// Take in user input
+			String message = board.moveGhostCaptain(number);
+			interactor.printMessage(message);
+		}
+		
 		// ----- Present users with options while it is their turn ------------
 		while (turn == true) {
 			interactor.printMessage("your turn");		// Provide user options and take in their choice
@@ -150,7 +162,11 @@ public class PlayerTurn {
 			// ----- Display pocket to player ------------
 			viewPocket();
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {	// The ghost captain cocotile
-			board.moveGhostCaptain();	// Move the GC
+			board.showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 		// Replace island centers with their #'s
+			interactor.printMessage("move ghost captain"); 							// Ask user which island to move GC to
+			String number = interactor.takeInAnswer(); 								// Take in user input
+			String message = board.moveGhostCaptain(number);
+			interactor.printMessage(message);
 		} else if (cocotile.equals(CocoTileTypes.ShipCastle)) {		// The ship/lair cocotile
 			// ----- Give user ship or lair option -------
 			interactor.printMessage("cocotile ship/lair");
