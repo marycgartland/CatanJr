@@ -1,6 +1,5 @@
 package board;
 
-import main.Interactor;
 import player.Player;
 import resources.Resources;
 	//--------------------------------------------------------------------------
@@ -13,10 +12,6 @@ public class Marketplace {
 	protected Resources[] marketPlace; // Array containing marketplace resources
 	protected Stockpile stockpile;
 	private static Marketplace instance = new Marketplace();
-
-	
-	// ----- Create an interactor object ---------------------------------------
-	Interactor interactor = new Interactor();
 
 	// -------------------------------------------------------------------------
 	// ---------- Constructor --------------------------------------------------
@@ -66,16 +61,18 @@ public class Marketplace {
 	// ---------- Method: swapMarketplace --------------------------------------
 	// Method to swap one resource for another
 	// -------------------------------------------------------------------------
-	public void swapMarketplace(Resources wantedResource, Resources toSwapResource, Player player) {
+	public String swapMarketplace(Resources wantedResource, Resources toSwapResource, Player player) {
+		String message = " ";
 		for (int i = 0; i <= 4; i++) {
 			if (marketPlace[i] == wantedResource) {
 				marketPlace[i] = toSwapResource; 			// Update the marketplace resources
-				interactor.printMessage("Successful marketplace trade");
 				player.addResource(wantedResource, 1); 		// Add one of wanted resource to players pocket
 				player.removeResource(toSwapResource, 1); 	// Remove one of swapped resource to players pocket
 				checkMarketplace(); 						// Check that all marketplace resources are not the same type
+				message= "successful marketplace trade";
 			}
 		}
+		return message;
 	}
 
 	// -------------------------------------------------------------------------
@@ -98,13 +95,13 @@ public class Marketplace {
 
 	// -------------------------------------------------------------------------
 	// ---------- Method: viewMarketplace --------------------------------------
-	// Output marketplace contents 
+	// Return string containing marketplace contents 
 	// -------------------------------------------------------------------------
-	public void viewMarketplace() {
+	public String viewMarketplace() {
 		String toPrint = String.valueOf(marketPlace[0]) + ", " + String.valueOf(marketPlace[1]) + ", "
 						+ String.valueOf(marketPlace[2]) + ", " + String.valueOf(marketPlace[3]) + ", " 
 						+ String.valueOf(marketPlace[4]);
-		interactor.printMessage("View Marketplace", toPrint);
+		return toPrint;
 	}
 	
 	// ------------------------------------------------------------------------

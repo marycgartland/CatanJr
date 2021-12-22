@@ -1,6 +1,8 @@
 package board;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import main.Interactor;
 import player.Player;
@@ -26,7 +28,6 @@ public class Island {
 	protected char isGhost; 								// Character to see if the ghost captain is there
 	protected int temp_row;									// Selected row value
 	protected int temp_col;									// Selected column value
-	private String playerName;								// Players name
 	
 	// ----------------------------------
 	// ----------- Constructor ----------
@@ -62,9 +63,7 @@ public class Island {
 					temp_col = columns[i];
 					if(design[temp_row][temp_col]==playerColor) {
 						player.addResource(resource, 1);
-						playerName = player.PlayerName();
-						interactor.printMessage("Island check: success", resource, playerName);
-						interactor.printPocket(player);
+						interactor.printMessage("Island check: success", resource.toString(), player);
 						}
 					}
 				}

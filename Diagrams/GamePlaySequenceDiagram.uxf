@@ -2146,40 +2146,6 @@ swapMarketplace(Resources wantedResource, Resources toSwapResource, Player playe
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1256</x>
-      <y>4672</y>
-      <w>816</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-printMessage(String instruction)</panel_attributes>
-    <additional_attributes>10.0;20.0;1000.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1256</x>
-      <y>4696</y>
-      <w>816</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>1000.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1248</x>
-      <y>4680</y>
-      <w>16</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>1088</x>
       <y>4712</y>
       <w>984</w>
@@ -5262,21 +5228,10 @@ checkForResourceMarketplace(Resources resource)</panel_attributes>
       <x>1248</x>
       <y>4504</y>
       <w>24</w>
-      <h>192</h>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1248</x>
-      <y>4696</y>
-      <w>24</w>
-      <h>248</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;530.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

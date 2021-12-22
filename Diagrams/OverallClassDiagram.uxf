@@ -584,19 +584,6 @@ m1=3...4</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>486</x>
-      <y>576</y>
-      <w>174</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=1
-m2=1</panel_attributes>
-    <additional_attributes>270.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>486</x>
       <y>660</y>
       <w>252</w>
       <h>24</h>
@@ -618,19 +605,6 @@ m2=1</panel_attributes>
 m1=1
 m2=1</panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>480</x>
-      <y>618</y>
-      <w>198</w>
-      <h>144</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=1
-m2=1</panel_attributes>
-    <additional_attributes>300.0;10.0;300.0;210.0;10.0;210.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -709,19 +683,6 @@ m2=1...n</panel_attributes>
 m1=3...4
 m2=1...n</panel_attributes>
     <additional_attributes>930.0;1230.0;1320.0;1230.0;1320.0;10.0;10.0;10.0;10.0;410.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>936</x>
-      <y>54</y>
-      <w>90</w>
-      <h>498</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=1
-m2=1</panel_attributes>
-    <additional_attributes>10.0;800.0;130.0;800.0;130.0;10.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

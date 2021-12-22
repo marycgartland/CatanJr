@@ -105,7 +105,11 @@ public class PlayerTurn {
 				// ----- Cocotile bought ----------------------------------------------
 				CocoTileTypes cocotile_bought = cocotiles.buyCocoTile(); 	// Indicates type of cocotile
 				player.addCocoTile(); 										// Add cocotile to players cocotile count
-				interactor.printMessage("Cocotile bought", cocotile_bought);// Confirm to user
+				if (cocotile_bought == null) {
+					interactor.printMessage("no cocotiles");				// tell user there are no cocotiles to be bought
+				} else {
+					interactor.printMessage("Cocotile bought", cocotile_bought); // Confirm to user to coctile they have recieved
+				}
 				cocotileAction(cocotile_bought); 							// Follow instructions on cocotile
 			}
 		} 
@@ -213,7 +217,7 @@ public class PlayerTurn {
 		// Trade one tile from a players pocket (of choice) with one tile from marketplace (of choice)
 		if ((option.equals("M") || option.equals("m")) && marketPlaceUse == 0) {
 			interactor.printMessage("trade: M");
-			marketplace.viewMarketplace();	// Let user view marketplace options
+			interactor.printMessage("View Marketplace", marketplace.viewMarketplace()); // Let user view marketplace options			
 			tradeMarketplace(); 			// Call method to trade with marketplace
 		}
 		// ----- Option 2: Trade with Stockpile -------------------------------------
@@ -260,7 +264,8 @@ public class PlayerTurn {
 					if (player.checkPocketResources(trade_in) > 0) { 
 						// ----- Make the swap, and increment marketPlaceUse variable to indicate the trade is used (1 per turn) ------
 						marketPlaceUse = 1; 
-						marketplace.swapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
+						String message = marketplace.swapMarketplace(assignResourcesType(trade_out), assignResourcesType(trade_in), player);
+						interactor.printMessage(message);
 						viewPocket();
 					} else {	// ----- Cannot trade if pocket doesn't have resource -----
 						interactor.printMessage("cannot trade");

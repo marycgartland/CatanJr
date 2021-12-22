@@ -466,7 +466,7 @@ public class Board {
 			islands[5].checkArray(players, Resources.Gold, design[8][12], design); 		// Island 6, Assign: gold
 			islands[7].checkArray(players, Resources.Goats, design[8][30], design); 	// Island 8, Assign: goat
 		} else { // ---------- Roll a 6 - ghost captain -----------------
-			moveGhostCaptain();
+			moveGhostCaptain(); // ERRORS WHEN THIS IS CALLED
 		}
 	}
 	

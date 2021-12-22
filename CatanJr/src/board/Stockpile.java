@@ -3,7 +3,6 @@ package board;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import main.Interactor;
 import player.Player;
 import resources.Resources;
 
@@ -27,9 +26,6 @@ public class Stockpile {
 		stockpile.put(Resources.Goats, 18);
 		this.players = players;
 	}
-	
-	// ----- Create an interactor object ----------------------
-		Interactor interactor = new Interactor();
 
 	// ------------------------------------------------------------------------------------------------
 	// ---------- Method: swapStockpile ---------------------------------------------------------------

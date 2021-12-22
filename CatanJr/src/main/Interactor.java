@@ -74,12 +74,13 @@ public class Interactor {
 	}
 
 	
-	// ----- Prints message with 2 input values (1 Resource value, 1 String value) -----
-	public void printMessage(String instruction, Resources value1, String value2) {
+	// ----- Prints message with 2 input values (1 Resource value, 1 Player value) -----
+	public void printMessage(String instruction, String value1, Player player) {
 		switch (instruction) {
 		// Cases from 'Island' class
 		case "Island check: success":
-			System.out.println("Add a " + value1 + " for player " + value2);
+			System.out.println("Add a " + value1 + " for player " + player.PlayerName());
+			printPocket(player);
 			break;
 		}
 	}

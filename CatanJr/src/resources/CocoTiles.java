@@ -1,7 +1,6 @@
 package resources;
 
 import java.util.*;
-import main.Interactor;
 
 public class CocoTiles {
 	
@@ -10,9 +9,6 @@ public class CocoTiles {
 	//-------------------------------------------------
 	protected ArrayList<CocoTileTypes> CocoTiles = new ArrayList<CocoTileTypes>();	// Array to hold cocotiles
 	
-	// ----- Create an interactor object --------------
-	Interactor interactor = new Interactor();
-
 	//-------------------------------------------------
 	// ---------- Constructor -------------------------
 	//-------------------------------------------------
@@ -39,8 +35,7 @@ public class CocoTiles {
 			CocoTiles.remove(0);								// Remove the cocotile used from the pile of cocotiles
 			return cocoTileBought;
 		} else {
-			interactor.printMessage("no cocotiles");			// If there are no cocotiles left, the user cannot buy one
-			return null;
+			return null;										// If there are no cocotiles left, the user cannot buy one
 		}
 	}
 	
