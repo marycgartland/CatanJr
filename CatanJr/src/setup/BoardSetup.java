@@ -1,5 +1,10 @@
 package setup;
 
+//----------------------------------------------------------------------------------------
+// This class deals with the setup of the board. This includes setting up the islands, the 
+// ghost captain, and the players initial lairs and ships on the board.
+//----------------------------------------------------------------------------------------
+
 import java.util.ArrayList;
 import board.Board;
 import board.GhostCaptain;

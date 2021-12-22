@@ -1,5 +1,9 @@
 package setup;
 
+//----------------------------------------------------------------------------------------
+// This class sets up the resources, including the stockpile, cocotiles, and marketplace.
+//----------------------------------------------------------------------------------------
+
 import java.util.ArrayList;
 import board.Marketplace;
 import board.Stockpile;

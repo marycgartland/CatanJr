@@ -3,8 +3,8 @@ package gameplay;
 //----------------------------------------------------------------------------------------
 // This class deals with the turns of players. It gives them options to take on each turn,
 // and calls the methods required for their chosen action to be taken. It also gives
-// players a chance to view what resources/cocotiles etc. they have. Finally, it also 
-// can end the game if a player has won. 
+// players a chance to view what resources/cocotiles etc. they have. Finally, it can also 
+// end the game if a player has won. 
 //----------------------------------------------------------------------------------------
 
 import java.util.ArrayList;

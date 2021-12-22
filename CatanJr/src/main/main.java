@@ -1,12 +1,13 @@
 package main;
 
+//----------------------------------------------------------------------------------------
+// This main class is used to call the GameManager to begin and run the game.
+//----------------------------------------------------------------------------------------
 import gameplay.GameManager;
 
 public class main {
 	
 	public static void main(String[] args) {
-		
-		
 		GameManager gameManager = GameManager.getInstance(); 
 		gameManager.startGame();
 		
@@ -27,6 +28,5 @@ public class main {
 		// if more than 2/3 classes have rference to the view(interactor class) then there may be a problem, need unified reference to the view through the controller class
 		// Class diagrams: show cardinality -  I updated this but run through it with mary and make sure it makes sense
 		// need to update sequence diagram now that I have an observer method to check if theres a winner, it affects GameManager class, PlayerTurn(end game method) and Player (attach and notify methods)		
-		
     }
 }
