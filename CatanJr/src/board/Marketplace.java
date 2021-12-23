@@ -47,11 +47,11 @@ public class Marketplace {
 	}
 
 	// -------------------------------------------------------------------------
-	// ---------- Method: checkForResourceMarketplaceStockpileRestock ----------
+	// ---------- Method: resourceCount -----------------------------
 	// Check for resource in marketplace when stockpile needs to be restocked.
 	// This returns the number of the resource in the marketplace
 	// -------------------------------------------------------------------------
-	public int checkForResourceMarketplaceStockpileRestock(Resources resource) {
+	public int resourceCount(Resources resource) {
 		int counter = 0;
 		for (int i = 0; i <= 4; i++) {
 			if (marketPlace[i] == resource) {

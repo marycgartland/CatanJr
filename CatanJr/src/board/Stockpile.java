@@ -78,7 +78,7 @@ public class Stockpile {
 			players.get(i).removeResource(resource, resource_pocket);
 		}
 		// ----- Restock stockpile with all of a resource except those that are in the marketplace -----
-		int resource_marketplace = marketplace.checkForResourceMarketplaceStockpileRestock(resource);
+		int resource_marketplace = marketplace.resourceCount(resource);
 		stockpile.put(resource, 18 - resource_marketplace); // restock number of requested resource
 	}
 
