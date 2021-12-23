@@ -16,7 +16,9 @@ How to Play:
 
 	1. Open the project and press the run button
 	2. Choose a number of players between 3 and 4
-	3. Enter the name of each player as prompted, each player will be assigned a colour, a wood and molasses, and their starting lairs and ships will be placed on the board automatically. Lairs are                     represented by the capital letter of the players assigned colour, and ships are represented by the lower case of the players assigned colour, for example the blue players lairs will be identifyed as             'B' and their ships will be 'b'
+	3. Enter the name of each player as prompted, each player will be assigned a colour, a wood and molasses, and their starting lairs and ships will be placed on the board 
+	automatically. Lairs are represented by the capital letter of the players assigned colour, and ships are represented by the lower case of the players assigned colour,
+	for example the blue players lairs will be identifyed as'B' and their ships will be 'b'
 	4. After the players are setup, the game will begin with dice roll for the first player
 	5. Based on the value of the dice roll, resources are distributed to players that have lairs connected to the islands that contain the value of the dice roll
 	6. The player is then presented with 4 options:
