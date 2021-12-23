@@ -9,7 +9,6 @@ import resources.Resources;
 import setup.ResourceSetup;
 
 class TestMarketplace {
-	
 	// Test that if a resource is in the marketplace, it is found (MUT: checkForResourceMarketplace)
 	void testCheckForResourceMarketplace() {
 		// Set up players and marketplace for testing
