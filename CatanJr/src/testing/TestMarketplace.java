@@ -13,7 +13,7 @@ class TestMarketplace {
 	// Test that if a resource is in the marketplace, it is found (MUT: checkForResourceMarketplace)
 	void testCheckForResourceMarketplace() {
 		// Set up players and marketplace for testing
-		ArrayList<Player> testPlayerList=new ArrayList<Player>();;
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
 		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
 		// Call method under test
 		boolean actual = resourceSetup.getMarketplace().checkForResourceMarketplace(Resources.Gold); 
