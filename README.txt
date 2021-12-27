@@ -151,7 +151,7 @@ In order to place a lair, the player must enter a number that corresponds to the
 
 4. How to trade with the marketplace
 
-When the player chooses to trade with the marketplace, they are presented with the following sample dialog, which outlines the resources currently in the marketplace, from this the user must choose the resource they want to obtain from the marketplace:
+When the player chooses to trade with the marketplace, they are presented with the following sample dialog, which outlines the resources currently in the marketplace. From this the user must choose the resource they want to obtain from the marketplace:
 
 > You have chosen to trade with the marketplace.
 >
@@ -163,7 +163,7 @@ The user must enter one of the 5 letters to distinguish the resource they want t
 
 > What item would to trade in (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? 
 
-The user must enter one of the 5 letters to distinguish the resource they want to swap in order to obtain their desired resource from the marketplace
+The user must enter one of the 5 letters to distinguish the resource they want to swap in order to obtain their desired resource from the marketplace.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -176,7 +176,7 @@ The user must enter one of the 5 letters to outline which resource they want. Ne
 
 > What item would to trade in (Wood [W], Molasses [M], Gold [G], Goat[GT] or Cutlass [C])? 
 
-The user must enter one of the 5 letters to outline which resource they will exchanage the desired resource for.
+The user must enter one of the 5 letters to outline which resource they will exchange the desired resource for.
 
 
 
