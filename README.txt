@@ -16,18 +16,18 @@ How to Play:
 
 	1. Open the project and press the run button
 	2. Choose a number of players between 3 and 4
-	3. Enter the name of each player as prompted, each player will be assigned a colour, a wood and molasses, and their starting lairs and ships will be placed on the board 
+	3. Enter the name of each player as prompted. Each player will be assigned a colour, a wood and a molasses resource, and their starting lairs and ships will be placed on the board 
 	automatically. Lairs are represented by the capital letter of the players assigned colour, and ships are represented by the lower case of the players assigned colour,
-	for example the blue players lairs will be identifyed as'B' and their ships will be 'b'
-	4. After the players are setup, the game will begin with dice roll for the first player
-	5. Based on the value of the dice roll, resources are distributed to players that have lairs connected to the islands that contain the value of the dice roll
+	for example the blue players lairs will be identified as 'B' and their ships will as 'b'
+	4. After the players are set up, the game will begin with dice roll for the first player
+	5. Based on the value of the dice roll, resources are distributed to players that have lairs connected to the islands containing the corresponding dice value.
 	6. The player is then presented with 4 options:
 
 	"Would you like to Buy [B], Build [Bd], Trade [T], View pocket[P] or End turn [E]?"
 
  		Option 1: Buy [B]:    
-            		- This gives the player the option to buy a cocotile if they have sufficient funds
-            		- Based on the type of cocotile that the player receieves, they will either gain resources, move the Ghost Captain (see AH.1) or build a ship (AH.2) or build a lair (AH.3)
+            	- This gives the player the option to buy a cocotile if they have sufficient funds
+            	- Based on the type of cocotile that the player receives, they will either gain resources, move the Ghost Captain (see AH.1), or build a ship (AH.2) or a lair (AH.3)
                 
  		Option 2: Build [Bd]:
         		- This gives the player the option to build a ship (AH.2) or a lair (AH.3) if they have sufficient funds
@@ -39,10 +39,10 @@ How to Play:
         		- This gives the player the option to view the resources they have in their pocket
 
  		Option 5: End turn [E]:
-        		- This allows the player to end their turn and the next players turn begins.
+        		- This allows the player to end their turn and the next player's turn begins.
 
-	7. Once a player ends their turn it is the next players turn and the cycle is repeated. 
-	8. The game ends when a player has successfully placed 7 on their lairs on the board
+	7. Once a player ends their turn it is the next player's turn and the cycle is repeated. 
+	8. The game ends when a player has successfully placed 7 of their lairs on the board
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ Contents:
 	5. How to trade with the stockpile
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. How to move the Ghost Captain:
-When the player is presented with the opportunity to move the ghost captain from either rolling a 6 on the dice or receiving the ghost captain cocotile, the following map is displayed and the player is asked which island the ghost captain should be moved to:
+A player can move the ghost captain either by rolling a 6 or obtaining the ghost captain cocotile. When a player is presented with the opportunity to move the ghost captain, the following map is displayed and the player is asked which island the ghost captain should be moved to:
 
 > Board Layout:
 >                                       
@@ -90,7 +90,7 @@ When the player is presented with the opportunity to move the ghost captain from
 
 2. How to build a ship
 
-When the player is presented with the opportunity to build a ship the following map is displayed which shows the numbered ship placement options:
+When the player is presented with the opportunity to build a ship the following map is displayed, which shows the numbered ship placement options:
  
 > * Building ship *
 >
