@@ -1,20 +1,17 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
-
 import player.Player;
 import resources.Resources;
 import setup.ResourceSetup;
 
 class TestStockpile {
 
-	// -----------------------------------------------------------
-	// --------- Test 1: Testing swapStockpile() method ----------
-	// -----------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// --------- Section 1 Testing : Testing swapStockpile() method ---------------
+	// ----------------------------------------------------------------------------
 	// 1.1 If valid resources, check marketplace has 1 less of traded out resource
 	@Test
 	void testSwapStockpileCountsSOut() {
@@ -88,23 +85,66 @@ class TestStockpile {
 	}
 	
 	// 1.5 
+	// 1.6
+	
+	// ----------------------------------------------------------------------------
+	// --------- Section 2 Testing : Testing checkStockpile() method --------------
+	// ----------------------------------------------------------------------------
+	
+	// ----------------------------------------------------------------------------
+	// --------- Section 3 Testing : Testing restockResource() method -------------
+	// ----------------------------------------------------------------------------
+	
+	// 3.1 Check that the stockpile updates
+	@Test
+	void testRestockResourceStockpile() {
+		// Set up of players and stockpile for testing
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		testPlayerList.add(new Player("testPlayer1", "Blue"));
+		testPlayerList.get(0).setupUserPocket();
+		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
+		resourceSetup.getStockpile().removeResource(Resources.Gold, 17); // remove all gold's
+		int StockpileInitial = resourceSetup.getStockpile().getResourceCount(Resources.Gold); // Should be 0
+		// Call Method under test. Want to restock gold
+		resourceSetup.getStockpile().restockResource(Resources.Gold); 
+		// Test expected results. The stockpile should have 1 less gold
+		int StockpileFinal = resourceSetup.getStockpile().getResourceCount(Resources.Gold); // Should be 0
+		// Expect 0 initially, and then a fully restocked 17 after test method
+		assertEquals(0, StockpileInitial, "Stockpile restock success- initial");	// Count before restock
+		assertEquals(17, StockpileFinal, "Stockpile restock success- final");		// Count after restock
+	}
+	
+	// 3.2 Check that the player updates when there is a stockpile restock
+	
+	
+	// ----------------------------------------------------------------------------
+	// --------- Section 4 Testing : Testing setupPlayers() method ----------------
+	// ----------------------------------------------------------------------------
+	
+	// ----------------------------------------------------------------------------
+	// --------- Section 5 Testing : Testing return Resource() method -------------
+	// ----------------------------------------------------------------------------
+	
+	// ----------------------------------------------------------------------------
+	// --------- Section 6 Testing : Testing distributeResource() method ----------
+	// ----------------------------------------------------------------------------
+	
+	
 
 }
 
 
 // Things to test:
-// 5. if someone wants to swap with stockpile and there is not enough resources - check that the stockpile is restocked
-// 6. if someone wants to swap with stockpile and there is not enough resources - check that the player and marketplace are eventually updated
-// 7. Test that checkStockpile() catches an empty resource stocks, and restocks itselt
-// 8. Test that checkStockpile() catches an empty resource stocks, and no player or marketplace has that resource after update
-// 9. Test restockResource() - stockpile update
-// 10.Test restockResource() - marketplace update
-// 11.Test restockResource() - player update
-// 12. Test setupPlayers() - the correct amount of resources are removed from the stockpile
-// 13. Test return Resource() - the count in stockpile should increase accordingly
-// 14. Test distributeResource() - if there are enough, check that player resources is correctly updated 
-// 15. Test distributeResource() - if there are enough, check that stockpile is correctly updated
-// 16. Test distributeResource() - if there are not enough, check that restock is correctly called 
+// 1.5. if someone wants to swap with stockpile and there is not enough resources - check that the stockpile is restocked
+// 1.6. if someone wants to swap with stockpile and there is not enough resources - check that the player and marketplace are eventually updated
+// 2.1 Test that checkStockpile() catches an empty resource stocks, and restocks itselt
+// 2.2 Test that checkStockpile() catches an empty resource stocks, and no player or marketplace has that resource after update
+// 3.3Test restockResource() - player update
+// 4.1 Test setupPlayers() - the correct amount of resources are removed from the stockpile
+// 5.1 Test return Resource() - the count in stockpile should increase accordingly
+// 6.1 Test distributeResource() - if there are enough, check that player resources is correctly updated 
+// 6.2 Test distributeResource() - if there are enough, check that stockpile is correctly updated
+// 6.3 Test distributeResource() - if there are not enough, check that restock is correctly called 
 
 // Thing I think may be an error: If the stockpile needs to restock, if doesn't look like the stockpile will be restocked and then the player will
 // get their desired resource. Instead it looks like the stockpile is just restocked and that is the end of that. check what the desired result is.
