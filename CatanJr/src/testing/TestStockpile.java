@@ -3,6 +3,8 @@ package testing;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
+
+import board.Stockpile;
 import player.Player;
 import resources.Resources;
 import setup.ResourceSetup;
@@ -94,7 +96,6 @@ class TestStockpile {
 	// ----------------------------------------------------------------------------
 	// --------- Section 3 Testing : Testing restockResource() method -------------
 	// ----------------------------------------------------------------------------
-	
 	// 3.1 Check that the stockpile updates
 	@Test
 	void testRestockResourceStockpile() {
@@ -115,15 +116,67 @@ class TestStockpile {
 	}
 	
 	// 3.2 Check that the player updates when there is a stockpile restock
+	@Test
+	void testRestockResourcePlayer() {
+		// Set up of players and stockpile for testing
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		testPlayerList.add(new Player("testPlayer1", "Blue"));
+		testPlayerList.get(0).setupUserPocket();
+		testPlayerList.get(0).addResource(Resources.Gold, 2);
+		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
+		resourceSetup.getStockpile().removeResource(Resources.Gold, 17); // remove all gold's
+		int playerInitial = testPlayerList.get(0).checkPocketResources("G"); // Should be 2
+		// Call Method under test. Want to restock gold
+		resourceSetup.getStockpile().restockResource(Resources.Gold); 
+		// Test expected results. The stockpile should have 1 less gold
+		int playerFinal = testPlayerList.get(0).checkPocketResources("G"); // Should be 0
+		// Expect 0 initially, and then a fully restocked 17 after test method
+		assertEquals(2, playerInitial, "(player) Stockpile restock success- initial");	// Count before restock
+		assertEquals(0, playerFinal, "(player) Stockpile restock success- final");		// Count after restock
+	}
 	
 	
 	// ----------------------------------------------------------------------------
 	// --------- Section 4 Testing : Testing setupPlayers() method ----------------
 	// ----------------------------------------------------------------------------
+	// 4.1 Test setupPlayers() - the correct amount of resources are removed from the stockpile
+	@Test
+	void testSetupPlayers() {
+		// Set up of players and stockpile for testing
+		Stockpile stockpileTest;
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		stockpileTest = new Stockpile(testPlayerList);
+		stockpileTest.setupPlayers(3); 
+		// Set up test values 
+		int expWood = stockpileTest.getResourceCount(Resources.Wood);
+		int expGold = stockpileTest.getResourceCount(Resources.Gold);
+		int expMolasses = stockpileTest.getResourceCount(Resources.Molasses);
+		int expCutlass = stockpileTest.getResourceCount(Resources.Cutlasses);
+		int expGoat = stockpileTest.getResourceCount(Resources.Goats);
+		// Expect 18 for all resources not distributed to players initially.
+		assertEquals(18, expGold, "Test player setup (Stockpile gold count)");
+		assertEquals(15, expWood, "Test player setup (Stockpile wood count)");
+		assertEquals(15, expMolasses, "Test player setup (Stockpile molasses count)");
+		assertEquals(18, expCutlass, "Test player setup (Stockpile cutlass count)");
+		assertEquals(18, expGoat, "Test player setup (Stockpile goat count)");
+	}
 	
 	// ----------------------------------------------------------------------------
 	// --------- Section 5 Testing : Testing return Resource() method -------------
 	// ----------------------------------------------------------------------------
+	// 5.1 Test return Resource() - the count in stockpile should increase accordingly
+	@Test
+	void testReturnResource() {
+		// Set up of players and stockpile for testing
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
+		// Call method under test (adding 1 gold back to the resources (17+1)
+		resourceSetup.getStockpile().returnResource(Resources.Gold, 1);
+		// Test expected results. The stockpile should have 18 gold (up from 17)
+		int stockpileActual = resourceSetup.getStockpile().getResourceCount(Resources.Gold); // Should be 0
+		// Expect 0 initially, and then a fully restocked 17 after test method
+		assertEquals(18, stockpileActual, "Return Resource success");	// Count before restock
+	}
 	
 	// ----------------------------------------------------------------------------
 	// --------- Section 6 Testing : Testing distributeResource() method ----------
@@ -139,9 +192,6 @@ class TestStockpile {
 // 1.6. if someone wants to swap with stockpile and there is not enough resources - check that the player and marketplace are eventually updated
 // 2.1 Test that checkStockpile() catches an empty resource stocks, and restocks itselt
 // 2.2 Test that checkStockpile() catches an empty resource stocks, and no player or marketplace has that resource after update
-// 3.3Test restockResource() - player update
-// 4.1 Test setupPlayers() - the correct amount of resources are removed from the stockpile
-// 5.1 Test return Resource() - the count in stockpile should increase accordingly
 // 6.1 Test distributeResource() - if there are enough, check that player resources is correctly updated 
 // 6.2 Test distributeResource() - if there are enough, check that stockpile is correctly updated
 // 6.3 Test distributeResource() - if there are not enough, check that restock is correctly called 
