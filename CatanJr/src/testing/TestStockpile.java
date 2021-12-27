@@ -1,23 +1,98 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
+import player.Player;
+import resources.Resources;
+import setup.ResourceSetup;
 
 class TestStockpile {
 
+	// -----------------------------------------------------------
+	// --------- Test 1: Testing swapStockpile() method ----------
+	// -----------------------------------------------------------
+	// 1.1 If valid resources, check marketplace has 1 less of traded out resource
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testSwapStockpileCountsSOut() {
+		// Set up of players and stockpile for testing
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		testPlayerList.add(new Player("testPlayer1", "Blue"));
+		testPlayerList.get(0).setupUserPocket();
+		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
+		testPlayerList.get(0).addResource(Resources.Molasses, 1);
+		int StockpileOutInitial = resourceSetup.getStockpile().getResourceCount(Resources.Gold);
+		// Call Method under test. Wanted resource: Gold ; To swap resource: Molasses
+		resourceSetup.getStockpile().swapStockpile(Resources.Gold, Resources.Molasses, testPlayerList.get(0)); 
+		// Test expected results. The stockpile should have 1 less gold
+		int StockpileOut = resourceSetup.getStockpile().getResourceCount(Resources.Gold);
+		// Expect 18 - 1 (for marketplae) - 1 (for trade) = 16 Gold's in stockpile
+		assertEquals(17, StockpileOutInitial, "Stockpile trade out success- initial");	// Count before trade
+		assertEquals(16, StockpileOut, "Stockpile trade out success- final");			// Count after trade
 	}
+	
+	// 1.2 If valid resources, check marketplace has 2 more of traded in resource
+	@Test
+	void testSwapStockpileSIn() {
+		// Set up of players and stockpile for testing
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		testPlayerList.add(new Player("testPlayer1", "Blue"));
+		testPlayerList.get(0).setupUserPocket();
+		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
+		testPlayerList.get(0).addResource(Resources.Molasses, 1);
+		int StockpileInInitial  = resourceSetup.getStockpile().getResourceCount(Resources.Molasses);
+		// Call Method under test. Wanted resource: Gold ; To swap resource: Molasses
+		resourceSetup.getStockpile().swapStockpile(Resources.Gold, Resources.Molasses, testPlayerList.get(0)); 
+		// Test expected results. The stockpile should have 2 extra molasses
+		int StockpileIn  = resourceSetup.getStockpile().getResourceCount(Resources.Molasses);
+		// Expect 18 - 2 (for marketplace and player setup) + 2 (traded in) = 18 for molasses in stockpile
+		assertEquals(16, StockpileInInitial, "Stockpile get in success- initial");
+		assertEquals(18, StockpileIn, "Stockpile get in success - final");
+	}
+	
+	// 1.3 If valid resources, check player has 2 less of traded in resource
+	@Test
+	void testSwapStockpilePOut() {
+		// Set up of players and stockpile for testing
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		testPlayerList.add(new Player("testPlayer1", "Blue"));
+		testPlayerList.get(0).setupUserPocket();
+		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
+		testPlayerList.get(0).addResource(Resources.Molasses, 1);
+		// Call Method under test. Wanted resource: Gold ; To swap resource: Molasses
+		resourceSetup.getStockpile().swapStockpile(Resources.Gold, Resources.Molasses, testPlayerList.get(0)); 
+		// Test expected results. The player should have 2 less Molasses (2 to start, so expect 0)
+		int playerCountOut = testPlayerList.get(0).checkPocketResourcesType(Resources.Molasses);
+		// Expect 18 - 2 (for playersetup) + 2 (traded in) = 18 for molasses in stockpile
+		assertEquals(0, playerCountOut, "Player out stockpile trade success");
+	}
+	
+	// 1.4 If valid resources, check player has 1 more of desired resource
+	@Test
+	void testSwapStockpilePIn() {
+		// Set up of players and stockpile for testing
+		ArrayList<Player> testPlayerList=new ArrayList<Player>();
+		testPlayerList.add(new Player("testPlayer1", "Blue"));
+		testPlayerList.get(0).setupUserPocket();
+		ResourceSetup resourceSetup = new ResourceSetup(testPlayerList);
+		testPlayerList.get(0).addResource(Resources.Molasses, 1);
+		// Call Method under test. Wanted resource: Gold ; To swap resource: Molasses
+		resourceSetup.getStockpile().swapStockpile(Resources.Gold, Resources.Molasses, testPlayerList.get(0)); 
+		// Test expected results. The player should have 2 less Molasses (2 to start, so expect 0)
+		int playerCountIn = testPlayerList.get(0).checkPocketResourcesType(Resources.Gold);
+		// Expect 18 - 2 (for playersetup) + 2 (traded in) = 18 for molasses in stockpile
+		assertEquals(1, playerCountIn, "Player in stockpile trade success");
+	}
+	
+	// 1.5 
 
 }
 
 
 // Things to test:
-// 1. if someone wants to swap with stockpile and there is enough resources - check marketplace has 1 less of traded out resource
-// 2. if someone wants to swap with stockpile and there is enough resources - check marketplace has 2 more of traded in resource
-// 3. if someone wants to swap with stockpile and there is enough resources - check plyaer has 2 less of traded in resource
-// 4. if someone wants to swap with stockpile and there is enough resources - check player has 1 more of traded out resource
 // 5. if someone wants to swap with stockpile and there is not enough resources - check that the stockpile is restocked
 // 6. if someone wants to swap with stockpile and there is not enough resources - check that the player and marketplace are eventually updated
 // 7. Test that checkStockpile() catches an empty resource stocks, and restocks itselt

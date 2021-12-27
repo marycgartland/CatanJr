@@ -136,4 +136,12 @@ public class Stockpile {
 			restockResource(resource);
 		}
 	}
+	
+	// ------------------------------------------------------------------------------------------------
+	// ---------- Method: getResourceCount ----------------------------------------------------------
+	// This returns a count of the given resource in the stockpile. For test purposes.
+	// ------------------------------------------------------------------------------------------------
+	public int getResourceCount(Resources resource) {
+		return stockpile.get(resource);
+	}
 }
