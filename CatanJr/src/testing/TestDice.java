@@ -1,30 +1,37 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 import gameplay.Dice;
-import player.Player;
-import setup.BoardSetup;
 
-class TestDice {
-	// Test that a dice roll is between 1 and 6 (only testing one case)
+public class TestDice {
+
+	private Dice testDice;
+	
+	@Before
+	public void setUp() throws Exception{
+		testDice = Dice.getInstance();
+	}
+	
+	@After
+	public void tearDown() {
+		testDice = null;
+		System.out.println("Teardown");
+	}
+	
+	// ---------- Test that a dice roll is between 1 and 6 (only testing one case) ------------------
 	@Test
-	void testDiceRollRange() {
-		Dice dice = Dice.getInstance();
-		int roll = dice.rollDice();
+	public void testGetDiceRollValueRange() {
+		int roll = testDice.rollDice();
 		boolean actual = (roll>=1 && roll<=6 ? true : false);
 		assertEquals(true, actual, "Dice roll - correct range");
 	}
-	
-	// Test that the getDiceRollValue() method returns the correct rolled value
+
+	// ---------- Test that the getDiceRollValue() method returns the correct rolled value ----------
 	@Test
-	void testGetDiceRollValue() {
-		Dice dice = Dice.getInstance();
-		int expected = dice.rollDice();
-		int actual = dice.getDiceRollValue();
+	public void testGetDiceRollValue() {
+		int expected = testDice.rollDice();
+		int actual = testDice.getDiceRollValue();
 		assertEquals(expected, actual, "Get dice roll - correct value returned");
-	}
+	} 
 }
