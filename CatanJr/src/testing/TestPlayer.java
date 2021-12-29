@@ -1,67 +1,74 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 
 import player.Player;
 import resources.Resources;
 
-class TestPlayer {
-
+public class TestPlayer {
+	private Player testPlayer;
+	
+	@Before
+	public void setUp() throws Exception{
+		testPlayer = new Player("testPlayer", "Blue");
+		testPlayer.setupUserPocket();
+		System.out.println("Setup");
+	}
+	
+	@After
+	public void tearDown() {
+		testPlayer = null;
+		System.out.println("Teardown");
+	}
+	
 	// --------------- Testing addResource() method --------------------------------
 	@Test
-	void testAddResource() {
-		// Create a test player
-		Player testPlayer = new Player("testPlayer", "Blue");
-		testPlayer.setupUserPocket();
-		// Add a resource to the players pocket
+	public void testAddResource() {
+		// Setup
+		int initialResource = testPlayer.checkPocketResources("W");
 		testPlayer.addResource(Resources.Wood, 1);
+		int finalResource = testPlayer.checkPocketResources("W");
 		// Test
-		assertEquals(1, testPlayer.checkPocketResources("W"), "Testing adding resource");
+		assertEquals(1, finalResource - initialResource, "Testing adding resource");
 	}
-
+	
 	// --------------- Testing removeResource() method -----------------------------
 	@Test
-	void TestRemoveResource() {
-		// Create a test player
-		Player testPlayer = new Player("testPlayer", "Blue");
-		testPlayer.setupUserPocket();
+	public void testRemoveResource() {
+		// Setup
 		testPlayer.addResource(Resources.Wood, 2);
+		int initialResource = testPlayer.checkPocketResources("W");
 		// Remove resource
 		testPlayer.removeResource(Resources.Wood, 1);
+		int finalResource = testPlayer.checkPocketResources("W");
 		// Test
-		assertEquals(1, testPlayer.checkPocketResources("W"), "Testing removing resource");
+		assertEquals(1, initialResource - finalResource, "Testing removing resource");
 	}
 	
 	// --------------- Testing adding a cocotile to a players pocket ---------------
-		@Test
-		void TestAddCocoTile() {
-			// Create a test player
-			Player testPlayer = new Player("testPlayer", "Blue");
-			testPlayer.setupUserPocket();
-			// Add a cocotile
-			testPlayer.addCocoTile();
-			// Test
-			assertEquals(1, testPlayer.getCocoTileCount(), "Testing adding cocotile");
-		}
-		
+	@Test
+	public void testAddCocoTile() {
+		// Add a cocotile
+		testPlayer.addCocoTile();
+		// Test
+		assertEquals(1, testPlayer.getCocoTileCount(), "Testing adding cocotile");
+	}
+	
 	// --------------- Testing changing the # of lairs a user has ------------------
 	@Test
-	void TestChangeLairs() {
-		// Create a test player
-		Player testPlayer = new Player("testPlayer", "Blue");
-		testPlayer.setupUserPocket();
+	public void testChangeLairs() {
+		// Setup
 		testPlayer.addResource(Resources.Wood, 2);
 		// Add a lair
 		testPlayer.addLair();
-		// Test (set up with 2 lairs, so adding a lair should mean 3 lairs)
-		assertEquals(3, testPlayer.getLairCount(), "Testing changing lair count - remove");
+		int initialLair = testPlayer.getLairCount();
 		// Remove lair
 		testPlayer.removeLair();
+		int finalLair = testPlayer.getLairCount();
 		// Test
-		assertEquals(2, testPlayer.getLairCount(), "Testing changing lair count - remove");
+		assertEquals(1, initialLair - finalLair, "Testing changing lair count - remove");
 	}
+	
+	// TODO: test removing more resources than they have, or is this prechecked?
 }
-
-// TODO: test removing more resources than they have, or is this prechecked?

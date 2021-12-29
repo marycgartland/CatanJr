@@ -29,11 +29,6 @@ public class TestStockpile {
 		System.out.println("Teardown");
 	}
 	
-	@Test
-	public void testing() {
-		System.out.println("Testing");
-	}
-	
 	// ----------------------------------------------------------------------------
 	// --------- Section 1 Testing : Testing swapStockpile() method ---------------
 	// ----------------------------------------------------------------------------
@@ -63,9 +58,7 @@ public class TestStockpile {
 		resourceSetup.getStockpile().swapStockpile(Resources.Gold, Resources.Molasses, testPlayerList.get(0)); 
 		// Test expected results. The stockpile should have 2 extra molasses
 		int StockpileIn  = resourceSetup.getStockpile().getResourceCount(Resources.Molasses);
-		// Expect 18 - 2 (for marketplace and player setup) + 2 (traded in) = 18 for molasses in stockpile
-		assertEquals(16, StockpileInInitial, "Stockpile get in success- initial");
-		assertEquals(18, StockpileIn, "Stockpile get in success - final");
+		assertEquals(2, StockpileIn - StockpileInInitial, "Stockpile get in success- initial");
 	}
 	
 	// 1.3 If valid resources, check player has 2 less of traded in resource
