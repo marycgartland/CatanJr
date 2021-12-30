@@ -1,12 +1,11 @@
 package player;
 
-//----------------------------------------------------------------------------------------
-// This class deals with the players of the game. It is used to create each player, and it  
-// has methods to deal with the players pocket, which is used to store each players 
-// resources throughout the game. It also has methods to add the GameManager class as an
-// observer to the subject, and to notify the game manager of a lair change of a player in
-// order for the winner to be recognized.
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This class deals with the players of the game. It is used to create each player, and it has methods to deal
+// with the players pocket, which is used to store each players resources throughout the game. It also has
+// methods to add the GameManager class as an observer to the subject, and to notify the game manager of a 
+// lair change of a player in order for the winner to be recognized.
+// -----------------------------------------------------------------------------------------------------------
 
 // Import any packages needed
 import java.util.*;

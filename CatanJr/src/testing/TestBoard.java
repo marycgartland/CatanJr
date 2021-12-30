@@ -1,5 +1,10 @@
 package testing;
 
+//-----------------------------------------------------------------------------------------------------------
+// This JUnit test tests the Board class of the board method of the game. It tests the following methods: 
+// mostCocotiles(), reduceLairCount(), and placeLairMostCocotile(). 
+//-----------------------------------------------------------------------------------------------------------
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 import org.junit.*;

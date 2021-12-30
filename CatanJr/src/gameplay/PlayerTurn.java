@@ -1,11 +1,10 @@
 package gameplay;
 
-//----------------------------------------------------------------------------------------
-// This class deals with the turns of players. It gives them options to take on each turn,
-// and calls the methods required for their chosen action to be taken. It also gives
-// players a chance to view what resources/cocotiles etc. they have. Finally, it can also 
-// end the game if a player has won. 
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This class deals with the turns of players. It gives them options to take on each turn, and calls the 
+// methods required for their chosen action to be taken. It also gives players a chance to view what 
+// resources/cocotiles etc. they have. Finally, it can also end the game if a player has won. 
+// -----------------------------------------------------------------------------------------------------------
 
 import java.util.ArrayList;
 
@@ -64,7 +63,7 @@ public class PlayerTurn {
 		if(diceValue!=6) {
 			board.islandResourceDistribution(diceValue, islands, players);
 		} else {
-			board.showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 		// Replace island centers with their #'s
+			board.showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 	// Replace island centers with their #'s
 			interactor.printMessage("move ghost captain"); 							// Ask user which island to move GC to
 			String number = interactor.takeInAnswer(); 								// Take in user input
 			String message = board.moveGhostCaptain(number);
@@ -162,7 +161,7 @@ public class PlayerTurn {
 			// ----- Display pocket to player ------------
 			viewPocket();
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {	// The ghost captain cocotile
-			board.showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 		// Replace island centers with their #'s
+			board.showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 	// Replace island centers with their #'s
 			interactor.printMessage("move ghost captain"); 							// Ask user which island to move GC to
 			String number = interactor.takeInAnswer(); 								// Take in user input
 			String message = board.moveGhostCaptain(number);

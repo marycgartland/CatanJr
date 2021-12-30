@@ -1,9 +1,9 @@
 package setup;
 
-//----------------------------------------------------------------------------------------
-// This class sets up players. This calls all necessary methods to set up each player 
-// to begin the game, and ensure that a valid number of players (3 or 4) is entered.
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This class sets up players. This calls all necessary methods to set up each player to begin the game, and
+// ensure that a valid number of players (3 or 4) is entered.
+// -----------------------------------------------------------------------------------------------------------
 
 import java.util.ArrayList;
 import main.Interactor;

@@ -1,5 +1,10 @@
 package testing;
 
+// -----------------------------------------------------------------------------------------------------------
+// This JUnit test tests the Player class of the player method. It runs tests on the following methods of the 
+// class: addResource(), removeResource(), addCocoTile(), and changeLairs().
+// -----------------------------------------------------------------------------------------------------------
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.*;
 

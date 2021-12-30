@@ -1,10 +1,10 @@
 package board;
 
-//----------------------------------------------------------------------------------------
-// This is a Singleton class to represent the marketplace. It sets up the marketplace.
-// It has methods to deal with viewing and checking the marketplace, swapping out 
-// resources in the marketplace, and ensuring that the marketplace is properly stocked.
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This Singleton class represents the marketplace. It sets up the marketplace. It has methods to deal with
+// viewing and checking the marketplace, swapping out resources in the marketplace, and ensuring that the 
+// marketplace is properly stocked.
+// -----------------------------------------------------------------------------------------------------------
 
 import player.Player;
 import resources.Resources;

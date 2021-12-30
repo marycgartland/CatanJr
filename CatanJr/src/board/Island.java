@@ -8,12 +8,11 @@ import main.Interactor;
 import player.Player;
 import resources.Resources;
 
-// ----------------------------------------------------------------------------------------
-// This is a class to construct the islands on the board. The goal of this class is to set 
-// the lair locations connected to each island, in terms of their position on the matrix.
-// Each island will have 2 arrays, one for columns and one for rows. The nth position in
-// each array will correspond to one another. 
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This is a class to construct the islands on the board. The goal of this class is to set the lair locations
+// connected to each island, in terms of their position on the matrix. Each island will have 2 arrays: one for
+// columns and one for rows. The nth position in each array will correspond to one another. 
+// -----------------------------------------------------------------------------------------------------------
 
 public class Island {
 	// --------------------------------
@@ -29,18 +28,18 @@ public class Island {
 	protected int temp_row;									// Selected row value
 	protected int temp_col;									// Selected column value
 	
-	// ----------------------------------
-	// ----------- Constructor ----------
-	// ----------------------------------
+	//-----------------------------------------------------------------------------------------------
+	// ----------- Constructor ----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------------
 	public Island(int[] row_vals, int[] col_vals) {
 		this.columns = col_vals;
 		this.rows = row_vals;
 		interactor = new Interactor();
 	}
 	
-	// ----------------------------------
-	// ----------- Get methods ----------
-	// ----------------------------------
+	//-----------------------------------------------------------------------------------------------
+	// ----------- Get methods ----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------------
 	public int[] getColumn() {	// Get column value
 		return columns;
 	}

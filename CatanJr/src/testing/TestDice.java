@@ -1,5 +1,10 @@
 package testing;
 
+//-----------------------------------------------------------------------------------------------------------
+// This JUnit test tests the Dice class of the gameplay package. It tests the following two methods:
+// testGetDiceRollValueRange() and testGetDiceRollValue().
+//-----------------------------------------------------------------------------------------------------------
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.*;
 import gameplay.Dice;

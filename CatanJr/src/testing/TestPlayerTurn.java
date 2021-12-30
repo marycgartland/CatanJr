@@ -1,5 +1,10 @@
 package testing;
 
+// -----------------------------------------------------------------------------------------------------------
+// This JUnit test tests the playerTurn class of the gameplay package. It runs tests on the following methods 
+// of the class: cocotileAction(), buildLairShip(), assignResourcesType(), and validResourceCheck().
+// -----------------------------------------------------------------------------------------------------------
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 

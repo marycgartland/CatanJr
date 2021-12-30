@@ -1,10 +1,9 @@
 package gameplay;
 
-//----------------------------------------------------------------------------------------
-// This is a Singleton class controls/runs the game. It controls the turns, it determines 
-// the winner. How it determines a winner: when a user has placed 7 lairs (including if 
-// they have one on spooky island)
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This is a Singleton class controls/runs the game. It controls the turns, it determines the winner. How it 
+// determines a winner: when a user has placed 7 lairs (including if they have one on spooky island).
+// -----------------------------------------------------------------------------------------------------------
 
 import board.Board;
 import board.Marketplace;

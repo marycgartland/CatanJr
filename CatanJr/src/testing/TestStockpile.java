@@ -1,5 +1,11 @@
 package testing;
 
+// -----------------------------------------------------------------------------------------------------------
+// This JUnit test is used to test the Stockpile class of the board package. It runs tests on the following
+// methods of the class: swapStockpile(), checkStockpile(), restockResource(), setupPlayers(), 
+// returnResource(), and distributeResource().
+// -----------------------------------------------------------------------------------------------------------
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 import org.junit.*;
@@ -167,7 +173,7 @@ public class TestStockpile {
 
 	
 	// ----------------------------------------------------------------------------
-	// --------- Section 5 Testing : Testing return Resource() method -------------
+	// --------- Section 5 Testing : Testing returnResource() method -------------
 	// ----------------------------------------------------------------------------
 	// 5.1 Test return Resource() - the count in stockpile should increase accordingly
 	@Test

@@ -1,5 +1,10 @@
 package testing;
 
+//-----------------------------------------------------------------------------------------------------------
+// This JUnit test tests the Marketplace class of the board package. It tests the following methods: 
+// checkForResourceMarketplace(), testResourceCount(), and swapMarketplace().
+//-----------------------------------------------------------------------------------------------------------
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 import org.junit.*;

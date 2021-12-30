@@ -1,11 +1,11 @@
 package board;
 
-//----------------------------------------------------------------------------------------
-// This is a Singleton class to represent the board for the game. It sets up the board 
-// design, and provides methods to view and change the board. It also involves methods that 
-// deal with interactions with the board such as dealing with the movement of the ghost
-// captain, the placement of lairs and ships, and resource distribution.
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This is a Singleton class to represent the board for the game. It sets up the board design, and provides 
+// methods to view and change the board. It also involves methods that deal with interactions with the board 
+// such as dealing with the movement of the ghost captain, the placement of lairs and ships, and resource 
+// distribution.
+// -----------------------------------------------------------------------------------------------------------
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,9 +14,6 @@ import main.Interactor;
 import player.Player;
 import resources.Resources;
 
-// -------------------------------------------------------------------------------------------------------
-// ---------- A Singleton class for the Board ------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------------
 public class Board {
 	// -------------------------------------------------------------------------------------------------------
 	// ---------- Variables ----------------------------------------------------------------------------------
@@ -175,21 +172,21 @@ public class Board {
 		boolean integer_given = false;
 		while (!integer_given) {
 			List<String> comparison_list = Arrays.asList(island_numbers);
-			if (comparison_list.contains(number)) {									// If input is a valid island # ...
-				ghostCaptain.updateLocationGC(Integer.parseInt(number)); 			// Update GC location
+			if (comparison_list.contains(number)) {							// If input is a valid island # ...
+				ghostCaptain.updateLocationGC(Integer.parseInt(number)); 	// Update GC location
 				for (int i = 0; i <= 17 - 1; i++) {
 					for (int j = 0; j <= 38 - 1; j++) {
-						if (design[i][j] == 'G') {
+						if (design[i][j] == 'G') {							// Place 'G' at specificed location ...
 							design[i][j] = ' ';
-							possibleLocationGhostCaptain(Integer.parseInt(number)); // Place 'G' at specificed location
+							possibleLocationGhostCaptain(Integer.parseInt(number)); 
 						}
 					}
 				}
-				message="GC moved";													// Confirm GC has been moved
-				showBoardLayout();													// Display new board layout
-				integer_given = true; 												// End loop	
+				message="GC moved";				// Confirm GC has been moved
+				showBoardLayout();				// Display new board layout
+				integer_given = true; 			// End loop	
 			} 
-			else {																	// If island is invalid ...
+			else {								// If island is invalid ...
 				message = "invalid island";
 				integer_given = false;
 				break;

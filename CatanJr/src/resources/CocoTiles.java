@@ -1,10 +1,10 @@
 package resources;
 
-//----------------------------------------------------------------------------------------
-// This class deals with the CocoTiles of the board game. It sets up each cocotile for
-// the game, where the different types are enums. It has a method to allow players to 
-// buy cocotiles, which can be called on their turn. 
-//----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This class deals with the CocoTiles of the board game. It sets up each cocotile for the game, where the
+// different types are enums. It has a method to allow players to buy cocotiles, which can be called on their 
+// turn.
+// -----------------------------------------------------------------------------------------------------------
 
 import java.util.*;
 

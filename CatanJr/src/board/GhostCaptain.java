@@ -1,13 +1,13 @@
 package board;
 
-//-----------------------------------------------------
-// ------ A Singleton class for the Ghost Captain -----
-// -----------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------
+// This is a singleton class for the Ghost Captain. It is used to keep track of/move the location of the GC.
+// -----------------------------------------------------------------------------------------------------------
 
 public class GhostCaptain {
 	
-	protected int location; // location of Ghost captain
-	private static GhostCaptain instance = new GhostCaptain(13); // create instance of ghost captain
+	protected int location; 										// Location of Ghost captain
+	private static GhostCaptain instance = new GhostCaptain(13); 	// Create instance of ghost captain
 	
 	// -----------------------------------------------------
 	// ---------- Constructor ------------------------------
