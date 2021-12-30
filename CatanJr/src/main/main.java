@@ -22,6 +22,7 @@ public class main {
 			// TODO: Limit any code repetition
 			// TODO: Error check for players buying cocotiles - entering incorrect options
 
+		// TODO: Make a summary at the top of each class? 
 		// place ship/lair still looks very long and loopy - def could be simplified/tidier if we have time. (not necessary but a would-be-nice)
 		
 		// EP: Notes from meeting:

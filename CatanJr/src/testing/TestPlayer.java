@@ -13,13 +13,11 @@ public class TestPlayer {
 	public void setUp() throws Exception{
 		testPlayer = new Player("testPlayer", "Blue");
 		testPlayer.setupUserPocket();
-		System.out.println("Setup");
 	}
 	
 	@After
 	public void tearDown() {
 		testPlayer = null;
-		System.out.println("Teardown");
 	}
 	
 	// --------------- Testing addResource() method --------------------------------
@@ -69,6 +67,5 @@ public class TestPlayer {
 		// Test
 		assertEquals(1, initialLair - finalLair, "Testing changing lair count - remove");
 	}
-	
-	// TODO: test removing more resources than they have, or is this prechecked?
+
 }
