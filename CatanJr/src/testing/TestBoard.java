@@ -104,4 +104,34 @@ public class TestBoard {
 		char boardCentre = testBoard.getBoardDesign()[8][18];
 		assertEquals(' ', boardCentre, "Equal most cocotiles, neither lair in center");
 	}
+	
+	
+	// ---------------------------------------------------------------------------------------------------------
+	// --------- Testing reduceLairCount method ----------------------------------------------------------------
+	// Ensures a player's lair count is reduced when called. It is unnecessary to test what would happen if this
+	// is called when a player has no lairs, as this case is prevented by other checks during the game.
+	// ---------------------------------------------------------------------------------------------------------
+	@Test
+	public void testReduceLairCount() {
+		int initialCount = testPlayerList.get(0).getLairCount();
+		testBoard.reduceLairCount('B', testPlayerList);
+		int finalCount = testPlayerList.get(0).getLairCount();
+		// Compare lair count before and after method called - should be reduced by 1 
+		assertEquals(1, initialCount - finalCount, "Reduce lair count test");
+	}
+	
+	// ---------------------------------------------------------------------------------------------------------
+	// --------- Testing placeLairMostCocotile method ----------------------------------------------------------
+	// Ensures lair colour of selected is placed in the center of the board, and their lair count is increased.
+	// ---------------------------------------------------------------------------------------------------------
+	@Test
+	public void testPlaceLairMostCocotile() {
+		int initialCount = testPlayerList.get(0).getLairCount();
+		testBoard.placeLairMostCocotile('B', testPlayerList);
+		int finalCount = testPlayerList.get(0).getLairCount();
+		char boardCentre = testBoard.getBoardDesign()[8][18];
+		// Player color should be in center of board, and lair count increased by 1
+		assertEquals(1, finalCount - initialCount, "Lair placement - count increase");
+		assertEquals('B', boardCentre, "Lair placement - confirmed lair");
+	}
 }

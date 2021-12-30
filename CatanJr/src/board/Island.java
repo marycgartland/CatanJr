@@ -71,5 +71,4 @@ public class Island {
 				interactor.printMessage("Island check: ghost captain");
 			}
 		}
-
 }

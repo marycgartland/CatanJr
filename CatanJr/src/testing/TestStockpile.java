@@ -172,7 +172,6 @@ public class TestStockpile {
 	// 5.1 Test return Resource() - the count in stockpile should increase accordingly
 	@Test
 	public void testReturnResource() {
-		// Set up of players and stockpile for testing
 		// Call method under test (adding 1 gold back to the resources (17+1)
 		resourceSetup.getStockpile().returnResource(Resources.Gold, 1);
 		// Test expected results. The stockpile should have 18 gold (up from 17)

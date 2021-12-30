@@ -189,7 +189,7 @@ public class Board {
 				showBoardLayout();													// Display new board layout
 				integer_given = true; 												// End loop	
 			} 
-			else {																// If island is invalid ...
+			else {																	// If island is invalid ...
 				message = "invalid island";
 				integer_given = false;
 				break;
@@ -473,11 +473,7 @@ public class Board {
 			islands[5].checkArray(players, Resources.Gold, design[8][12], design); 		// Island 6, Assign: gold
 			islands[7].checkArray(players, Resources.Goats, design[8][30], design); 	// Island 8, Assign: goat
 		} 
-//		else { // ---------- Roll a 6 - ghost captain -----------------
-//			moveGhostCaptain(); 
-//		}
 	}
-	
 	
 	// -------------------------------------------------------------------------------------------------------
 	// ---------- Method: getInstance() ----------------------------------------------------------------------
