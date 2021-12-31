@@ -1,8 +1,9 @@
 package testing;
 
 // -----------------------------------------------------------------------------------------------------------
-// This JUnit test tests the playerTurn class of the gameplay package. It runs tests on the following methods 
-// of the class: cocotileAction(), buildLairShip(), assignResourcesType(), and validResourceCheck().
+// This JUnit test tests the playerTurn class of the gameplay package. It runs tests on the cocotileAction()
+// method of the class. The rest of the methods in this class are covered by system testing or require user
+// interaction
 // -----------------------------------------------------------------------------------------------------------
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,12 +38,6 @@ public class TestPlayerTurn {
 		testPlayerList=new ArrayList<Player>();
 		testPlayerList.add(new Player("testPlayer1", "Blue"));
 		testPlayerList.get(0).setupUserPocket();
-		testPlayerList.add(new Player("testPlayer2", "Red"));
-		testPlayerList.get(1).setupUserPocket();
-		testPlayerList.add(new Player("testPlayer3", "White"));
-		testPlayerList.get(2).setupUserPocket();
-		testPlayerList.add(new Player("testPlayer4", "Orange"));
-		testPlayerList.get(3).setupUserPocket();
 		
 		// Resource Setup
 		resourceSetup = new ResourceSetup(testPlayerList);
@@ -106,7 +101,7 @@ public class TestPlayerTurn {
 		int SFinalCutlasses = testStockpile.getResourceCount(Resources.Cutlasses);
 		assertEquals(2, SInitGoat - SFinalGoat, "cocotileAction() - Goats/Cutlasses - Goats from stockpile");
 		assertEquals(2, SInitCutlasses - SFinalCutlasses, "cocotileAction() - Goats/Cutlasses - Cutlasses from stockpile");
-		} 
+	} 
 	
 	// Test 1.3: wood and molasses cocotile; check players pocket
 	@Test
@@ -136,36 +131,4 @@ public class TestPlayerTurn {
 		assertEquals(2, woodInitial - woodFinal, "cocotileAction() - Wood/molasses - Wood from stockpile");
 		assertEquals(2, molassesInitial - molassesFinal, "cocotileAction() - Wood/molasses - Molasses from stockpile");
 	} 
-	
-	
-	
-	
 }
-
-
-//------------------------------------------------------------------------------
-//---------- Section 2 Testing : Testing method buildLairShip() ----------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//----------Section 3 Testing : Testing method assignResourcesType() ----------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//---------- Section 4 Testing : Testing method validResourceCheck() -----------
-//------------------------------------------------------------------------------
-
-
-// Tests I want to do:
-// 5. buildLairShip - check ship is placed
-// 6. buildLairShip - check lair is placed
-// 7. buildLairShip - check lair updated count?
-// 8. assignResourcesType - check W and w
-// 9. assignResourcesType - check M and m
-// 10. assignResourcesType - check GT and gt
-// 11. assignResourcesType - check G and g
-// 12. validResourceCheck - W and w 
-// 13. validResourceCheck - check M and m
-// 14. validResourceCheck - check GT and gt
-// 15. validResourceCheck - check G and g
-// 16. validResourceCheck - check symbol, eg. !
-// 17. validResourceCheck - check string, eg. WE
-// 18. validResourceCheck - check number
