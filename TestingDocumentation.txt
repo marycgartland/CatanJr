@@ -124,6 +124,8 @@ stockpile itself is updated accordingly. The final test ensures that if there ar
   * If the player places the ghost captain, it is correctly placed on desired island
   * The island will not distribute resources if that value is rolled
   * The ghost captain stays on that island for future turns 
+  * When a player moves the ghost captain, they will get 2 of the resources from that island
+  * If a user enters an invalid number/letter for the island to move the gc to, they will be asked again until they enter a valid one
   
 ----- Dice Rolls -----
   * All dice rolls are between 1 and 6
