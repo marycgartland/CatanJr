@@ -68,7 +68,10 @@ pocket. If the addCocoTile() method is used on a player, their cocotile count in
 that the players lair count changes accordingly.
 
 ----- JUnit test: TestPlayerTurn ------ 
-<TODO>
+  This JUnit test tests the playerTurn class of the gameplay package. It runs tests on the cocotileAction() method of the class. The rest of the methods in this
+class are covered by system testing or require user interaction. The tests performed on the cocotileAction() method are for the goat/cutlass cocotile and the 
+wood/molasses cocotile. This ensures that when a user buys a cocotile of one of these types, the correct resources are assigned from them, as well as being removed 
+from the stockpile in the process.
 
 ----- JUnit test: TestStockpile -------
   This JUnit test is used to test the Stockpile class of the board package. It runs tests on the following methods of the class: swapStockpile(), checkStockpile(),
@@ -109,6 +112,7 @@ stockpile itself is updated accordingly. The final test ensures that if there ar
 --------------- Setup --------------------------
 ----- User setup ---------
   * Users are assigned resources to begin
+  * Users are assigned colours
   * Users lairs are placed and visible on the displayed board to begin
 
 ----- Board setup --------
@@ -135,6 +139,15 @@ stockpile itself is updated accordingly. The final test ensures that if there ar
 ----- Turn options ----- 
   * Players are correctly presented with the options to build, buy, trade or end turn if they please. They choose as many options as they like (have unlimited
     choices), so long as their resources available allow them to take actions
+  * The build option allows them to place ships/lairs if they have the resources - it places them adjacently and alternately (gives users options for avialable 
+    placement options)
+  * The buy option allows users to get a randomized cocotile and actions on the cocotile are followed
+  * The trade option allows the user to trade with the marketplace (1-1 trade, once per turn), the stockpile (1-2 trade).
+
+--------------- General ------------------------
+  * When resources are traded between the marketplace, users, stockpile throughout the game, they are properly exchanged (count has been tested)
+  * When the stockpile runs out of resources, it is restocked accordingly
+  * Prices for user play follow instruction manual requirements
 
 --------------- Winning ------------------------
   * If a player reaches 7 lairs, they are declared the winner and the game successfully ends
@@ -143,6 +156,3 @@ stockpile itself is updated accordingly. The final test ensures that if there ar
   * All user/game interactions now go through interactor class
   * Code is not repeated. 
   * Enums are used for resource and cocotile types for tidiness and ease
-
---------------- Others -------------------------
-
