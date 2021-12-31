@@ -124,6 +124,7 @@ public class TestStockpile {
 		assertEquals(17, StockpileOut, "Stockpile trade out success- final");			// Count after checking/restocking
 	}
 	
+	// 2.2 Test that checkStockpile() catches an empty resource stocks, and no player has that resource after update
 	@Test
 	public void testCheckStockpilePlayers() {
 		// Set up of players and stockpile for testing
@@ -135,8 +136,6 @@ public class TestStockpile {
 		int playerGoldCount = testPlayerList.get(0).checkPocketResourcesType(Resources.Gold);
 		assertEquals(0, playerGoldCount, "Stockpile trade out success- player");	// Count after checking/restocking
 	}
-	
-	// 2.2 Test that checkStockpile() catches an empty resource stocks, and no player or marketplace has that resource after update
 		
 	// ----------------------------------------------------------------------------
 	// --------- Section 3 Testing : Testing restockResource() method -------------
