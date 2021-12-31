@@ -26,13 +26,12 @@ public class TestStockpile {
 		testPlayerList.add(new Player("testPlayer1", "Blue"));
 		testPlayerList.get(0).setupUserPocket();
 		resourceSetup = new ResourceSetup(testPlayerList);
-		System.out.println("Setup");
 	}
 	
 	@After
 	public void tearDown() {
 		testPlayerList.clear();
-		System.out.println("Teardown");
+		resourceSetup = null;
 	}
 	
 	// ----------------------------------------------------------------------------
@@ -108,11 +107,36 @@ public class TestStockpile {
 		assertEquals(17, StockpileOut, "Stockpile trade out success- final");			// Count after trade/restock
 	}
 	
-	// 1.6 
-	
 	// ----------------------------------------------------------------------------
 	// --------- Section 2 Testing : Testing checkStockpile() method --------------
 	// ----------------------------------------------------------------------------
+	// 2.1 Test that checkStockpile() catches an empty resource stocks, and restocks itself
+	@Test
+	public void testCheckStockpileRestock() {
+		// Set up of players and stockpile for testing
+		resourceSetup.getStockpile().removeResource(Resources.Gold, 17); // remove all gold's
+		int StockpileOutInitial = resourceSetup.getStockpile().getResourceCount(Resources.Gold);
+		// Call Method under test
+		resourceSetup.getStockpile().checkStockpile();
+		// Test expected results. The stockpile should be restocked with gold 
+		int StockpileOut = resourceSetup.getStockpile().getResourceCount(Resources.Gold);
+		assertEquals(0, StockpileOutInitial, "Stockpile trade out success- initial");	// Count before checking/restocking
+		assertEquals(17, StockpileOut, "Stockpile trade out success- final");			// Count after checking/restocking
+	}
+	
+	@Test
+	public void testCheckStockpilePlayers() {
+		// Set up of players and stockpile for testing
+		testPlayerList.get(0).addResource(Resources.Gold, 3);
+		resourceSetup.getStockpile().removeResource(Resources.Gold, 17); // remove all gold's
+		// Call Method under test
+		resourceSetup.getStockpile().checkStockpile();
+		// Test expected results. The stockpile should be restocked with gold 
+		int playerGoldCount = testPlayerList.get(0).checkPocketResourcesType(Resources.Gold);
+		assertEquals(0, playerGoldCount, "Stockpile trade out success- player");	// Count after checking/restocking
+	}
+	
+	// 2.2 Test that checkStockpile() catches an empty resource stocks, and no player or marketplace has that resource after update
 		
 	// ----------------------------------------------------------------------------
 	// --------- Section 3 Testing : Testing restockResource() method -------------
@@ -189,14 +213,36 @@ public class TestStockpile {
 	// ----------------------------------------------------------------------------
 	// --------- Section 6 Testing : Testing distributeResource() method ----------
 	// ----------------------------------------------------------------------------
-	
-	
-	// Things to test:
-	// 1.5. if someone wants to swap with stockpile and there is not enough resources - check that the stockpile is restocked
-	// 1.6. if someone wants to swap with stockpile and there is not enough resources - check that the player and marketplace are eventually updated
-	// 2.1 Test that checkStockpile() catches an empty resource stocks, and restocks itselt
-	// 2.2 Test that checkStockpile() catches an empty resource stocks, and no player or marketplace has that resource after update
 	// 6.1 Test distributeResource() - if there are enough, check that player resources is correctly updated 
+	@Test
+	public void testDistributeResourcePlayer() {
+		// Call method under test 
+		resourceSetup.getStockpile().distributeResource(Resources.Wood, 1);
+		// Test expected results 
+		int result = testPlayerList.get(0).checkPocketResourcesType(Resources.Wood);
+		assertEquals(1, result, "distributeResource() - player success");	
+	}
+
 	// 6.2 Test distributeResource() - if there are enough, check that stockpile is correctly updated
+	@Test
+	public void testDistributeResourceStockpile() {
+		// Call method under test 
+		int initial = resourceSetup.getStockpile().getResourceCount(Resources.Wood);
+		resourceSetup.getStockpile().distributeResource(Resources.Wood, 1);
+		// Test expected results 
+		int finalVal = resourceSetup.getStockpile().getResourceCount(Resources.Wood);
+		assertEquals(1, initial-finalVal, "distributeResource() - stockpile success");	
+	}
+	
 	// 6.3 Test distributeResource() - if there are not enough, check that restock is correctly called 
+	@Test
+	public void testDistributeResourceInvalid() {
+		// Setup - remove all wood (16 because one gone for player setup, and 1 gone for marketplace)
+		resourceSetup.getStockpile().removeResource(Resources.Wood, 16); 
+		// Call method under test 
+		resourceSetup.getStockpile().distributeResource(Resources.Wood, 1);
+		// Test expected results 
+		int finalVal = resourceSetup.getStockpile().getResourceCount(Resources.Wood);
+		assertEquals(17, finalVal, "distributeResource() - invalid success");	
+	}
 }
