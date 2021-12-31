@@ -121,14 +121,14 @@ public class PlayerTurn {
 				stockpile.returnResource(Resources.Gold, 1);
 				stockpile.returnResource(Resources.Molasses, 1);
 				// ----- Cocotile bought ----------------------------------------------
-				CocoTileTypes cocotile_bought = cocotiles.buyCocoTile(); 	// Indicates type of cocotile
-				player.addCocoTile(); 										// Add cocotile to players cocotile count
+				CocoTileTypes cocotile_bought = cocotiles.buyCocoTile(); 			// Indicate type of cocotile
+				player.addCocoTile(); 												// Add cocotile to players cocotile count
 				if (cocotile_bought == null) {
-					interactor.printMessage("no cocotiles");				// tell user there are no cocotiles to be bought
+					interactor.printMessage("no cocotiles");						// Tell user there are no cocotiles to be bought
 				} else {
-					interactor.printMessage("Cocotile bought", cocotile_bought); // Confirm to user to coctile they have recieved
+					interactor.printMessage("Cocotile bought", cocotile_bought);	// Confirm to user to cocotile they have received
 				}
-				cocotileAction(cocotile_bought); 							// Follow instructions on cocotile
+				cocotileAction(cocotile_bought); 									// Follow instructions on cocotile
 			}
 		} 
 		// ----- Error message if the user does not have resources needed -------

@@ -1,23 +1,20 @@
 package board;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+//-----------------------------------------------------------------------------------------------------------
+//This is a class to construct the islands on the board. The goal of this class is to set the lair locations
+//connected to each island, in terms of their position on the matrix. Each island will have 2 arrays: one for
+//columns and one for rows. The nth position in each array will correspond to one another. 
+//-----------------------------------------------------------------------------------------------------------
 
+import java.util.ArrayList;
 import main.Interactor;
 import player.Player;
 import resources.Resources;
 
-// -----------------------------------------------------------------------------------------------------------
-// This is a class to construct the islands on the board. The goal of this class is to set the lair locations
-// connected to each island, in terms of their position on the matrix. Each island will have 2 arrays: one for
-// columns and one for rows. The nth position in each array will correspond to one another. 
-// -----------------------------------------------------------------------------------------------------------
-
 public class Island {
-	// --------------------------------
-	// ----------- Variables ----------
-	// --------------------------------
+	//-----------------------------------------------------------------------------------------------
+	// ----------- Variables ------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------------
 	private int[] columns;									// Array of column values
 	private int[] rows;										// Array of row values
 	protected Interactor interactor;						// Interactor to work with user

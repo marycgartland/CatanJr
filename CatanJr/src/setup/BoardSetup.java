@@ -40,11 +40,11 @@ public class BoardSetup {
 	// ---------- Constructor ------------------------------------------
 	// -----------------------------------------------------------------
 	public BoardSetup(ArrayList<Player> players) {
-		this.board = Board.getInstance(); // get instance of board
+		this.board = Board.getInstance(); 	// get instance of board
 		this.design = board.getBoardDesign();
-		setupBoard(players.size());	// Place ships and lairs based on player #
-		setUpIslands();				// Set up the 12 islands
-		setUpGhostCaptain();		// Set up the ghost captain
+		setupBoard(players.size());			// Place ships and lairs based on player #
+		setUpIslands();						// Set up the 12 islands
+		setUpGhostCaptain();				// Set up the ghost captain
 	}
 
 	// -----------------------------------------------------------------
@@ -70,22 +70,22 @@ public class BoardSetup {
 	// -----------------------------------------------------------------
 	
 	public void setupBluePlayerLocations() {	// Blue player setup
-		design[5][30] = 'B';
-		design[6][28] = 'b';
+		design[5][30]  = 'B';
+		design[6][28]  = 'b';
 		design[13][12] = 'B';
 		design[12][12] = 'b';
 	}
 
 	public void setupRedPlayerLocations() {		// Red player setup
-		design[3][12] = 'R';
-		design[4][12] = 'r';
+		design[3][12]  = 'R';
+		design[4][12]  = 'r';
 		design[10][28] = 'r';
 		design[11][30] = 'R';
 	}
 
 	public void setupWhitePlayerLocations() {	// White player setup
-		design[5][6] = 'W';
-		design[6][8] = 'w';
+		design[5][6]   = 'W';
+		design[6][8]   = 'w';
 		design[12][24] = 'w';
 		design[13][24] = 'W';
 	}

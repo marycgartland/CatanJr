@@ -9,7 +9,6 @@ package player;
 
 // Import any packages needed
 import java.util.*;
-
 import gameplay.GameManager;
 import resources.Resources;
 
@@ -103,7 +102,7 @@ public class Player {
 	
 	
 	// ----------------------------------------------------------
-	// ---------- Method: attach --------------------------------
+	// ---------- Method: attach() ------------------------------
 	// ---------Add GameManager as observer to the subject-------
 	// ----------------------------------------------------------
 	public void attach(GameManager GameManager) {
@@ -111,7 +110,7 @@ public class Player {
 	}
 
 	// -----------------------------------------------------------
-	// ---------- Method: notify ---------------------------------
+	// ---------- Method: notifyAllObservers() -------------------
 	// Notify the observer that the players lair count has changed
 	// -----------------------------------------------------------
 	public void notifyAllObservers() {

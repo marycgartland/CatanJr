@@ -10,7 +10,5 @@ public class main {
 	public static void main(String[] args) {
 		GameManager gameManager = GameManager.getInstance(); 
 		gameManager.startGame();
-		
-		// TODO: Error check for players buying cocotiles - entering incorrect options
     }
 }
