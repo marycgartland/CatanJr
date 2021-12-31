@@ -167,7 +167,7 @@ public class Board {
 	// ---------- Method: moveGhostCaptain() -----------------------------------------------------------------
 	// Moves the ghost captain to another island
 	// -------------------------------------------------------------------------------------------------------
-	public String moveGhostCaptain(String number) {
+	public String moveGhostCaptain(String number, Player player) {
 		// If the player has not entered a valid value, get a new value
 		while (validIslandCheck(number) == false) {
 			showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation());
@@ -189,6 +189,7 @@ public class Board {
 						}
 					}
 				}
+				gcReturnResource(number, player);
 				message="GC moved";		// Confirm GC has been moved
 				showBoardLayout();		// Display new board layout
 				integer_given = true; 	// End loop	
@@ -210,10 +211,28 @@ public class Board {
 		if (enteredValue.equals("1") || enteredValue.equals("2") || enteredValue.equals("3") || enteredValue.equals("4") 
 				|| enteredValue.equals("5") || enteredValue.equals("6") || enteredValue.equals("7")
 				|| enteredValue.equals("8") || enteredValue.equals("9") || enteredValue.equals("10")
-				|| enteredValue.equals("11") || enteredValue.equals("12") || enteredValue.equals("13")) {
+				|| enteredValue.equals("11") || enteredValue.equals("12")) {
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	// -------------------------------------------------------------------------------------------------------
+	// ---------- Method: gcReturnResource -------------------------------------------------------------------
+	// Return resource to player when they move the GC
+	// -------------------------------------------------------------------------------------------------------
+	public void gcReturnResource(String number, Player player) {
+		if (number.equals("1") || number.equals("9")){
+			player.addResource(Resources.Cutlasses, 2);
+		} else if (number.equals("2") || number.equals("5") || number.equals("10")){
+			player.addResource(Resources.Wood, 2);
+		} else if (number.equals("3") || number.equals("8") || number.equals("11")){
+			player.addResource(Resources.Goats, 2);
+		} else if (number.equals("4") || number.equals("12")){
+			player.addResource(Resources.Molasses, 2);
+		} else {
+			player.addResource(Resources.Gold, 2);
 		}
 	}
 		

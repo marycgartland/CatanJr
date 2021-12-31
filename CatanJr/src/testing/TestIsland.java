@@ -248,7 +248,7 @@ public class TestIsland {
 		int initialResourceR = testPlayer2.checkPocketResources("C");
 		int initialResourceW = testPlayer3.checkPocketResources("C");
 		// Move the ghost captain to island 1
-		testBoard.moveGhostCaptain("1");
+		testBoard.moveGhostCaptain("1", testPlayer1);
 		// Call method under test - Island 1, adding cutlasses
 		testIslands[0].checkArray(testPlayerList, Resources.Cutlasses, ' ', designTest);
 		// Set up final values 
