@@ -1,7 +1,13 @@
 package testing;
 
 //-----------------------------------------------------------------------------------------------------------
-// This JUnit test tests the BoardSetup class in the setup package.
+// This JUnit test tests the BoardSetup class in the setup package. It tests the setupBoard() method to 
+// ensure that if 3 players are in the game, only the blue, red, and white players initial lairs and ships
+// are setup. If 4 players are in the game, then the orange player's ships and lairs should be setup as well.
+// These tests covered setupBluePlayerLocations, setupRedPlayerLocations, setupWhitePlayerLocations, and
+// setupOrangePlayerLocations methods in the process. The method setUpGhostCaptain() was also tested to 
+// ensure that the ghost captain was properly placed in the center of the board for the start of the game.
+// Finally, the setUpIslands() method was tested to ensure that 12 islands were setup as expected.
 //-----------------------------------------------------------------------------------------------------------
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +19,6 @@ import board.Board;
 import board.Island;
 import player.Player;
 import setup.BoardSetup;
-import setup.ResourceSetup;
 
 public class TestBoardSetup {
 
@@ -157,7 +162,6 @@ public class TestBoardSetup {
 		assertEquals('o', designTest4[10][8], "setupBoard test - 4 players, orange, S2");
 	}
 
-	
 	// ---------------------------------------------------------
 	// ---------- Testing Method: setUpGhostCaptain() ----------
 	// ---------------------------------------------------------

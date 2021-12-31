@@ -1,7 +1,7 @@
 package testing;
 
 //-----------------------------------------------------------------------------------------------------------
-// This JUnit test tests the Board class of the board method of the game. It tests the following methods: 
+// This JUnit test tests the Board class of the board package of the game. It tests the following methods: 
 // mostCocotiles(), reduceLairCount(), and placeLairMostCocotile(). 
 //-----------------------------------------------------------------------------------------------------------
 
@@ -127,7 +127,8 @@ public class TestBoard {
 	
 	// ---------------------------------------------------------------------------------------------------------
 	// --------- Testing placeLairMostCocotile method ----------------------------------------------------------
-	// Ensures lair colour of selected is placed in the center of the board, and their lair count is increased.
+	// Ensures lair colour of selected player is placed in the center of the board, and their lair count is 
+	// increased.
 	// ---------------------------------------------------------------------------------------------------------
 	@Test
 	public void testPlaceLairMostCocotile() {
