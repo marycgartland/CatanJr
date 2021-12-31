@@ -1,0 +1,40 @@
+Testing Documentation
+
+---------------------------------------- Unit Testing Summary ----------------------------------------
+We used JUnit testing to perform unit tests on methods in classes we felt necessary. This excludes methods that have user interaction, as these tests are setup to be automatic.
+
+----- JUnit test: TestBoard -----------
+  This JUnit test tests the Board class of the board package of the game. It tests the following methods: mostCocotiles(), reduceLairCount(), and placeLairMostCocotile(). 
+  The tests checking the mostCocotiles() method cover testing the lair replacement at spooky island.If the ghost captain is in the centre of the board, no lair can be placed here. Otherwise, the player with the most cocotiles places a lair here. If two players have equal numbers of cocotiles, no lairs will be placed in the centre. These tests look at the letter in the center of the board (representing players lairs or the GC or neither), and checks the lair count of a player if they have the most cocotiles. There are 4 separate tests for this method. The first test tests that if one player has the most cocotiles, and the ghost captain isn't in the center of the board, then that player gets to place a lair here. This means that the first letter of their player color will be shown in the center of the board, and their lair count will be increased. The second test ensures that if the player with the most cocotiles changes, then the center lair and corresponding lair counts will be changed. The third test tests that if the ghost captain is in the center, the player with the most cocotiles will not get a lair in the center island. The final test for this method tests if two players have an equal number of max cocotiles, neither gets a lair in the center of the board.
+  The test that covers the reduceLairCount method ensures that a player's lair count is reduced when called. It is unnecessary to test what would happen if this is called when a player has no lairs, as this case is prevented by other checks during the game.
+  The test that covers the placeLairMostCocotile method ensures that a lair colour of selected player is placed in the center of the board, and their lair count is increased accordingly. 
+
+----- JUnit test: TestBoardSetup ------
+  This JUnit test tests the BoardSetup class in the setup package. It tests the following methods: the setupBoard() method, setUpGhostCaptain() method, and the setUpIslands() method. 
+  It tests the setupBoard() method to ensure that if 3 players are in the game, only the blue, red, and white players initial lairs and shipsare setup. If 4 players are in the game, then the orange player's ships and lairs should be setup as well. These tests covered setupBluePlayerLocations, setupRedPlayerLocations, setupWhitePlayerLocations, and setupOrangePlayerLocations methods in the process. 
+  The method setUpGhostCaptain() was also tested to ensure that the ghost captain was properly placed in the center of the board for the start of the game. This was tested by ensuring that the letter 'G' was placed in the center of the board location.
+  Finally, the setUpIslands() method was tested to ensure that 12 islands were setup as expected. This test simply checks that a count of 12 islands were setup.
+  
+----- JUnit test: TestCocoTiles -------
+  This JUnit test is used to test methods from the CocoTiles class of the resources package. It runs 2 tests, including ensuring the cocotiles are actually shuffled, and also that when a player buys a cocotile, it is properly removed from the cocotiles pile. The first test is done by confirming that the initial order is not the same as the shuffled order of the cocotiles. The second test is used to ensure that when a cocotile is bought, it is removed from the stack of cocotiles.
+
+----- JUnit test: TestDice ------------
+  This JUnit test tests the Dice class of the gameplay package. It tests the following two methods: testGetDiceRollValueRange() and testGetDiceRollValue(). This first test just tests one case that the dice roll is between 1 and 6. Note that this is also further tested with system testing, as we can ensure the dice roll is within the correct range as the gameplay is happning (it is displayed on screen for each roll). The second test ensured that the getDiceRollValue() method returns the correct rolled value.
+
+----- JUnit test: TestIsland ----------
+  This JUnit test tests the Island class of the board package. It tests the checkArray() method, which deals with assigning resources to players on the dice roll if they have a lair placed along an island with that dice roll value. This tests each of the 12 islands, and ensured that resources were assigned to players as needed. This was based on initial lair placement of player lairs at setup. Additionally, a test was ran to ensure that if a ghost captain was placed at an island, no resources will be distributed from that island on a dice roll.
+
+----- JUnit test: TestMarketPlace -----  
+  This JUnit test tests the Marketplace class of the board package. It tests the following methods: checkForResourceMarketplace(), testResourceCount(), and swapMarketplace(). 
+   There are 2 tests set up to test the checkForResourceMarketplace() method - one to indiciate 'true' if the resource is found in the marketplace, and the other to indiciate 'false' if the resource is not found in the marketplace. 
+   The test for the method testResourceCount() ensures that each resource in the marketplace is counted correctly based on the setup numbers. This ensures that upon setup, one of each of the 5 resources should be available in the marketplace.
+   There are 3 tests for the swapMarketplace() method. This ensures that if the resources are available in the marketplace, then they are correctly swapped into the players pocket and out of the marketplace. If the resources are not available in the marketplace, then no trade should occur. The first test in this section ensures that when a trade occurs, the players pocket is updated accordingly. The second test ensures that when the trade occurs, the marketplace is updated accordingly. The final test ensures no trade occurs when the resource is not available. 
+
+----- JUnit test: TestPlayer ---------- 
+  This JUnit test tests the Player class of the player method. It runs tests on the following methods of the class: addResource(), removeResource(), addCocoTile(), addLair(), and removeLair(). The addResource() method is tested by making sure that the resource count in a players pocket increases by 1 when it is added to their pocket. Similarly, the removeResource() method is tested by making sure that the resource count in a players pocket is decreased by 1 when it is removed from their pocket. If the addCocoTile() method is used on a player, their cocotile count increases by 1. If the addLair() and removeLair() methods are called, it is tested that the players lair count changes accordingly.
+
+----- JUnit test: TestPlayerTurn ------ 
+<TODO>
+
+----- JUnit test: TestStockpile -------
+<TODO>
