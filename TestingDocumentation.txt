@@ -23,17 +23,18 @@ increased accordingly.
 ----- JUnit test: TestBoardSetup ------
   This JUnit test tests the BoardSetup class in the setup package. It tests the following methods: the setupBoard() method, setUpGhostCaptain() method, and the 
 setUpIslands() method. 
-  It tests the setupBoard() method to ensure that if 3 players are in the game, only the blue, red, and white players initial lairs and shipsare setup. If 4 players 
-are in the game, then the orange player's ships and lairs should be setup as well. These tests covered setupBluePlayerLocations, setupRedPlayerLocations, 
+  It tests the setupBoard() method to ensure that if 3 players are in the game, only the blue, red, and white players initial lairs and shipsare setup. If 4 
+players are in the game, then the orange player's ships and lairs should be setup as well. These tests covered setupBluePlayerLocations, setupRedPlayerLocations, 
 setupWhitePlayerLocations, and setupOrangePlayerLocations methods in the process. 
-  The method setUpGhostCaptain() was also tested to ensure that the ghost captain was properly placed in the center of the board for the start of the game. This was 
-tested by ensuring that the letter 'G' was placed in the center of the board location.
+  The method setUpGhostCaptain() was also tested to ensure that the ghost captain was properly placed in the center of the board for the start of the game. This 
+was tested by ensuring that the letter 'G' was placed in the center of the board location.
   Finally, the setUpIslands() method was tested to ensure that 12 islands were setup as expected. This test simply checks that a count of 12 islands were setup.
   
 ----- JUnit test: TestCocoTiles -------
   This JUnit test is used to test methods from the CocoTiles class of the resources package. It runs 2 tests, including ensuring the cocotiles are actually 
 shuffled, and also that when a player buys a cocotile, it is properly removed from the cocotiles pile. The first test is done by confirming that the initial order 
-is not the same as the shuffled order of the cocotiles. The second test is used to ensure that when a cocotile is bought, it is removed from the stack of cocotiles.
+is not the same as the shuffled order of the cocotiles. The second test is used to ensure that when a cocotile is bought, it is removed from the stack of 
+cocotiles.
 
 ----- JUnit test: TestDice ------------
   This JUnit test tests the Dice class of the gameplay package. It tests the following two methods: testGetDiceRollValueRange() and testGetDiceRollValue(). This 
@@ -42,10 +43,10 @@ within the correct range as the gameplay is happning (it is displayed on screen 
 the correct rolled value.
 
 ----- JUnit test: TestIsland ----------
-  This JUnit test tests the Island class of the board package. It tests the checkArray() method, which deals with assigning resources to players on the dice roll if 
-they have a lair placed along an island with that dice roll value. This tests each of the 12 islands, and ensured that resources were assigned to players as needed. 
-This was based on initial lair placement of player lairs at setup. Additionally, a test was ran to ensure that if a ghost captain was placed at an island, no 
-resources will be distributed from that island on a dice roll.
+  This JUnit test tests the Island class of the board package. It tests the checkArray() method, which deals with assigning resources to players on the dice roll 
+if they have a lair placed along an island with that dice roll value. This tests each of the 12 islands, and ensured that resources were assigned to players as 
+needed. This was based on initial lair placement of player lairs at setup. Additionally, a test was ran to ensure that if a ghost captain was placed at an island, 
+no resources will be distributed from that island on a dice roll.
 
 ----- JUnit test: TestMarketPlace -----  
   This JUnit test tests the Marketplace class of the board package. It tests the following methods: checkForResourceMarketplace(), testResourceCount(), and 
@@ -70,13 +71,34 @@ that the players lair count changes accordingly.
 <TODO>
 
 ----- JUnit test: TestStockpile -------
-<TODO>
+  This JUnit test is used to test the Stockpile class of the board package. It runs tests on the following methods of the class: swapStockpile(), checkStockpile(),
+restockResource(), setupPlayers(), returnResource(), and distributeResource().
+  The swapStockpile() method deals with trading resources between the players and the stockpile. There are 5 tests set up to test cases of this method. The first 
+test checks that if there are valid resources, and this method is called, then the stockpile should have one less of the type of resources requested by the player. 
+The second test checks that if this method is called, the stockpile gains two of the resources that the player traded in. Note that for a player to trade with the 
+stockpile, they must trade in two of the same type of resource in order to gain one of their desired resources. The third test for this method deals with ensuring 
+that the player has two less of the resource that they traded in. The fourth test also deals with the player, and ensures that the player has gained the desired 
+resource after this method is called.  The final test for this method checks that if there are not enough resources in the stockpile, the stockpile is restocked 
+and the trade does not go ahead. The stockpile is restocked by taking all of the out-of-stock resource back from the players.
+  The next two tests are to test the checkStockpile(), which is a method to check if the stockpile is out of a certain resource, and restock accordingly. The first
+test checks that if the stockpile is missing all of a certain resource, that it correctly restocks itself. The second test checks that if the stockpile is missing 
+all of a certain resource and restocks itself, that the players will no longer have said resource, as this is what is used for restocking.
+  The restockResource() method is the method that actually restocks the stockpile from the players pockets, so the two tests under this method test that it does so 
+correctly - ensuring that the stock in the stockpile is restocked, and the stock comes from the players pockets.
+  The setupPlayers() method is tested by a test that ensures that the correct amount of resources are removed from the stockpile to be given to players when the 
+game begins.
+  The method returnResource() is used to return a resource to the stockpile. A test is set up to ensure that the count of the returned resource in the stockpile is 
+increased accordingly.
+  The distributeResource() method is tested by three separate tests. This method is used to distribute resources to players. This is used during setup. The first
+test ensures that if there are enough resources available in the stockpile, the players are correctly given the resource(s). The second test ensures that the
+stockpile itself is updated accordingly. The final test ensures that if there are not enough of the resource in the stockpile, the stockpile is restocked.
+
 
 
 
 
 --------------------------------------------------------------------- System Testing Summary ---------------------------------------------------------------------
-Checked
+
 --------------- User interaction ---------------
   * User entering player numbers 
       * Can only enter 3 or 4. Does not crash when a user enters a letter, or other number. Instead just outputs desired error message and asks user to try again.
@@ -90,9 +112,12 @@ Checked
   * Users lairs are placed and visible on the displayed board to begin
 
 ----- Board setup --------
+  * The lairs and ships can be seen correctly placed on the board
 
 ----- Resource setup -----
   * Cocotiles are actually shuffled
+  * From temporarily added print statements, the correct number of all resources had been set up
+  * From temporarily added print statements, the correct number and type of cocotiles had been set up
 
 --------------- In players turn ----------------
 ----- Ghost Captain -----
@@ -110,9 +135,12 @@ Checked
     choices), so long as their resources available allow them to take actions
 
 --------------- Winning ------------------------
+  * If a player reaches 7 lairs, they are declared the winner and the game successfully ends
 
 --------------- Tidiness of code ---------------
   * All user/game interactions now go through interactor class
+  * Code is not repeated. 
+  * Enums are used for resource and cocotile types for tidiness and ease
 
 --------------- Others -------------------------
 
