@@ -182,11 +182,11 @@ public class Board {
 						}
 					}
 				}
-				message="GC moved";				// Confirm GC has been moved
-				showBoardLayout();				// Display new board layout
-				integer_given = true; 			// End loop	
+				message="GC moved";		// Confirm GC has been moved
+				showBoardLayout();		// Display new board layout
+				integer_given = true; 	// End loop	
 			} 
-			else {								// If island is invalid ...
+			else {						// If island is invalid ...
 				message = "invalid island";
 				integer_given = false;
 				break;
