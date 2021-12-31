@@ -17,7 +17,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestIsland.class,
 	TestMarketPlace.class,
     TestPlayer.class,
-	//TestPlayerTurn.class,
+	TestPlayerTurn.class,
     TestStockpile.class,
 })
 

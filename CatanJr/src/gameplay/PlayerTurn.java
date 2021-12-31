@@ -163,7 +163,7 @@ public class PlayerTurn {
 		} else if (cocotile.equals(CocoTileTypes.GhostCaptain)) {	// The ghost captain cocotile
 			board.showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation()); 	// Replace island centers with their #'s
 			interactor.printMessage("move ghost captain"); 							// Ask user which island to move GC to
-			String number = interactor.takeInAnswer(); 								// Take in user input
+			String number = interactor.takeInAnswer(); 									// Take in user input
 			String message = board.moveGhostCaptain(number);
 			interactor.printMessage(message);
 		} else if (cocotile.equals(CocoTileTypes.ShipCastle)) {		// The ship/lair cocotile

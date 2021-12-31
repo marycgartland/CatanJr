@@ -168,6 +168,13 @@ public class Board {
 	// Moves the ghost captain to another island
 	// -------------------------------------------------------------------------------------------------------
 	public String moveGhostCaptain(String number) {
+		// If the player has not entered a valid value, get a new value
+		while (validIslandCheck(number) == false) {
+			showIslandNumberLayout(ghostCaptain.getGhostCaptainLocation());
+			interactor.printMessage("move ghost captain"); 		
+			number = interactor.takeInAnswer(); 									
+		}
+		// Otherwise, move the ghost captain
 		String message = null;
 		boolean integer_given = false;
 		while (!integer_given) {
@@ -195,6 +202,21 @@ public class Board {
 		return message;
 	}
 
+	// -------------------------------------------------------------------------------------------------------
+	// ---------- Method: validIslandCheck -------------------------------------------------------------------
+	// Error check to confirm that a valid island option has been entered
+	// -------------------------------------------------------------------------------------------------------
+	public boolean validIslandCheck(String enteredValue) {
+		if (enteredValue.equals("1") || enteredValue.equals("2") || enteredValue.equals("3") || enteredValue.equals("4") 
+				|| enteredValue.equals("5") || enteredValue.equals("6") || enteredValue.equals("7")
+				|| enteredValue.equals("8") || enteredValue.equals("9") || enteredValue.equals("10")
+				|| enteredValue.equals("11") || enteredValue.equals("12") || enteredValue.equals("13")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
 	// -------------------------------------------------------------------------------------------------------
 	// ---------- Method: showIslandNumberLayout -------------------------------------------------------------
 	// Displays board with the corresponding island numbers to user
