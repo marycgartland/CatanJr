@@ -52,16 +52,14 @@ public class BoardSetup {
 	// Setup Board design, place users first ship and lairs on board
 	// -----------------------------------------------------------------
 	public void setupBoard(int numberplayers) {
-		if (numberplayers == 3) { 		// 3 players = blue, red, white
-			setupBluePlayerLocations(); 	// Place blue players ships and lairs
-			setupRedPlayerLocations(); 		// Place red players ships and lairs
-			setupWhitePlayerLocations(); 	// Place white players ships and lairs
-		} else { 						// 4 players = blue, red, white, orange
-			setupBluePlayerLocations(); 	// Place blue players ships and lairs
-			setupRedPlayerLocations(); 		// Place red players ships and lairs
-			setupWhitePlayerLocations(); 	// Place white players ships and lairs
-			setupOrangePlayerLocations(); 	// Place orange players ships and lairs
+		// If there are 4 players, also setup the orange player's ships/lairs
+		if (numberplayers == 4) {
+			setupOrangePlayerLocations();	// Place orange players ships and lairs
 		}
+		// If there are only 3 players - Setup blue, red and white ships/lairs 
+		setupBluePlayerLocations(); 	// Place blue players ships and lairs
+		setupRedPlayerLocations(); 		// Place red players ships and lairs
+		setupWhitePlayerLocations(); 	// Place white players ships and lairs
 	}
 
 	// -----------------------------------------------------------------

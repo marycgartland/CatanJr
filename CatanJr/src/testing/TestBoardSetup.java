@@ -43,15 +43,13 @@ public class TestBoardSetup {
 		testPlayerList4.add(testPlayer2);
 		testPlayerList4.add(testPlayer3);
 		testPlayerList4.add(testPlayer4);
-		testboardSetup4 = new BoardSetup(testPlayerList4);
-		testBoard4 = testboardSetup4.getBoard();
-		designTest4 = testBoard4.getBoardDesign();
 		
 		// 3-player
 		testPlayerList3 = new ArrayList<Player>();
 		testPlayerList3.add(testPlayer1);
 		testPlayerList3.add(testPlayer2);
 		testPlayerList3.add(testPlayer3);
+		System.out.println(testPlayerList3.size());
 		testboardSetup3 = new BoardSetup(testPlayerList3);
 		testBoard3 = testboardSetup3.getBoard();
 		designTest3 = testBoard3.getBoardDesign();
@@ -118,42 +116,37 @@ public class TestBoardSetup {
 		assertEquals('/', designTest3[10][8], "setupBoard test - 3 players, orange, S2");
 	} 
 	
-	// Confirm that if 4 players are playing- Blue lairs/ships are setup
+	// Confirm that if 4 players are playing- Blue, Red and White lairs/ships are still setup
+	// Grouped as their individual placement was already tested previously.
 	@Test
 	public void testSetupBoardBlue4() {
+		// Board setup
+		testboardSetup4 = new BoardSetup(testPlayerList4);
+		testBoard4 = testboardSetup4.getBoard();
+		designTest4 = testBoard4.getBoardDesign();
 		// Test expected Lair locations 
 		assertEquals('B', designTest4[5][30], "setupBoard test - 4 players, blue, L1");
 		assertEquals('B', designTest4[13][12], "setupBoard test - 4 players, blue, L2");
-		// Test expected ship locations 
-		assertEquals('b', designTest4[6][28], "setupBoard test - 4 players, blue, S1");
-		assertEquals('b', designTest4[12][12], "setupBoard test - 4 players, blue, S2");
-	} 
-	
-	// Confirm that if 4 players are playing- Red lairs/ships are setup
-	@Test
-	public void testSetupBoardRed4() {
-		// Test expected Lair locations 
 		assertEquals('R', designTest4[3][12], "setupBoard test - 4 players, red, L1");
 		assertEquals('R', designTest4[11][30], "setupBoard test - 4 players, red, L2");
-		// Test expected ship locations 
-		assertEquals('r', designTest4[4][12], "setupBoard test - 4 players, red, S1");
-		assertEquals('r', designTest4[10][28], "setupBoard test - 4 players, red, S2");
-	} 
-	
-	// Confirm that if 4 players are playing- White lairs/ships are setup
-	@Test
-	public void testSetupBoardWhite4() {
-		// Test expected Lair locations 
 		assertEquals('W', designTest4[5][6], "setupBoard test - 4 players, white, L1");
 		assertEquals('W', designTest4[13][24], "setupBoard test - 4 players, white, L2");
 		// Test expected ship locations 
+		assertEquals('b', designTest4[6][28], "setupBoard test - 4 players, blue, S1");
+		assertEquals('b', designTest4[12][12], "setupBoard test - 4 players, blue, S2");
+		assertEquals('r', designTest4[4][12], "setupBoard test - 4 players, red, S1");
+		assertEquals('r', designTest4[10][28], "setupBoard test - 4 players, red, S2");
 		assertEquals('w', designTest4[6][8], "setupBoard test - 4 players, white, S1");
 		assertEquals('w', designTest4[12][24], "setupBoard test - 4 players, white, S2");
 	} 
 	
-	// Confirm that if 4 players are playing- Orange lairs/ships are setup
+	// Confirm that if 4 players are playing- Orange lairs/ships are now setup
 	@Test
 	public void testSetupBoardOrange4() {
+		// Board setup
+		testboardSetup4 = new BoardSetup(testPlayerList4);
+		testBoard4 = testboardSetup4.getBoard();
+		designTest4 = testBoard4.getBoardDesign();
 		// Test expected Lair locations 
 		assertEquals('O', designTest4[3][24], "setupBoard test - 4 players, orange, L1");
 		assertEquals('O', designTest4[11][6], "setupBoard test - 4 players, orange, L2");
@@ -168,7 +161,7 @@ public class TestBoardSetup {
 	@Test
 	public void testSetupGhostCaptain() {
 		// Ensure the GC is in the location it should be to begin
-		assertEquals('G', designTest4[8][18], "setupGhostCaptain test");
+		assertEquals('G', designTest3[8][18], "setupGhostCaptain test");
 	}
 	
 	// ---------------------------------------------------------
@@ -178,7 +171,7 @@ public class TestBoardSetup {
 	public void testSetupIslands() {
 		// Ensure the correct number of islands are setup
 		Island[] testIslands;
-		testIslands = testBoard4.getIslands();
+		testIslands = testBoard3.getIslands();
 		assertEquals(12, Array.getLength(testIslands), "setupIslands test");
 	}
 }
